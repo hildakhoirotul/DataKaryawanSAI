@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.min.css" rel="stylesheet"> -->
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
@@ -14,6 +15,7 @@
 
 <body>
     <div class="container">
+        @include('sweetalert::alert')
         <div class="forms-container">
             <div class="signin-signup">
                 <form method="POST" action="{{ route('login') }}" class="sign-in-form">
@@ -120,7 +122,10 @@
             </div> -->
         </div>
     </div>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script> -->
     <script src="{{ asset('js/main.js') }}" defer></script>
+
+
 </body>
 
 </html>

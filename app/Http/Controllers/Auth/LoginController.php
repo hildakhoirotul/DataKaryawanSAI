@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
+use Alert;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -55,15 +56,19 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (auth()->user()->is_admin == 1) {
+                Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
                 return redirect()->route('/dashboard');
             } else {
+                Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
                 return redirect()->route('/home');
             }
         } else {
 
-            return back()->withErrors([
-                'nik' => 'The provided credentials do not match our records',
-            ]);
+            Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
+            return back();
+            // return back()->withErrors([
+            //     'nik' => 'The provided credentials do not match our records',
+            // ]);
         }
     }
 

@@ -9,32 +9,58 @@
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
-    <title>Login</title>
+    <title>Change Password</title>
 </head>
 
 <body>
     <div class="container">
+        @include('sweetalert::alert')
         <div class="forms-container">
             <div class="signin-signup">
-                <form action="#" class="sign-up-form">
+                <form method="POST" action="{{ route('changePassword') }}" class="sign-up-form">
+                    @csrf
                     <h2 class="title">Ganti Password</h2>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="current_password" type="password" placeholder="Password Lama" class="form-control @error('password') is-invalid @enderror" name="current_password" required autocomplete="current_password">
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="new_password" type="password" placeholder="Password Baru" class="form-control @error('password') is-invalid @enderror" name="new_password" required autocomplete="new_password">
                     </div>
-                    <button type="submit" class="btn solid fw-bold">
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation">
+                    </div>
+                    <!-- <button type="submit" class="btn solid fw-bold">
                         {{ __('GANTI') }}
                     </button>
+                    <div class="mt-3">
+                        <a href="{{ url()->previous() }}" class="btn solid fw-bold">Cancel</a>
+                    </div> -->
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn">
+                            {{ __('GANTI') }}
+                        </button>
+                        <a href="{{ url()->previous() }}"><button type="button" class="btn-cancel btn-outline-secondary" href="{{ url()->previous() }}">Cancel</button></a>
+                    </div>
+
                 </form>
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+                <!-- <form method="POST" action="{{ route('login') }}" class="sign-in-form">
                     @csrf
                     <h2 class="title">Login</h2>
 
@@ -52,15 +78,15 @@
                     </div>
 
                     <button type="submit" class="btn solid fw-bold">
-                        {{ __('GANTI') }}
+                        {{ __('login') }}
                     </button>
-                </form>
+                </form> -->
             </div>
         </div>
 
         <div class="panels-container">
             <div class="panel left-panel">
-                <div class="content">
+                <!-- <div class="content">
                     <h3>Selamat Datang</h3>
                     <p>
                         Silahkan masukkan NIK 6 digit dan password anda untuk Login.
@@ -69,17 +95,17 @@
                         Ganti
                     </button>
                 </div>
-                <img src="assets/img/register.svg" class="image" alt="Register" />
+                <img src="assets/img/register.svg" class="image" alt="Register" /> -->
             </div>
             <div class="panel right-panel">
                 <div class="content">
                     <h3>Ingin Ganti Password?</h3>
                     <p>
-                        Silahkan masukkan NIK 2 digit, password dan konfirmasi password.
+                        Silahkan masukkan NIK 6 digit, password lama dan password baru.
                     </p>
-                    <button class="btn transparent" id="sign-in-btn">
+                    <!-- <button class="btn transparent" id="sign-in-btn">
                         Masuk
-                    </button>
+                    </button> -->
                 </div>
                 <img src="assets/img/login.svg" class="image" alt="Login" />
             </div>

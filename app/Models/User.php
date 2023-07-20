@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -20,10 +21,10 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
         'nik',
         'is_admin',
         'password',
+        'password_changed',
     ];
 
     /**
@@ -48,5 +49,12 @@ class User extends Authenticatable
     public function is_admin()
     {
         return $this->is_admin === 1;
+    }
+
+    public function changePassword($newPassword)
+    {
+        $this->update([
+            'password' => Hash::make($newPassword)
+        ]);
     }
 }

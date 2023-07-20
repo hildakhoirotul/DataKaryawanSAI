@@ -15,7 +15,7 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>
-                    <a class="dropdown-item" href="/change">
+                    <a class="dropdown-item" href="/change-password">
                         <!-- <span> -->
                             <i class="fa-solid fa-key"></i>
                             <span>Change Password</span>

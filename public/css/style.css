@@ -44,6 +44,19 @@ body.dark .card {
   --grey-color-light: #aaa;
 }
 
+body.dark .dropdown-menu {
+  background-color: #333;
+  color: #ffffff;
+}
+
+body.dark .dropdown-menu span{
+  color: #ffffff;
+}
+
+body.dark .dropdown-menu a:hover {
+  color: #000000 !important;
+  background: #868686 !important;
+}
 /* navbar */
 .navbar {
   position: fixed;

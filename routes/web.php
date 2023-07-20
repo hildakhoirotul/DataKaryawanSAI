@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -31,5 +32,11 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->middleware('is_admin')->name('/dashboard');
-    Route::get('/change', 'showChangePassword')->middleware('is_admin')->name('/change');
+    // Route::get('/change', 'showChangePassword')->middleware('is_admin')->name('/change');
+    // Route::post('/change-password', 'changePassword')->name('changePassword');
+});
+
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/change-password', 'showChangePassword')->name('/change-password');
+    Route::post('/change-password', 'changePassword')->name('changePassword');
 });

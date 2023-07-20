@@ -23,6 +23,7 @@
 <body>
     <!-- navbar -->
     @include('admin.layout.navbar')
+    @include('sweetalert::alert')
 
     <!-- sidebar -->
     <!-- <div class="container-fluid"> -->
@@ -163,6 +164,7 @@
     <main class="content pt-5">
         @yield('content')
     </main>
+    
     <!-- </div> -->
 
     <!-- JavaScript -->
