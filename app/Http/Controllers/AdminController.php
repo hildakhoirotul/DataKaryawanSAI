@@ -11,6 +11,10 @@ use App\Models\Absensi;
 use App\Models\Ochi;
 use App\Models\Qcc;
 use Alert;
+use App\Exports\AbsensiExport;
+use App\Exports\OchiExport;
+use App\Exports\QccExport;
+use App\Exports\RekapitulasiExport;
 use App\Imports\AbsensiImport;
 use App\Imports\OchiImport;
 use App\Imports\QccImport;
@@ -19,6 +23,8 @@ use App\Imports\UserImport;
 use App\Models\Rekapitulasi;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class AdminController extends Controller
 {
@@ -61,78 +67,12 @@ class AdminController extends Controller
     public function karyawan()
     {
         $user = User::latest()->paginate(5);
-        foreach($user as $users) {
+        foreach ($user as $users) {
             $users->password = Crypt::decryptString($users->password);
         }
         // $pass = User::select('password')->get();
         // $password = Crypt::decryptString($pass);
         return response()->view('admin.karyawan', compact('user'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     public function showForm()
@@ -147,7 +87,7 @@ class AdminController extends Controller
         // Excel::import(new RekapitulasiImport, $file);
 
         // return redirect()->back()->with('success', 'Data berhasil diimpor.');
-        Rekapitulasi::truncate();
+
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
@@ -156,6 +96,7 @@ class AdminController extends Controller
 
         // membuat nama file unik
         $nama_file = rand() . $file->getClientOriginalName();
+        Rekapitulasi::truncate();
 
         //temporary file
         $path = $file->storeAs('public/excel/', $nama_file);
@@ -200,29 +141,40 @@ class AdminController extends Controller
         }
     }
 
+    public function handleError(ValidationException $e)
+    {
+        $failures = $e->failures();
+        $errorMessages = [];
+        foreach ($failures as $failure) {
+            $error = $failure->errors();
+            $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
+        }
+        return $errorMessages;
+    }
+
     public function importAbsensi(Request $request)
     {
-        Absensi::truncate();
-        $this->validate($request, [
-            'file' => 'required|mimes:csv,xls,xlsx'
-        ]);
+        try {
+            $file = $request->file('file');
+            $this->validate($request, [
+                'file' => 'required|mimes:csv,xls,xlsx'
+            ]);
+            $nama_file = rand() . $file->getClientOriginalName();
+            Absensi::truncate();
 
-        $file = $request->file('file');
+            $path = $file->storeAs('public/excel/', $nama_file);
 
-        $nama_file = rand() . $file->getClientOriginalName();
+            $import = new AbsensiImport();
+            Excel::import($import, $file);
 
-        $path = $file->storeAs('public/excel/', $nama_file);
+            Storage::delete($path);
 
-        $import = Excel::import(new AbsensiImport(), storage_path('app/public/excel/' . $nama_file));
-
-        Storage::delete($path);
-
-        if ($import) {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->route('/absensi');
-        } else {
-            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
-            return redirect()->route('/absensi')->with(['error' => 'Data Gagal Diimport!']);
+            return redirect()->back();
+        } catch (ValidationException $e) {
+            $errorMessages = $this->handleError($e);
+            Alert::warning('Impor Gagal', 'eror pada: ' . implode(', ', $errorMessages));
+            return redirect()->back();
         }
     }
 
@@ -302,5 +254,29 @@ class AdminController extends Controller
             Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
             return redirect()->route('/karyawan')->with(['error' => 'Data Gagal Diimport!']);
         }
+    }
+
+    public function exportExcel()
+    {
+        $data = Rekapitulasi::all()->toArray();
+        return Excel::download(new RekapitulasiExport($data), 'rekapitulasi.xlsx');
+    }
+
+    public function exportAbsensi()
+    {
+        $data = Absensi::all()->toArray();
+        return Excel::download(new AbsensiExport($data), 'absensi.xlsx');
+    }
+
+    public function exportOchi()
+    {
+        $data = Ochi::all()->toArray();
+        return Excel::download(new OchiExport($data), 'ochi.xlsx');
+    }
+
+    public function exportQcc()
+    {
+        $data = Qcc::all()->toArray();
+        return Excel::download(new QccExport($data), 'qcc.xlsx');
     }
 }

@@ -16,23 +16,6 @@ class RekapitulasiImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        // dd($row);
-        // return new Rekapitulasi([
-        //     'nik'     => $row[0],
-        //     'SD'      => $row[1],
-        //     'S'       => $row[2],
-        //     'I'       => $row[3],
-        //     'A'       => $row[4],
-        //     'ITD'     => $row[5],
-        //     'ICP'     => $row[6],
-        //     'TD'      => $row[7],
-        //     'CP'      => $row[8],
-        //     'OCHI'    => $row[9],
-        //     'QCC'     => $row[10],
-        //     'OCHI_leader' => $row[11],
-        //     'Juara_OCHI' => $row[12],
-        //     'Juara_QCC' => $row[13],
-        // ]);
         return new Rekapitulasi([
             'nik'     => $row['nik'],
             'SD'      => $row['sd'],

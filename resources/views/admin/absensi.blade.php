@@ -13,6 +13,10 @@
                 <i class='bx bx-upload me-2'></i>
                 <span>Unggah Data</span>
             </button>
+            <a href="/export-absensi" class="btn btn-info mt-2 ms-1">
+                <i class='bx bx-download me-2'></i>
+                <span>Unduh Data</span>
+            </a>
         </div>
 
         <!-- </a> -->

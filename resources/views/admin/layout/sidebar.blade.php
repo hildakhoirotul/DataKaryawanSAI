@@ -1,4 +1,4 @@
-<nav class="sidebar">
+<nav class="sidebar close hoverable">
     <div class="menu_content">
         <ul class="menu_items">
             <div class="menu_title menu_dahsboard"></div>

@@ -5,13 +5,27 @@ const submenuItems = document.querySelectorAll(".submenu_item");
 const sidebarOpen = document.querySelector("#sidebarOpen");
 const sidebarClose = document.querySelector(".collapse_sidebar");
 const sidebarExpand = document.querySelector(".expand_sidebar");
+const sidebarStatus = localStorage.getItem("sidebarStatus") || "collapsed";
+const darkMode = localStorage.getItem("darkMode");
+
 sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+
+if(sidebarStatus == "expanded") {
+    sidebar.classList.remove("close", "hoverable");
+} else {
+    sidebar.classList.add("close", "hoverable");
+}
+
+// sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
 sidebarClose.addEventListener("click", () => {
     sidebar.classList.add("close", "hoverable");
+    localStorage.setItem("sidebarStatus", "collapsed");
 });
+
 sidebarExpand.addEventListener("click", () => {
     sidebar.classList.remove("close", "hoverable");
+    localStorage.setItem("sidebarStatus", "expanded");
 });
 
 sidebar.addEventListener("mouseenter", () => {
@@ -27,13 +41,22 @@ sidebar.addEventListener("mouseleave", () => {
 
 darkLight.addEventListener("click", () => {
     body.classList.toggle("dark");
+    localStorage.setItem("darkMode", "dark");
     if (body.classList.contains("dark")) {
         document.setI
         darkLight.classList.replace("bx-sun", "bx-moon");
     } else {
         darkLight.classList.replace("bx-moon", "bx-sun");
+        localStorage.setItem("darkMode", "light")
     }
 });
+
+if (darkMode == "dark"){
+    body.classList.toggle("dark");
+    darkLight.classList.replace("bx-sun", "bx-moon");
+} else {
+    darkLight.classList.replace("bx-moon", "bx-sun");
+}
 
 submenuItems.forEach((item, index) => {
     item.addEventListener("click", () => {
