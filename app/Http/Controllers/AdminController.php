@@ -5,8 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use App\Models\Absensi;
+use App\Models\Ochi;
+use App\Models\Qcc;
 use Alert;
+use App\Imports\AbsensiImport;
+use App\Imports\OchiImport;
+use App\Imports\QccImport;
+use App\Imports\RekapitulasiImport;
+use App\Imports\UserImport;
+use App\Models\Rekapitulasi;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -18,13 +30,43 @@ class AdminController extends Controller
     public function dashboard()
     {
         // return view('admin.dashboard');
-        if (auth()->user()->password_changed==0) {
-            Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-        //  Ganti "ganti.password" dengan route ke halaman ganti password
-        }
-        return response()->view('admin.dashboard')
+        // if (auth()->user()->password_changed == 0) {
+        //     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+        // }
+
+        $rekap = Rekapitulasi::latest()->paginate(10);
+        return response()->view('admin.dashboard', compact('rekap'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
+    }
+
+    public function absensi()
+    {
+        $absensi = Absensi::latest()->paginate(10);
+        return response()->view('admin.absensi', compact('absensi'));
+    }
+
+    public function ochi()
+    {
+        $ochi = Ochi::latest()->paginate(10);
+        return response()->view('admin.ochi', compact('ochi'));
+    }
+
+    public function qcc()
+    {
+        $qcc = Qcc::latest()->paginate(10);
+        return response()->view('admin.qcc', compact('qcc'));
+    }
+
+    public function karyawan()
+    {
+        $user = User::latest()->paginate(5);
+        foreach($user as $users) {
+            $users->password = Crypt::decryptString($users->password);
+        }
+        // $pass = User::select('password')->get();
+        // $password = Crypt::decryptString($pass);
+        return response()->view('admin.karyawan', compact('user'));
     }
 
     /**
@@ -93,29 +135,172 @@ class AdminController extends Controller
         //
     }
 
-    // public function showChangePassword()
-    // {
-    //     return response()->view('auth.change');
-    // }
+    public function showForm()
+    {
+        return view('import');
+    }
 
-    // public function changePassword(Request $request)
-    // {
-    //     $request->validate([
-    //         'nik' => 'required',
-    //         'current_password' => 'required',
-    //         'new_password' => 'required|string|min:6|confirmed',
-    //     ]);
+    public function importExcel(Request $request)
+    {
+        // $file = $request->file('file');
 
-    //     $user = Auth::user();
+        // Excel::import(new RekapitulasiImport, $file);
 
-    //     // Memeriksa apakah password lama sesuai
-    //     if (!Hash::check($request->current_password, $user->password && $request->nik, $user->nik)) {
-    //         return redirect()->back()->withErrors(['current_password' => 'Password lama tidak sesuai.']);
-    //     }
+        // return redirect()->back()->with('success', 'Data berhasil diimpor.');
+        Rekapitulasi::truncate();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
 
-    //     // Mengubah password baru
-    //     $user->changePassword($request->new_password);
+        $file = $request->file('file');
 
-    //     return redirect()->route('login')->with('success', 'Password berhasil diubah.');
-    // }
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        //temporary file
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        // import data
+        $import = Excel::import(new RekapitulasiImport(), storage_path('app/public/excel/' . $nama_file));
+
+        // $data = Excel::toArray(new RekapitulasiImport(), storage_path('app/public/excel/' . $nama_file));
+
+        // foreach ($data as $row) {
+        //     $uniqueColumn = ['id'];
+
+        //     $dataToInsert = [
+        //         'nik' => $row['nik'],
+        //         'SD' => $row['SD'],
+        //         'S' => $row['S'],
+        //         'I' => $row['I'],
+        //         'A' => $row['A'],
+        //         'ITD' => $row['ITD'],
+        //         'ICP' => $row['ICP'],
+        //         'TD' => $row['TD'],
+        //         'CP' => $row['CP'],
+        //         'OCHI' => $row['OCHI'],
+        //         'QCC' => $row['QCC'],
+        //         'OCHI_leader' => $row['OCHI_leader'],
+        //         'Juara_OCHI' => $row['Juara_OCHI'],
+        //         'Juara_QCC' => $row['Juara_QCC'],
+        //     ];
+
+        //     Rekapitulasi::updateOrInsert($uniqueColumn, $dataToInsert);
+        // }
+        Storage::delete($path);
+
+        if ($import) {
+            //redirect
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->route('/dashboard');
+        } else {
+            //redirect
+            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
+            return redirect()->route('/dashboard')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
+    public function importAbsensi(Request $request)
+    {
+        Absensi::truncate();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        $import = Excel::import(new AbsensiImport(), storage_path('app/public/excel/' . $nama_file));
+
+        Storage::delete($path);
+
+        if ($import) {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->route('/absensi');
+        } else {
+            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
+            return redirect()->route('/absensi')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
+    public function importOchi(Request $request)
+    {
+        Ochi::truncate();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        $import = Excel::import(new OchiImport(), storage_path('app/public/excel/' . $nama_file));
+
+        Storage::delete($path);
+
+        if ($import) {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->route('/data-ochi');
+        } else {
+            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
+            return redirect()->route('/data-ochi')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
+    public function importQcc(Request $request)
+    {
+        Qcc::truncate();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        $import = Excel::import(new QccImport(), storage_path('app/public/excel/' . $nama_file));
+
+        Storage::delete($path);
+
+        if ($import) {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->route('/data-qcc');
+        } else {
+            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
+            return redirect()->route('/data-qcc')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
+
+    public function importKaryawan(Request $request)
+    {
+        // User::truncate();
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $file = $request->file('file');
+
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        $path = $file->storeAs('public/excel/', $nama_file);
+
+        $import = Excel::import(new UserImport(), storage_path('app/public/excel/' . $nama_file));
+
+        Storage::delete($path);
+
+        if ($import) {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->route('/karyawan');
+        } else {
+            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
+            return redirect()->route('/karyawan')->with(['error' => 'Data Gagal Diimport!']);
+        }
+    }
 }

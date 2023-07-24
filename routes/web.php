@@ -6,6 +6,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Imports\RekapitulasiImport;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Rekapitulasi;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,15 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(AdminController::class)->group(function () {
     Route::get('/dashboard', 'dashboard')->middleware('is_admin')->name('/dashboard');
-    // Route::get('/change', 'showChangePassword')->middleware('is_admin')->name('/change');
-    // Route::post('/change-password', 'changePassword')->name('changePassword');
+    Route::get('/absensi', 'absensi')->middleware('is_admin')->name('/absensi');
+    Route::get('/data-ochi', 'ochi')->middleware('is_admin')->name('/data-ochi');
+    Route::get('/data-qcc', 'qcc')->middleware('is_admin')->name('/data-qcc');
+    Route::get('/karyawan', 'karyawan')->middleware('is_admin')->name('/karyawan');
+    Route::post('/import-excel', 'importExcel')->name('import.excel.submit');
+    Route::post('/import-absensi', 'importAbsensi')->name('import.absensi.submit');
+    Route::post('/import-ochi', 'importOchi')->name('import.ochi.submit');
+    Route::post('/import-qcc', 'importQcc')->name('import.qcc.submit');
+    Route::post('/import-karyawan', 'importKaryawan')->name('import.karyawan.submit');
 });
 
 Route::controller(HomeController::class)->group(function () {

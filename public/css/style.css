@@ -49,7 +49,7 @@ body.dark .dropdown-menu {
   color: #ffffff;
 }
 
-body.dark .dropdown-menu span{
+body.dark .dropdown-menu span {
   color: #ffffff;
 }
 
@@ -57,6 +57,22 @@ body.dark .dropdown-menu a:hover {
   color: #000000 !important;
   background: #868686 !important;
 }
+
+body.dark table tr th {
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
+body.dark table tr td {
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
+body.dark .pagination .page-item {
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
 /* navbar */
 .navbar {
   position: fixed;
@@ -134,7 +150,7 @@ body.dark .dropdown-menu a:hover {
   background: #f3f3f3 !important;
 }
 
-.dropdown-item .fa-solid{
+.dropdown-item .fa-solid {
   font-size: 15px;
   /* height: 50%; */
 }
@@ -146,29 +162,31 @@ body.dark .dropdown-menu a:hover {
   text-transform: uppercase;
 }
 
-.me-6{
+.me-6 {
   margin-right: 6rem;
 }
 
-.nav-link span{
+.nav-link span {
   font-size: large;
   margin-right: 3rem;
 }
 
-.nav-link img{
+.nav-link img {
   margin-right: 2rem;
 }
 
 /* sidebar */
 .content {
   transition: all 0.5s ease;
-  margin-left: 280px; /* Margin kiri saat sidebar terbuka */
+  margin-left: 280px;
+  /* Margin kiri saat sidebar terbuka */
   margin-top: 4rem;
   margin-right: 2rem;
 }
 
-.sidebar.close + .content {
-  margin-left: 100px; /* Margin kiri saat sidebar tertutup */
+.sidebar.close+.content {
+  margin-left: 100px;
+  /* Margin kiri saat sidebar tertutup */
 }
 
 .sidebar {
@@ -218,7 +236,7 @@ body.dark .dropdown-menu a:hover {
 }
 
 .menu_editor::before {
-  content: "Editor";
+  content: "Data";
 }
 
 .menu_setting::before {
@@ -385,8 +403,50 @@ body.dark .dropdown-menu a:hover {
     left: -100%;
   }
 
-  .sidebar.close + .content {
-    margin-left: 2rem; /* Margin kiri saat sidebar tertutup */
+  .sidebar.close+.content {
+    margin-left: 2rem;
+    /* Margin kiri saat sidebar tertutup */
     margin-right: 2rem;
   }
+}
+
+.card {
+  min-width: min-content;
+}
+
+.card h4 {
+  font-weight: 700;
+}
+
+.table tr th {
+  background-color: #09447C;
+  color: #fff;
+  padding: 1rem;
+}
+
+/* .table tr th {
+  background-color: #4070f4;
+} */
+
+button span {
+  font-weight: 500;
+}
+
+.password-container {
+  position: relative;
+}
+
+.password-text {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+}
+
+.toggle-password-icon {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  cursor: pointer;
 }

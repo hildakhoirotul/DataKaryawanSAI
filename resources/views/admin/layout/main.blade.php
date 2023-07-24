@@ -27,149 +27,49 @@
 
     <!-- sidebar -->
     <!-- <div class="container-fluid"> -->
-    <nav class="sidebar">
-        <div class="menu_content">
-            <ul class="menu_items">
-                <div class="menu_title menu_dahsboard"></div>
-                <!-- duplicate or remove this li tag if you want to add or remove navlink with submenu -->
-                <!-- start -->
-                <li class="item">
-                    <div href="#" class="nav_link submenu_item">
-                        <span class="navlink_icon">
-                            <i class="bx bx-home-alt"></i>
-                        </span>
-                        <span class="navlink">Home</span>
-                        <i class="bx bx-chevron-right arrow-left"></i>
-                    </div>
+    @include('admin.layout.sidebar')
 
-                    <ul class="menu_items submenu">
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                    </ul>
-                </li>
-                <!-- end -->
-
-                <!-- duplicate this li tag if you want to add or remove  navlink with submenu -->
-                <!-- start -->
-                <li class="item">
-                    <div href="#" class="nav_link submenu_item">
-                        <span class="navlink_icon">
-                            <i class="bx bx-grid-alt"></i>
-                        </span>
-                        <span class="navlink">Overview</span>
-                        <i class="bx bx-chevron-right arrow-left"></i>
-                    </div>
-
-                    <ul class="menu_items submenu">
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                        <a href="#" class="nav_link sublink">Nav Sub Link</a>
-                    </ul>
-                </li>
-                <!-- end -->
-            </ul>
-
-            <ul class="menu_items">
-                <div class="menu_title menu_editor"></div>
-                <!-- duplicate these li tag if you want to add or remove navlink only -->
-                <!-- Start -->
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bxs-magic-wand"></i>
-                        </span>
-                        <span class="navlink">Magic build</span>
-                    </a>
-                </li>
-                <!-- End -->
-
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-loader-circle"></i>
-                        </span>
-                        <span class="navlink">Filters</span>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-filter"></i>
-                        </span>
-                        <span class="navlink">Filter</span>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-cloud-upload"></i>
-                        </span>
-                        <span class="navlink">Upload new</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="menu_items">
-                <div class="menu_title menu_setting"></div>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-flag"></i>
-                        </span>
-                        <span class="navlink">Notice board</span>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-medal"></i>
-                        </span>
-                        <span class="navlink">Award</span>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-cog"></i>
-                        </span>
-                        <span class="navlink">Setting</span>
-                    </a>
-                </li>
-                <li class="item">
-                    <a href="#" class="nav_link">
-                        <span class="navlink_icon">
-                            <i class="bx bx-layer"></i>
-                        </span>
-                        <span class="navlink">Features</span>
-                    </a>
-                </li>
-            </ul>
-
-            <!-- Sidebar Open / Close -->
-            <div class="bottom_content">
-                <div class="bottom expand_sidebar">
-                    <span> Expand</span>
-                    <i class='bx bx-log-in'></i>
-                </div>
-                <div class="bottom collapse_sidebar">
-                    <span> Collapse</span>
-                    <i class='bx bx-log-out'></i>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <main class="content pt-5">
+    <main class="content p-2 pt-5">
         @yield('content')
     </main>
-    
+
     <!-- </div> -->
 
     <!-- JavaScript -->
-    <!-- <script src="js/script.js"></script> -->
-    <script src="{{ asset('js/script.js') }}?v={{ filemtime(public_path('js/script.js')) }}"></script>
+    <script src="js/script.js"></script>
+    <script src="{{ asset('js/jquery.min.css') }}"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="{{ asset('css/style.css') }}?v={{ filemtime(public_path('js/script.js')) }}"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+            $('#table').DataTable();
+        });
+    </script>
+    <script>
+        function togglePasswordVisibility(icon) {
+            var passwordInput = icon.previousElementSibling; // Mendapatkan elemen sebelumnya (input password)
+            var type = passwordInput.getAttribute('type'); // Mendapatkan atribut type dari input
+
+            if (type === 'password') {
+                passwordInput.setAttribute('type', 'text'); // Ganti atribut type menjadi 'text' untuk menampilkan teks
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            } else {
+                passwordInput.setAttribute('type', 'password'); // Ganti atribut type menjadi 'password' untuk menyembunyikan teks
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
+
+
     <!-- <script src="js/app.js"></script> -->
 </body>
 

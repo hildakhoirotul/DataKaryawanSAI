@@ -15,20 +15,20 @@ class CreateRekapitulasiTable extends Migration
     {
         Schema::create('rekapitulasi', function (Blueprint $table) {
             $table->id();
-            $table->string('nik')->unique();
-            $table->integer('SD');
-            $table->integer('S');
-            $table->integer('I');
-            $table->integer('A');
-            $table->integer('ITD');
-            $table->integer('ICP');
-            $table->integer('TD');
-            $table->integer('CP');
-            $table->integer('OCHI');
-            $table->integer('QCC');
-            $table->integer('OCHI_leader');
-            $table->integer('Juara_OCHI');
-            $table->integer('Juara_QCC');
+            $table->string('nik');
+            $table->string('SD');
+            $table->string('S');
+            $table->string('I');
+            $table->string('A');
+            $table->string('ITD');
+            $table->string('ICP');
+            $table->string('TD');
+            $table->string('CP');
+            $table->string('OCHI');
+            $table->string('QCC');
+            $table->string('OCHI_leader');
+            $table->string('Juara_OCHI');
+            $table->string('Juara_QCC');
             $table->timestamps();
         });
     }

@@ -56,10 +56,18 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (auth()->user()->is_admin == 1) {
-                Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                if (auth()->user()->password_changed == 0) {
+                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                } else {
+                    Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                }
                 return redirect()->route('/dashboard');
             } else {
-                Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                if (auth()->user()->password_changed == 0) {
+                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                } else {
+                    Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                }
                 return redirect()->route('/home');
             }
         } else {
