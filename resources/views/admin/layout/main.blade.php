@@ -21,6 +21,7 @@
 </head>
 
 <body>
+
     <!-- navbar -->
     @include('admin.layout.navbar')
     @include('sweetalert::alert')
@@ -29,21 +30,21 @@
     <!-- <div class="container-fluid"> -->
     @include('admin.layout.sidebar')
 
-    <main class="content p-2 pt-5">
-        @yield('content')
-    </main>
+    @yield('content')
 
     <!-- </div> -->
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
-    <script src="{{ asset('js/jquery.min.css') }}"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="{{ asset('css/style.css') }}?v={{ filemtime(public_path('js/script.js')) }}"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> -->
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -52,22 +53,10 @@
             $('#table').DataTable();
         });
     </script>
-    <script>
-        function togglePasswordVisibility(icon) {
-            var passwordInput = icon.previousElementSibling; // Mendapatkan elemen sebelumnya (input password)
-            var type = passwordInput.getAttribute('type'); // Mendapatkan atribut type dari input
 
-            if (type === 'password') {
-                passwordInput.setAttribute('type', 'text'); // Ganti atribut type menjadi 'text' untuk menampilkan teks
-                icon.classList.remove('fa-eye-slash');
-                icon.classList.add('fa-eye');
-            } else {
-                passwordInput.setAttribute('type', 'password'); // Ganti atribut type menjadi 'password' untuk menyembunyikan teks
-                icon.classList.remove('fa-eye');
-                icon.classList.add('fa-eye-slash');
-            }
-        }
-    </script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+
+
 
 
     <!-- <script src="js/app.js"></script> -->

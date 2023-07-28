@@ -1,84 +1,175 @@
 @extends('admin.layout.main')
 
 @section('content')
+<main class="content p-2 pt-5">
+    <div class="row">
+        <!-- <div class="col-md-12"> -->
+        <div class="card p-4">
+            <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
+            <h4 class="ms-2 mb-0">Data OCHI</h4>
+            <!-- <a href="#"> -->
+            <div class="row justify-content-between align-items-end">
+                <div class="col-md-4 ms-2">
+                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
+                        <i class='bx bx-upload me-2'></i>
+                        <span>Unggah Data</span>
+                    </button>
+                    <form id="exportForm" action="{{ route('export.ochi.submit') }}" method="GET" style="display: none;">
+                        @csrf
+                        <input type="hidden" id="juaraExport" name="juara">
+                    </form>
+                    <button onclick="exportData()" type="button" class="btn btn-info mt-2 ms-1">
+                        <i class='bx bx-download me-2'></i>
+                        <span>Unduh Data</span>
+                    </button>
+                </div>
+                <div class="col-md-4 text-end pe-3 me-2">
+                    <div class="input-group">
+                        <!-- <div class="search-container"> -->
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
 
-<div class="row">
-    <!-- <div class="col-md-12"> -->
-    <div class="card p-4">
-        <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-        <h4 class="ms-3">Data OCHI</h4>
-        <!-- <a href="#"> -->
-        <div class="col-md-4 ms-3">
-            <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
-                <i class='bx bx-upload me-2'></i>
-                <span>Unggah Data</span>
-            </button>
-            <a href="/export-ochi" class="btn btn-info mt-2 ms-1">
-                <i class='bx bx-download me-2'></i>
-                <span>Unduh Data</span>
-            </a>
-        </div>
-
-        <!-- </a> -->
-
-        <!-- Modal -->
-        <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="importExcelLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <form action="{{ route('import.ochi.submit') }}" method="post" enctype="multipart/form-data">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="importExcelLabel">Import Data Excel</h5>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Tempatkan form import di sini -->
-                            @csrf
-                            <div class="form-group">
-                                <input type="file" name="file" accept=".xlsx, .xls, .csv">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Import</button>
+                        <div class="dropdown mt-2 ms-2">
+                            <label for="juara">Juara: </label>
+                            <select id="juara" name="juara" class="form-control col-md-3 filter-juara">
+                                <option value="">-- Juara --</option>
+                                <option value="Juara 1">Juara 1</option>
+                                <option value="Juara 2">Juara 2</option>
+                                <option value="Juara 3">Juara 3</option>
+                            </select>
                         </div>
                     </div>
-                </form>
-            </div>
-        </div>
-        <!-- </div> -->
-
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped text-center table-bordered border-light">
-                    <thead>
-                        <tr>
-                            <th>NO</th>
-                            <th>NIK</th>
-                            <th>TEMA</th>
-                            <th>OCHI Leader</th>
-                            <th>Juara</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @php $i=1 @endphp
-                        @foreach($ochi as $r)
-                        <tr>
-                            <td>{{ $r->id }}</td>
-                            <td>{{ $r->nik }}</td>
-                            <td>{{ $r->tema }}</td>
-                            <td>{{ $r->nik_ochi_leader }}</td>
-                            <td>{{ $r->juara }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-            <div class="pagination">
-                {{ $ochi->links()}}
+                </div>
             </div>
 
+            <!-- </a> -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="importExcel" tabindex="-1" role="dialog" aria-labelledby="importExcelLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <form action="{{ route('import.ochi.submit') }}" method="post" enctype="multipart/form-data">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="importExcelLabel">Import Data Excel</h5>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Tempatkan form import di sini -->
+                                @csrf
+                                <div class="form-group">
+                                    <input type="file" name="file" accept=".xlsx, .xls, .csv">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Import</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <!-- </div> -->
-        </div>
-    </div>
 
-</div>
+            <div class="row">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="myTable" class="table table-striped text-center table-bordered border-light">
+                            <thead class="align-middle">
+                                <tr>
+                                    <th>NO</th>
+                                    <th>NIK</th>
+                                    <th>TEMA</th>
+                                    <th>OCHI Leader</th>
+                                    <th>Juara</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ochiTableBody">
+                                @php $i=1 @endphp
+                                @foreach($ochi as $r)
+                                <tr>
+                                    <td>{{ $r->id }}</td>
+                                    <td>{{ $r->nik }}</td>
+                                    <td>{{ $r->tema }}</td>
+                                    <td>{{ $r->nik_ochi_leader }}</td>
+                                    <td>{{ $r->juara }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script>
+    // function myFunction() {
+    //     var input, filter, table, tr, td, i, txtValue, paging;
+    //     input = document.getElementById("searchp");
+    //     filter = input.value.toUpperCase();
+    //     table = document.getElementById("myTable");
+    //     tr = table.getElementsByTagName("tr");
+    //     paging = document.getElementById("paging");
+
+    //     for (i = 0; i < tr.length; i++) {
+    //         td = tr[i].getElementsByTagName("td")[1];
+    //         if (td) {
+    //             txtValue = td.textContent || td.innerText;
+    //             if (txtValue.toUpperCase().indexOf(filter) > -1) {
+    //                 tr[i].style.display = "";
+    //             } else {
+    //                 tr[i].style.display = "none";
+    //             }
+    //         }
+    //     }
+    // }
+    function myFunction() {
+        var input, filter, table, tr, td1, td2, td3, i, txtValue1, txtValue2;
+        input = document.getElementById("searchp");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td1 = tr[i].getElementsByTagName("td")[1]; // Kolom 1
+            td2 = tr[i].getElementsByTagName("td")[2];
+            td3 = tr[i].getElementsByTagName("td")[3]; // Kolom 2
+            if (td1 || td2) {
+                txtValue1 = td1 ? td1.textContent || td1.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
+                txtValue2 = td2 ? td2.textContent || td2.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
+                txtValue3 = td3 ? td3.textContent || td3.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
+
+                var match1 = txtValue1.toUpperCase().indexOf(filter) > -1;
+                var match2 = txtValue2.toUpperCase().indexOf(filter) > -1;
+                var match3 = txtValue3.toUpperCase().indexOf(filter) > -1;
+                
+                if (match1 || match2 || match3) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script>
+    function exportData() {
+        const selectedJuara = document.getElementById('juara').value;
+
+        document.getElementById('juaraExport').value = selectedJuara;
+
+        document.getElementById('exportForm').submit();
+    }
+
+    document.querySelector('.filter-juara').addEventListener('change', function() {
+        const selectedJuara = this.value;
+        fetch(`{{ route('filter.ochi') }}?juara=${selectedJuara}`)
+        .then(response => response.text())
+        .then(data=> {
+            document.getElementById('ochiTableBody').innerHTML = data;
+        });
+    });
+</script>
 @endsection

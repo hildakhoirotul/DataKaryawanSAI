@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Crypt;
+use App\Jobs\ImportData;
 use App\Models\User;
 use App\Models\Absensi;
 use App\Models\Ochi;
@@ -21,10 +22,17 @@ use App\Imports\QccImport;
 use App\Imports\RekapitulasiImport;
 use App\Imports\UserImport;
 use App\Models\Rekapitulasi;
+use Exception;
+use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException as ValidationValidationException;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Validators\ValidationException;
+use PhpParser\ErrorHandler\Collecting;
+use DataTables;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends Controller
 {
@@ -40,27 +48,111 @@ class AdminController extends Controller
         //     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
         // }
 
-        $rekap = Rekapitulasi::latest()->paginate(10);
+        $rekap = Rekapitulasi::get();
         return response()->view('admin.dashboard', compact('rekap'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
 
-    public function absensi()
+    public function filterAbsensi(Request $request)
     {
-        $absensi = Absensi::latest()->paginate(10);
+        $jenisFilter = $request->query('jenis');
+        $tanggalMulai = $request->query('tanggalMulai');
+        $tanggalAkhir = $request->query('tanggalAkhir');
+
+        // $absensiData = Absensi::where('jenis', 'like', '%' . $jenisFilter . '%')
+        //     ->whereDate('tanggal', '>=', $tanggalMulai)
+        //     ->whereDate('tanggal', '<=', $tanggalAkhir)
+        //     ->get();
+        $query = Absensi::query();
+
+        if ($jenisFilter) {
+            $query->where('jenis', $jenisFilter);
+        }
+
+        if ($tanggalMulai && $tanggalAkhir) {
+            $query->whereDate('tanggal', '>=', $tanggalMulai)
+                ->whereDate('tanggal', '<=', $tanggalAkhir);
+        }
+
+        $absensiData = $query->get();
+
+        return view('admin.partial.absensi', ['absensiData' => $absensiData]);
+    }
+
+    public function filterOchi(Request $request)
+    {
+        $juaraFilter = $request->query('juara');
+
+        $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
+            // ->whereDate('tanggal', '>=', $tanggalMulai)
+            // ->whereDate('tanggal', '<=', $tanggalAkhir)
+            ->get();
+        // $query = Ochi::query();
+
+        // if ($juaraFilter) {
+        //     $query->where('juara', $juaraFilter);
+        // }
+
+        // $ochiData = $query->get();
+
+        return view('admin.partial.ochi', ['ochiData' => $ochiData]);
+    }
+
+    public function filterQcc(Request $request)
+    {
+        $juaraFilter = $request->query('juara');
+
+        $qccData = Qcc::where('juara', 'like', '%' . $juaraFilter . '%')
+            // ->whereDate('tanggal', '>=', $tanggalMulai)
+            // ->whereDate('tanggal', '<=', $tanggalAkhir)
+            ->get();
+        // $query = Ochi::query();
+
+        // if ($juaraFilter) {
+        //     $query->where('juara', $juaraFilter);
+        // }
+
+        // $ochiData = $query->get();
+
+        return view('admin.partial.qcc', ['qccData' => $qccData]);
+    }
+
+    public function absensi(Request $request)
+    {
+        // if($request->ajax()) {
+        //     $data = Absensi::select('*');
+        //     return Datatables::of($data)
+        //     ->addIndexColumn()
+        //     ->filter(function ($instance) use ($request) {
+        //         if ($request->get('jenis') == 'SD' || $request->get('jenis') == 'S') {
+        //             $instance->where('jenis', $request->get('jenis'));
+        //         }
+        //     })
+        //     ->rawColumns(['jenis'])
+        //     ->make(true);
+        // }
+        // $jenisFilter = $request->query('jenis');
+        // $absensi = Absensi::orderBy('tanggal', 'DESC')
+        // ->where('jenis', 'like', '%' . $jenisFilter)->get();
+
+        // if($request->ajax()) {
+        //     return view('admin.absensi.export', ['absensi' => $absensi]);
+        // }
+
+        $absensi = Absensi::orderBy('tanggal', 'DESC')->get();
         return response()->view('admin.absensi', compact('absensi'));
     }
 
     public function ochi()
     {
-        $ochi = Ochi::latest()->paginate(10);
+        $ochi = Ochi::get();
         return response()->view('admin.ochi', compact('ochi'));
     }
 
     public function qcc()
     {
-        $qcc = Qcc::latest()->paginate(10);
+        $qcc = Qcc::get();
         return response()->view('admin.qcc', compact('qcc'));
     }
 
@@ -141,41 +233,103 @@ class AdminController extends Controller
         }
     }
 
-    public function handleError(ValidationException $e)
-    {
-        $failures = $e->failures();
-        $errorMessages = [];
-        foreach ($failures as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
-        }
-        return $errorMessages;
-    }
+    // public function handleError(ValidationException $e): array
+    // {
+    //     $failures = $e->failures();
+    //     $errorMessages = [];
+    //     foreach ($failures as $failure) {
+    //         $error = $failure->errors();
+    //         $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
+    //     }
+    //     return $errorMessages;
+    // }
+
+    // public function importAbsensi(Request $request)
+    // {
+    //     $file = $request->file('file');
+    //     $this->validate($request, [
+    //         'file' => 'required|mimes:csv,xls,xlsx'
+    //     ]);
+
+    //     $nama_file = rand() . $file->getClientOriginalName();
+    //     Absensi::truncate();
+
+    //     $path = $file->storeAs('public/excel/', $nama_file);
+
+    //     $import = new AbsensiImport();
+    //     Excel::import($import, $file);
+
+    //     $errorMessages = [];
+    //     foreach ($import->failures() as $failure) {
+    //         $error = $failure->errors();
+    //         $errorMessages[] = implode("\n ", $error);
+    //     }
+
+    //     if (!empty($errorMessages)) {
+    //         $error = implode("\n" , $errorMessages);
+    //         Alert::error('Impor Gagal', 'Error pada: ' . $error);
+    //         return redirect()->back();
+    //     } else {
+    //         Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+    //         return redirect()->back();
+    //     }
+
+    //     Storage::delete($path);
+    // }
+
 
     public function importAbsensi(Request $request)
     {
-        try {
-            $file = $request->file('file');
-            $this->validate($request, [
-                'file' => 'required|mimes:csv,xls,xlsx'
-            ]);
-            $nama_file = rand() . $file->getClientOriginalName();
-            Absensi::truncate();
+        // try {
+        $file = $request->file('file');
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+        $nama_file = rand() . $file->getClientOriginalName();
+        Absensi::truncate();
 
-            $path = $file->storeAs('public/excel/', $nama_file);
+        $path = $file->storeAs('public/excel/', $nama_file);
 
-            $import = new AbsensiImport();
-            Excel::import($import, $file);
+        $import = new AbsensiImport();
+        Excel::import($import, $file);
+        // $import = Excel::import(new AbsensiImport(), storage_path('app/public/excel/' . $nama_file));
 
-            Storage::delete($path);
-
+        $errorMessages = [];
+        $i = "1";
+        foreach ($import->failures() as $failure) {
+            $error = $failure->errors();
+            // $message = implode("\n", $error);
+            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        }
+        if (!empty($errorMessages)) {
+            $error = implode(" ", $errorMessages);
+            // $errorMessage = nl2br($error);
+            // $script = "<script>sweetAlert('Impor Gagal', 'Error pada:\\n'" . addslashes($error) . "');</script>";
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error);
+            return redirect()->back();
+            // return $script;
+        } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
             return redirect()->back();
-        } catch (ValidationException $e) {
-            $errorMessages = $this->handleError($e);
-            Alert::warning('Impor Gagal', 'eror pada: ' . implode(', ', $errorMessages));
-            return redirect()->back();
         }
+        // dd($errorMessages);
+
+        Storage::delete($path);
+
+        // } 
+        // catch (ValidationException $e) {
+
+        //     $failures = $e->failures();
+        //     $errorMessages = [];
+        //     foreach ($failures as $failure) {
+        //         $error = $failure->errors();
+        //         $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
+        //     }
+        //     $errorMessages = $this->handleError($e);
+        //     dd($errorMessages);
+        //     Alert::warning('Impor Gagal', 'eror pada: ' . implode(', ', $errorMessages));
+        //     return redirect()->back();
+        // }
     }
 
     public function importOchi(Request $request)
@@ -262,21 +416,53 @@ class AdminController extends Controller
         return Excel::download(new RekapitulasiExport($data), 'rekapitulasi.xlsx');
     }
 
-    public function exportAbsensi()
+    public function exportAbsensi(Request $request)
     {
-        $data = Absensi::all()->toArray();
-        return Excel::download(new AbsensiExport($data), 'absensi.xlsx');
+        $jenisFilter = $request->query('jenis');
+        $tanggalMulai = $request->query('tanggalMulai');
+        $tanggalAkhir = $request->query('tanggalAkhir');
+
+        $query = Absensi::query();
+
+        if ($jenisFilter) {
+            $query->where('jenis', $jenisFilter);
+        }
+
+        if ($tanggalMulai && $tanggalAkhir) {
+            $query->whereDate('tanggal', '>=', $tanggalMulai)
+                ->whereDate('tanggal', '<=', $tanggalAkhir);
+        }
+
+        $absensiData = $query->get();
+        // $absensiData = Absensi::where('jenis', 'like', '%' . $jenisFilter)
+        //     ->whereDate('tanggal', '>=', $tanggalMulai)
+        //     ->whereDate('tanggal', '<=', $tanggalAkhir)
+        //     ->get();
+
+        // if($jenis) {
+        // $query->where('jenis', $jenis);
+        // }
+        // $export = new AbsensiExport($data);
+        // return Excel::download($export, 'absensi.xlsx');
+        // $data = Absensi::all()->toArray();
+        return Excel::download(new AbsensiExport($absensiData), 'absensi.xlsx');
     }
 
-    public function exportOchi()
+    public function exportOchi(Request $request)
     {
-        $data = Ochi::all()->toArray();
-        return Excel::download(new OchiExport($data), 'ochi.xlsx');
+        $juaraFilter = $request->query('juara');
+        $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')->get();
+
+        // $data = Ochi::all()->toArray();
+        return Excel::download(new OchiExport($ochiData), 'ochi.xlsx');
     }
 
-    public function exportQcc()
+    public function exportQcc(Request $request)
     {
-        $data = Qcc::all()->toArray();
-        return Excel::download(new QccExport($data), 'qcc.xlsx');
+        $juaraFilter = $request->query('juara');
+        $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')->get();
+
+        // $data = Qcc::all()->toArray();
+        return Excel::download(new QccExport($ochiData), 'qcc.xlsx');
     }
 }
