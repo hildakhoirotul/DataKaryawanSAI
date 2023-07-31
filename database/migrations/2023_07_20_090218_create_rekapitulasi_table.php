@@ -16,19 +16,19 @@ class CreateRekapitulasiTable extends Migration
         Schema::create('rekapitulasi', function (Blueprint $table) {
             $table->id();
             $table->string('nik');
-            $table->string('SD');
-            $table->string('S');
-            $table->string('I');
-            $table->string('A');
-            $table->string('ITD');
-            $table->string('ICP');
-            $table->string('TD');
-            $table->string('CP');
-            $table->string('OCHI');
-            $table->string('QCC');
-            $table->string('OCHI_leader');
-            $table->string('Juara_OCHI');
-            $table->string('Juara_QCC');
+            $table->string('SD')->nullable();
+            $table->string('S')->nullable();
+            $table->string('I')->nullable();
+            $table->string('A')->nullable();
+            $table->string('ITD')->nullable();
+            $table->string('ICP')->nullable();
+            $table->string('TD')->nullable();
+            $table->string('CP')->nullable();
+            $table->string('OCHI')->nullable();
+            $table->string('QCC')->nullable();
+            $table->string('OCHI_leader')->nullable();
+            $table->string('Juara_OCHI')->nullable();
+            $table->string('Juara_QCC')->nullable();
             $table->timestamps();
         });
     }

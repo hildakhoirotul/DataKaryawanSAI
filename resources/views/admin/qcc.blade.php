@@ -89,7 +89,13 @@
                                 <td>{{ $r->nik }}</td>
                                 <td>{{ $r->tema }}</td>
                                 <td>{{ $r->nama_qcc }}</td>
-                                <td>{{ $r->juara }}</td>
+                                <td>
+                                    @if($r->juara == 0 || null)
+                                    -
+                                    @else
+                                    {{ $r->juara }}
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

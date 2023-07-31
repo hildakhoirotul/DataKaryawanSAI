@@ -15,9 +15,9 @@ class CreateAbsensiTable extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->string('nik')->nullable();
-            $table->string('jenis')->nullable();
-            $table->date('tanggal')->nullable();
+            $table->string('nik');
+            $table->string('jenis');
+            $table->date('tanggal');
             $table->time('jam_masuk')->nullable();
             $table->time('jam_pulang')->nullable();
             $table->timestamps();

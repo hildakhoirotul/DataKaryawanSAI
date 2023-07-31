@@ -43,9 +43,9 @@
                 <div class="col-md-7 text-end pe-3 me-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                            <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                            <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
-                            <!-- <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i> -->
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <!-- <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i> -->
                         <!-- </div> -->
 
                         <div class="dropdown mt-2 ms-2">
@@ -139,8 +139,20 @@
                                 <td>{{ $r->nik }}</td>
                                 <td>{{ $r->jenis }}</td>
                                 <td>{{ $r->tanggal }}</td>
-                                <td>{{ $r->jam_masuk }}</td>
-                                <td>{{ $r->jam_pulang }}</td>
+                                <td>
+                                    @if($r->jam_masuk == '00:00:00')
+                                    -
+                                    @else
+                                    {{ $r->jam_masuk }}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($r->jam_pulang == '00:00:00')
+                                    -
+                                    @else
+                                    {{ $r->jam_pulang }}
+                                    @endif
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

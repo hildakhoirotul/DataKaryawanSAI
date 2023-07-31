@@ -174,113 +174,39 @@ class AdminController extends Controller
 
     public function importExcel(Request $request)
     {
-        // $file = $request->file('file');
-
-        // Excel::import(new RekapitulasiImport, $file);
-
-        // return redirect()->back()->with('success', 'Data berhasil diimpor.');
-
+        $file = $request->file('file');
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
-        $file = $request->file('file');
-
-        // membuat nama file unik
         $nama_file = rand() . $file->getClientOriginalName();
         Rekapitulasi::truncate();
 
-        //temporary file
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        // import data
-        $import = Excel::import(new RekapitulasiImport(), storage_path('app/public/excel/' . $nama_file));
+        $import = new RekapitulasiImport();
+        Excel::import($import, $file);
 
-        // $data = Excel::toArray(new RekapitulasiImport(), storage_path('app/public/excel/' . $nama_file));
-
-        // foreach ($data as $row) {
-        //     $uniqueColumn = ['id'];
-
-        //     $dataToInsert = [
-        //         'nik' => $row['nik'],
-        //         'SD' => $row['SD'],
-        //         'S' => $row['S'],
-        //         'I' => $row['I'],
-        //         'A' => $row['A'],
-        //         'ITD' => $row['ITD'],
-        //         'ICP' => $row['ICP'],
-        //         'TD' => $row['TD'],
-        //         'CP' => $row['CP'],
-        //         'OCHI' => $row['OCHI'],
-        //         'QCC' => $row['QCC'],
-        //         'OCHI_leader' => $row['OCHI_leader'],
-        //         'Juara_OCHI' => $row['Juara_OCHI'],
-        //         'Juara_QCC' => $row['Juara_QCC'],
-        //     ];
-
-        //     Rekapitulasi::updateOrInsert($uniqueColumn, $dataToInsert);
-        // }
-        Storage::delete($path);
-
-        if ($import) {
-            //redirect
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->route('/dashboard');
-        } else {
-            //redirect
-            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
-            return redirect()->route('/dashboard')->with(['error' => 'Data Gagal Diimport!']);
+        $errorMessages = [];
+        $i = "1";
+        foreach ($import->failures() as $failure) {
+            $error = $failure->errors();
+            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
+        if (!empty($errorMessages)) {
+            $error = implode(" ", $errorMessages);
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            return redirect()->back();
+        } else {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->back();
+        }
+
+        Storage::delete($path);
     }
-
-    // public function handleError(ValidationException $e): array
-    // {
-    //     $failures = $e->failures();
-    //     $errorMessages = [];
-    //     foreach ($failures as $failure) {
-    //         $error = $failure->errors();
-    //         $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
-    //     }
-    //     return $errorMessages;
-    // }
-
-    // public function importAbsensi(Request $request)
-    // {
-    //     $file = $request->file('file');
-    //     $this->validate($request, [
-    //         'file' => 'required|mimes:csv,xls,xlsx'
-    //     ]);
-
-    //     $nama_file = rand() . $file->getClientOriginalName();
-    //     Absensi::truncate();
-
-    //     $path = $file->storeAs('public/excel/', $nama_file);
-
-    //     $import = new AbsensiImport();
-    //     Excel::import($import, $file);
-
-    //     $errorMessages = [];
-    //     foreach ($import->failures() as $failure) {
-    //         $error = $failure->errors();
-    //         $errorMessages[] = implode("\n ", $error);
-    //     }
-
-    //     if (!empty($errorMessages)) {
-    //         $error = implode("\n" , $errorMessages);
-    //         Alert::error('Impor Gagal', 'Error pada: ' . $error);
-    //         return redirect()->back();
-    //     } else {
-    //         Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-    //         return redirect()->back();
-    //     }
-
-    //     Storage::delete($path);
-    // }
-
 
     public function importAbsensi(Request $request)
     {
-        // try {
         $file = $request->file('file');
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
@@ -292,96 +218,89 @@ class AdminController extends Controller
 
         $import = new AbsensiImport();
         Excel::import($import, $file);
-        // $import = Excel::import(new AbsensiImport(), storage_path('app/public/excel/' . $nama_file));
 
         $errorMessages = [];
         $i = "1";
         foreach ($import->failures() as $failure) {
             $error = $failure->errors();
-            // $message = implode("\n", $error);
-            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            // $errorMessage = nl2br($error);
-            // $script = "<script>sweetAlert('Impor Gagal', 'Error pada:\\n'" . addslashes($error) . "');</script>";
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error);
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
             return redirect()->back();
-            // return $script;
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
             return redirect()->back();
         }
-        // dd($errorMessages);
 
         Storage::delete($path);
-
-        // } 
-        // catch (ValidationException $e) {
-
-        //     $failures = $e->failures();
-        //     $errorMessages = [];
-        //     foreach ($failures as $failure) {
-        //         $error = $failure->errors();
-        //         $errorMessages[] = 'Terjadi kesalahan pada baris ' . $failure->row() . ', ' . implode(', ', $error);
-        //     }
-        //     $errorMessages = $this->handleError($e);
-        //     dd($errorMessages);
-        //     Alert::warning('Impor Gagal', 'eror pada: ' . implode(', ', $errorMessages));
-        //     return redirect()->back();
-        // }
     }
 
     public function importOchi(Request $request)
     {
-        Ochi::truncate();
+        $file = $request->file('file');
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
-        $file = $request->file('file');
-
         $nama_file = rand() . $file->getClientOriginalName();
+        Ochi::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = Excel::import(new OchiImport(), storage_path('app/public/excel/' . $nama_file));
+        $import = new OchiImport();
+        Excel::import($import, $file);
+        // $import = Excel::import(new OchiImport(), storage_path('app/public/excel/' . $nama_file));
 
-        Storage::delete($path);
-
-        if ($import) {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->route('/data-ochi');
-        } else {
-            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
-            return redirect()->route('/data-ochi')->with(['error' => 'Data Gagal Diimport!']);
+        $errorMessages = [];
+        $i = "1";
+        foreach ($import->failures() as $failure) {
+            $error = $failure->errors();
+            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
+        if (!empty($errorMessages)) {
+            $error = implode(" ", $errorMessages);
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            return redirect()->back();
+        } else {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->back();
+        }
+        Storage::delete($path);
     }
 
     public function importQcc(Request $request)
     {
-        Qcc::truncate();
+        $file = $request->file('file');
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
 
-        $file = $request->file('file');
-
         $nama_file = rand() . $file->getClientOriginalName();
+        Qcc::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = Excel::import(new QccImport(), storage_path('app/public/excel/' . $nama_file));
+        $import = new QccImport();
+        Excel::import($import, $file);
+
+        $errorMessages = [];
+        $i = "1";
+        foreach ($import->failures() as $failure) {
+            $error = $failure->errors();
+            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        }
+        if (!empty($errorMessages)) {
+            $error = implode(" ", $errorMessages);
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            return redirect()->back();
+        } else {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->back();
+        }
 
         Storage::delete($path);
-
-        if ($import) {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->route('/data-qcc');
-        } else {
-            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
-            return redirect()->route('/data-qcc')->with(['error' => 'Data Gagal Diimport!']);
-        }
     }
 
     public function importKaryawan(Request $request)

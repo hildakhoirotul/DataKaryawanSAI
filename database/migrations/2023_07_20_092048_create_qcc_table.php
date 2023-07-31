@@ -18,7 +18,7 @@ class CreateQccTable extends Migration
             $table->string('nik')->unique();
             $table->string('tema');
             $table->string('nama_qcc');
-            $table->string('juara');
+            $table->string('juara')->nullable();
             $table->timestamps();
         });
     }

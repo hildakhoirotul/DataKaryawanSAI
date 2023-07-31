@@ -82,7 +82,7 @@
                                     <th>Juara</th>
                                 </tr>
                             </thead>
-                            <tbody id="ochiTableBody">
+                            <tbody id="ochiTableBody" class="align-middle">
                                 @php $i=1 @endphp
                                 @foreach($ochi as $r)
                                 <tr>
@@ -90,7 +90,13 @@
                                     <td>{{ $r->nik }}</td>
                                     <td>{{ $r->tema }}</td>
                                     <td>{{ $r->nik_ochi_leader }}</td>
-                                    <td>{{ $r->juara }}</td>
+                                    <td>
+                                        @if($r->juara == 0 || null)
+                                        -
+                                        @else
+                                        {{ $r->juara }}
+                                        @endif
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -144,7 +150,7 @@
                 var match1 = txtValue1.toUpperCase().indexOf(filter) > -1;
                 var match2 = txtValue2.toUpperCase().indexOf(filter) > -1;
                 var match3 = txtValue3.toUpperCase().indexOf(filter) > -1;
-                
+
                 if (match1 || match2 || match3) {
                     tr[i].style.display = "";
                 } else {
@@ -166,10 +172,10 @@
     document.querySelector('.filter-juara').addEventListener('change', function() {
         const selectedJuara = this.value;
         fetch(`{{ route('filter.ochi') }}?juara=${selectedJuara}`)
-        .then(response => response.text())
-        .then(data=> {
-            document.getElementById('ochiTableBody').innerHTML = data;
-        });
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('ochiTableBody').innerHTML = data;
+            });
     });
 </script>
 @endsection

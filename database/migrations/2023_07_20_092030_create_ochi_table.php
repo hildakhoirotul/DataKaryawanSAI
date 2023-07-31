@@ -18,7 +18,7 @@ class CreateOchiTable extends Migration
             $table->string('nik')->unique();
             $table->string('tema');
             $table->string('nik_ochi_leader');
-            $table->string('juara');
+            $table->string('juara')->nullable();
             $table->timestamps();
         });
     }

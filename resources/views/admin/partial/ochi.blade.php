@@ -5,6 +5,12 @@
     <td>{{ $ochi->nik }}</td>
     <td>{{ $ochi->tema }}</td>
     <td>{{ $ochi->nik_ochi_leader }}</td>
-    <td>{{ $ochi->juara }}</td>
+    <td>
+        @if($ochi->juara == 0 || null)
+        -
+        @else
+        {{ $ochi->juara }}
+        @endif
+    </td>
 </tr>
 @endforeach
