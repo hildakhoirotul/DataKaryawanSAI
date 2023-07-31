@@ -120,26 +120,6 @@ class AdminController extends Controller
 
     public function absensi(Request $request)
     {
-        // if($request->ajax()) {
-        //     $data = Absensi::select('*');
-        //     return Datatables::of($data)
-        //     ->addIndexColumn()
-        //     ->filter(function ($instance) use ($request) {
-        //         if ($request->get('jenis') == 'SD' || $request->get('jenis') == 'S') {
-        //             $instance->where('jenis', $request->get('jenis'));
-        //         }
-        //     })
-        //     ->rawColumns(['jenis'])
-        //     ->make(true);
-        // }
-        // $jenisFilter = $request->query('jenis');
-        // $absensi = Absensi::orderBy('tanggal', 'DESC')
-        // ->where('jenis', 'like', '%' . $jenisFilter)->get();
-
-        // if($request->ajax()) {
-        //     return view('admin.absensi.export', ['absensi' => $absensi]);
-        // }
-
         $absensi = Absensi::orderBy('tanggal', 'DESC')->get();
         return response()->view('admin.absensi', compact('absensi'));
     }
@@ -158,10 +138,10 @@ class AdminController extends Controller
 
     public function karyawan()
     {
-        $user = User::latest()->paginate(5);
-        foreach ($user as $users) {
-            $users->password = Crypt::decryptString($users->password);
-        }
+        $user = User::get();
+        // foreach ($user as $users) {
+        //     $users->password = Crypt::decryptString($users->password);
+        // }
         // $pass = User::select('password')->get();
         // $password = Crypt::decryptString($pass);
         return response()->view('admin.karyawan', compact('user'));
@@ -305,28 +285,34 @@ class AdminController extends Controller
 
     public function importKaryawan(Request $request)
     {
-        // User::truncate();
+        $file = $request->file('file');
         $this->validate($request, [
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
-
-        $file = $request->file('file');
 
         $nama_file = rand() . $file->getClientOriginalName();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = Excel::import(new UserImport(), storage_path('app/public/excel/' . $nama_file));
+        $import = new UserImport();
+        Excel::import($import, $file);
+
+        $errorMessages = [];
+        $i = "1";
+        foreach ($import->failures() as $failure) {
+            $error = $failure->errors();
+            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        }
+        if (!empty($errorMessages)) {
+            $error = implode(" ", $errorMessages);
+            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            return redirect()->back();
+        } else {
+            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+            return redirect()->back();
+        }
 
         Storage::delete($path);
-
-        if ($import) {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->route('/karyawan');
-        } else {
-            Alert::warning('Impor Gagal', $nama_file . ' Gagal diimpor');
-            return redirect()->route('/karyawan')->with(['error' => 'Data Gagal Diimport!']);
-        }
     }
 
     public function exportExcel()

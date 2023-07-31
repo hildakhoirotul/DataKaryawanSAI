@@ -65,7 +65,7 @@ class HomeController extends Controller
             Alert::error('Gagal', 'Password baru tidak boleh sama dengan Password lama')->persistent(true, false);
             return redirect()->back();
         }
-        if (!(strcmp($request->get('new_password'), $request->get('password_confirmation'))) == 0) {
+        if (strcmp($request->get('new_password'), $request->get('password_confirmation')) !== 0) {
             //New password and confirm password are not same
             Alert::error('Gagal', 'Password baru harus sama dengan Konfirmasi password')->persistent(true, false);
             return redirect()->back();
@@ -73,11 +73,12 @@ class HomeController extends Controller
         //Change Password
         $user = Auth::user();
         $user->password = bcrypt($request->get('new_password'));
+        $user->chain = $request->get('new_password');
         $user->password_changed = true;
         $user->save();
-        Auth::logout();
+        // Auth::logout();
 
-        Alert::success('Password berhasil diubah, Silahkan Login kembali');
-        return redirect()->route('login');
+        Alert::success('Password berhasil diubah', 'Silahkan Login kembali');
+        return redirect()->route('login')->with('logout', true);
     }
 }

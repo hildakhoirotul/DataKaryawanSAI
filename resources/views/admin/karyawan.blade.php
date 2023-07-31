@@ -6,13 +6,25 @@
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="ms-3">Data Karyawan</h4>
+            <h4 class="ms-3 mb-0">Data Karyawan</h4>
             <!-- <a href="#"> -->
-            <div class="col-md-4 ms-3">
-                <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
-                    <i class='bx bx-upload me-2'></i>
-                    <span>Unggah Data</span>
-                </button>
+            <div class="row justify-content-between align-items-end">
+
+
+                <div class="col-md-4 ms-3">
+                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
+                        <i class='bx bx-upload me-2'></i>
+                        <span>Unggah Data</span>
+                    </button>
+                </div>
+
+                <div class="col-md-3 pe-3 me-2">
+                    <div class="input-group">
+                        <!-- <div class="search-container"> -->
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                    </div>
+                </div>
             </div>
 
             <!-- </a> -->
@@ -44,7 +56,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-striped text-center table-bordered border-light">
+                    <table id="myTable" class="table table-striped text-center table-bordered border-light">
                         <thead>
                             <tr>
                                 <th>NO</th>
@@ -57,11 +69,11 @@
                             @php $i=1 @endphp
                             @foreach($user as $r)
                             <tr>
-                                <td>{{ $r->id }}</td>
+                                <td>{{ $i++ }}</td>
                                 <td>{{ $r->nik }}</td>
                                 <td>
                                     <div class="password-container">
-                                        <input type="password" class="password-text" value="{{ $r->password }}" readonly>
+                                        <input type="password" class="password-text" value="{{ $r->chain }}" readonly>
                                         <i class="toggle-password-icon fa fa-eye-slash" onclick="togglePasswordVisibility(this)"></i>
                                     </div>
                                 </td>
@@ -71,9 +83,6 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="pagination">
-                    {{ $user->links()}}
                 </div>
 
                 <!-- </div> -->
@@ -95,6 +104,27 @@
             passwordInput.setAttribute('type', 'password'); // Ganti atribut type menjadi 'password' untuk menyembunyikan teks
             icon.classList.remove('fa-eye');
             icon.classList.add('fa-eye-slash');
+        }
+    }
+</script>
+<script>
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchp");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
         }
     }
 </script>

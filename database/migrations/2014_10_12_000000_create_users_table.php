@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('nik')->unique();
             $table->boolean('is_admin')->default(false);
+            $table->string('chain');
             $table->string('password');
             $table->boolean('password_changed')->default(false);
             $table->rememberToken();

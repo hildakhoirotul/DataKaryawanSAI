@@ -8,7 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Auth;
 use Alert;
+use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Crypt;
 
 class LoginController extends Controller
 {
@@ -23,6 +25,7 @@ class LoginController extends Controller
     |
     */
 
+    protected $user;
     use AuthenticatesUsers;
 
     /**
@@ -39,7 +42,12 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware(function ($request, $next) {
+
+            $this->user = Auth::user();
+
+            return $next($request);
+        });
     }
 
     public function username()
@@ -54,19 +62,42 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
+        // $user = User::where($this->username(), $credentials[$this->username()])->first();
+        // if ($user && Crypt::decryptString($user->password) === $credentials['password']) {
+        //     if ($user->is_admin == 1) {
+        //         Auth::login($user);
+        //         if ($user->password_changed == 0) {
+        //             Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+        //         } else {
+        //             Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+        //         }
+        //         return redirect()->route('/dashboard');
+        //     } else {
+        //         // Auth::login($user);
+        //         if ($user->password_changed == 0) {
+        //             Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+        //         } else {
+        //             Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+        //         }
+        //         return redirect()->route('/home');
+        //     }
+        // } else {
+        //     Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
+        //     return back();
+        // }
         if (Auth::attempt($credentials)) {
             if (auth()->user()->is_admin == 1) {
                 if (auth()->user()->password_changed == 0) {
                     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
                 } else {
-                    Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                 }
                 return redirect()->route('/dashboard');
             } else {
                 if (auth()->user()->password_changed == 0) {
                     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
                 } else {
-                    Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
+                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                 }
                 return redirect()->route('/home');
             }
@@ -74,9 +105,6 @@ class LoginController extends Controller
 
             Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
             return back();
-            // return back()->withErrors([
-            //     'nik' => 'The provided credentials do not match our records',
-            // ]);
         }
     }
 

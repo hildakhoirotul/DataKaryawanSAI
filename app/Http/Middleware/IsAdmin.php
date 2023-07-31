@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Log;
 
 class isAdmin
 {
@@ -17,11 +20,16 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // if ($request->user()->is_admin == 1) {
+        //     return $next($request);
+        // }
+
+        // abort(403, 'Unauthorized access');
+
         if (auth()->user()->is_admin == 1) {
             return $next($request);
         }
         abort(403, 'Unauthorized access');
         return redirect('/login');
-        
     }
 }

@@ -10,7 +10,7 @@ const darkMode = localStorage.getItem("darkMode");
 
 sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
-if(sidebarStatus == "expanded") {
+if (sidebarStatus == "expanded") {
     sidebar.classList.remove("close", "hoverable");
 } else {
     sidebar.classList.add("close", "hoverable");
@@ -51,7 +51,7 @@ darkLight.addEventListener("click", () => {
     }
 });
 
-if (darkMode == "dark"){
+if (darkMode == "dark") {
     body.classList.toggle("dark");
     darkLight.classList.replace("bx-sun", "bx-moon");
 } else {
