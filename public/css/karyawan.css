@@ -1,6 +1,190 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+:root {
+    --white-color: #fff;
+    --blue-color: #4070f4;
+    --grey-color: #707070;
+    --grey-color-light: #aaa;
+}
+
 body {
     margin-top: 20px;
-    background: #FAFAFA;
+    background: #e7f2fd;
+}
+
+body.dark {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark {
+    --white-color: #333;
+    --blue-color: #fff;
+    --grey-color: #f2f2f2;
+    --grey-color-light: #aaa;
+}
+
+body.dark .card {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark .card {
+    --white-color: #333;
+    --blue-color: #fff;
+    --grey-color: #f2f2f2;
+    --grey-color-light: #aaa;
+}
+
+body.dark .dropdown-menu {
+    background-color: #333;
+    color: #ffffff;
+}
+
+body.dark .dropdown-menu span {
+    color: #ffffff;
+}
+
+body.dark .dropdown-menu a:hover {
+    color: #000000 !important;
+    background: #868686 !important;
+}
+
+body.dark .input-group .form-control {
+    color: #ffffff !important;
+    background: #333 !important;
+}
+
+.input-group .fa {
+    position: relative;
+    top: -0.2rem;
+}
+
+body.dark .input-group .form-control::-webkit-input-placeholder {
+    color: #ffffff !important;
+    background: #333 !important;
+}
+
+/* navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    background-color: var(--white-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    z-index: 1000;
+    box-shadow: 0 0 2px var(--grey-color-light);
+}
+
+.logo_item {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--blue-color);
+}
+
+.navbar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.navbar_content {
+    display: flex;
+    align-items: center;
+    column-gap: 25px;
+    /* overflow: hidden; */
+}
+
+.navbar_content i {
+    cursor: pointer;
+    font-size: 20px;
+    color: var(--grey-color);
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a:hover {
+    color: #fff !important;
+}
+
+.dropdown-menu {
+    position: absolute;
+    display: none;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    background-color: #ffffff;
+    border: 1px solid transparent !important;
+    -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-menu a {
+    color: #3c3c3c !important;
+}
+
+.dropdown-menu a:hover {
+    color: #232323 !important;
+    background: #f3f3f3 !important;
+}
+
+.dropdown-item .fa-solid {
+    font-size: 15px;
+    /* height: 50%; */
+}
+
+.dropdown-item span {
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.me-6 {
+    margin-right: 6rem;
+}
+
+.nav-link span {
+    font-size: large;
+    margin-right: 3rem;
+}
+
+.nav-link img {
+    margin-right: 2rem;
+}
+/* navbar end */
+
+/* content */
+.content{
+    margin-top: 6rem;
+}
+
+.title{
+    font-weight: 600;
+}
+
+.sub-title{
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .order-card {
@@ -22,7 +206,6 @@ body {
 .bg-c-pink {
     background: linear-gradient(45deg, #FF5370, #ff869a);
 }
-
 
 .card {
     border-radius: 5px;
@@ -48,4 +231,8 @@ body {
 
 .f-right {
     float: right;
+}
+
+@media screen and (max-width: 768px) {
+    
 }

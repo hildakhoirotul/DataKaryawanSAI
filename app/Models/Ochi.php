@@ -14,6 +14,7 @@ class Ochi extends Model
     protected $fillable = [
         'nik',
         'tema',
+        'kontes',
         'nik_ochi_leader',
         'juara',
     ];

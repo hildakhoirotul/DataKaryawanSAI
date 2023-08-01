@@ -485,3 +485,36 @@ button span {
 .form-control .btn {
   border-radius: 0;
 }
+
+/* content */
+.jumlah-data {
+  display: inline;
+  position: absolute;
+  top: 1.7rem;
+  right: 2rem;
+  width:fit-content;
+  height:fit-content;
+  font-size: 14px;
+  color: #fd7e14;
+  background-color: #fd7d143a;
+  outline-style: solid;
+  outline-width: 1pt;
+  outline-color: #fd7e14;
+  border-radius: 3px;
+}
+
+.jumlah-absensi {
+  display: inline;
+  position: absolute;
+  top: 1.7rem;
+  right: 2.75rem;
+  width:fit-content;
+  height:fit-content;
+  font-size: 14px;
+  color: #fd7e14;
+  background-color: #fd7d143a;
+  outline-style: solid;
+  outline-width: 1pt;
+  outline-color: #fd7e14;
+  border-radius: 3px;
+}

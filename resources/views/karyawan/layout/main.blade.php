@@ -12,7 +12,7 @@
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
-    <title>Dashboard</title>
+    <title>Data Karyawan</title>
     <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet">
 </head>
 
@@ -21,7 +21,7 @@
     <!-- navbar -->
     <nav class="navbar">
         <div class="logo_item">
-            <i class="bx bx-menu" id="sidebarOpen"></i>
+            <!-- <i class="bx bx-menu" id="sidebarOpen"></i> -->
             <!-- <img src="images/logo.png" alt=""></i>CodingNepal -->
         </div>
 
@@ -31,7 +31,7 @@
             <!-- <i class='bx bx-bell'></i> -->
             <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <span>{{ Auth::user()->nik }}</span>
+                    <span>{{ Auth::user()->nik }} &nbsp &nbsp</span>
                     <img src="assets/img/account.png" class="img" alt="">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -62,17 +62,6 @@
                     </li>
 
                 </ul>
-                <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul> -->
             </li>
         </div>
     </nav>

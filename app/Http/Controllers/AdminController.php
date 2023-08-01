@@ -47,9 +47,9 @@ class AdminController extends Controller
         // if (auth()->user()->password_changed == 0) {
         //     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
         // }
-
+        $total = Rekapitulasi::count();
         $rekap = Rekapitulasi::get();
-        return response()->view('admin.dashboard', compact('rekap'))
+        return response()->view('admin.dashboard', compact('rekap', 'total'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
@@ -103,8 +103,8 @@ class AdminController extends Controller
     {
         $juaraFilter = $request->query('juara');
 
-        $qccData = Qcc::where('juara', 'like', '%' . $juaraFilter . '%')
-            // ->whereDate('tanggal', '>=', $tanggalMulai)
+        $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
+            ->orwhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
             // ->whereDate('tanggal', '<=', $tanggalAkhir)
             ->get();
         // $query = Ochi::query();
@@ -120,31 +120,35 @@ class AdminController extends Controller
 
     public function absensi(Request $request)
     {
+        $total = Absensi::count();
         $absensi = Absensi::orderBy('tanggal', 'DESC')->get();
-        return response()->view('admin.absensi', compact('absensi'));
+        return response()->view('admin.absensi', compact('absensi', 'total'));
     }
 
     public function ochi()
     {
+        $total = Ochi::count();
         $ochi = Ochi::get();
-        return response()->view('admin.ochi', compact('ochi'));
+        return response()->view('admin.ochi', compact('ochi', 'total'));
     }
 
     public function qcc()
     {
+        $total = Qcc::count();
         $qcc = Qcc::get();
-        return response()->view('admin.qcc', compact('qcc'));
+        return response()->view('admin.qcc', compact('qcc', 'total'));
     }
 
     public function karyawan()
     {
+        $total = User::count();
         $user = User::get();
         // foreach ($user as $users) {
         //     $users->password = Crypt::decryptString($users->password);
         // }
         // $pass = User::select('password')->get();
         // $password = Crypt::decryptString($pass);
-        return response()->view('admin.karyawan', compact('user'));
+        return response()->view('admin.karyawan', compact('user', 'total'));
     }
 
     public function showForm()
@@ -365,9 +369,11 @@ class AdminController extends Controller
     public function exportQcc(Request $request)
     {
         $juaraFilter = $request->query('juara');
-        $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')->get();
+        $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
+        ->orWhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
+        ->get();
 
         // $data = Qcc::all()->toArray();
-        return Excel::download(new QccExport($ochiData), 'qcc.xlsx');
+        return Excel::download(new QccExport($qccData), 'qcc.xlsx');
     }
 }

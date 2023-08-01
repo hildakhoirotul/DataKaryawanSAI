@@ -7,6 +7,9 @@
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h4 class="ms-3 mb-0">Data Karyawan</h4>
+            <div class="jumlah-absensi text-nowrap border">
+                Jumlah data : {{ $total }}
+            </div>
             <!-- <a href="#"> -->
             <div class="row justify-content-between align-items-end">
 
@@ -18,7 +21,7 @@
                     </button>
                 </div>
 
-                <div class="col-md-3 pe-3 me-2">
+                <div class="col-md-3 pe-3 me-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">

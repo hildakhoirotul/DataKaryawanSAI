@@ -6,10 +6,13 @@
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="ms-2 mb-0">Data OCHI</h4>
+            <h4 class="ms-1 mb-0">Data OCHI</h4>
+            <div class="jumlah-data text-nowrap border">
+                Jumlah data : {{ $total }}
+            </div>
             <!-- <a href="#"> -->
             <div class="row justify-content-between align-items-end">
-                <div class="col-md-4 ms-2">
+                <div class="col-md-4 ms-1">
                     <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bx bx-upload me-2'></i>
                         <span>Unggah Data</span>
@@ -23,7 +26,7 @@
                         <span>Unduh Data</span>
                     </button>
                 </div>
-                <div class="col-md-4 text-end pe-3 me-2">
+                <div class="col-md-4 text-end pe-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -72,12 +75,13 @@
             <div class="row">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="myTable" class="table table-striped text-center table-bordered border-light">
-                            <thead class="align-middle">
+                        <table id="myTable" class="table table-striped table-bordered border-light">
+                            <thead class="align-middle text-center">
                                 <tr>
                                     <th>NO</th>
                                     <th>NIK</th>
                                     <th>TEMA</th>
+                                    <th>Kontes</th>
                                     <th>OCHI Leader</th>
                                     <th>Juara</th>
                                 </tr>
@@ -86,11 +90,12 @@
                                 @php $i=1 @endphp
                                 @foreach($ochi as $r)
                                 <tr>
-                                    <td>{{ $r->id }}</td>
-                                    <td>{{ $r->nik }}</td>
-                                    <td>{{ $r->tema }}</td>
-                                    <td>{{ $r->nik_ochi_leader }}</td>
-                                    <td>
+                                    <td class="text-center">{{ $r->id }}</td>
+                                    <td class="text-center">{{ $r->nik }}</td>
+                                    <td class="text-start">{{ $r->tema }}</td>
+                                    <td class="text-center">{{ $r->kontes }}</td>
+                                    <td class="text-center">{{ $r->nik_ochi_leader }}</td>
+                                    <td class="text-center">
                                         @if($r->juara == 0 || null)
                                         -
                                         @else

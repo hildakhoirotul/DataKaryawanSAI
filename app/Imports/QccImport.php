@@ -34,8 +34,10 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
         return new Qcc([
             'nik'     => $row['nik'],
             'tema'   => $row['tema'],
+            'kontes'   => $row['kontes'],
             'nama_qcc' => $row['nama_qcc'],
-            'juara'  => $row['juara'],
+            'juara_sai'  => $row['juara_sai'],
+            'juara_pasi'  => $row['juara_pasi'],
         ]);
     }
 

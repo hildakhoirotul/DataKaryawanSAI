@@ -39,6 +39,7 @@ class OchiExport implements FromCollection, WithHeadings, WithMapping
         return [
             'NIK',
             'Tema',
+            'Kontes',
             'NIK OCHI Leader',
             'Juara',
         ];
@@ -49,6 +50,7 @@ class OchiExport implements FromCollection, WithHeadings, WithMapping
         return [
             $row['nik'],
             $row['tema'],
+            $row['kontes'],
             $row['nik_ochi_leader'],
             $row['juara'],
         ];

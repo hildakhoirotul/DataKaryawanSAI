@@ -6,10 +6,14 @@
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="ms-2 mb-0">Rekapitulasi Data Karyawan</h4>
+            <h4 class="mb-0">Rekapitulasi Data Karyawan</h4>
+            <div class="jumlah-data text-nowrap border">
+                Jumlah data : {{ $total }}
+            </div>
             <!-- <a href="#"> -->
-            <div class="row justify-content-between align-items-end">
-                <div class="col-md-4 ms-2">
+            <div class="row mt-2 justify-content-between align-items-end">
+
+                <div class="col-md-5">
                     <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bx bx-upload me-2'></i>
                         <span>Unggah Data</span>
@@ -18,16 +22,15 @@
                         <i class='bx bx-download me-2'></i>
                         <span>Unduh Data</span>
                     </a>
-                    <!-- <button type="button" class="btn btn-info mt-2 ms-1" data-toggle="modal" data-target="#exportExcel">
-                    <i class='bx bx-download me-2'></i>
-                    <span>Unduh Data</span>
-                </button> -->
                 </div>
-                <div class="col-md-3 pe-3 me-2">
+                <!-- <div class="col-md-2 p-0 m-0">
+                    <span>Jumlah data : {{ $total }}</span>
+                </div> -->
+                <div class="col-md-3 pe-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <input type="text" name="search" style="height: 2.5rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
                     </div>
                 </div>
             </div>

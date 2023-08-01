@@ -40,18 +40,25 @@ class QccExport implements FromCollection, WithHeadings, WithMapping
         return [
             'NIK',
             'Tema',
+            'Kontes',
             'Nama QCC',
-            'Juara',
+            'Juara SAI',
+            'Juara PASI',
         ];
     }
 
     public function map($row): array
     {
+        $juara_sai = ($row->juara_sai !== null && $row->juara_sai !== '0') ? (string) $row->juara_sai : '-';
+        $juara_pasi = ($row->juara_pasi !== null && $row->juara_pasi !== '0') ? (string) $row->juara_pasi : '-';
+
         return [
             $row['nik'],
             $row['tema'],
+            $row['kontes'],
             $row['nama_qcc'],
-            $row['juara'],
+            $juara_sai,
+            $juara_pasi,
         ];
     }
 }

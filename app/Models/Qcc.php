@@ -15,7 +15,9 @@ class Qcc extends Model
     protected $fillable = [
         'nik',
         'tema',
+        'kontes',
         'nama_qcc',
-        'juara',
+        'juara_sai',
+        'juara_pasi',
     ];
 }

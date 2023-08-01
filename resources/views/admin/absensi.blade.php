@@ -6,9 +6,12 @@
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="ms-3 mb-0">Data Absensi Karyawan</h4>
+            <h4 class="ms-3 mb-0" style="display: inline;">Data Absensi Karyawan</h4>
+            <div class="jumlah-absensi text-nowrap border">
+                Jumlah data : {{ $total }}
+            </div>
             <!-- <a href="#"> -->
-            <div class="row justify-content-between align-items-end">
+            <div class="row mt-2 justify-content-between align-items-end">
                 <div class="col-md-4 ms-3">
                     <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bx bx-upload me-2'></i>

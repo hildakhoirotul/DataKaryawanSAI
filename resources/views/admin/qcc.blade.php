@@ -6,10 +6,13 @@
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="ms-2 mb-0">Data QCC Karyawan</h4>
+            <h4 class="ms-3 mb-0">Data QCC Karyawan</h4>
+            <div class="jumlah-absensi text-nowrap border">
+                Jumlah data : {{ $total }}
+            </div>
             <!-- <a href="#"> -->
             <div class="row justify-content-between align-items-end">
-                <div class="col-md-4 ms-2">
+                <div class="col-md-4 ms-3">
                     <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bx bx-upload me-2'></i>
                         <span>Unggah Data</span>
@@ -23,7 +26,7 @@
                         <span>Unduh Data</span>
                     </button>
                 </div>
-                <div class="col-md-4 text-end pe-3 me-2">
+                <div class="col-md-4 text-end pe-3 me-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
@@ -71,29 +74,39 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="myTable" class="table table-striped text-center table-bordered border-light">
-                        <thead>
+                    <table id="myTable" class="table table-striped table-bordered border-light">
+                        <thead class="text-center">
                             <tr>
                                 <th>NO</th>
                                 <th>NIK</th>
                                 <th>TEMA</th>
-                                <th>NAMA QCC</th>
-                                <th>JUARA</th>
+                                <th>Kontes</th>
+                                <th>Nama QCC</th>
+                                <th>Juara SAI</th>
+                                <th>Juara PASI</th>
                             </tr>
                         </thead>
                         <tbody id="qccTableBody">
                             @php $i=1 @endphp
                             @foreach($qcc as $r)
                             <tr>
-                                <td>{{ $r->id }}</td>
-                                <td>{{ $r->nik }}</td>
-                                <td>{{ $r->tema }}</td>
-                                <td>{{ $r->nama_qcc }}</td>
-                                <td>
-                                    @if($r->juara == 0 || null)
+                                <td class="text-center">{{ $r->id }}</td>
+                                <td class="text-center">{{ $r->nik }}</td>
+                                <td class="text-start">{{ $r->tema }}</td>
+                                <td class="text-center">{{ $r->kontes }}</td>
+                                <td class="text-center">{{ $r->nama_qcc }}</td>
+                                <td class="text-center">
+                                    @if($r->juara_sai == 0 || null)
                                     -
                                     @else
-                                    {{ $r->juara }}
+                                    {{ $r->juara_sai }}
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($r->juara_pasi == 0 || null)
+                                    -
+                                    @else
+                                    {{ $r->juara_pasi }}
                                     @endif
                                 </td>
                             </tr>
