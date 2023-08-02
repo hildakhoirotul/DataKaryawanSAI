@@ -15,7 +15,7 @@ class CreateQccTable extends Migration
     {
         Schema::create('qcc', function (Blueprint $table) {
             $table->id();
-            $table->string('nik')->unique();
+            $table->string('nik');
             $table->string('tema');
             $table->string('kontes')->nullable();
             $table->string('nama_qcc');

@@ -183,7 +183,6 @@ form.sign-in-form {
     cursor: pointer;
     transition: 0.5s;
     font-family: "Poppins", sans-serif;
-
 }
 
 .btn-cancel {
@@ -466,6 +465,38 @@ form.sign-in-form {
     .container.sign-up-mode .signin-signup {
         top: 10%;
         transform: translate(-50%, 0);
+    }
+
+    .btn {
+        width: 150px;
+        background-color: #09447C;
+        border: none;
+        outline: none;
+        height: 49px;
+        border-radius: 49px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: 0.5s;
+        font-family: "Poppins", sans-serif;
+    }
+
+    .btn-cancel {
+        border: 2px solid black;
+        background-color: white;
+        border-color: #cccccc;
+        color: rgb(110, 110, 110);
+        width: 150px;
+        height: 49px;
+        border-radius: 49px;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: 0.5s;
+        font-family: "Poppins", sans-serif;
     }
 }
 

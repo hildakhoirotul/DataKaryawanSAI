@@ -15,7 +15,7 @@ class CreateOchiTable extends Migration
     {
         Schema::create('ochi', function (Blueprint $table) {
             $table->id();
-            $table->string('nik')->unique();
+            $table->string('nik');
             $table->string('tema');
             $table->string('kontes')->nullable();
             $table->string('nik_ochi_leader');

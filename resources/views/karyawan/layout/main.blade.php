@@ -19,8 +19,9 @@
 <body>
 
     <!-- navbar -->
-    <nav class="navbar">
+    <nav class="navbar pe-0">
         <div class="logo_item">
+            <i class='bx bx-sun' id="darkLight"></i>
             <!-- <i class="bx bx-menu" id="sidebarOpen"></i> -->
             <!-- <img src="images/logo.png" alt=""></i>CodingNepal -->
         </div>
@@ -29,19 +30,38 @@
             <!-- <i class="bi bi-grid"></i> -->
             <i class='bx bx-sun' id="darkLight"></i>
             <!-- <i class='bx bx-bell'></i> -->
-            <li class="nav-item dropdown">
+            <div class="dropdown">
                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    <span>{{ Auth::user()->nik }} &nbsp &nbsp</span>
+                    <span>{{ Auth::user()->nik }}</span>
+                    <img src="assets/img/account.png" class="img" alt="">
+                </a>
+                <div class="dropdown-menu pe-0" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/change-password">
+                        <i class="fa-solid fa-key"></i>
+                        <span>Ganti Sandi</span>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>{{ __('Logout') }}</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </div>
+            </div>
+            <!-- <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <span>{{ Auth::user()->nik }} &nbsp</span>
                     <img src="assets/img/account.png" class="img" alt="">
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" href="/change-password">
-                            <!-- <span> -->
                             <i class="fa-solid fa-key"></i>
                             <span>Change Password</span>
-                            <!-- </span> -->
-
                         </a>
                     </li>
 
@@ -49,11 +69,8 @@
                     <li>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            <!-- <span > -->
                             <i class="fa-solid fa-right-from-bracket"></i>
                             <span>{{ __('Logout') }}</span>
-                            <!-- </span> -->
-
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -62,7 +79,7 @@
                     </li>
 
                 </ul>
-            </li>
+            </li> -->
         </div>
     </nav>
     <!-- navbar end -->
