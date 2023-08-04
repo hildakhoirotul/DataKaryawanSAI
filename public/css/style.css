@@ -78,6 +78,41 @@ body.dark .input-group .form-control {
   background: #333 !important;
 }
 
+body.dark .jumlah-data {
+  color: #ffffff !important;
+  background: #333 !important;
+  outline-width: 1pt;
+  outline-color: #333;
+  border-radius: 3px;
+}
+
+body.dark .jumlah-absensi {
+  color: #ffffff !important;
+  background: #333 !important;
+  outline-width: 1pt;
+  outline-color: #333;
+  border-radius: 3px;
+}
+
+body.dark .modal-content{
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
+body.dark .dropdown,
+body.dark .dropdown label,
+body.dark .dropdown input[type="date"] {
+  background-color: #333 !important; /* Warna latar belakang */
+  color: #fff !important; /* Warna teks */
+  color-scheme: dark;
+}
+
+body.dark .password-container input,
+body.dark .password-container i{
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
 .input-group .fa{
   position: relative;
   top: -0.2rem;
@@ -214,6 +249,11 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
   /* Margin kiri saat sidebar tertutup */
 }
 
+.sidebar.close {
+  padding: 60px 0;
+  width: 80px;
+}
+
 .sidebar {
   background-color: var(--white-color);
   width: 260px;
@@ -228,11 +268,6 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
   white-space: nowrap;
   box-shadow: 0 0 1px var(--grey-color-light);
   transition: all 0.5s ease;
-}
-
-.sidebar.close {
-  padding: 60px 0;
-  width: 80px;
 }
 
 .sidebar::-webkit-scrollbar {

@@ -41,6 +41,11 @@
                     </a>
                     @endif -->
                     <a href="{{ url('lupa-password') }}" class="lupa-password">Lupa Password?</a>
+                    @if (Route::has('password.request'))
+                    <!-- <a href="{{ route('password.request') }}">
+                        {{ __('Reset Password') }}
+                    </a>
+                    @endif -->
                 </form>
             </div>
         </div>

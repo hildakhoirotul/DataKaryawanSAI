@@ -7,7 +7,7 @@
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h4 class="ms-3 mb-0" style="display: inline;">Data Absensi Karyawan</h4>
-            <div class="jumlah-absensi text-nowrap border">
+            <div class="jumlah-absensi px-2 text-nowrap border">
                 Jumlah data : {{ $total }}
             </div>
             <!-- <a href="#"> -->

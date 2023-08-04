@@ -8,15 +8,20 @@ const sidebarExpand = document.querySelector(".expand_sidebar");
 const sidebarStatus = localStorage.getItem("sidebarStatus") || "collapsed";
 const darkMode = localStorage.getItem("darkMode");
 
-sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
+document.addEventListener("DOMContentLoaded", () => {
+    // sidebar.classList.add("close");
+    if (sidebarStatus === "expanded") {
+        sidebar.classList.remove("close");
+    } else {
+        sidebar.classList.add("close");
+    }
+});
 
-if (sidebarStatus == "expanded") {
+if (sidebarStatus === "expanded") {
     sidebar.classList.remove("close", "hoverable");
 } else {
     sidebar.classList.add("close", "hoverable");
 }
-
-// sidebarOpen.addEventListener("click", () => sidebar.classList.toggle("close"));
 
 sidebarClose.addEventListener("click", () => {
     sidebar.classList.add("close", "hoverable");
@@ -28,12 +33,12 @@ sidebarExpand.addEventListener("click", () => {
     localStorage.setItem("sidebarStatus", "expanded");
 });
 
-sidebar.addEventListener("mouseenter", () => {
+sidebar.addEventListener("mouseover", () => {
     if (sidebar.classList.contains("hoverable")) {
         sidebar.classList.remove("close");
     }
 });
-sidebar.addEventListener("mouseleave", () => {
+sidebar.addEventListener("mouseout", () => {
     if (sidebar.classList.contains("hoverable")) {
         sidebar.classList.add("close");
     }

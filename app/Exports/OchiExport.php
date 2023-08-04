@@ -47,12 +47,14 @@ class OchiExport implements FromCollection, WithHeadings, WithMapping
 
     public function map($row): array
     {
+        $juara = $row->juara !== '0' ? (string) $row->juara : '-';
+
         return [
             $row['nik'],
             $row['tema'],
             $row['kontes'],
             $row['nik_ochi_leader'],
-            $row['juara'],
+            $juara,
         ];
     }
 }

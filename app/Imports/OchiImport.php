@@ -33,12 +33,14 @@ class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
 
     public function model(array $row)
     {
+        $juara = ($row['juara'] !== 0 && $row['juara'] !== null) ? $row['juara'] : '-';
+
         return new Ochi([
             'nik'     => $row['nik'],
             'tema'   => $row['tema'],
             'kontes'   => $row['kontes'],
             'nik_ochi_leader' => $row['ochi_leader'],
-            'juara'  => $row['juara'],
+            'juara'  => $juara,
         ]);
     }
 

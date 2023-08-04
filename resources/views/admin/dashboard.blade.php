@@ -7,7 +7,7 @@
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h4 class="mb-0">Rekapitulasi Data Karyawan</h4>
-            <div class="jumlah-data text-nowrap border">
+            <div class="jumlah-data text-nowrap border px-2">
                 Jumlah data : {{ $total }}
             </div>
             <!-- <a href="#"> -->

@@ -46,11 +46,11 @@
         </div>
 
         <div class="panels-container">
-            <div class="panel left-panel">
+            <div class="panel left-panel" style="align-items: center;">
                 <div class="content">
                     <h3>Selamat Datang</h3>
                     <p>
-                        Silahkan masukkan NIK 6 digit dan password anda untuk Login.
+                        Silahkan masukkan NIK 6 digit anda untuk Login.
                     </p>
                     <!-- <button class="btn transparent" id="sign-up-btn">
                         Daftar

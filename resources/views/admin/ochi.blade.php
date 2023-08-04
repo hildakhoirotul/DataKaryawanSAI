@@ -7,7 +7,7 @@
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h4 class="ms-1 mb-0">Data OCHI</h4>
-            <div class="jumlah-data text-nowrap border">
+            <div class="jumlah-data px-2 text-nowrap border">
                 Jumlah data : {{ $total }}
             </div>
             <!-- <a href="#"> -->
@@ -137,7 +137,7 @@
     //     }
     // }
     function myFunction() {
-        var input, filter, table, tr, td1, td2, td3, i, txtValue1, txtValue2;
+        var input, filter, table, tr, td1, td2, td3, td4, i, txtValue1, txtValue2;
         input = document.getElementById("searchp");
         filter = input.value.toUpperCase();
         table = document.getElementById("myTable");
@@ -147,16 +147,19 @@
             td1 = tr[i].getElementsByTagName("td")[1]; // Kolom 1
             td2 = tr[i].getElementsByTagName("td")[2];
             td3 = tr[i].getElementsByTagName("td")[3]; // Kolom 2
+            td4 = tr[i].getElementsByTagName("td")[4]; // Kolom 2
             if (td1 || td2) {
                 txtValue1 = td1 ? td1.textContent || td1.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
                 txtValue2 = td2 ? td2.textContent || td2.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
                 txtValue3 = td3 ? td3.textContent || td3.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
+                txtValue4 = td4 ? td4.textContent || td4.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
 
                 var match1 = txtValue1.toUpperCase().indexOf(filter) > -1;
                 var match2 = txtValue2.toUpperCase().indexOf(filter) > -1;
                 var match3 = txtValue3.toUpperCase().indexOf(filter) > -1;
+                var match4 = txtValue4.toUpperCase().indexOf(filter) > -1;
 
-                if (match1 || match2 || match3) {
+                if (match1 || match2 || match3 || match4) {
                     tr[i].style.display = "";
                 } else {
                     tr[i].style.display = "none";
