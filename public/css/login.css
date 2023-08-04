@@ -527,3 +527,8 @@ form.sign-in-form {
         left: 50%;
     }
 }
+
+.lupa-password{
+    text-decoration: none;
+    color: #09447C;
+}

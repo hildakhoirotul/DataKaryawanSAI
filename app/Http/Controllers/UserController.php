@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Absensi;
 use App\Models\Ochi;
 use App\Models\Qcc;
+use App\Models\Setting;
 
 class UserController extends Controller
 {
@@ -53,7 +54,9 @@ class UserController extends Controller
         ->whereIn('juara_sai', ['juara 1', 'juara 2', 'juara 3'])
         ->get();
         $rekap = Rekapitulasi::where('nik', $user->nik)->get();
-        return response()->view('karyawan.index', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc'))
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('karyawan.index', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc', 'status'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }

@@ -107,9 +107,21 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
   display: flex;
   align-items: center;
   column-gap: 10px;
-  font-size: 22px;
-  font-weight: 500;
-  color: var(--blue-color);
+  /* font-size: 22px; */
+  /* font-weight: 500; */
+  /* color: var(--blue-color); */
+}
+
+.logo_item form{
+  min-width: fit-content;
+}
+
+.logo_item label{
+  margin-left: 10px;
+}
+
+.custom-switch{
+  transform: scale(1.3);
 }
 
 .navbar img {

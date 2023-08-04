@@ -124,6 +124,18 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
     display: none;
 }
 
+/* switch */
+.form-check {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-check-input {
+    order: -1;
+    margin-right: 10px;
+}
+
 .dropdown {
     position: relative;
     display: inline-block;

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SignInController;
 use App\Http\Controllers\UserController;
 use App\Imports\RekapitulasiImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -21,12 +22,16 @@ use App\Models\Rekapitulasi;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+// Route::get('/', function () {
+//     return view('auth.login');
+// });
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+// Route::get('/send-email', [LoginController::class, 'email'])->name('send-email');
+Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('lupa-password');
+Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupa-password');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/home', 'index')->middleware('is_user')->name('/home');
@@ -50,9 +55,14 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/filter-absensi', 'filterAbsensi')->name('filter.absensi');
     Route::get('/filter-ochi', 'filterOchi')->name('filter.ochi');
     Route::get('/filter-qcc', 'filterQcc')->name('filter.qcc');
+    Route::post('/disable-login', 'settingLogin')->name('disable.login');
 });
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/change-password', 'showChangePassword')->name('/change-password');
     Route::post('/change-password', 'changePassword')->name('changePassword');
+});
+
+Route::controller(SignInController::class)->group(function () {
+    Route::post('/sign-in', 'login')->name('sign-in');
 });

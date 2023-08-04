@@ -36,6 +36,22 @@
                     <img src="assets/img/account.png" class="img" alt="">
                 </a>
                 <div class="dropdown-menu pe-0" aria-labelledby="navbarDropdown">
+                    @if($status)
+                    <!-- <a class="dropdown-item" href="/change-password">
+                        <i class="fa-solid fa-key"></i>
+                        <span>Ganti Sandi</span>
+                    </a>
+                    <div class="dropdown-divider"></div> -->
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <span>{{ __('Logout') }}</span>
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                    @else
                     <a class="dropdown-item" href="/change-password">
                         <i class="fa-solid fa-key"></i>
                         <span>Ganti Sandi</span>
@@ -50,6 +66,7 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
+                    @endif
                 </div>
             </div>
             <!-- <li class="nav-item dropdown">

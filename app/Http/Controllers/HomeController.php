@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Alert;
 
+
 class HomeController extends Controller
 {
     /**

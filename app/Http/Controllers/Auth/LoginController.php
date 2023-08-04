@@ -11,6 +11,9 @@ use Alert;
 use App\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Crypt;
+use App\Mail\MyMail;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -50,6 +53,22 @@ class LoginController extends Controller
         });
     }
 
+    public function showLoginForm()
+    {
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        $admin = session()->get('admin');
+        if ($status) {
+            if(empty($admin)){
+                return view('auth.signin');
+            } else {
+                return view('auth.login');
+            }
+        } else {
+            return view('auth.login');
+        }
+    }
+
     public function username()
     {
         return 'nik';
@@ -62,29 +81,6 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
 
-        // $user = User::where($this->username(), $credentials[$this->username()])->first();
-        // if ($user && Crypt::decryptString($user->password) === $credentials['password']) {
-        //     if ($user->is_admin == 1) {
-        //         Auth::login($user);
-        //         if ($user->password_changed == 0) {
-        //             Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-        //         } else {
-        //             Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
-        //         }
-        //         return redirect()->route('/dashboard');
-        //     } else {
-        //         // Auth::login($user);
-        //         if ($user->password_changed == 0) {
-        //             Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-        //         } else {
-        //             Alert::success('Berhasil Masuk, Selamat Datang ' . auth()->user()->nik);
-        //         }
-        //         return redirect()->route('/home');
-        //     }
-        // } else {
-        //     Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
-        //     return back();
-        // }
         if (Auth::attempt($credentials)) {
             if (auth()->user()->is_admin == 1) {
                 if (auth()->user()->password_changed == 0) {
@@ -102,7 +98,6 @@ class LoginController extends Controller
                 return redirect()->route('/home');
             }
         } else {
-
             Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
             return back();
         }
@@ -122,6 +117,23 @@ class LoginController extends Controller
 
         return $request->wantsJson()
             ? new JsonResponse([], 204)
-            : redirect('/login');
+            : redirect('/');
+    }
+
+    public function ForgetPassword()
+    {
+        return view('auth.send');
+    }
+
+    public function GetEmail(Request $request)
+    {
+        $email = $request->input('email');
+        $nik = $request->input('nik');
+        $user = User::where('nik', $nik)->first();
+        Mail::to($email)->send(new MyMail($email, $user));
+
+        Alert::success('Berhasil Dikirim', 'Silahkan Cek Email Anda dan Login kembali');
+        return redirect('/login');
+        // return "Email telah dikirim: " . $email. ' dan ' . $nik;
     }
 }

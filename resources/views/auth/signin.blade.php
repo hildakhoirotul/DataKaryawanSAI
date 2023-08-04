@@ -10,7 +10,7 @@
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
-    <title>Login</title>
+    <title>Masuk</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
         @include('sweetalert::alert')
         <div class="forms-container">
             <div class="signin-signup">
-                <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+                <form method="POST" action="{{ route('sign-in') }}" class="sign-in-form">
                     @csrf
                     <h2 class="title">Masuk</h2>
 
@@ -26,10 +26,10 @@
                         <i class="fas fa-envelope"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
-                    <div class="input-field">
+                    <!-- <div class="input-field">
                         <i class="fas fa-lock"></i>
                         <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                    </div>
+                    </div> -->
                     <!-- <a href="#" class="href">Lupa Password :(</a> -->
 
                     <button type="submit" class="btn solid fw-bold">
@@ -40,7 +40,7 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                     @endif -->
-                    <a href="{{ url('lupa-password') }}" class="lupa-password">Lupa Password?</a>
+                    <!-- <a href="{{ url('lupa-password') }}" class="lupa-password">Lupa Password?</a> -->
                 </form>
             </div>
         </div>

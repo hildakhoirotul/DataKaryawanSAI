@@ -394,6 +394,19 @@
                     </div>
                 </div>
                 <!-- OCHI -->
+                @if($status)
+                <div class="col-md-2 p-1 option">
+                    <!-- <a href=""> -->
+                    <div class="card bg-c-purple order-card">
+                        <div class="card-block">
+                            <h1>OCHI</h1>
+                            <h2 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->OCHI }}</span></h2>
+                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
+                        </div>
+                    </div>
+                    <!-- </a> -->
+                </div>
+                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse9" data-jenis="OCHI">
                         <div class="card bg-c-purple order-card">
@@ -445,7 +458,19 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- QCC -->
+                @if($status)
+                <div class="col-md-2 p-1 option">
+                    <div class="card bg-c-purple500 order-card">
+                        <div class="card-block">
+                            <h1>QCC</h1>
+                            <h2 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->QCC }}</span></h2>
+                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse10">
                         <div class="card bg-c-purple500 order-card">
@@ -497,7 +522,19 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- OCHI leader -->
+                @if($status)
+                <div class="col-md-2 p-1 option">
+                    <div class="card bg-c-purple200 order-card">
+                        <div class="card-block">
+                            <h3>Ochi leader</h3>
+                            <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->OCHI_leader }}</span></h4>
+                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse11">
                         <div class="card bg-c-purple200 order-card">
@@ -549,7 +586,19 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- Juara OCHI -->
+                @if($status)
+                <div class="col-md-2 p-1 option">
+                    <div class="card bg-c-pink order-card">
+                        <div class="card-block">
+                            <h3>Juara OCHI</h3>
+                            <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->Juara_OCHI }}</span></h4>
+                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse12">
                         <div class="card bg-c-pink order-card">
@@ -601,9 +650,21 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
             <div class="row">
                 <!-- Juara QCC -->
+                @if($status)
+                <div class="col-md-2 p-1 option">
+                    <div class="card bg-c-red order-card">
+                        <div class="card-block">
+                            <h3>Juara QCC</h3>
+                            <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->Juara_QCC }}</span></h4>
+                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse13">
                         <div class="card bg-c-red order-card">
@@ -665,6 +726,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

@@ -22,6 +22,7 @@ use App\Imports\QccImport;
 use App\Imports\RekapitulasiImport;
 use App\Imports\UserImport;
 use App\Models\Rekapitulasi;
+use App\Models\Setting;
 use Exception;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
@@ -43,13 +44,11 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        // return view('admin.dashboard');
-        // if (auth()->user()->password_changed == 0) {
-        //     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-        // }
         $total = Rekapitulasi::count();
         $rekap = Rekapitulasi::get();
-        return response()->view('admin.dashboard', compact('rekap', 'total'))
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
@@ -122,33 +121,41 @@ class AdminController extends Controller
     {
         $total = Absensi::count();
         $absensi = Absensi::orderBy('tanggal', 'DESC')->get();
-        return response()->view('admin.absensi', compact('absensi', 'total'));
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
     }
 
     public function ochi()
     {
         $total = Ochi::count();
         $ochi = Ochi::get();
-        return response()->view('admin.ochi', compact('ochi', 'total'));
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.ochi', compact('ochi', 'total', 'status'));
     }
 
     public function qcc()
     {
         $total = Qcc::count();
         $qcc = Qcc::get();
-        return response()->view('admin.qcc', compact('qcc', 'total'));
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.qcc', compact('qcc', 'total', 'status'));
     }
 
     public function karyawan()
     {
         $total = User::count();
         $user = User::get();
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
         // foreach ($user as $users) {
         //     $users->password = Crypt::decryptString($users->password);
         // }
         // $pass = User::select('password')->get();
         // $password = Crypt::decryptString($pass);
-        return response()->view('admin.karyawan', compact('user', 'total'));
+        return response()->view('admin.karyawan', compact('user', 'total', 'status'));
     }
 
     public function showForm()
@@ -370,10 +377,25 @@ class AdminController extends Controller
     {
         $juaraFilter = $request->query('juara');
         $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
-        ->orWhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
-        ->get();
+            ->orWhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
+            ->get();
 
         // $data = Qcc::all()->toArray();
         return Excel::download(new QccExport($qccData), 'qcc.xlsx');
+    }
+
+    public function settingLogin(Request $request)
+    {
+        $disable = $request->input('status');
+        $setting = Setting::firstOrNew([]);
+        $setting->login = $disable ? true : false;
+        $setting->save();
+        // dd($setting->login);
+        if ($setting->login) {
+            Alert::info('Perubahan disimpan', 'Beberapa fitur telah dinonaktifkan');
+        } else {
+            Alert::info('Perubahan disimpan', 'Beberapa fitur telah diaktifkan kembali');
+        }
+        return redirect()->route('/dashboard');
     }
 }
