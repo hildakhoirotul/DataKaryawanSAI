@@ -735,11 +735,11 @@
         <h4 class="sub-title">
             Mohon Diperhatikan
         </h4>
-        <div class="petunjuk">
-            <p><i class='bx bxs-circle'></i>Konfirmasi Absensi ke EB.</p>
-            <p><i class='bx bxs-circle'></i>Konfirmasi OCHI & QCC ke Training.</p>
-            <p><i class='bx bxs-circle'></i>Perubahan data dapat dilihat kembali setelah 1 bulan.</p>
-            <p><i class='bx bxs-circle'></i>Karyawan baru harus mengganti password ketika pertama kali masuk sistem.</p>
+        <div class="petunjuk ms-3">
+            <p>Konfirmasi Absensi ke EB.</p>
+            <p>Konfirmasi OCHI & QCC ke Training.</p>
+            <p>Perubahan data dapat dilihat kembali setelah 1 bulan.</p>
+            <p>Silahkan mengganti password ketika pertama kali masuk sistem.</p>
         </div>
 
     </div>

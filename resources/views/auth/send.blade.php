@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <title>Change Password</title>
+    <title>Get Password</title>
+    <link href="assets/img/logo.png" rel="icon">
+    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    
 </head>
 
 <body>

@@ -13,6 +13,9 @@
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
     <title>Dashboard</title>
+    <!-- favicon -->
+    <link href="assets/img/logo.png" rel="icon">
+    <link href="assets/img/logo.png" rel="apple-touch-icon">
     <!-- <link rel="stylesheet" href="css/style.css" /> -->
     <link href="{{ asset('css/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}" rel="stylesheet">
 

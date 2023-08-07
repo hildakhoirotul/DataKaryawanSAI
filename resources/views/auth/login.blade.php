@@ -10,7 +10,10 @@
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
-    <title>Login</title>
+    <title>Masuk</title>
+    <link href="assets/img/logo.png" rel="icon">
+    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    
 </head>
 
 <body>
@@ -55,7 +58,7 @@
                 <div class="content">
                     <h3>Selamat Datang</h3>
                     <p>
-                        Silahkan masukkan NIK 6 digit dan password anda untuk Login.
+                        Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.
                     </p>
                     <!-- <button class="btn transparent" id="sign-up-btn">
                         Daftar

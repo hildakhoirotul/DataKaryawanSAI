@@ -30,7 +30,7 @@
                     <a class="dropdown-item" href="/change-password">
                         <!-- <span> -->
                         <i class="fa-solid fa-key"></i>
-                        <span>Change Password</span>
+                        <span>Ganti Sandi</span>
                         <!-- </span> -->
 
                     </a>
@@ -42,7 +42,7 @@
                                                      document.getElementById('logout-form').submit();">
                         <!-- <span > -->
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Keluar') }}</span>
                         <!-- </span> -->
 
                     </a>

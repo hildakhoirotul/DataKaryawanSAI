@@ -328,12 +328,13 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
 
 .card .petunjuk p {
     margin-bottom: 5px;
+    display: list-item;
 }
 
-.petunjuk p i {
-    font-size: 13px;
+/* .petunjuk p i {
+    font-size: 10px;
     margin-right: 10px;
-}
+} */
 
 .f-left {
     float: left;

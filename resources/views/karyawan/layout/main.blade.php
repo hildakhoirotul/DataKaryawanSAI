@@ -14,6 +14,9 @@
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
     <title>Data Karyawan</title>
     <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet">
+    <link href="assets/img/logo.png" rel="icon">
+    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    
 </head>
 
 <body>
@@ -45,7 +48,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Keluar') }}</span>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -60,7 +63,7 @@
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                         <i class="fa-solid fa-right-from-bracket"></i>
-                        <span>{{ __('Logout') }}</span>
+                        <span>{{ __('Keluar') }}</span>
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
