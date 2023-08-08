@@ -31,9 +31,17 @@ body.dark {
     --grey-color-light: #aaa;
 }
 
+body.dark .navbar{
+    background-color: #333;
+    color: #fff;
+}
+
 body.dark .card {
     background-color: #333;
     color: #fff;
+    outline-style: solid;
+    outline-width: 1px;
+    outline-color: #ffffff76;
 }
 
 body.dark .card {
@@ -68,6 +76,13 @@ body.dark .input-group .form-control {
 }
 
 body.dark .input-group .form-control::-webkit-input-placeholder {
+    color: #ffffff !important;
+    background: #333 !important;
+}
+
+body.dark .modal-content,
+body.dark .modal-content table tr th,
+body.dark .modal-content table tr td{
     color: #ffffff !important;
     background: #333 !important;
 }

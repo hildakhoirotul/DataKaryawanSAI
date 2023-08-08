@@ -134,6 +134,5 @@ class LoginController extends Controller
 
         Alert::success('Berhasil Dikirim', 'Silahkan Cek Email Anda dan Login kembali');
         return redirect('/login');
-        // return "Email telah dikirim: " . $email. ' dan ' . $nik;
     }
 }

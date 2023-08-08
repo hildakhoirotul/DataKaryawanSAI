@@ -15,6 +15,7 @@
         "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.29",
         "realrashid/sweet-alert": "^7.0",
+        "renatomarinho/laravel-page-speed": "^2.1",
         "yajra/laravel-datatables-oracle": "^9.21"
     },
     "require-dev": {

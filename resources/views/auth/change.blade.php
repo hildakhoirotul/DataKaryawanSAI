@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
+    <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
@@ -34,7 +35,8 @@
                     </div>
                     @endif
                     <div class="input-field">
-                        <i class="fas fa-envelope"></i>
+                        <!-- <i class="fas fa-envelope"></i> -->
+                        <i class="fa-regular fa-address-card"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">

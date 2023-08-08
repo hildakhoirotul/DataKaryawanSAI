@@ -9,7 +9,6 @@
         </form>
 
         <i class="bx bx-menu" id="sidebarOpen"></i>
-        <!-- <img src="images/logo.png" alt=""></i>CodingNepal -->
     </div>
 
     <div class="navbar_content">
@@ -28,10 +27,8 @@
                 </li>
                 <li>
                     <a class="dropdown-item" href="/change-password">
-                        <!-- <span> -->
                         <i class="fa-solid fa-key"></i>
                         <span>Ganti Sandi</span>
-                        <!-- </span> -->
 
                     </a>
                 </li>
@@ -40,10 +37,8 @@
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <!-- <span > -->
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <span>{{ __('Keluar') }}</span>
-                        <!-- </span> -->
 
                     </a>
 
@@ -52,17 +47,6 @@
                     </form>
                 </li>
             </ul>
-            <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul> -->
         </li>
     </div>
 </nav>

@@ -1,5 +1,4 @@
-<nav class="sidebar" id="mySidebar" onmouseover="toggleSidebar()" onmouseout="toggleSidebar()">
-<!-- <nav class="sidebar close hoverable"> -->
+<nav class="sidebar" id="mySidebar">
     <div class="menu_content">
         <ul class="menu_items">
             <div class="menu_title menu_dahsboard"></div>

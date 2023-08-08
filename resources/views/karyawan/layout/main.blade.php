@@ -16,7 +16,7 @@
     <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet">
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">
-    
+
 </head>
 
 <body>
@@ -31,7 +31,7 @@
 
         <div class="navbar_content">
             <!-- <i class="bi bi-grid"></i> -->
-            <!-- <i class='bx bx-sun' id="darkLight"></i> -->
+            <i class='bx bx-sun' id="darkLight"></i>
             <!-- <i class='bx bx-bell'></i> -->
             <div class="dropdown">
                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -108,6 +108,30 @@
     @yield('content')
 
     <!-- </div> -->
+    <script>
+        const body = document.querySelector("body");
+        const darkLight = document.querySelector("#darkLight");
+        const darkMode = localStorage.getItem("darkMode1");
+
+        darkLight.addEventListener("click", () => {
+            body.classList.toggle("dark");
+            localStorage.setItem("darkMode1", "dark");
+            if (body.classList.contains("dark")) {
+                // document.setI
+                darkLight.classList.replace("bx-sun", "bx-moon");
+            } else {
+                darkLight.classList.replace("bx-moon", "bx-sun");
+                localStorage.setItem("darkMode1", "light")
+            }
+        });
+
+        if (darkMode == "dark") {
+            body.classList.toggle("dark");
+            darkLight.classList.replace("bx-sun", "bx-moon");
+        } else {
+            darkLight.classList.replace("bx-moon", "bx-sun");
+        }
+    </script>
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>

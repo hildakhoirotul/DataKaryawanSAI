@@ -46,7 +46,7 @@
                 <div class="col-md-7 text-end pe-3 me-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
                         <!-- <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i> -->
                         <!-- </div> -->
@@ -64,23 +64,6 @@
                                 <option value="ITD">ITD</option>
                                 <option value="ICP">ICP</option>
                             </select>
-                            <!-- <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>S</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>SD</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>I</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>A</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>ITD</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>ICP</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>TP</span></a></li>
-                                <div class="dropdown-divider"></div>
-                                <li><a class="dropdown-item" href="#"><i class="fa-solid fa-key"></i><span>CP</span></a></li>
-                            </ul> -->
                         </div>
                         <div class="dropdown ms-2 mt-2">
                             <label for="tanggalMulai">Tanggal Mulai:</label>
@@ -160,45 +143,15 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {{ $absensi->links()}}
+                    </div>
                 </div>
-
-                <!-- </div> -->
             </div>
         </div>
 
     </div>
 </main>
-<script>
-    // $('#searchp').keyup(function() {
-    //     var seterm = $('#searchp').val();
-    //     for (var i = 0; i < $('.contact').length; i++) {
-    //         $('.contact:eq(' + i + ')').css('display', 'table-cell');
-    //         if ($('.contact:eq(' + i + ')').text().toLowerCase().indexOf(seterm) < 0) {
-    //             $('.contact:eq(' + i + ')').css('display', 'none');
-    //         }
-    //     }
-    // });
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue, paging;
-        input = document.getElementById("searchp");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        paging = document.getElementById("paging");
-
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>
 <script>
     function sortTable(n) {
         var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
@@ -251,21 +204,13 @@
         document.getElementById('exportForm').submit();
     }
 
-    // document.querySelector('.filter-jenis').addEventListener('change', function() {
-    //     const selectedJenis = this.value;
-    //     fetch(`{{ route('filter.absensi') }}?jenis=${selectedJenis}`)
-    //     .then(response => response.text())
-    //     .then(data=> {
-    //         document.getElementById('absensiTableBody').innerHTML = data;
-    //     });
-    // });
-
     function filterData() {
         const selectedJenis = document.getElementById('jenis').value;
         const tanggalMulai = document.getElementById('tanggalMulai').value;
         const tanggalAkhir = document.getElementById('tanggalAkhir').value;
+        const selectedNik = document.getElementById('searchp').value;
 
-        fetch(`{{ route('filter.absensi') }}?jenis=${selectedJenis}&tanggalMulai=${tanggalMulai}&tanggalAkhir=${tanggalAkhir}`)
+        fetch(`{{ route('filter.absensi') }}?jenis=${selectedJenis}&tanggalMulai=${tanggalMulai}&tanggalAkhir=${tanggalAkhir}&nik=${selectedNik}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('absensiTableBody').innerHTML = data;
@@ -281,6 +226,9 @@
     });
 
     document.getElementById('jenis').addEventListener('change', function() {
+        filterData();
+    });
+    document.getElementById('searchp').addEventListener('input', function() {
         filterData();
     });
 </script>

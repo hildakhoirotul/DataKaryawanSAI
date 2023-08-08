@@ -83,7 +83,7 @@
                                     <th>Juara QCC</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="absensiTableBody">
                                 @php $i=1 @endphp
                                 @foreach($rekap as $r)
                                 <tr>
@@ -184,9 +184,10 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $rekap->links()}}
+                        </div>
                     </div>
-
-                    <!-- </div> -->
                 </div>
             </div>
 
@@ -196,23 +197,17 @@
 </main>
 <script>
     function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("searchp");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+        const selected = document.getElementById('searchp').value;
 
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
+        fetch(`{{ route('search.rekap') }}?nik=${selected}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('absensiTableBody').innerHTML = data;
+            });
     }
+
+    document.getElementById('searchp').addEventListener('input', function() {
+        myFunction();
+    });
 </script>
 @endsection

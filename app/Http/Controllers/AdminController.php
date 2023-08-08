@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Crypt;
-use App\Jobs\ImportData;
 use App\Models\User;
 use App\Models\Absensi;
 use App\Models\Ochi;
@@ -23,17 +19,9 @@ use App\Imports\RekapitulasiImport;
 use App\Imports\UserImport;
 use App\Models\Rekapitulasi;
 use App\Models\Setting;
-use Exception;
-use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\ValidationException as ValidationValidationException;
-use Maatwebsite\Excel\Concerns\SkipsFailures;
-use Maatwebsite\Excel\Validators\ValidationException;
-use PhpParser\ErrorHandler\Collecting;
-use DataTables;
-use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 
 class AdminController extends Controller
 {
@@ -45,7 +33,9 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total = Rekapitulasi::count();
-        $rekap = Rekapitulasi::get();
+        $rekap = Cache::remember('rekapitulasi_data', now()->addSecond(30), function () {
+            return Rekapitulasi::paginate(100);
+        });
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
@@ -53,16 +43,29 @@ class AdminController extends Controller
             ->header('Pragma', 'no-cache');
     }
 
+    public function searchRekap(Request $request)
+    {
+        $searchTerm = $request->input('nik');
+
+        $query = Rekapitulasi::query();
+
+        if ($searchTerm) {
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
+        }
+        // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
+        //     ->paginate(100);
+
+        $results = $query->paginate(100);
+        return view('admin.partial.rekap', ['results' => $results]);
+    }
+
     public function filterAbsensi(Request $request)
     {
         $jenisFilter = $request->query('jenis');
         $tanggalMulai = $request->query('tanggalMulai');
         $tanggalAkhir = $request->query('tanggalAkhir');
+        $searchTerm = $request->input('nik');
 
-        // $absensiData = Absensi::where('jenis', 'like', '%' . $jenisFilter . '%')
-        //     ->whereDate('tanggal', '>=', $tanggalMulai)
-        //     ->whereDate('tanggal', '<=', $tanggalAkhir)
-        //     ->get();
         $query = Absensi::query();
 
         if ($jenisFilter) {
@@ -74,7 +77,11 @@ class AdminController extends Controller
                 ->whereDate('tanggal', '<=', $tanggalAkhir);
         }
 
-        $absensiData = $query->get();
+        if ($searchTerm) {
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
+        }
+
+        $absensiData = $query->paginate(100);
 
         return view('admin.partial.absensi', ['absensiData' => $absensiData]);
     }
@@ -84,17 +91,7 @@ class AdminController extends Controller
         $juaraFilter = $request->query('juara');
 
         $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
-            // ->whereDate('tanggal', '>=', $tanggalMulai)
-            // ->whereDate('tanggal', '<=', $tanggalAkhir)
             ->get();
-        // $query = Ochi::query();
-
-        // if ($juaraFilter) {
-        //     $query->where('juara', $juaraFilter);
-        // }
-
-        // $ochiData = $query->get();
-
         return view('admin.partial.ochi', ['ochiData' => $ochiData]);
     }
 
@@ -104,23 +101,14 @@ class AdminController extends Controller
 
         $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
             ->orwhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
-            // ->whereDate('tanggal', '<=', $tanggalAkhir)
             ->get();
-        // $query = Ochi::query();
-
-        // if ($juaraFilter) {
-        //     $query->where('juara', $juaraFilter);
-        // }
-
-        // $ochiData = $query->get();
-
         return view('admin.partial.qcc', ['qccData' => $qccData]);
     }
 
     public function absensi(Request $request)
     {
         $total = Absensi::count();
-        $absensi = Absensi::orderBy('tanggal', 'DESC')->get();
+        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(100);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
@@ -150,11 +138,6 @@ class AdminController extends Controller
         $user = User::get();
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        // foreach ($user as $users) {
-        //     $users->password = Crypt::decryptString($users->password);
-        // }
-        // $pass = User::select('password')->get();
-        // $password = Crypt::decryptString($pass);
         return response()->view('admin.karyawan', compact('user', 'total', 'status'));
     }
 
@@ -242,7 +225,6 @@ class AdminController extends Controller
 
         $import = new OchiImport();
         Excel::import($import, $file);
-        // $import = Excel::import(new OchiImport(), storage_path('app/public/excel/' . $nama_file));
 
         $errorMessages = [];
         $i = "1";
@@ -350,17 +332,6 @@ class AdminController extends Controller
         }
 
         $absensiData = $query->get();
-        // $absensiData = Absensi::where('jenis', 'like', '%' . $jenisFilter)
-        //     ->whereDate('tanggal', '>=', $tanggalMulai)
-        //     ->whereDate('tanggal', '<=', $tanggalAkhir)
-        //     ->get();
-
-        // if($jenis) {
-        // $query->where('jenis', $jenis);
-        // }
-        // $export = new AbsensiExport($data);
-        // return Excel::download($export, 'absensi.xlsx');
-        // $data = Absensi::all()->toArray();
         return Excel::download(new AbsensiExport($absensiData), 'absensi.xlsx');
     }
 
@@ -369,7 +340,6 @@ class AdminController extends Controller
         $juaraFilter = $request->query('juara');
         $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')->get();
 
-        // $data = Ochi::all()->toArray();
         return Excel::download(new OchiExport($ochiData), 'ochi.xlsx');
     }
 
@@ -380,7 +350,6 @@ class AdminController extends Controller
             ->orWhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
             ->get();
 
-        // $data = Qcc::all()->toArray();
         return Excel::download(new QccExport($qccData), 'qcc.xlsx');
     }
 
@@ -390,7 +359,6 @@ class AdminController extends Controller
         $setting = Setting::firstOrNew([]);
         $setting->login = $disable ? true : false;
         $setting->save();
-        // dd($setting->login);
         if ($setting->login) {
             Alert::info('Perubahan disimpan', 'Beberapa fitur telah dinonaktifkan');
         } else {

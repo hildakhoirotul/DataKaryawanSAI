@@ -9,7 +9,6 @@ const sidebarStatus = localStorage.getItem("sidebarStatus") || "collapsed";
 const darkMode = localStorage.getItem("darkMode");
 
 document.addEventListener("DOMContentLoaded", () => {
-    // sidebar.classList.add("close");
     if (sidebarStatus === "expanded") {
         sidebar.classList.remove("close");
     } else {
@@ -48,7 +47,6 @@ darkLight.addEventListener("click", () => {
     body.classList.toggle("dark");
     localStorage.setItem("darkMode", "dark");
     if (body.classList.contains("dark")) {
-        document.setI
         darkLight.classList.replace("bx-sun", "bx-moon");
     } else {
         darkLight.classList.replace("bx-moon", "bx-sun");

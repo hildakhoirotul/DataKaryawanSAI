@@ -26,7 +26,6 @@ class SignInController extends Controller
                 Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                 return redirect()->route('/home');
             }
-            // return $this->sendLoginResponse($request);
         } else {
             Alert::error('Login Gagal', 'NIK anda tidak terdaftar')->persistent(true, false);
             return back();

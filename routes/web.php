@@ -25,13 +25,13 @@ use App\Models\Rekapitulasi;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm']);
 
 Auth::routes();
 Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
 // Route::get('/send-email', [LoginController::class, 'email'])->name('send-email');
 Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('lupa-password');
-Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupa-password');
+Route::post('/lupa-password', [LoginController::class, 'GetEmail']);
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/home', 'index')->middleware('is_user')->name('/home');
@@ -56,6 +56,9 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/filter-ochi', 'filterOchi')->name('filter.ochi');
     Route::get('/filter-qcc', 'filterQcc')->name('filter.qcc');
     Route::post('/disable-login', 'settingLogin')->name('disable.login');
+    Route::get('/search-rekap', 'searchRekap')->name('search.rekap');
+    // Route::get('/search-absensi', 'searchAbsensi')->name('search.absensi');
+
 });
 
 Route::controller(HomeController::class)->group(function () {
