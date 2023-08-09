@@ -29,7 +29,7 @@
                 <div class="col-md-4 text-end pe-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
 
                         <div class="dropdown mt-2 ms-2">
@@ -106,6 +106,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            {{ $ochi->links()}}
+                        </div>
                     </div>
 
                     <!-- </div> -->
@@ -116,37 +119,23 @@
     </div>
 </main>
 <script>
-    function myFunction() {
-        var input, filter, table, tr, td1, td2, td3, td4, i, txtValue1, txtValue2;
-        input = document.getElementById("searchp");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+    function filterData() {
+        const selected = document.getElementById('searchp').value;
+        const selectedJuara = document.getElementById('juara').value;
 
-        for (i = 0; i < tr.length; i++) {
-            td1 = tr[i].getElementsByTagName("td")[1]; // Kolom 1
-            td2 = tr[i].getElementsByTagName("td")[2];
-            td3 = tr[i].getElementsByTagName("td")[3]; // Kolom 2
-            td4 = tr[i].getElementsByTagName("td")[4]; // Kolom 2
-            if (td1 || td2) {
-                txtValue1 = td1 ? td1.textContent || td1.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
-                txtValue2 = td2 ? td2.textContent || td2.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
-                txtValue3 = td3 ? td3.textContent || td3.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
-                txtValue4 = td4 ? td4.textContent || td4.innerText : ''; // Pastikan ada nilai, jika tidak gunakan string kosong
-
-                var match1 = txtValue1.toUpperCase().indexOf(filter) > -1;
-                var match2 = txtValue2.toUpperCase().indexOf(filter) > -1;
-                var match3 = txtValue3.toUpperCase().indexOf(filter) > -1;
-                var match4 = txtValue4.toUpperCase().indexOf(filter) > -1;
-
-                if (match1 || match2 || match3 || match4) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
+        fetch(`{{ route('filter.ochi') }}?juara=${selectedJuara}&search=${selected}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('ochiTableBody').innerHTML = data;
+            });
     }
+
+    document.getElementById('juara').addEventListener('change', function() {
+        filterData();
+    });
+    document.getElementById('searchp').addEventListener('input', function() {
+        filterData();
+    });
 </script>
 <script>
     function exportData() {
@@ -156,14 +145,5 @@
 
         document.getElementById('exportForm').submit();
     }
-
-    document.querySelector('.filter-juara').addEventListener('change', function() {
-        const selectedJuara = this.value;
-        fetch(`{{ route('filter.ochi') }}?juara=${selectedJuara}`)
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('ochiTableBody').innerHTML = data;
-            });
-    });
 </script>
 @endsection

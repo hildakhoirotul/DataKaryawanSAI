@@ -57,6 +57,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/filter-qcc', 'filterQcc')->name('filter.qcc');
     Route::post('/disable-login', 'settingLogin')->name('disable.login');
     Route::get('/search-rekap', 'searchRekap')->name('search.rekap');
+    Route::get('/search-karyawan', 'searchKaryawan')->name('search.karyawan');
     // Route::get('/search-absensi', 'searchAbsensi')->name('search.absensi');
 
 });

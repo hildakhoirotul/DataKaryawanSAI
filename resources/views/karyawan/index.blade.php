@@ -40,7 +40,7 @@
                                         <tr>
                                             <td></td>
                                             <td><i class='bx bxs-calendar-alt text-end'></i></td>
-                                            <td class="text-end">{{ $alpha->tanggal }}</td>
+                                            <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                             <td></td>
                                         </tr>
                                         @endforeach
@@ -84,7 +84,7 @@
                                         <tr>
                                             <td></td>
                                             <td><i class='bx bxs-calendar-alt text-end'></i></td>
-                                            <td class="text-end">{{ $sakit->tanggal }}</td>
+                                            <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                             <td></td>
                                         </tr>
                                         @endforeach
@@ -128,7 +128,7 @@
                                         <tr>
                                             <td></td>
                                             <td><i class='bx bxs-calendar-alt text-end'></i></td>
-                                            <td class="text-end">{{ $sakit->tanggal }}</td>
+                                            <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                             <td></td>
                                         </tr>
                                         @endforeach
@@ -172,7 +172,7 @@
                                         <tr>
                                             <td></td>
                                             <td><i class='bx bxs-calendar-alt text-end'></i></td>
-                                            <td class="text-end">{{ $izin->tanggal }}</td>
+                                            <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                             <td></td>
                                         </tr>
                                         @endforeach
@@ -223,7 +223,7 @@
                                         @foreach($itd as $izin)
                                         <tr>
                                             <!-- <td></td> -->
-                                            <td>{{ $izin->tanggal }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                             <td>{{ $izin->jam_masuk }}</td>
                                             <td></td>
                                         </tr>
@@ -275,7 +275,7 @@
                                         @foreach($td as $izin)
                                         <tr>
                                             <!-- <td></td> -->
-                                            <td>{{ $izin->tanggal }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                             <td>{{ $izin->jam_masuk }}</td>
                                             <td></td>
                                         </tr>
@@ -329,7 +329,7 @@
                                         @foreach($icp as $izin)
                                         <tr>
                                             <!-- <td></td> -->
-                                            <td>{{ $izin->tanggal }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                             <td>{{ $izin->jam_pulang }}</td>
                                             <td></td>
                                         </tr>
@@ -381,7 +381,7 @@
                                         @foreach($cp as $izin)
                                         <tr>
                                             <!-- <td></td> -->
-                                            <td>{{ $izin->tanggal }}</td>
+                                            <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                             <td>{{ $izin->jam_pulang }}</td>
                                             <td></td>
                                         </tr>
@@ -438,7 +438,7 @@
                                             <!-- <th></th> -->
                                             <th>Tema</th>
                                             <th>Kontes</th>
-                                            <!-- <th></th> -->
+                                            <th>Juara</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -448,7 +448,7 @@
                                             <!-- <td></td> -->
                                             <td style="font-size: 12pt;">{{ $o->tema }}</td>
                                             <td style="font-size: 12pt;">{{ $o->kontes }}</td>
-                                            <!-- <td></td> -->
+                                            <td style="font-size: 12pt;">{{ $o->juara }}</td>
                                         </tr>
                                         @endforeach
                                         @endif
@@ -500,19 +500,35 @@
                                     <thead class="align-middle">
                                         <tr>
                                             <!-- <th></th> -->
-                                            <th>Nama Sirkel</th>
+                                            <th>Nama Circle</th>
                                             <th>Tema</th>
-                                            <!-- <th></th> -->
+                                            <th>Kontes</th>
+                                            <th>Juara SAI</th>
+                                            <th>Juara PASI</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody class="tabel-qcc">
                                         @php $i=1 @endphp
                                         @foreach($qcc as $o)
                                         <tr>
                                             <!-- <td></td> -->
-                                            <td style="font-size: 12pt;">{{ $o->nama_qcc }}</td>
-                                            <td style="font-size: 12pt;">{{ $o->tema }}</td>
-                                            <!-- <td></td> -->
+                                            <td>{{ $o->nama_qcc }}</td>
+                                            <td>{{ $o->tema }}</td>
+                                            <td>{{ $o->kontes }}</td>
+                                            <td>
+                                                @if($o->juara_sai == 0 || null)
+                                                -
+                                                @else
+                                                {{ $o->juara_sai }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($o->juara_pasi == 0 || null)
+                                                -
+                                                @else
+                                                {{ $o->juara_pasi }}
+                                                @endif
+                                            </td>
                                         </tr>
                                         @endforeach
                                         @endif
@@ -565,7 +581,7 @@
                                         <tr>
                                             <!-- <th></th> -->
                                             <th>NIK OCHI</th>
-                                            <th>Tema</th>
+                                            <th class="text-start">Tema</th>
                                             <!-- <th></th> -->
                                         </tr>
                                     </thead>
@@ -575,7 +591,7 @@
                                         <tr>
                                             <!-- <td></td> -->
                                             <td style="font-size: 12pt;">{{ $o->nik }}</td>
-                                            <td style="font-size: 12pt;">{{ $o->tema }}</td>
+                                            <td style="font-size: 12pt;" class="text-start">{{ $o->tema }}</td>
                                             <!-- <td></td> -->
                                         </tr>
                                         @endforeach
@@ -588,18 +604,17 @@
                 </div>
                 @endif
                 <!-- Juara OCHI -->
-                @if($status)
-                <div class="col-md-2 p-1 option">
+                <!-- @if($status) -->
+                <!-- <div class="col-md-2 p-1 option">
                     <div class="card bg-c-pink order-card">
                         <div class="card-block">
                             <h3>Juara OCHI</h3>
                             <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->Juara_OCHI }}</span></h4>
-                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
                         </div>
                     </div>
-                </div>
-                @else
-                <div class="col-md-2 p-1 option">
+                </div> -->
+                <!-- @else -->
+                <!-- <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse12">
                         <div class="card bg-c-pink order-card">
                             <div class="card-block">
@@ -609,9 +624,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- Juara OCHI Modal -->
-                <div class="modal fade" id="myModal--effect-pulse12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <!-- <div class="modal fade" id="myModal--effect-pulse12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <i class='bx bx-x close mt-3 me-3 align-self-end' type="button" data-dismiss="modal" aria-label="Close"></i>
@@ -627,20 +642,16 @@
                                     @else
                                     <thead class="align-middle" style="font-size: 20px;">
                                         <tr>
-                                            <!-- <th></th> -->
                                             <th>Juara</th>
                                             <th>Tema</th>
-                                            <!-- <th></th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @php $i=1 @endphp
                                         @foreach($jochi as $o)
                                         <tr>
-                                            <!-- <td></td> -->
                                             <td style="font-size: 12pt;">{{ $o->juara }}</td>
                                             <td style="font-size: 12pt;">{{ $o->tema }}</td>
-                                            <!-- <td></td> -->
                                         </tr>
                                         @endforeach
                                         @endif
@@ -649,23 +660,22 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
+                </div> -->
+                <!-- @endif -->
             </div>
             <div class="row">
                 <!-- Juara QCC -->
-                @if($status)
-                <div class="col-md-2 p-1 option">
+                <!-- @if($status) -->
+                <!-- <div class="col-md-2 p-1 option">
                     <div class="card bg-c-red order-card">
                         <div class="card-block">
                             <h3>Juara QCC</h3>
                             <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->Juara_QCC }}</span></h4>
-                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
                         </div>
                     </div>
-                </div>
-                @else
-                <div class="col-md-2 p-1 option">
+                    </div>
+                    @else -->
+                <!-- <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse13">
                         <div class="card bg-c-red order-card">
                             <div class="card-block">
@@ -675,9 +685,9 @@
                             </div>
                         </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- Juara QCC Modal -->
-                <div class="modal fade" id="myModal--effect-pulse13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <!-- <div class="modal fade" id="myModal--effect-pulse13" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <i class='bx bx-x close mt-3 me-3 align-self-end' type="button" data-dismiss="modal" aria-label="Close"></i>
@@ -693,19 +703,16 @@
                                     @else
                                     <thead class="align-middle" style="font-size: 16px;">
                                         <tr>
-                                            <!-- <th></th> -->
                                             <th>Juara SAI</th>
                                             <th>Juara PASI</th>
-                                            <th>Nama Sirkel</th>
+                                            <th>Nama Circle</th>
                                             <th>Tema</th>
-                                            <!-- <th></th> -->
                                         </tr>
                                     </thead>
                                     <tbody class="tabel-qcc">
                                         @php $i=1 @endphp
                                         @foreach($jqcc as $o)
                                         <tr>
-                                            <!-- <td></td> -->
                                             <td>{{ $o->juara_sai }}</td>
                                             <td>
                                                 @if($o->juara_pasi == 0 || null)
@@ -716,7 +723,6 @@
                                             </td>
                                             <td>{{ $o->nama_qcc }}</td>
                                             <td>{{ $o->tema }}</td>
-                                            <!-- <td></td> -->
                                         </tr>
                                         @endforeach
                                         @endif
@@ -725,8 +731,8 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                @endif
+                </div> -->
+                <!-- @endif -->
             </div>
         </div>
     </div>

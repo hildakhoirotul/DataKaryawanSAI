@@ -29,7 +29,7 @@
                 <div class="col-md-3 pe-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" style="height: 2.5rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
                     </div>
                 </div>
@@ -184,7 +184,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center" id="paging">
                             {{ $rekap->links()}}
                         </div>
                     </div>
@@ -204,6 +204,7 @@
             .then(data => {
                 document.getElementById('absensiTableBody').innerHTML = data;
             });
+            document.getElementById('paging').style.display = "none";
     }
 
     document.getElementById('searchp').addEventListener('input', function() {

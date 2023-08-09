@@ -24,7 +24,7 @@
                 <div class="col-md-3 pe-3 me-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" onkeyup="myFunction()" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" style="height: 2.5rem; margin-top: 1.8rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem; margin-top: 1.8rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                 <th>Terakhir Ganti</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="karyawanTableBody">
                             @php $i=1 @endphp
                             @foreach($user as $r)
                             <tr>
@@ -86,6 +86,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        {{ $user->links()}}
+                    </div>
                 </div>
 
                 <!-- </div> -->
@@ -112,23 +115,18 @@
 </script>
 <script>
     function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("searchp");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
+        const selected = document.getElementById('searchp').value;
 
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-                txtValue = td.textContent || td.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
+        fetch(`{{ route('search.karyawan') }}?nik=${selected}`)
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('karyawanTableBody').innerHTML = data;
+            });
+            document.getElementById('paging').style.display = "none";
     }
+
+    document.getElementById('searchp').addEventListener('input', function() {
+        myFunction();
+    });
 </script>
 @endsection

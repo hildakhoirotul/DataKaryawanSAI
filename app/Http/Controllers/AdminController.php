@@ -33,14 +33,48 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total = Rekapitulasi::count();
-        $rekap = Cache::remember('rekapitulasi_data', now()->addSecond(30), function () {
-            return Rekapitulasi::paginate(100);
-        });
+        $rekap = Rekapitulasi::paginate(50);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
+    }
+
+    public function absensi(Request $request)
+    {
+        $total = Absensi::count();
+        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(50);
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
+    }
+
+    public function ochi()
+    {
+        $total = Ochi::count();
+        $ochi = Ochi::paginate(50);
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.ochi', compact('ochi', 'total', 'status'));
+    }
+
+    public function qcc()
+    {
+        $total = Qcc::count();
+        $qcc = Qcc::paginate(50);
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.qcc', compact('qcc', 'total', 'status'));
+    }
+
+    public function karyawan()
+    {
+        $total = User::count();
+        $user = User::paginate(50);
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return response()->view('admin.karyawan', compact('user', 'total', 'status'));
     }
 
     public function searchRekap(Request $request)
@@ -55,7 +89,7 @@ class AdminController extends Controller
         // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
         //     ->paginate(100);
 
-        $results = $query->paginate(100);
+        $results = $query->paginate(50);
         return view('admin.partial.rekap', ['results' => $results]);
     }
 
@@ -81,7 +115,7 @@ class AdminController extends Controller
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $absensiData = $query->paginate(100);
+        $absensiData = $query->paginate(50);
 
         return view('admin.partial.absensi', ['absensiData' => $absensiData]);
     }
@@ -89,56 +123,67 @@ class AdminController extends Controller
     public function filterOchi(Request $request)
     {
         $juaraFilter = $request->query('juara');
+        $searchTerm = $request->input('search');
 
-        $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
-            ->get();
+        $query = Ochi::query();
+
+        if ($juaraFilter) {
+            $query->where('juara', 'like', '%' . $juaraFilter . '%');
+        }
+
+        if ($searchTerm) {
+            $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('nik_ochi_leader', 'ILIKE', '%' . $searchTerm . '%');
+        }
+
+        $ochiData = $query->paginate(50);
+
+        // $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
+        //     ->get();
         return view('admin.partial.ochi', ['ochiData' => $ochiData]);
     }
 
     public function filterQcc(Request $request)
     {
         $juaraFilter = $request->query('juara');
+        $searchTerm = $request->input('search');
 
-        $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
-            ->orwhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
-            ->get();
+        $query = Qcc::query();
+
+        if ($juaraFilter) {
+            $query->where('juara', 'like', '%' . $juaraFilter . '%');
+        }
+
+        if ($searchTerm) {
+            $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('nama_qcc', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('juara_sai', 'ILIKE', '%' . $searchTerm . '%')
+                ->orWhere('juara_pasi', 'ILIKE', '%' . $searchTerm . '%');
+        }
+
+        $qccData = $query->paginate(50);
+
         return view('admin.partial.qcc', ['qccData' => $qccData]);
     }
 
-    public function absensi(Request $request)
+    public function searchKaryawan(Request $request)
     {
-        $total = Absensi::count();
-        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(100);
-        $setting = Setting::firstOrNew([]);
-        $status = $setting->login;
-        return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
-    }
+        $searchTerm = $request->input('nik');
 
-    public function ochi()
-    {
-        $total = Ochi::count();
-        $ochi = Ochi::get();
-        $setting = Setting::firstOrNew([]);
-        $status = $setting->login;
-        return response()->view('admin.ochi', compact('ochi', 'total', 'status'));
-    }
+        $query = User::query();
 
-    public function qcc()
-    {
-        $total = Qcc::count();
-        $qcc = Qcc::get();
-        $setting = Setting::firstOrNew([]);
-        $status = $setting->login;
-        return response()->view('admin.qcc', compact('qcc', 'total', 'status'));
-    }
+        if ($searchTerm) {
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
+        }
+        // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
+        //     ->paginate(100);
 
-    public function karyawan()
-    {
-        $total = User::count();
-        $user = User::get();
-        $setting = Setting::firstOrNew([]);
-        $status = $setting->login;
-        return response()->view('admin.karyawan', compact('user', 'total', 'status'));
+        $user = $query->paginate(50);
+        return view('admin.partial.karyawan', ['user' => $user]);
     }
 
     public function showForm()
