@@ -4,7 +4,7 @@
             @csrf
             <div class="form-check form-switch">
                 <input class="form-check-input custom-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="status" {{ $status ? 'checked' : '' }}>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Disable Login</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault">Disable Detail OCHI & QCC</label>
             </div>
         </form>
 

@@ -4,7 +4,7 @@
 <main class="content px-4">
     <div class="card p-4">
         <div class="container-fluid">
-            <h3 class="title text-center">Rekapitulasi Data Absensi dan Prestasi Karyawan</h3>
+            <h3 class="title text-center">Data Absensi dan Prestasi Karyawan</h3>
             <p class="sub-title">NIK: {{ Auth::user()->nik }}</p>
             <div class="row justify-content-between">
                 <!-- ALPHA -->
@@ -394,19 +394,6 @@
                     </div>
                 </div>
                 <!-- OCHI -->
-                @if($status)
-                <div class="col-md-2 p-1 option">
-                    <!-- <a href=""> -->
-                    <div class="card bg-c-purple order-card">
-                        <div class="card-block">
-                            <h1>OCHI</h1>
-                            <h2 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->OCHI }}</span></h2>
-                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
-                        </div>
-                    </div>
-                    <!-- </a> -->
-                </div>
-                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse9" data-jenis="OCHI">
                         <div class="card bg-c-purple order-card">
@@ -426,6 +413,37 @@
                             <div class="modal-header justify-content-center" style="background-color: #742E9E;">
                                 <h4 class="modal-title" id="myModalLabel">Tema OCHI</h4>
                             </div>
+                            @if($status)
+                            <div class="modal-body pt-0">
+                                <table class="table table-borderless text-center table-striped mt-0">
+                                    @if($ochi->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @else
+                                    <thead style="font-size: 20px;">
+                                        <tr>
+                                            <!-- <th></th> -->
+                                            <!-- <th>Tema</th> -->
+                                            <th>Kontes</th>
+                                            <th>Juara</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i=1 @endphp
+                                        @foreach($ochi as $o)
+                                        <tr>
+                                            <!-- <td></td> -->
+                                            <!-- <td style="font-size: 12pt;">{{ $o->tema }}</td> -->
+                                            <td style="font-size: 12pt;">{{ $o->kontes }}</td>
+                                            <td style="font-size: 12pt;">{{ $o->juara }}</td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                            </div>
+                            @else
                             <div class="modal-body pt-0">
                                 <table class="table table-borderless table-striped mt-0">
                                     @if($ochi->isEmpty())
@@ -455,22 +473,11 @@
                                     </tbody>
                                 </table>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
-                @endif
                 <!-- QCC -->
-                @if($status)
-                <div class="col-md-2 p-1 option">
-                    <div class="card bg-c-purple500 order-card">
-                        <div class="card-block">
-                            <h1>QCC</h1>
-                            <h2 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->QCC }}</span></h2>
-                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
-                        </div>
-                    </div>
-                </div>
-                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse10">
                         <div class="card bg-c-purple500 order-card">
@@ -491,6 +498,51 @@
                                 <h4 class="modal-title" id="myModalLabel">QCC</h4>
                             </div>
                             <div class="modal-body pt-0">
+                                @if($status)
+                                <table class="table table-borderless text-start table-striped mt-0">
+                                    @if($qcc->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @else
+                                    <thead class="align-middle">
+                                        <tr>
+                                            <!-- <th></th> -->
+                                            <th>Nama Circle</th>
+                                            <!-- <th>Tema</th> -->
+                                            <th>Kontes</th>
+                                            <th>Juara SAI</th>
+                                            <th>Juara PASI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tabel-qcc">
+                                        @php $i=1 @endphp
+                                        @foreach($qcc as $o)
+                                        <tr>
+                                            <!-- <td></td> -->
+                                            <td>{{ $o->nama_qcc }}</td>
+                                            <!-- <td>{{ $o->tema }}</td> -->
+                                            <td>{{ $o->kontes }}</td>
+                                            <td>
+                                                @if($o->juara_sai == 0 || null)
+                                                -
+                                                @else
+                                                {{ $o->juara_sai }}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($o->juara_pasi == 0 || null)
+                                                -
+                                                @else
+                                                {{ $o->juara_pasi }}
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                                @else
                                 <table class="table table-borderless text-start table-striped mt-0">
                                     @if($qcc->isEmpty())
                                     <tr>
@@ -534,23 +586,12 @@
                                         @endif
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
                 <!-- OCHI leader -->
-                @if($status)
-                <div class="col-md-2 p-1 option">
-                    <div class="card bg-c-purple200 order-card">
-                        <div class="card-block">
-                            <h3>Ochi leader</h3>
-                            <h4 class="text-end" style="font-size: 50pt;"><span>{{ $rekap->first()->OCHI_leader }}</span></h4>
-                            <!-- <span class="arrow">Lihat detail<i class='bx bx-right-arrow-alt'></i></span> -->
-                        </div>
-                    </div>
-                </div>
-                @else
                 <div class="col-md-2 p-1 option">
                     <a href="" data-toggle="modal" data-target="#myModal--effect-pulse11">
                         <div class="card bg-c-purple200 order-card">
@@ -571,6 +612,37 @@
                                 <h4 class="modal-title" id="myModalLabel">OCHI Leader</h4>
                             </div>
                             <div class="modal-body pt-0">
+                                @if($status)
+                                <table class="table table-borderless table-striped mt-0">
+                                    @if($oleader->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @else
+                                    <thead class="align-middle">
+                                        <tr>
+                                            <th></th>
+                                            <td></td>
+                                            <th class="text-end">NIK OCHI</th>
+                                            <th></th>
+                                            <!-- <th class="text-start">Tema</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @php $i=1 @endphp
+                                        @foreach($oleader as $o)
+                                        <tr>
+                                            <td></td>
+                                            <td><i class='bx bx-user-pin text-end'></i></td>
+                                            <td class="text-end">{{ $o->nik }}</td>
+                                            <td></td>
+                                            <!-- <td style="font-size: 12pt;" class="text-start">{{ $o->tema }}</td> -->
+                                        </tr>
+                                        @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+                                @else
                                 <table class="table table-borderless text-center table-striped mt-0">
                                     @if($oleader->isEmpty())
                                     <tr>
@@ -598,11 +670,11 @@
                                         @endif
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
                 <!-- Juara OCHI -->
                 <!-- @if($status) -->
                 <!-- <div class="col-md-2 p-1 option">

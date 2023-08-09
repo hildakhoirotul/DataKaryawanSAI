@@ -67,6 +67,6 @@ Route::controller(HomeController::class)->group(function () {
     Route::post('/change-password', 'changePassword')->name('changePassword');
 });
 
-Route::controller(SignInController::class)->group(function () {
-    Route::post('/sign-in', 'login')->name('sign-in');
-});
+// Route::controller(SignInController::class)->group(function () {
+//     Route::post('/sign-in', 'login')->name('sign-in');
+// });

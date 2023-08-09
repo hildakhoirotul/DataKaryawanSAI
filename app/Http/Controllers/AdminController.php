@@ -131,11 +131,18 @@ class AdminController extends Controller
             $query->where('juara', 'like', '%' . $juaraFilter . '%');
         }
 
+        // if ($searchTerm) {
+        //     $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('nik_ochi_leader', 'ILIKE', '%' . $searchTerm . '%');
+        // }
+
         if ($searchTerm) {
-            $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('nik_ochi_leader', 'ILIKE', '%' . $searchTerm . '%');
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('tema', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('kontes', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('nik_ochi_leader', 'LIKE', '%' . $searchTerm . '%');
         }
 
         $ochiData = $query->paginate(50);
@@ -156,13 +163,22 @@ class AdminController extends Controller
             $query->where('juara', 'like', '%' . $juaraFilter . '%');
         }
 
+        // if ($searchTerm) {
+        //     $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('nama_qcc', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('juara_sai', 'ILIKE', '%' . $searchTerm . '%')
+        //         ->orWhere('juara_pasi', 'ILIKE', '%' . $searchTerm . '%');
+        // }
+
         if ($searchTerm) {
-            $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('nama_qcc', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('juara_sai', 'ILIKE', '%' . $searchTerm . '%')
-                ->orWhere('juara_pasi', 'ILIKE', '%' . $searchTerm . '%');
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('tema', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('kontes', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('nama_qcc', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('juara_sai', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('juara_pasi', 'LIKE', '%' . $searchTerm . '%');
         }
 
         $qccData = $query->paginate(50);

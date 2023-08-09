@@ -53,21 +53,21 @@ class LoginController extends Controller
         });
     }
 
-    public function showLoginForm()
-    {
-        $setting = Setting::firstOrNew([]);
-        $status = $setting->login;
-        $admin = session()->get('admin');
-        if ($status) {
-            if(empty($admin)){
-                return view('auth.signin');
-            } else {
-                return view('auth.login');
-            }
-        } else {
-            return view('auth.login');
-        }
-    }
+    // public function showLoginForm()
+    // {
+    //     $setting = Setting::firstOrNew([]);
+    //     $status = $setting->login;
+    //     $admin = session()->get('admin');
+    //     if ($status) {
+    //         if(empty($admin)){
+    //             return view('auth.signin');
+    //         } else {
+    //             return view('auth.login');
+    //         }
+    //     } else {
+    //         return view('auth.login');
+    //     }
+    // }
 
     public function username()
     {
