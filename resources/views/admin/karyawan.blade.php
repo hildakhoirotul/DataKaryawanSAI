@@ -117,7 +117,7 @@
     function myFunction() {
         const selected = document.getElementById('searchp').value;
 
-        fetch(`{{ route('search.karyawan') }}?nik=${selected}`)
+        fetch(`{{ secure_url(route('search.karyawan')) }}?nik=${selected}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('karyawanTableBody').innerHTML = data;

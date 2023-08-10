@@ -210,7 +210,7 @@
         const tanggalAkhir = document.getElementById('tanggalAkhir').value;
         const selectedNik = document.getElementById('searchp').value;
 
-        fetch(`{{ route('filter.absensi') }}?jenis=${selectedJenis}&tanggalMulai=${tanggalMulai}&tanggalAkhir=${tanggalAkhir}&nik=${selectedNik}`)
+        fetch(`{{ secure_url(route('filter.absensi')) }}?jenis=${selectedJenis}&tanggalMulai=${tanggalMulai}&tanggalAkhir=${tanggalAkhir}&nik=${selectedNik}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('absensiTableBody').innerHTML = data;

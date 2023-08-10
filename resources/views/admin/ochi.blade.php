@@ -123,7 +123,7 @@
         const selected = document.getElementById('searchp').value;
         const selectedJuara = document.getElementById('juara').value;
 
-        fetch(`{{ route('filter.ochi') }}?juara=${selectedJuara}&search=${selected}`)
+        fetch(`{{ secure_url(route('filter.ochi')) }}?juara=${selectedJuara}&search=${selected}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('ochiTableBody').innerHTML = data;
