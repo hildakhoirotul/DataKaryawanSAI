@@ -33,7 +33,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total = Rekapitulasi::count();
-        $rekap = Rekapitulasi::paginate(50);
+        $rekap = Rekapitulasi::paginate(100);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function absensi(Request $request)
     {
         $total = Absensi::count();
-        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(50);
+        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(100);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
@@ -89,7 +89,7 @@ class AdminController extends Controller
         // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
         //     ->paginate(100);
 
-        $results = $query->paginate(50);
+        $results = $query->paginate(100);
         return view('admin.partial.rekap', ['results' => $results]);
     }
 
@@ -115,7 +115,7 @@ class AdminController extends Controller
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $absensiData = $query->paginate(50);
+        $absensiData = $query->paginate(100);
 
         return view('admin.partial.absensi', ['absensiData' => $absensiData]);
     }
@@ -145,7 +145,7 @@ class AdminController extends Controller
                 ->orWhere('nik_ochi_leader', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $ochiData = $query->paginate(50);
+        $ochiData = $query->paginate(100);
 
         // $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
         //     ->get();
