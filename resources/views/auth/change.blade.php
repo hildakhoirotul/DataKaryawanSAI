@@ -117,7 +117,7 @@
             </div>
         </div>
     </div>
-    <!-- <script src="js/login.js" defer></script> -->
+    <script src="js/login.js" defer></script>
 </body>
 
 </html>
