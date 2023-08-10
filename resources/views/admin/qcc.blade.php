@@ -137,7 +137,7 @@
         const selected = document.getElementById('searchp').value;
         const selectedJuara = document.getElementById('juara').value;
 
-        fetch(`{{ secure_url(route('filter.qcc')) }}?juara=${selectedJuara}&search=${selected}`)
+        fetch(`{{ route('filter.qcc') }}?juara=${selectedJuara}&search=${selected}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('qccTableBody').innerHTML = data;

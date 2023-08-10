@@ -160,7 +160,7 @@ class AdminController extends Controller
         $query = Qcc::query();
 
         if ($juaraFilter) {
-            $query->where('juara', 'like', '%' . $juaraFilter . '%');
+            $query->where('juara_sai', 'like', '%' . $juaraFilter . '%');
         }
 
         // if ($searchTerm) {

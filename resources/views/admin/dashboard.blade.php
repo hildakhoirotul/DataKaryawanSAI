@@ -199,7 +199,7 @@
     function myFunction() {
         const selected = document.getElementById('searchp').value;
 
-        fetch(`{{ secure_url(route('search.rekap')) }}?nik=${selected}`)
+        fetch(`{{ secure_url(url('/search-rekap')) }}?nik=${selected}`)
             .then(response => response.text())
             .then(data => {
                 document.getElementById('absensiTableBody').innerHTML = data;
