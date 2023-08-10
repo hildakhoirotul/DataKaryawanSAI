@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+    <!-- <link href="{{ asset('css/login.css') }}" rel="stylesheet"> -->
     <title>Get Password</title>
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">

@@ -13,7 +13,9 @@
     <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
     <title>Data Karyawan</title>
-    <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet">
+    <link href="css/karyawan.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="{{ asset('css/karyawan.css') }}"> -->
+    <!-- <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet"> -->
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">
 
