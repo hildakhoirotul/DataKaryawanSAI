@@ -10,13 +10,16 @@
 
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
+    <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <!-- <link href="assets/fontawesome/css/all.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}">
     <title>Dashboard</title>
     <!-- favicon -->
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">
-    <link href="{{ asset('css/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <!-- <link href="{{ asset('css/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}" rel="stylesheet"> -->
 </head>
 
 <body>
