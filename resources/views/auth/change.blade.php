@@ -117,7 +117,7 @@
             </div>
         </div>
     </div>
-    <script src="{{ asset('js/login.js') }}" defer></script>
+    <script src="js/login.js" defer></script>
 </body>
 
 </html>
