@@ -52,7 +52,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/import-ochi', 'importOchi')->name('import.ochi.submit');
     Route::post('/import-qcc', 'importQcc')->name('import.qcc.submit');
     Route::post('/import-karyawan', 'importKaryawan')->name('import.karyawan.submit');
-    Route::get('/filter-absensi', 'filterAbsensi')->name('filter.absensi');
+    Route::get('/filter-absensi', 'filterAbsensi');
     Route::get('/filter-ochi', 'filterOchi')->name('filter.ochi');
     Route::get('/filter-qcc', 'filterQcc')->name('filter.qcc');
     Route::post('/disable-login', 'settingLogin')->name('disable.login');
