@@ -43,7 +43,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/data-ochi', 'ochi')->middleware('is_admin')->name('/data-ochi');
     Route::get('/data-qcc', 'qcc')->middleware('is_admin')->name('/data-qcc');
     Route::get('/karyawan', 'karyawan')->middleware('is_admin')->name('/karyawan');
-    Route::get('/export-excel', 'exportExcel')->name('export.excel.submit');
+    // Route::get('/export-excel', 'exportExcel')->name('export.excel.submit');
     Route::get('/export-absensi', 'exportAbsensi')->name('export.absensi.submit');
     Route::get('/export-ochi', 'exportOchi')->name('export.ochi.submit');
     Route::get('/export-qcc', 'exportQcc')->name('export.qcc.submit');
@@ -61,6 +61,8 @@ Route::controller(AdminController::class)->group(function () {
     // Route::get('/search-absensi', 'searchAbsensi')->name('search.absensi');
 
 });
+
+Route::get('/export-excel', [AdminController::class, 'exportExcel'])->name('export.excel.submit');
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/change-password', 'showChangePassword')->name('/change-password');
