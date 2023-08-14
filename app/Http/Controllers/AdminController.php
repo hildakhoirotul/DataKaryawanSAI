@@ -226,7 +226,7 @@ class AdminController extends Controller
         $i = "1";
         foreach ($import->failures() as $failure) {
             $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
@@ -291,7 +291,7 @@ class AdminController extends Controller
         $i = "1";
         foreach ($import->failures() as $failure) {
             $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
@@ -323,7 +323,7 @@ class AdminController extends Controller
         $i = "1";
         foreach ($import->failures() as $failure) {
             $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
@@ -355,7 +355,7 @@ class AdminController extends Controller
         $i = "1";
         foreach ($import->failures() as $failure) {
             $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Terjadi kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);

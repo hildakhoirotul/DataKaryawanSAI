@@ -15,6 +15,6 @@ class ValidDate implements Rule
 
     public function message()
     {
-        return ':attribute harus menggunakan format date.';
+        return ':attribute harus dengan format date.';
     }
 }
