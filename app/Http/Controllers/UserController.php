@@ -53,7 +53,6 @@ class UserController extends Controller
         $jqcc = Qcc::where('nik', $user->nik)
             ->whereIn('juara_sai', ['Juara 1', 'Juara 2', 'Juara 3'])
             ->get();
-            // dd($jochi);
         $rekap = Rekapitulasi::where('nik', $user->nik)->get();
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;

@@ -63,12 +63,17 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            'remember_token' => true,
         ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+
+    'remember' => [
+        'expire' => 120, // Waktu berlaku dalam menit (misalnya: 120 menit)
     ],
 
     'models' => [

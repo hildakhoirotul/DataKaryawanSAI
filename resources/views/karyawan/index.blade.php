@@ -53,7 +53,7 @@
                 </div>
                 <!-- SAKIT -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse2">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse2">
                         <div class="card bg-c-pink order-card">
                             <div class="card-block">
                                 <h1>S</h1>
@@ -97,7 +97,7 @@
                 </div>
                 <!-- Sakit Surat Dokter -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse3">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse3">
                         <div class="card bg-c-purple200 order-card">
                             <div class="card-block">
                                 <h1>SD</h1>
@@ -141,7 +141,7 @@
                 </div>
                 <!-- IZIN -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse4">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse4">
                         <div class="card bg-c-purple500 order-card">
                             <div class="card-block">
                                 <h1>I</h1>
@@ -185,7 +185,7 @@
                 </div>
                 <!-- Izin Terlambat Datang -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse5">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse5">
                         <div class="card bg-c-purple order-card">
                             <div class="card-block">
                                 <h1>ITD</h1>
@@ -237,7 +237,7 @@
                 </div>
                 <!-- Terlambat Datang -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse6">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse6">
                         <div class="card bg-c-purple700 order-card">
                             <div class="card-block">
                                 <h1>TD</h1>
@@ -291,7 +291,7 @@
             <div class="row">
                 <!-- Izin Cepat Pulang -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse7">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse7">
                         <div class="card bg-c-blue order-card">
                             <div class="card-block">
                                 <h1>ICP</h1>
@@ -343,7 +343,7 @@
                 </div>
                 <!-- Cepat Pulang -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse8">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse8">
                         <div class="card bg-c-purple700 order-card">
                             <div class="card-block">
                                 <h1>CP</h1>
@@ -395,7 +395,7 @@
                 </div>
                 <!-- OCHI -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse9" data-jenis="OCHI">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse9" data-jenis="OCHI">
                         <div class="card bg-c-purple order-card">
                             <div class="card-block">
                                 <h1>OCHI</h1>
@@ -479,7 +479,7 @@
                 </div>
                 <!-- QCC -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse10">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse10">
                         <div class="card bg-c-purple500 order-card">
                             <div class="card-block">
                                 <h1>QCC</h1>
@@ -593,7 +593,7 @@
                 </div>
                 <!-- OCHI leader -->
                 <div class="col-md-2 p-1 option">
-                    <a href="" data-toggle="modal" data-target="#myModal--effect-pulse11">
+                    <a href="" class="card-link" data-toggle="modal" data-target="#myModal--effect-pulse11">
                         <div class="card bg-c-purple200 order-card">
                             <div class="card-block">
                                 <h3>Ochi leader</h3>

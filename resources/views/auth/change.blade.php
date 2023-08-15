@@ -62,7 +62,7 @@
                         <button type="submit" class="btn">
                             {{ __('GANTI') }}
                         </button>
-                        <a href="{{ url()->previous() }}"><button type="button" class="btn-cancel btn-outline-secondary" href="{{ url()->previous() }}">Cancel</button></a>
+                        <a href="{{ route('/home') }}"><button type="button" class="btn-cancel btn-outline-secondary" href="{{ route('/home') }}">Cancel</button></a>
                     </div>
 
                 </form>
