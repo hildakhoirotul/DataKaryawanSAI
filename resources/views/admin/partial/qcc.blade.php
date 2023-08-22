@@ -4,16 +4,16 @@
     <td>{{ $i++ }}</td>
     <td>{{ $qcc->nik }}</td>
     <td>{{ $qcc->tema }}</td>
-    <td>{{ $qcc->kontes }}</td>
+    <td style="width: 80px;">{{ $qcc->kontes }}</td>
     <td>{{ $qcc->nama_qcc }}</td>
-    <td>
+    <td style="width: 80px;">
         @if($qcc->juara_sai == 0 || null)
         -
         @else
         {{ $qcc->juara_sai }}
         @endif
     </td>
-    <td>
+    <td style="width: 80px;">
         @if($qcc->juara_pasi == 0 || null)
         -
         @else

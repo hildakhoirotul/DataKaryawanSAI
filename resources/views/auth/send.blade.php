@@ -11,7 +11,7 @@
     <title>Get Password</title>
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">
-    
+
 </head>
 
 <body>
@@ -45,9 +45,9 @@
                     <!-- <a href="send-email">send</a> -->
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn">
-                            {{ __('Get Password') }}
+                            {{ __('Submit') }}
                         </button>
-                        <a href="{{ url()->previous() }}"><button type="button" class="btn-cancel btn-outline-secondary" href="{{ url()->previous() }}">Cancel</button></a>
+                        <a href="{{ route('login') }}"><button type="button" class="btn-cancel btn-outline-secondary">Cancel</button></a>
                     </div>
 
                 </form>
@@ -68,7 +68,13 @@
             </div>
         </div>
     </div>
-    <script src="js/login.js" defer></script>
+    <script>
+        const container = document.querySelector(".container");
+
+        // container.classList.add("visible");
+        container.classList.add("sign-up-mode");
+    </script>
+    <!-- <script src="js/login.js" defer></script> -->
 </body>
 
 </html>

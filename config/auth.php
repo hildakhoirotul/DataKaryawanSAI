@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'remember' => [
+            'driver' => 'cookie',
+            'provider' => 'users',
+            'expire' => 120,
+        ],
     ],
 
     /*
@@ -65,17 +70,8 @@ return [
             'model' => App\Models\User::class,
             'remember_token' => true,
         ],
-
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
     ],
-
-    'remember' => [
-        'expire' => 120, // Waktu berlaku dalam menit (misalnya: 120 menit)
-    ],
-
+    
     'models' => [
         'user' => App\Models\User::class,
     ],

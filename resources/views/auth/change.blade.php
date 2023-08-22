@@ -14,7 +14,7 @@
     <title>Change Password</title>
     <link href="assets/img/logo.png" rel="icon">
     <link href="assets/img/logo.png" rel="apple-touch-icon">
-    
+
 </head>
 
 <body>
@@ -22,10 +22,10 @@
         @include('sweetalert::alert')
         <div class="forms-container">
             <div class="signin-signup">
-                <form method="POST" action="{{ route('changePassword') }}" class="sign-up-form">
+                <form method="POST" action="{{ route('changePassword') }}" class="sign-in-form">
                     @csrf
                     <h2 class="title">Ganti Password</h2>
-                    @if ($errors->any())
+                    <!-- @if ($errors->any())
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
@@ -34,7 +34,7 @@
                             @endforeach
                         </ul>
                     </div>
-                    @endif
+                    @endif -->
                     <div class="input-field">
                         <!-- <i class="fas fa-envelope"></i> -->
                         <i class="fa-regular fa-address-card"></i>
@@ -92,6 +92,16 @@
 
         <div class="panels-container">
             <div class="panel left-panel">
+                <div class="content">
+                    <h3>Ingin Ganti Password?</h3>
+                    <p>
+                        Silahkan masukkan NIK 6 digit, password lama dan password baru.
+                    </p>
+                    <!-- <button class="btn transparent" id="sign-in-btn">
+                        Masuk
+                    </button> -->
+                </div>
+                <img src="assets/img/login.svg" class="image" alt="Login" />
                 <!-- <div class="content">
                     <h3>Selamat Datang</h3>
                     <p>
@@ -104,16 +114,16 @@
                 <img src="assets/img/register.svg" class="image" alt="Register" /> -->
             </div>
             <div class="panel right-panel">
-                <div class="content">
+                <!-- <div class="content">
                     <h3>Ingin Ganti Password?</h3>
                     <p>
                         Silahkan masukkan NIK 6 digit, password lama dan password baru.
                     </p>
-                    <!-- <button class="btn transparent" id="sign-in-btn">
+                    <button class="btn transparent" id="sign-in-btn">
                         Masuk
-                    </button> -->
+                    </button>
                 </div>
-                <img src="assets/img/login.svg" class="image" alt="Login" />
+                <img src="assets/img/login.svg" class="image" alt="Login" /> -->
             </div>
         </div>
     </div>

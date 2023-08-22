@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-
+/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"); */
+/* 
 * {
     margin: 0;
     padding: 0;
@@ -12,11 +12,22 @@
     --blue-color: #4070f4;
     --grey-color: #707070;
     --grey-color-light: #aaa;
+} */
+
+body {
+    --white-color: #fff;
+    --blue-color: #4070f4;
+    --grey-color: #707070;
+    --grey-color-light: #aaa;
 }
 
 body {
     margin-top: 20px;
     background: #e7f2fd;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 body.dark {
@@ -31,7 +42,7 @@ body.dark {
     --grey-color-light: #aaa;
 }
 
-body.dark .navbar{
+body.dark .navbar {
     background-color: #333;
     color: #fff;
 }
@@ -82,7 +93,7 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
 
 body.dark .modal-content,
 body.dark .modal-content table tr th,
-body.dark .modal-content table tr td{
+body.dark .modal-content table tr td {
     color: #ffffff !important;
     background: #333 !important;
 }
@@ -166,7 +177,6 @@ body.dark .modal-content table tr td{
 
 .dropdown-menu {
     position: absolute;
-    display: none;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
     background-color: #ffffff;
@@ -390,7 +400,7 @@ body.dark .modal-content table tr td{
     color: #fff;
 }
 
-.modal-content .modal-body{
+.modal-content .modal-body {
     overflow-y: auto;
 }
 
@@ -446,6 +456,7 @@ body.dark .modal-content table tr td{
         font-size: 6pt;
         margin-top: 2px;
     }
+
 }
 
 @media screen and (max-width: 819px) {
@@ -469,4 +480,10 @@ body.dark .modal-content table tr td{
     .tabel-qcc tr td {
         font-size: 8pt;
     }
+
+    .modal {
+        justify-content: center;
+        align-items: center;
+    }
+
 }

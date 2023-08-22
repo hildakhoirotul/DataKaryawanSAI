@@ -1,25 +1,25 @@
 @extends('admin.layout.main')
 
 @section('content')
-<main class="content p-2 pt-5">
+<main class="content p-2 pt-3">
     <div class="row">
         <!-- <div class="col-md-12"> -->
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
-            <h4 class="mb-0">Rekapitulasi Data Karyawan</h4>
+            <h5 class="mb-0 ms-1">Rekapitulasi Data Karyawan</h5>
             <div class="jumlah-data text-nowrap border px-2">
                 Jumlah data : {{ $total }}
             </div>
             <!-- <a href="#"> -->
             <div class="row mt-2 justify-content-between align-items-end">
 
-                <div class="col-md-5">
-                    <button type="button" class="btn btn-danger mt-2" data-toggle="modal" data-target="#importExcel">
-                        <i class='bx bx-upload me-2'></i>
+                <div class="col-md-5 ms-1">
+                    <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
+                        <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
-                    <a href="/export-excel" class="btn btn-info mt-2 ms-1">
-                        <i class='bx bx-download me-2'></i>
+                    <a href="/export-excel" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
+                        <i class='bx bx-download me-1'></i>
                         <span>Unduh Data</span>
                     </a>
                 </div>
@@ -29,8 +29,8 @@
                 <div class="col-md-3 pe-3">
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.5rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.5rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <input type="text" name="search" style="height: 2.2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
                     </div>
                 </div>
             </div>
@@ -40,17 +40,16 @@
                 <div class="modal-dialog" role="document">
                     <form action="{{ route('import.excel.submit') }}" method="post" enctype="multipart/form-data">
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header p-2 px-3">
                                 <h5 class="modal-title" id="importExcelLabel">Import Data Excel</h5>
                             </div>
-                            <div class="modal-body">
-                                <!-- Tempatkan form import di sini -->
+                            <div class="modal-body px-3 pt-2 pb-1 mb-0">
                                 @csrf
-                                <div class="form-group">
+                                <div class="form-group p-0">
                                     <input type="file" name="file" accept=".xlsx, .xls, .csv">
                                 </div>
                             </div>
-                            <div class="modal-footer">
+                            <div class="modal-footer p-1">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" class="btn btn-primary">Import</button>
                             </div>
@@ -60,8 +59,11 @@
             </div>
             <!-- End Modal -->
 
-            <div class="row">
-                <div class="card-body">
+            <!-- Modal Pesan Error -->
+            <!-- End Modal -->
+
+            <div class="row mt-0">
+                <div class="card-body pt-2">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped text-center table-bordered border-light">
                             <thead>
@@ -204,7 +206,7 @@
             .then(data => {
                 document.getElementById('absensiTableBody').innerHTML = data;
             });
-            document.getElementById('paging').style.display = "none";
+        document.getElementById('paging').style.display = "none";
     }
 
     document.getElementById('searchp').addEventListener('input', function() {

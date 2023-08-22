@@ -1,6 +1,6 @@
 <nav class="sidebar" id="mySidebar">
     <div class="menu_content">
-        <ul class="menu_items">
+        <ul class="menu_items mb-0">
             <div class="menu_title menu_dahsboard"></div>
             <li class="item">
                 <a href="/dashboard" class="nav_link submenu_item">

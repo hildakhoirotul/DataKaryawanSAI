@@ -230,7 +230,7 @@ class AdminController extends Controller
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
@@ -262,7 +262,7 @@ class AdminController extends Controller
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small> error')->width('575px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
@@ -295,7 +295,7 @@ class AdminController extends Controller
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
@@ -327,7 +327,7 @@ class AdminController extends Controller
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
@@ -359,7 +359,7 @@ class AdminController extends Controller
         }
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('Impor Gagal', 'Error pada: <br>' . $error)->width('725px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
@@ -408,7 +408,6 @@ class AdminController extends Controller
     {
         $juaraFilter = $request->query('juara');
         $qccData = Qcc::where('juara_sai', 'like', '%' . $juaraFilter . '%')
-            ->orWhere('juara_pasi', 'like', '%' . $juaraFilter . '%')
             ->get();
 
         return Excel::download(new QccExport($qccData), 'qcc.xlsx');
@@ -421,10 +420,10 @@ class AdminController extends Controller
         $setting->login = $disable ? true : false;
         $setting->save();
         if ($setting->login) {
-            Alert::info('Perubahan disimpan', 'Beberapa fitur telah dinonaktifkan');
+            Alert::html('<small>Perubahan disimpan</small>', '<small>Beberapa fitur telah dinonaktifkan</small>', 'info');
         } else {
-            Alert::info('Perubahan disimpan', 'Beberapa fitur telah diaktifkan kembali');
+            Alert::html('<small>Perubahan disimpan</small>', '<small>Beberapa fitur telah diaktifkan kembali</small>', 'info');
         }
-        return redirect()->route('/dashboard');
+        return redirect()->back();
     }
 }

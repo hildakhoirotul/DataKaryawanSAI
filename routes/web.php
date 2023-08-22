@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SignInController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Imports\RekapitulasiImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Rekapitulasi;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,16 +24,41 @@ use App\Models\Rekapitulasi;
 |
 */
 
-// Route::get('/', function () {
-//     return view('auth.login');
-// });
-Route::get('/', [LoginController::class, 'showLoginForm']);
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+// Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [LoginController::class, 'login'])->name('login');
 
+// Route::get('/', [RegisterController::class, 'showRegistrationForm']);
+Route::get('register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
+// Route::get('/', function () {
+//     if (auth()->check()) {
+//         $user = auth()->user();
+
+//         if ($user->is_admin == 1) {
+//             return redirect()->route('/dashboard');
+//         } else {
+//             return redirect()->route('/home');
+//         }
+//     }
+
+//     return redirect()->route('login');
+// });
 Auth::routes();
-Route::post('/login', [LoginController::class, 'authenticate'])->name('authenticate');
+// Route::group(['middleware' => ['web']], function () {
+//     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+//     Route::middleware(['is_user'])->group(function () {
+//         Route::get('/home', [UserController::class, 'index'])->name('/home');
+//     });
+//     Route::middleware(['is_admin'])->group(function () {
+//         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('/dashboard');
+//     });
+// });
+
 // Route::get('/send-email', [LoginController::class, 'email'])->name('send-email');
 Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('lupa-password');
-Route::post('/lupa-password', [LoginController::class, 'GetEmail']);
+Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupa-password');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/home', 'index')->middleware('is_user')->name('/home');

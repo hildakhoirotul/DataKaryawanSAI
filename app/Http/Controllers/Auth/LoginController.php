@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Crypt;
 use App\Mail\MyMail;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Mail;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -54,6 +56,32 @@ class LoginController extends Controller
         });
     }
 
+    public function showLoginForm()
+    {
+        $remember = session()->get('remember');
+        $user = auth()->user();
+        if(!empty($remember)){
+            if ($user->is_admin == 1) {
+                if (auth()->user()->password_changed == 0) {
+                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                } else {
+                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
+                }
+                return redirect()->route('/dashboard');
+            } else {
+                if (auth()->user()->password_changed == 0) {
+                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                } else {
+                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
+                }
+                return redirect()->route('/home');
+            }
+        } else {
+            Auth::logout();
+            return view('auth.login');
+        }
+    }
+
     // public function showLoginForm()
     // {
     //     $setting = Setting::firstOrNew([]);
@@ -75,32 +103,44 @@ class LoginController extends Controller
         return 'nik';
     }
 
-    public function authenticate(Request $request)
+    public function login(Request $request)
     {
         $credentials = $request->validate([
             $this->username() => 'required|string',
             'password' => 'required|string',
         ]);
-
-        if (Auth::attempt($credentials)) {
-            if (auth()->user()->is_admin == 1) {
-                if (auth()->user()->password_changed == 0) {
-                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-                } else {
-                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
-                }
-                return redirect()->route('/dashboard');
-            } else {
-                if (auth()->user()->password_changed == 0) {
-                    Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
-                } else {
-                    Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
-                }
-                return redirect()->route('/home');
-            }
+        $user = User::where('nik', $request->nik)->first();
+        $remember = $request->has('remember') ? true : false; 
+        Session::put('user', $user);
+        Session::put('remember', $remember);
+        // dd(session()->get('remember'));
+        if (!$user) {
+            Alert::error('NIK tidak terdaftar', 'Pastikan NIK yang Anda masukkan sudah benar.');
+            return redirect()->back()->withInput();
+        } elseif ($user->email_verified_at === null) {
+            Alert::error('Belum terverifikasi', 'Silahkan lakukan verifikasi link terlebih dahulu');
+            return redirect()->back()->withInput();
         } else {
-            Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
-            return back();
+            if (Auth::attempt($credentials, $remember)) {
+                if (auth()->user()->is_admin == 1) {
+                    if (auth()->user()->password_changed == 0) {
+                        Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                    } else {
+                        Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
+                    }
+                    return redirect()->route('/dashboard');
+                } else {
+                    if (auth()->user()->password_changed == 0) {
+                        Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                    } else {
+                        Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
+                    }
+                    return redirect()->route('/home');
+                }
+            } else {
+                Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);
+                return back();
+            }
         }
     }
 
@@ -130,7 +170,14 @@ class LoginController extends Controller
     {
         $email = $request->input('email');
         $nik = $request->input('nik');
-        $user = User::where('nik', $nik)->first();
+        $user = User::where('nik', $nik)
+        ->where('email', $email)
+        ->first();
+
+        if(!$user){
+            Alert::error('Gagal', 'NIk atau Email Anda Salah!');
+            return redirect()->route('lupa-password');
+        }
         Mail::to($email)->send(new MyMail($email, $user));
 
         Alert::success('Berhasil Dikirim', 'Silahkan Cek Email Anda dan Login kembali');

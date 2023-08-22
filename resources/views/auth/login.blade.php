@@ -37,7 +37,10 @@
                         <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
                     </div>
                     <!-- <a href="#" class="href">Lupa Password :(</a> -->
-
+                    <div class="remember">
+                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <label for="remember">Remember me</label>
+                    </div>
                     <button type="submit" class="btn solid fw-bold">
                         {{ __('Masuk') }}
                     </button>
@@ -46,12 +49,36 @@
                         {{ __('Forgot Your Password?') }}
                     </a>
                     @endif -->
-                    <a href="{{ url('lupa-password') }}" class="lupa-password">Lupa Password?</a>
-                    @if (Route::has('password.request'))
+                    <a href="{{ route('lupa-password') }}" class="lupa-password">Lupa Password?</a>
+                    <!-- @if (Route::has('password.request')) -->
                     <!-- <a href="{{ route('password.request') }}">
                         {{ __('Reset Password') }}
                     </a>
                     @endif -->
+                </form>
+                <form method="POST" action="{{ route('register') }}" class="sign-up-form">
+                    @csrf
+                    <h2 class="title">Daftar</h2>
+                    <div class="input-field">
+                        <i class="fa-regular fa-address-card"></i>
+                        <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" data-id="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation">
+                    </div>
+
+                    <button type="submit" class="btn solid fw-bold">
+                        {{ __('Daftar') }}
+                    </button>
                 </form>
             </div>
         </div>
@@ -63,29 +90,30 @@
                     <p>
                         Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.
                     </p>
-                    <!-- <button class="btn transparent" id="sign-up-btn">
+                    <p>Belum punya akun?</p>
+                    <button class="btn transparent" id="sign-up-btn">
                         Daftar
-                    </button> -->
+                    </button>
                 </div>
                 <img src="assets/img/register.svg" class="image" alt="Register" />
             </div>
-            <!-- <div class="panel right-panel">
+            <div class="panel right-panel">
                 <div class="content">
-                    <h3>Hesabınız var?</h3>
+                    <h3>Selamat Datang</h3>
                     <p>
-                        Mağazamızdakı məhsullardan sifariş vermək üçün daxil olmağınız şərtdir.
-                        Daxil olmağa tələsin..
+                        Silahkan masukkan NIK 6 digit, password, dan konfirmasi password untuk Mendaftar.
                     </p>
+                    <p>Sudah punya akun?</p>
                     <button class="btn transparent" id="sign-in-btn">
                         Masuk
                     </button>
                 </div>
                 <img src="assets/img/login.svg" class="image" alt="Login" />
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.all.min.js"></script> -->
-    <!-- <script src="js/login.js" defer></script> -->
+    <script src="js/login.js" defer></script>
 
 </body>
 

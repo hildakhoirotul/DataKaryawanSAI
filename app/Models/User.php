@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Crypt;
 
 class User extends Authenticatable
@@ -16,6 +17,7 @@ class User extends Authenticatable
 
     protected $table = 'users';
     protected $primaryKey = 'id';
+    protected $dates = ['remember_token_created_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -24,9 +26,12 @@ class User extends Authenticatable
     protected $fillable = [
         'nik',
         'is_admin',
+        'email',
+        'email_verified_at',
         'chain',
         'password',
         'password_changed',
+        'verify_key',
     ];
 
     /**
@@ -59,4 +64,24 @@ class User extends Authenticatable
             'password' => Hash::make($newPassword)
         ]);
     }
+
+    // public function setRememberToken($value)
+    // {
+    //     parent::setRememberToken($value);
+    //     $this->remember_token_created_at = now();
+    // }
+
+    // public function isRememberTokenValid()
+    // {
+    //     if ($this->remember_token) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+
+    //     $expireTime = config('auth.providers.users.remember.expire');
+
+    //     return $this->remember_token_created_at
+    //         && $this->remember_token_created_at->timestamp + $expireTime >= now()->timestamp;
+    // }
 }
