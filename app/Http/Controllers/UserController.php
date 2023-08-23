@@ -56,7 +56,7 @@ class UserController extends Controller
         $rekap = Rekapitulasi::where('nik', $user->nik)->get();
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('karyawan.index', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc', 'status'))
+        return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc', 'status'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
