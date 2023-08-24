@@ -34,11 +34,11 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                     </div>
                     <!-- <a href="#" class="href">Lupa Password :(</a> -->
                     <div class="remember">
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                        <input type="checkbox" id="remember" name="remember" {{ old('remember') ? 'checked' : '' }}>
                         <label for="remember">Remember me</label>
                     </div>
                     <button type="submit" class="btn solid fw-bold">
@@ -61,7 +61,7 @@
                     <h2 class="title">Daftar</h2>
                     <div class="input-field">
                         <i class="fa-regular fa-address-card"></i>
-                        <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
+                        <input type="text" id="nik1" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
                         <i class="fas fa-envelope"></i>
@@ -69,11 +69,11 @@
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="password">
+                        <input id="password1" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation">
+                        <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required>
                     </div>
 
                     <button type="submit" class="btn solid fw-bold">

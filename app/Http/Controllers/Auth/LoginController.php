@@ -124,14 +124,14 @@ class LoginController extends Controller
             if (Auth::attempt($credentials, $remember)) {
                 if (auth()->user()->is_admin == 1) {
                     if (auth()->user()->password_changed == 0) {
-                        Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                        Alert::warning('Ganti Password', 'Anda dapat mengganti password di halaman Ganti Sandi');
                     } else {
                         Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                     }
                     return redirect()->route('/dashboard');
                 } else {
                     if (auth()->user()->password_changed == 0) {
-                        Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
+                        Alert::warning('Ganti Password', 'Anda dapat mengganti password di halaman Ganti Sandi');
                     } else {
                         Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                     }

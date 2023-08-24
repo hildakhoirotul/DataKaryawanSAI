@@ -62,7 +62,13 @@
                         <button type="submit" class="btn">
                             {{ __('GANTI') }}
                         </button>
-                        <a href="{{ route('/home') }}"><button type="button" class="btn-cancel btn-outline-secondary" href="{{ route('/home') }}">Cancel</button></a>
+                        @if(Auth::user()->is_admin) <!-- Anda harus memiliki metode isAdmin() di model User yang memeriksa peran admin -->
+                        <a href="{{ route('/dashboard') }}">
+                            @else
+                            <a href="{{ route('/home') }}">
+                                @endif
+                                <button type="button" class="btn-cancel btn-outline-secondary">Cancel</button>
+                            </a>
                     </div>
 
                 </form>

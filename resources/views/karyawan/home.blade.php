@@ -5,6 +5,7 @@
 <section id="hero">
 
     <div class="container">
+    @include('sweetalert::alert')
         <div class="row justify-content-between">
             <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
                 <div data-aos="zoom-out">
@@ -21,8 +22,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-                <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
+            <div class="col-lg-5 px-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
+                <img src="assets/img/8.png" class="img-fluid animated" alt="">
             </div>
         </div>
     </div>
@@ -81,7 +82,7 @@
                     </div>
                 </div>
                 <!-- S -->
-                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                <div class="col-lg-3 col-md-6 mt-5">
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Sakit</h3>
@@ -563,7 +564,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <i class="bi bi-emoji-smile"></i>
-                                        <h3>Jumlah Alpha</h3>
+                                        <h3>A</h3>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
                                     </div>
@@ -578,10 +579,9 @@
                                                 @php $i=1 @endphp
                                                 @foreach($a as $alpha)
                                                 <tr>
-                                                    <td></td>
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                                     <td></td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -594,7 +594,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Sakit</h3>
+                                        <h3>S</h3>
                                         <i class="bi bi-journal-richtext"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->S }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat tanggal</p>
@@ -610,10 +610,9 @@
                                                 @php $i=1 @endphp
                                                 @foreach($s as $sakit)
                                                 <tr>
-                                                    <td></td>
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                     <td></td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -626,7 +625,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Sakit dengan Surat Dokter</h3>
+                                        <h3>SD</h3>
                                         <i class="bi bi-headset"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -642,10 +641,9 @@
                                                 @php $i=1 @endphp
                                                 @foreach($sd as $sakit)
                                                 <tr>
-                                                    <td></td>
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                     <td></td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -658,7 +656,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Izin</h3>
+                                        <h3>I</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->I }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -674,10 +672,9 @@
                                                 @php $i=1 @endphp
                                                 @foreach($iz as $izin)
                                                 <tr>
-                                                    <td></td>
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                                     <td></td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -696,7 +693,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Izin Terlambat Datang</h3>
+                                        <h3>ITD</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ITD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -732,7 +729,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Terlambat Datang</h3>
+                                        <h3>TD</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->TD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -768,7 +765,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Izin Cepat Pulang</h3>
+                                        <h3>ICP</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ICP }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -804,7 +801,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah Cepat Pulang</h3>
+                                        <h3>CP</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -846,7 +843,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah OCHI</h3>
+                                        <h3>OCHI</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->OCHI }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Detail</p>
@@ -894,9 +891,9 @@
                                                 @php $i=1 @endphp
                                                 @foreach($ochi as $o)
                                                 <tr>
-                                                    <td style="font-size: 12pt;" class="text-start">{{ $o->tema }}</td>
-                                                    <td style="font-size: 12pt;">{{ $o->kontes }}</td>
-                                                    <td style="font-size: 12pt;">{{ $o->juara }}</td>
+                                                    <td class="text-start">{{ $o->tema }}</td>
+                                                    <td>{{ $o->kontes }}</td>
+                                                    <td>{{ $o->juara }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -910,7 +907,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <h3>Jumlah QCC</h3>
+                                        <h3>QCC</h3>
                                         <i class="bi bi-people"></i>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->QCC }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Detail</p>
@@ -926,9 +923,9 @@
                                             <thead class="align-middle">
                                                 <tr>
                                                     <th>Nama Circle</th>
-                                                    <th>Kontes</th>
-                                                    <th>Juara SAI</th>
-                                                    <th>Juara PASI</th>
+                                                    <th style="min-width: 90px;">Kontes</th>
+                                                    <th style="min-width: 80px;">Juara SAI</th>
+                                                    <th style="min-width: 80px;">Juara PASI</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tabel-qcc">
@@ -936,15 +933,15 @@
                                                 @foreach($qcc as $o)
                                                 <tr>
                                                     <td>{{ $o->nama_qcc }}</td>
-                                                    <td>{{ $o->kontes }}</td>
-                                                    <td>
+                                                    <td style="min-width: 90px;">{{ $o->kontes }}</td>
+                                                    <td style="min-width: 80px;">
                                                         @if($o->juara_sai == 0 || null)
                                                         -
                                                         @else
                                                         {{ $o->juara_sai }}
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td style="min-width: 80px;">
                                                         @if($o->juara_pasi == 0 || null)
                                                         -
                                                         @else
@@ -966,10 +963,10 @@
                                             <thead class="align-middle">
                                                 <tr>
                                                     <th>Nama Circle</th>
-                                                    <th>Tema</th>
-                                                    <th>Kontes</th>
-                                                    <th>Juara SAI</th>
-                                                    <th>Juara PASI</th>
+                                                    <th style="min-width: 150px;">Tema</th>
+                                                    <th style="min-width: 90px;">Kontes</th>
+                                                    <th style="min-width: 80px;">Juara SAI</th>
+                                                    <th style="min-width: 80px;">Juara PASI</th>
                                                 </tr>
                                             </thead>
                                             <tbody class="tabel-qcc">
@@ -977,16 +974,16 @@
                                                 @foreach($qcc as $o)
                                                 <tr>
                                                     <td>{{ $o->nama_qcc }}</td>
-                                                    <td>{{ $o->tema }}</td>
-                                                    <td>{{ $o->kontes }}</td>
-                                                    <td>
+                                                    <td style="min-width: 150px;">{{ $o->tema }}</td>
+                                                    <td style="min-width: 90px;">{{ $o->kontes }}</td>
+                                                    <td style="min-width: 80px;">
                                                         @if($o->juara_sai == 0 || null)
                                                         -
                                                         @else
                                                         {{ $o->juara_sai }}
                                                         @endif
                                                     </td>
-                                                    <td>
+                                                    <td style="min-width: 80px;">
                                                         @if($o->juara_pasi == 0 || null)
                                                         -
                                                         @else
@@ -1057,8 +1054,8 @@
                                                 @php $i=1 @endphp
                                                 @foreach($oleader as $o)
                                                 <tr>
-                                                    <td style="font-size: 12pt;">{{ $o->nik }}</td>
-                                                    <td style="font-size: 12pt;" class="text-start">{{ $o->tema }}</td>
+                                                    <td>{{ $o->nik }}</td>
+                                                    <td class="text-start">{{ $o->tema }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -1091,15 +1088,8 @@
 
 <script src="js/jquery.js"></script>
 
-<!-- <script>
-    $(".count-header").click(function() {
-        var content = $(this).siblings(".count-content");
-        content.slideToggle();
-        $(this).toggleClass("active");
-    });
-</script> -->
 <script>
-    $(".count-header").click(function() {
+    $(".mobile .count-box").click(function() {
         var box = $(this).closest(".count-box");
         var content = box.find(".count-content");
         content.slideToggle();
@@ -1108,27 +1098,17 @@
     });
 </script>
 <script>
-    const columns = document.querySelectorAll('.col-lg-3, .col-md-6');
-    const scrollButtonLeft = document.querySelector('.scroll-button:first-child');
-    const scrollButtonRight = document.querySelector('.scroll-button:last-child');
-    let currentIndex = 0;
+    $(document).ready(function() {
+        $(".carousel .count-box").click(function() {
+            var box = $(this).closest(".count-box");
+            var content = box.find(".count-content");
+            
+            $(".count-box.expanded").not(box).removeClass("expanded");
+            $(".count-content").not(content).slideUp();
 
-    function scrollColumns(direction) {
-        const container = document.querySelector('.row');
-        const containerWidth = container.offsetWidth;
-        const numColumns = columns.length;
-        const numVisibleColumns = Math.floor(containerWidth / columns[0].offsetWidth);
-
-        if (direction === 'left') {
-            currentIndex = Math.max(currentIndex - numVisibleColumns, 0);
-        } else {
-            currentIndex = Math.min(currentIndex + numVisibleColumns, numColumns - numVisibleColumns);
-        }
-
-        container.scrollLeft = columns[currentIndex].offsetLeft;
-    }
-
-    // Inisialisasi keadaan awal
-    scrollColumns('right');
+            content.slideToggle();
+            box.toggleClass("expanded");
+        });
+    });
 </script>
 @endsection
