@@ -510,7 +510,7 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
 }
 
 .table tr th {
-  background-color: #09447C;
+  background-color: rgba(1, 4, 136, 0.9);
   color: #fff;
   padding: 0.5rem;
   font-size: 10pt;

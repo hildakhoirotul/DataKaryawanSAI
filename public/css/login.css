@@ -171,7 +171,7 @@ form.sign-in-form {
 
 .btn {
     width: 180px;
-    background-color: #09447C;
+    background-color: rgba(1, 4, 136, 0.9);
     border: none;
     outline: none;
     height: 49px;
@@ -202,7 +202,7 @@ form.sign-in-form {
 }
 
 .btn:hover {
-    background-color: #09447C;
+    background-color: rgba(1, 4, 136, 0.9);
 }
 
 .btn-cancel:hover {
@@ -227,7 +227,7 @@ form.sign-in-form {
     top: -10%;
     right: 48%;
     transform: translateY(-50%);
-    background-image: linear-gradient(-45deg, #09447C 0%, #09447C 100%);
+    background-image: linear-gradient(-45deg, rgba(1, 4, 136, 0.9) 0%, rgba(1, 4, 136, 0.9) 100%);
     transition: 1.8s ease-in-out;
     border-radius: 50%;
     z-index: 6;
@@ -296,7 +296,7 @@ form.sign-in-form {
 .btn.transparent:hover {
     background-color: #fff;
     border: 2px solid #fff;
-    color: #09447C;
+    color: rgba(1, 4, 136, 0.9);
     width: 170px;
     height: 41px;
     font-weight: 600;
@@ -314,7 +314,7 @@ form.sign-in-form {
     font-family: "Poppins", sans-serif;
     text-decoration: none;
     transition: 00.5s ease-in-out;
-    color: #09447C;
+    color: rgba(1, 4, 136, 0.9);
 }
 
 
@@ -484,7 +484,7 @@ form.sign-in-form {
 
     .btn {
         width: 150px;
-        background-color: #09447C;
+        background-color: rgba(1, 4, 136, 0.9);
         border: none;
         outline: none;
         height: 49px;
@@ -545,5 +545,5 @@ form.sign-in-form {
 
 .lupa-password{
     text-decoration: none;
-    color: #09447C;
+    color: rgba(1, 4, 136, 0.9);
 }

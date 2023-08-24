@@ -171,13 +171,13 @@ class LoginController extends Controller
         $email = $request->input('email');
         $nik = $request->input('nik');
         $user = User::where('nik', $nik)
-        ->where('email', $email)
+        // ->where('email', $email)
         ->first();
 
-        if(!$user){
-            Alert::error('Gagal', 'NIk atau Email Anda Salah!');
-            return redirect()->route('lupa-password');
-        }
+        // if(!$user){
+        //     Alert::error('Gagal', 'NIk atau Email Anda Salah!');
+        //     return redirect()->route('lupa-password');
+        // }
         Mail::to($email)->send(new MyMail($email, $user));
 
         Alert::success('Berhasil Dikirim', 'Silahkan Cek Email Anda dan Login kembali');

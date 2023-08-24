@@ -17,9 +17,9 @@ describe('Login', () => {
 
   it('can submit login form', () => {
     cy.visit('http://localhost:8000/login')
-    cy.get('input[name=nik]').type('111111') // Ganti dengan username yang benar
-    cy.get('input[name=password]').type('111111') // Ganti dengan password yang benar
-    cy.get('button[type=submit]').click()
+    cy.get('input[name=nik]').eq(0).type('111111') // Ganti dengan username yang benar
+    cy.get('input[name=password]').eq(0).type('222222') // Ganti dengan password yang benar
+    cy.get('button[type=submit]').eq(0).click()
 
     // Periksa halaman setelah berhasil login, misalnya dengan URL atau elemen unik di halaman setelah login
     cy.url().should('include', 'http://localhost:8000/home') // Ganti dengan URL halaman setelah login

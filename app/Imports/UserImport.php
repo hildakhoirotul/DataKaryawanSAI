@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithUpserts;
+use Illuminate\Support\Str;
 
 class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts
 {
@@ -39,8 +40,10 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
     {
         return new User([
             'nik'     => $row['nik'],
+            'email_verified_at'=>now(),
             'chain'   => $row['password'],
             'password'   => Hash::make($row['password']),
+            'verify_key' => Str::random(100),
         ]);
     }
 
