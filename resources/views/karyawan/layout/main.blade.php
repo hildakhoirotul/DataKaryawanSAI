@@ -11,14 +11,14 @@
 
     <!-- Boxicons CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <title>Data Karyawan</title>
-    <link href="css/karyawan.css" rel="stylesheet">
+    <link href="{{ asset('css/karyawan.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('css/karyawan.css') }}"> -->
     <!-- <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet"> -->
-    <link href="assets/img/logo.png" rel="icon">
-    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
 
 </head>
@@ -35,10 +35,10 @@
             <div class="dropdown">
                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <span>{{ Auth::user()->nik }}</span>
-                    <img src="assets/img/account.png" class="img" alt="">
+                    <img src="{{ asset('assets/img/account.png') }}" class="img" alt="">
                 </a>
                 <div class="dropdown-menu pe-0" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/change-password">
+                    <a class="dropdown-item" href="{{ route('change-password') }}">
                         <i class="fa-solid fa-key"></i>
                         <span>Ganti Sandi</span>
                     </a>
@@ -88,8 +88,8 @@
     </script> -->
 
     <!-- JavaScript -->
-    <script src="js/user.js"></script>
-    <script src="js/jquery.js"></script>
+    <script src="{{ asset('js/user.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- <script src="assets/bootstrap/js/bootstrap.min.js"></script> -->
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>

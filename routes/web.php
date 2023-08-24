@@ -61,15 +61,15 @@ Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('
 Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupa-password');
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/home', 'index')->middleware('is_user')->name('/home');
+    Route::get('/home', 'index')->middleware('is_user')->name('home');
 });
 
 Route::controller(AdminController::class)->group(function () {
-    Route::get('/dashboard', 'dashboard')->middleware('is_admin')->name('/dashboard');
-    Route::get('/absensi', 'absensi')->middleware('is_admin')->name('/absensi');
-    Route::get('/data-ochi', 'ochi')->middleware('is_admin')->name('/data-ochi');
-    Route::get('/data-qcc', 'qcc')->middleware('is_admin')->name('/data-qcc');
-    Route::get('/karyawan', 'karyawan')->middleware('is_admin')->name('/karyawan');
+    Route::get('/dashboard', 'dashboard')->middleware('is_admin')->name('dashboard');
+    Route::get('/absensi', 'absensi')->middleware('is_admin')->name('absensi');
+    Route::get('/data-ochi', 'ochi')->middleware('is_admin')->name('data-ochi');
+    Route::get('/data-qcc', 'qcc')->middleware('is_admin')->name('data-qcc');
+    Route::get('/karyawan', 'karyawan')->middleware('is_admin')->name('karyawan');
     Route::get('/export-excel', 'exportExcel')->name('export.excel.submit');
     Route::get('/export-absensi', 'exportAbsensi')->name('export.absensi.submit');
     Route::get('/export-ochi', 'exportOchi')->name('export.ochi.submit');
@@ -90,7 +90,7 @@ Route::controller(AdminController::class)->group(function () {
 });
 
 Route::controller(HomeController::class)->group(function () {
-    Route::get('/change-password', 'showChangePassword')->name('/change-password');
+    Route::get('/change-password', 'showChangePassword')->name('change-password');
     Route::post('/change-password', 'changePassword')->name('changePassword');
 });
 

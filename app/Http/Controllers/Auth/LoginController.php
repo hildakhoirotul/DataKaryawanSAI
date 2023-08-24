@@ -67,14 +67,14 @@ class LoginController extends Controller
                 } else {
                     Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                 }
-                return redirect()->route('/dashboard');
+                return redirect()->route('dashboard');
             } else {
                 if (auth()->user()->password_changed == 0) {
                     Alert::warning('Ganti Password', 'Anda belum mengganti password, silahkan ganti terlebih dahulu!');
                 } else {
                     Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                 }
-                return redirect()->route('/home');
+                return redirect()->route('home');
             }
         } else {
             Auth::logout();
@@ -128,14 +128,14 @@ class LoginController extends Controller
                     } else {
                         Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                     }
-                    return redirect()->route('/dashboard');
+                    return redirect()->route('dashboard');
                 } else {
                     if (auth()->user()->password_changed == 0) {
                         Alert::warning('Ganti Password', 'Anda dapat mengganti password di halaman Ganti Sandi');
                     } else {
                         Alert::success('Berhasil Masuk', 'Selamat Datang ' . auth()->user()->nik);
                     }
-                    return redirect()->route('/home');
+                    return redirect()->route('home');
                 }
             } else {
                 Alert::error('Login Gagal', 'NIK atau kata sandi salah!')->persistent(true, false);

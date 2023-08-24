@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-lg-5 px-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-                <img src="assets/img/8.png" class="img-fluid animated" alt="">
+                <img src="{{ asset('assets/img/8.png') }}" class="img-fluid animated" alt="">
             </div>
         </div>
     </div>
@@ -1086,7 +1086,7 @@
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 <div id="preloader"></div>
 
-<script src="js/jquery.js"></script>
+<script src="{{ asset('js/jquery.js') }}"></script>
 
 <script>
     $(".mobile .count-box").click(function() {

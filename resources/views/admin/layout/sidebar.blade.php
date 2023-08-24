@@ -3,7 +3,7 @@
         <ul class="menu_items mb-0">
             <div class="menu_title menu_dahsboard"></div>
             <li class="item">
-                <a href="/dashboard" class="nav_link submenu_item">
+                <a href="{{ route('dashboard') }}" class="nav_link submenu_item">
                     <span class="navlink_icon">
                         <i class='bx bx-table'></i>
                     </span>
@@ -15,7 +15,7 @@
         <ul class="menu_items">
             <div class="menu_title menu_editor"></div>
             <li class="item">
-                <a href="/absensi" class="nav_link">
+                <a href="{{ route('absensi') }}" class="nav_link">
                     <span class="navlink_icon">
                         <i class='bx bx-user-pin'></i>
                     </span>
@@ -24,7 +24,7 @@
             </li>
 
             <li class="item">
-                <a href="/data-ochi" class="nav_link">
+                <a href="{{ route('data-ochi') }}" class="nav_link">
                     <span class="navlink_icon">
                         <i class='bx bx-notepad'></i>
                     </span>
@@ -32,7 +32,7 @@
                 </a>
             </li>
             <li class="item">
-                <a href="/data-qcc" class="nav_link">
+                <a href="{{ route('data-qcc') }}" class="nav_link">
                     <span class="navlink_icon">
                         <i class='bx bx-folder-open'></i>
                     </span>
@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="item">
-                <a href="/karyawan" class="nav_link">
+                <a href="{{ route('karyawan') }}" class="nav_link">
                     <span class="navlink_icon">
                         <i class='bx bxs-user-detail'></i>
                     </span>

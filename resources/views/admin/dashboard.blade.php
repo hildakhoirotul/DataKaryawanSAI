@@ -18,7 +18,7 @@
                         <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
-                    <a href="/export-excel" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
+                    <a href="{{ route('export.excel.submit') }}" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Unduh Data</span>
                     </a>

@@ -5,16 +5,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
-    <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
+    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/login.css') }}" rel="stylesheet"> -->
     <!-- <link href="https://cdn.jsdelivr.net/npm/sweetalert2@10.15.7/dist/sweetalert2.min.css" rel="stylesheet"> -->
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
     <title>Masuk</title>
-    <link href="assets/img/logo.png" rel="icon">
-    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
 
 </head>
 
@@ -62,7 +62,7 @@
                         Daftar
                     </button> -->
                 </div>
-                <img src="assets/img/register.svg" class="image" alt="Register" />
+                <img src="{{ asset('assets/img/register.svg') }}" class="image" alt="Register" />
             </div>
             <!-- <div class="panel right-panel">
                 <div class="content">

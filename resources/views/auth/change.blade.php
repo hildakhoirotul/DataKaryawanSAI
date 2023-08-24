@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
-    <link href="assets/fontawesome/css/all.min.css" rel="stylesheet">
-    <link href="css/login.css" rel="stylesheet">
-    <!-- <link href="{{ asset('css/login.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <!-- <link href="css/login.css" rel="stylesheet"> -->
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="style.css" /> -->
     <title>Change Password</title>
-    <link href="assets/img/logo.png" rel="icon">
-    <link href="assets/img/logo.png" rel="apple-touch-icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
 
 </head>
 
@@ -62,10 +62,10 @@
                         <button type="submit" class="btn">
                             {{ __('GANTI') }}
                         </button>
-                        @if(Auth::user()->is_admin) <!-- Anda harus memiliki metode isAdmin() di model User yang memeriksa peran admin -->
-                        <a href="{{ route('/dashboard') }}">
+                        @if(Auth::user()->is_admin)
+                        <a href="{{ route('dashboard') }}">
                             @else
-                            <a href="{{ route('/home') }}">
+                            <a href="{{ route('home') }}">
                                 @endif
                                 <button type="button" class="btn-cancel btn-outline-secondary">Cancel</button>
                             </a>
@@ -107,7 +107,7 @@
                         Masuk
                     </button> -->
                 </div>
-                <img src="assets/img/login.svg" class="image" alt="Login" />
+                <img src="{{ asset('assets/img/login.svg') }}" class="image" alt="Login" />
                 <!-- <div class="content">
                     <h3>Selamat Datang</h3>
                     <p>
@@ -133,7 +133,7 @@
             </div>
         </div>
     </div>
-    <script src="js/login.js" defer></script>
+    <script src="{{ asset('js/login.js') }}" defer></script>
 </body>
 
 </html>
