@@ -102,14 +102,16 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'password_confirmation' => 'required|same:password',
         ]);
-    
+
         $validationErrors = [];
-    
+
         if ($validator->fails()) {
             $validationErrors = $validator->errors()->all();
         }
 
-        dd($validationErrors);
+        // dd($validationErrors);
+        Alert::html('Failed', 'Error : <br>'. implode(" <br> ", $validationErrors), 'error');
+        return redirect()->back()->withInput();
 
         $str = Str::random(100);
         User::create([
@@ -130,18 +132,18 @@ class RegisterController extends Controller
         Mail::to($request->email)->send(new MailSend($details));
 
         Alert::success('Link Verifikasi telah dikirim', 'Silahkan periksa email anda untuk verifikasi email.');
-        return view('auth.login');            
+        return view('auth.login');
     }
 
     public function verify($verify_key)
     {
         $user = User::where('verify_key', $verify_key)->first();
-        
+
         if ($user) {
             $user->email_verified_at = now();
             $user->save();
-            return "Verifikasi link berhasil, silahkan login";            
-        }else{
+            return "Verifikasi link berhasil, silahkan login";
+        } else {
             return "Key tidak valid!";
         }
     }
