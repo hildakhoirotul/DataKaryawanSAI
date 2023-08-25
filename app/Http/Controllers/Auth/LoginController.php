@@ -113,7 +113,6 @@ class LoginController extends Controller
         $remember = $request->has('remember') ? true : false; 
         Session::put('user', $user);
         Session::put('remember', $remember);
-        // dd(session()->get('remember'));
         if (!$user) {
             Alert::error('NIK tidak terdaftar', 'Pastikan NIK yang Anda masukkan sudah benar.');
             return redirect()->back()->withInput();

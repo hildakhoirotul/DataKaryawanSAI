@@ -9,10 +9,11 @@ use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Throwable;
 
-class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithBatchInserts
+class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithChunkReading, ShouldQueue
 {
     // WithHeadingRow
     /**
@@ -78,7 +79,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
         ];
     }
 
-    public function batchSize(): int
+    public function chunkSize(): int
     {
         return 1000;
     }

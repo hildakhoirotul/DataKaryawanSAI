@@ -220,7 +220,7 @@ class AdminController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         $import = new RekapitulasiImport();
-        Excel::import($import, $file);
+        Excel::queueImport($import, $file);
 
         $errorMessages = [];
         $i = "1";
@@ -349,7 +349,7 @@ class AdminController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         $import = new UserImport();
-        Excel::import($import, $file);
+        Excel::queueImport($import, $file);
 
         $errorMessages = [];
         $i = "1";

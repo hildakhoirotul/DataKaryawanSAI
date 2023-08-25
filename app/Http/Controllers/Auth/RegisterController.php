@@ -58,15 +58,15 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'nik' => ['required', 'string', 'min:6'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'password_confirmation' => 'required|same:password',
-        ]);
-    }
+    // protected function validator(array $data)
+    // {
+    //     return Validator::make($data, [
+    //         'nik' => ['required', 'string', 'min:6'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
+    //         'password_confirmation' => 'required|same:password',
+    //     ]);
+    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -96,6 +96,21 @@ class RegisterController extends Controller
 
     protected function register(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'nik' => 'required|string|min:6',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+            'password_confirmation' => 'required|same:password',
+        ]);
+    
+        $validationErrors = [];
+    
+        if ($validator->fails()) {
+            $validationErrors = $validator->errors()->all();
+        }
+
+        dd($validationErrors);
+
         $str = Str::random(100);
         User::create([
             'nik' => $request->nik,
@@ -105,7 +120,6 @@ class RegisterController extends Controller
             'verify_key' => $str,
         ]);
 
-        // dd($user);
         $details = [
             'nik' => $request->nik,
             'website' => 'http://127.0.0.1:8000/',

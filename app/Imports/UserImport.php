@@ -14,10 +14,11 @@ use Throwable;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Illuminate\Support\Str;
 
-class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts
+class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts, WithChunkReading, ShouldQueue
 {
     /**
     * @param array $row
@@ -78,5 +79,10 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
     public function uniqueBy()
     {
         return 'nik';
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }

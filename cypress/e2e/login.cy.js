@@ -1,27 +1,116 @@
 describe('Login Page', () => {
-  it('successfully loads', () => {
-    cy.visit('http://localhost:8000/login') // Ganti URL sesuai dengan URL halaman login
-  })
+  beforeEach(() => {
+    cy.visit('http://localhost:8000/')
+  });
 
-  it('displays username and password inputs', () => {
-    cy.visit('http://localhost:8000/login')
+  it('displays username, password, remember inputs', () => {
     cy.get('input[name=nik]').should('exist')
     cy.get('input[name=password]').should('exist')
+    cy.get('input[name=remember]').should('exist')
+    cy.contains('Selamat Datang').should('exist')
+    cy.contains('Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.').should('exist')
+    cy.contains('Belum punya akun?').should('exist')
   })
 
-  it('displays login button', () => {
-    cy.visit('http://localhost:8000/login')
+  it('displays masuk, daftar and lupa password button', () => {
     cy.get('button[type=submit]').should('exist')
     cy.contains('Masuk').should('exist')
+    cy.contains('Lupa Password?').should('exist')
+    cy.get('button.btn.transparent').should('exist');
+    cy.contains('Daftar').should('exist')
   })
 
-  it('can submit login form', () => {
-    cy.visit('http://localhost:8000/login')
-    cy.get('input[name=nik]').eq(0).type('000000') // Ganti dengan username yang benar
-    cy.get('input[name=password]').eq(0).type('000000') // Ganti dengan password yang benar
+  it('click daftar dan lupa password button', () => {
+    cy.get('button.btn.transparent').should('exist');
+    cy.contains('Daftar').should('exist')
+    cy.get('button.btn.transparent').eq(0).click();
+    cy.contains('Daftar').should('exist')
+    cy.get('input[name=nik]').should('exist')
+    cy.get('input[name=email]').should('exist')
+    cy.get('input[name=password]').should('exist')
+    cy.get('input[name=password_confirmation]').should('exist')
+
+    cy.get('button.btn.transparent').eq(1).click();
+
+    cy.contains('Lupa Password?').should('exist')
+    cy.contains('Lupa Password?').click()
+    cy.contains('Lupa Password').should('exist')
+    cy.get('input[name=nik]').should('exist')
+    cy.get('input[name=email]').should('exist')
+
+    cy.get('button[type=button]').should('exist')
+    cy.get('button[type=button]').click()
+  })
+
+  it('can submit login form for admin', () => {
+    cy.get('input[name=nik]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
 
-    // Periksa halaman setelah berhasil login, misalnya dengan URL atau elemen unik di halaman setelah login
-    cy.url().should('include', 'http://localhost:8000/dashboard') // Ganti dengan URL halaman setelah login
+    cy.url().should('include', 'http://localhost:8000/dashboard')
+    cy.contains('Berhasil Masuk').should('exist')
+    cy.contains('Selamat Datang').should('exist')
+    cy.contains('OK').click()
   })
+
+  it('can submit login form for karyawan with unchanged password', () => {
+    cy.get('input[name=nik]').eq(0).type('111111')
+    cy.get('input[name=password]').eq(0).type('222222')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.url().should('include', 'http://localhost:8000/home')
+    cy.contains('Ganti Password').should('exist')
+    cy.contains('Anda dapat mengganti password di halaman Ganti Sandi').should('exist')
+    cy.contains('OK').click()
+  })
+
+  it('submit wrong credentials', () => {
+    cy.get('input[name=nik]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('111111')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.contains('Login Gagal').should('exist')
+    cy.contains('NIK atau kata sandi salah!').should('exist')
+    cy.contains('Ok').click()
+
+    cy.get('input[name=nik]').eq(0).type('111111')
+    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.contains('Login Gagal').should('exist')
+    cy.contains('NIK atau kata sandi salah!').should('exist')
+    cy.contains('Ok').click()
+
+    // nik tidak terdaftar
+    cy.get('input[name=nik]').eq(0).type('303030')
+    cy.get('input[name=password]').eq(0).type('303030')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.contains('NIK tidak terdaftar').should('exist')
+    cy.contains('Pastikan NIK yang Anda masukkan sudah benar.').should('exist')
+    cy.contains('OK').click()
+  })
+
+  it('check remember me when login', () => {
+    cy.get('input[name=nik]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('input[name="remember"]').check();
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.url().should('include', 'http://localhost:8000/dashboard')
+    cy.contains('Berhasil Masuk').should('exist')
+    cy.contains('Selamat Datang').should('exist')
+    cy.contains('OK').click()
+  })
+
+  it('submit unverified email account', () => {
+    cy.get('input[name=nik]').eq(0).type('229792')
+    cy.get('input[name=password]').eq(0).type('229792')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.contains('Belum terverifikasi').should('exist')
+    cy.contains('Silahkan lakukan verifikasi link terlebih dahulu').should('exist')
+    cy.contains('OK').click()
+  })
+
 })

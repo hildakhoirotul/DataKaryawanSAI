@@ -22,7 +22,6 @@
                     <h2 class="title">Masuk</h2>
 
                     <div class="input-field">
-                        <!-- <i class="fas fa-envelope"></i> -->
                         <i class="fa-regular fa-address-card"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>

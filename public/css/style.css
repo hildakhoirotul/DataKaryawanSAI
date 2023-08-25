@@ -509,6 +509,18 @@ body.dark .input-group .form-control::-webkit-input-placeholder {
   font-size: 10pt;
 }
 
+.table-responsive {
+  max-height: 500px;
+  overflow: hidden;
+  position: relative;
+  overflow-y: scroll;
+}
+
+.table-responsive thead {
+  position: sticky;
+  top: 0;
+}
+
 .table tr th {
   background-color: rgba(1, 4, 136, 0.9);
   color: #fff;
