@@ -174,12 +174,17 @@ class LoginController extends Controller
         ->first();
 
         // if(!$user){
-        //     Alert::error('Gagal', 'NIk atau Email Anda Salah!');
+        //     Alert::error('Gagal', 'NIk Anda Tidak Sesuai');
         //     return redirect()->route('lupa-password');
         // }
+        try {
         Mail::to($email)->send(new MyMail($email, $user));
 
         Alert::success('Berhasil Dikirim', 'Silahkan Cek Email Anda dan Login kembali');
         return redirect('/login');
+        } catch (\Exception $e) {
+            Alert::error('Gagal dikirim', 'Pastikan nik dan email anda telah benar');
+            return redirect()->back();
+        }
     }
 }

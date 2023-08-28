@@ -22,6 +22,7 @@ use App\Models\Setting;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
@@ -75,6 +76,13 @@ class AdminController extends Controller
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.karyawan', compact('user', 'total', 'status'));
+    }
+
+    public function setting()
+    {
+        $setting = Setting::firstOrNew([]);
+        $status = $setting->login;
+        return view('admin.setting', compact('status'));
     }
 
     public function searchRekap(Request $request)
@@ -220,7 +228,7 @@ class AdminController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         $import = new RekapitulasiImport();
-        Excel::queueImport($import, $file);
+        Excel::import($import, $file);
 
         $errorMessages = [];
         $i = "1";
@@ -228,6 +236,7 @@ class AdminController extends Controller
             $error = $failure->errors();
             $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
+    
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
             Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');

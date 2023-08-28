@@ -5,17 +5,15 @@
 <section id="hero">
 
     <div class="container">
-    @include('sweetalert::alert')
+        @include('sweetalert::alert')
         <div class="row justify-content-between">
             <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
                 <div data-aos="zoom-out">
                     <h1>Selamat Datang<span><br>Mohon Diperhatikan</span></h1>
                     <h6>
-                        <p>Konfirmasi Absensi ke EB.</p>
-                        <p>Konfirmasi OCHI & QCC ke Training.</p>
-                        <p>Maksimal Konfirmasi 3 hari.</p>
-                        <p>Perubahan data dapat dilihat kembali setelah 1 bulan.</p>
-                        <p>Sandi dapat diganti di halaman Ganti Sandi.</p>
+                        @foreach($info as $i)
+                        <p>{{ $i->information }}</p>
+                        @endforeach
                     </h6>
                     <div class="text-center text-md-start text-lg-start">
                         <a href="#main" class="btn-get-started scrollto">Lihat Data<i class="bi bi-arrow-right"></i></a>
@@ -33,13 +31,13 @@
             <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z">
         </defs>
         <g class="wave1">
-            <use xlink:href="#wave-path" x="50" y="3" fill="rgba(255,255,255, .1)">
+            <use xlink:href="#wave-path" class="wave1" x="50" y="3" fill="rgba(255,255,255, .1)">
         </g>
         <g class="wave2">
-            <use xlink:href="#wave-path" x="50" y="0" fill="rgba(255,255,255, .2)">
+            <use xlink:href="#wave-path" class="wave2" x="50" y="0" fill="rgba(255,255,255, .2)">
         </g>
         <g class="wave3">
-            <use xlink:href="#wave-path" x="50" y="9" fill="#fff">
+            <use xlink:href="#wave-path" class="wave3" x="50" y="9" fill="#fff">
         </g>
     </svg>
 
@@ -53,7 +51,7 @@
                 <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                     <div class="count-box">
                         <div class="count-header">
-                            <i class="bi bi-emoji-smile"></i>
+                            <i class="bi bi-emoji-frown"></i>
                             <h3>Jumlah Alpha</h3>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
@@ -86,7 +84,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Sakit</h3>
-                            <i class="bi bi-journal-richtext"></i>
+                            <i class="bi bi-thermometer-half"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->S }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat tanggal</p>
                         </div>
@@ -118,7 +116,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Sakit dengan Surat Dokter</h3>
-                            <i class="bi bi-headset"></i>
+                            <i class="bi bi-envelope-check"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -150,7 +148,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Izin</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-person-check"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->I }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -182,7 +180,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Izin Terlambat Datang</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-clipboard2-check"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ITD }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -218,7 +216,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Terlambat Datang</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-alarm"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->TD }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -254,7 +252,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Izin Cepat Pulang</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-journal-check"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ICP }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -290,7 +288,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah Cepat Pulang</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-clock"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
                         </div>
@@ -326,7 +324,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah OCHI</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-file-earmark-text"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->OCHI }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Detail</p>
                         </div>
@@ -390,7 +388,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>Jumlah QCC</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-file-earmark-zip"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->QCC }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Detail</p>
                         </div>
@@ -486,7 +484,7 @@
                     <div class="count-box">
                         <div class="count-header">
                             <h3>OCHI Leader</h3>
-                            <i class="bi bi-people"></i>
+                            <i class="bi bi-person-badge"></i>
                             <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->OCHI_leader }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Detail</p>
                         </div>
@@ -563,7 +561,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <i class="bi bi-emoji-smile"></i>
+                                        <i class="bi bi-emoji-frown"></i>
                                         <h3>A</h3>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>
@@ -1102,7 +1100,7 @@
         $(".carousel .count-box").click(function() {
             var box = $(this).closest(".count-box");
             var content = box.find(".count-content");
-            
+
             $(".count-box.expanded").not(box).removeClass("expanded");
             $(".count-content").not(content).slideUp();
 

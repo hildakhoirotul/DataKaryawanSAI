@@ -7,6 +7,7 @@ describe('Login Page', () => {
     cy.get('input[name=nik]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=remember]').should('exist')
+    cy.get('.image').eq(1).should('have.attr', 'src', 'http://localhost:8000/assets/img/login.svg');
     cy.contains('Selamat Datang').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.').should('exist')
     cy.contains('Belum punya akun?').should('exist')

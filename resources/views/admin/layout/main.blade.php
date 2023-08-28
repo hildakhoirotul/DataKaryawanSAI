@@ -17,6 +17,7 @@
     <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
     <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
+    @livewireStyles
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 

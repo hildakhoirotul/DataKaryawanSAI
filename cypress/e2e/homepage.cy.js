@@ -1,19 +1,56 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/login')
+    cy.visit('http://localhost:8000/')
     cy.get('input[name=nik]').eq(0).type('111111')
     cy.get('input[name=password]').eq(0).type('222222')
     cy.get('button[type=submit]').eq(0).click()
-    cy.visit('http://localhost:8000/home');
+
+    cy.url().should('include', 'http://localhost:8000/home')
+    cy.contains('OK').click()
   });
 
   it('displays informations on the page', () => {
-    cy.contains('Konfirmasi Absensi ke EB.');
-    cy.contains('Konfirmasi OCHI & QCC ke Training.');
-    cy.contains('Maksimal Konfirmasi 3 hari.');
-    cy.contains('Perubahan data dapat dilihat kembali setelah 1 bulan.');
-    cy.contains('Sandi dapat diganti di halaman Ganti Sandi.');
+    cy.contains('Home').should('exist')
+    cy.contains('111111').should('exist')
+    cy.get('.bi-person-circle').should('exist')
+
+    cy.get('.dropdown').trigger('mouseover');
+    cy.contains('Ganti Sandi').should('exist')
+    cy.contains('Keluar').should('exist')
+
+    cy.contains('Selamat Datang').should('exist');
+    cy.contains('Mohon Diperhatikan').should('exist');
+    cy.contains('Konfirmasi Absensi ke EB.').should('exist');
+    cy.contains('Konfirmasi OCHI & QCC ke Training.').should('exist');
+    cy.contains('Maksimal Konfirmasi 3 hari.').should('exist');
+    cy.contains('Perubahan data dapat dilihat kembali setelah 1 bulan.').should('exist');
+    cy.contains('Sandi dapat diganti di halaman Ganti Sandi.').should('exist');
+    cy.get('.btn-get-started').should('exist')
+    cy.contains('Lihat Data').should('exist')
+    cy.get('.bi-arrow-right').should('exist')
+
+    cy.get('.img-fluid').should('have.attr', 'src', 'http://localhost:8000/assets/img/8.png');
+    cy.get('.hero-waves').should('exist');
+    cy.get('.wave1').should('exist');
+    cy.get('.wave2').should('exist');
+    cy.get('.wave3').should('exist');
   });
+
+  it('display web on mobile phone', () => {
+    cy.viewport('iphone-6');
+    cy.get('.dropdown').click();
+    cy.contains('Ganti Sandi').should('exist')
+    cy.contains('Keluar').should('exist')
+    cy.get('.dropdown').click()
+
+    // klik lihat data button
+    // cy.get('.btn-get-started').should('exist');
+    cy.get('.btn-get-started').click();
+    // cy.url().should('include', '#main');
+
+    cy.get('.container.mobile').should('exist')
+    cy.get('.bi').each(($elem) => { should('exist') })
+  })
 
   it('can navigate to change password page', () => {
     cy.get('.dropdown').trigger('mouseover');

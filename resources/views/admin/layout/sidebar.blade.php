@@ -48,6 +48,18 @@
                 </a>
             </li>
         </ul>
+
+        <ul class="menu_items">
+            <div class="menu_title menu_setting"></div>
+            <li class="item">
+                <a href="{{ route('setting') }}" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class='bx bx-user-pin'></i>
+                    </span>
+                    <span class="navlink">Pengaturan</span>
+                </a>
+            </li>
+        </ul>
         <!-- Sidebar Open / Close -->
         <div class="bottom_content">
             <div class="bottom expand_sidebar">

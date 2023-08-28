@@ -1,12 +1,5 @@
 <nav class="navbar">
     <div class="logo_item ms-3">
-        <form id="switchForm" action="{{ route('disable.login') }}" method="post">
-            @csrf
-            <div class="form-check form-switch">
-                <input class="form-check-input custom-switch" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="status" {{ $status ? 'checked' : '' }}>
-                <label class="form-check-label" for="flexSwitchCheckDefault">Disable Detail OCHI & QCC</label>
-            </div>
-        </form>
 
         <i class="bx bx-menu" id="sidebarOpen"></i>
     </div>

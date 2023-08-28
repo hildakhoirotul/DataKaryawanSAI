@@ -1132,7 +1132,7 @@ section {
 
   .expanded {
     max-height: 500px;
-    width: fit-content !important;
+    min-width: fit-content !important;
   }
 
   .carousel {

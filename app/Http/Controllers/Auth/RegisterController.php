@@ -58,15 +58,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    // protected function validator(array $data)
-    // {
-    //     return Validator::make($data, [
-    //         'nik' => ['required', 'string', 'min:6'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //         'password_confirmation' => 'required|same:password',
-    //     ]);
-    // }
 
     /**
      * Create a new user instance after a valid registration.
@@ -74,44 +65,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    // protected function create(array $data)
-    // {
-    //     $user = User::create([
-    //         'nik' => $data['nik'],
-    //         'email' => $data['email'],
-    //         'chain'=>$data['password'],
-    //         'password' => Hash::make($data['password']),
-    //     ]);
-
-    //     dd($user);
-
-    //     if($user){
-    //         Alert::success('Berhasil Mendaftar', 'Silahkan masuk terlebih dahulu');
-    //         return redirect()->route('/'); 
-    //     } else {
-    //         Alert::error('Gagal', 'Silahkan mencoba kembali');
-    //         return redirect()->back(); 
-    //     }
-    // }
 
     protected function register(Request $request)
     {
+        $messages = [
+            'nik.min' => 'NIK harus memiliki minimal :min karakter.',
+            'nik.unique' => 'NIK sudah terdaftar.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'password.min' => 'Password harus memiliki minimal :min karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password_confirmation.same' => 'Konfirmasi password tidak cocok dengan password.',
+        ];
+
         $validator = Validator::make($request->all(), [
-            'nik' => 'required|string|min:6',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'password_confirmation' => 'required|same:password',
-        ]);
+            'nik' => 'min:6|unique:users',
+            'email' => 'email|max:255|unique:users',
+            'password' => 'min:6|confirmed',
+            'password_confirmation' => 'same:password',
+        ], $messages);
 
         $validationErrors = [];
 
         if ($validator->fails()) {
             $validationErrors = $validator->errors()->all();
+            Alert::html('Gagal Mendaftar', implode(" <br> ", $validationErrors), 'error')->width('600px');
+            return redirect()->route('register');
         }
-
-        // dd($validationErrors);
-        Alert::html('Failed', 'Error : <br>'. implode(" <br> ", $validationErrors), 'error');
-        return redirect()->back()->withInput();
 
         $str = Str::random(100);
         User::create([
@@ -129,10 +109,18 @@ class RegisterController extends Controller
             'url' => request()->getHttpHost() . '/register/verify/' . $str
         ];
 
-        Mail::to($request->email)->send(new MailSend($details));
+        // Mail::to($request->email)->send(new MailSend($details));
 
-        Alert::success('Link Verifikasi telah dikirim', 'Silahkan periksa email anda untuk verifikasi email.');
-        return view('auth.login');
+        try {
+            Mail::to($request->email)->send(new MailSend($details));
+            Alert::success('Link Verifikasi telah dikirim', 'Silahkan periksa email anda untuk verifikasi email.');
+            return view('auth.login');
+        } catch (\Exception $e) {
+            Alert::error('Gagal dikirim', 'Pastikan email anda telah benar');
+            return redirect()->back();
+        }
+        // Alert::success('Link Verifikasi telah dikirim', 'Silahkan periksa email anda untuk verifikasi email.');
+        // return view('auth.login');
     }
 
     public function verify($verify_key)
