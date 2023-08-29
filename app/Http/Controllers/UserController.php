@@ -48,18 +48,18 @@ class UserController extends Controller
         $ochi = Ochi::where('nik', $user->nik)->get();
         $qcc = Qcc::where('nik', $user->nik)->get();
         $oleader = Ochi::where('nik_ochi_leader', $user->nik)->get();
-        $jochi = Ochi::where('nik', $user->nik)
-            ->whereIn('juara', ['Juara 1', 'Juara 2', 'Juara 3'])
-            ->get();
-        $jqcc = Qcc::where('nik', $user->nik)
-            ->whereIn('juara_sai', ['Juara 1', 'Juara 2', 'Juara 3'])
-            ->get();
+        // $jochi = Ochi::where('nik', $user->nik)
+        //     ->whereIn('juara', ['Juara 1', 'Juara 2', 'Juara 3'])
+        //     ->get();
+        // $jqcc = Qcc::where('nik', $user->nik)
+        //     ->whereIn('juara_sai', ['Juara 1', 'Juara 2', 'Juara 3'])
+        //     ->get();
         $rekap = Rekapitulasi::where('nik', $user->nik)->get();
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         $info = Information::get();
         set_time_limit(60);
-        return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc', 'status', 'info'))
+        return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader','status', 'info'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
