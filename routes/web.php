@@ -31,7 +31,7 @@ Route::get('/', function () {
 // Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 // Route::get('/', [RegisterController::class, 'showRegistrationForm']);
-Route::get('register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
+Route::get('/register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
 // Route::get('/', function () {
 //     if (auth()->check()) {
 //         $user = auth()->user();
