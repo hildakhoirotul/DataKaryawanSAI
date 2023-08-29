@@ -233,7 +233,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        ProcessImport::dispatch($file->path())->onQueue('impor_rekap');
+        ProcessImport::dispatch($file->getRealPath())->onQueue('impor_rekap');
         // $import = new RekapitulasiImport();
         // Excel::import($import, $file);
 
