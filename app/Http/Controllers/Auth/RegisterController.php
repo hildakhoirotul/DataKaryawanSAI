@@ -104,7 +104,7 @@ class RegisterController extends Controller
 
         $details = [
             'nik' => $request->nik,
-            'website' => env('APP_URL'),
+            'website' => url('/'),
             'datetime' => date('Y-m-d H:i:s'),
             'url' => request()->getHttpHost() . '/register/verify/' . $str
         ];
