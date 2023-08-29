@@ -15,9 +15,10 @@ use Throwable;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithMappedCells;
 
-class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
+class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithBatchInserts
 {
     /**
      * @param array $row
@@ -52,6 +53,11 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
         ]);
     }
 
+    public function batchSize(): int
+    {
+        return 1000;
+    }
+    
     public function onError(Throwable $e)
     {
         $this->errors[] = $e->getMessage();

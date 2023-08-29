@@ -9,9 +9,10 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Throwable;
 
-class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
+class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithBatchInserts
 {
     /**
      * @param array $row
@@ -39,6 +40,11 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
             'juara_sai'  => $row['juara_sai'],
             'juara_pasi'  => $row['juara_pasi'],
         ]);
+    }
+
+    public function batchSize(): int
+    {
+        return 1000;
     }
 
     public function onError(Throwable $e)

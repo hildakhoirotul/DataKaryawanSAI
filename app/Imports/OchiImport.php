@@ -9,9 +9,10 @@ use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Throwable;
 
-class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
+class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithBatchInserts
 {
     /**
      * @param array $row
@@ -42,6 +43,11 @@ class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
             'nik_ochi_leader' => $row['ochi_leader'],
             'juara'  => $juara,
         ]);
+    }
+
+    public function batchSize(): int
+    {
+        return 1000;
     }
 
     public function onError(Throwable $e)

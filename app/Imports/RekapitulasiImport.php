@@ -10,15 +10,10 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Throwable;
-use App\Events\ImportFinished;
-use Illuminate\Support\Facades\Storage;
-use Maatwebsite\Excel\Concerns\WithEvents;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithChunkReading, WithEvents
+class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithBatchInserts
 {
     // WithHeadingRow
     /**
@@ -57,7 +52,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
         ]);
     }
 
-    public function chunkSize(): int
+    public function batchSize(): int
     {
         return 1000;
     }
@@ -87,29 +82,5 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
     public function onError(Throwable $e)
     {
         $this->errors[] = $e->getMessage();
-    }
-
-    public function registerEvents(): array
-    {
-        return [
-            ImportFinished::class => function (ImportFinished $event) {
-                $import = $event->getConcernable();
-
-                $errorMessages = [];
-                foreach ($import->failures() as $failure) {
-                    $error = $failure->errors();
-                    $errorMessages[] = "Kesalahan pada baris " . $failure->row() . ': ' . implode(", ", $error);
-                }
-
-                if (!empty($errorMessages)) {
-                    $error = implode(" ", $errorMessages);
-                    Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-                    return redirect()->back();
-                } else {
-                    Alert::success('Impor Berhasil', ' Berhasil diimpor');
-                    return redirect()->back();
-                }
-            },
-        ];
     }
 }

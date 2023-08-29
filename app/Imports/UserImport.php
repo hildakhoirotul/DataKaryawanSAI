@@ -17,8 +17,9 @@ use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 
-class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts, WithChunkReading, ShouldQueue
+class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts, WithBatchInserts
 {
     /**
     * @param array $row
@@ -81,7 +82,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
         return 'nik';
     }
 
-    public function chunkSize(): int
+    public function batchSize(): int
     {
         return 1000;
     }

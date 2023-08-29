@@ -17,7 +17,11 @@ use App\Imports\OchiImport;
 use App\Imports\QccImport;
 use App\Imports\RekapitulasiImport;
 use App\Imports\UserImport;
+use App\Jobs\AbsensiImport as JobsAbsensiImport;
+use App\Jobs\KaryawanImport;
+use App\Jobs\OchiImport as JobsOchiImport;
 use App\Jobs\ProcessImport;
+use App\Jobs\QccImport as JobsQccImport;
 use App\Models\Rekapitulasi;
 use App\Models\Setting;
 use Maatwebsite\Excel\Facades\Excel;
@@ -229,27 +233,27 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        // Queue::push(new ProcessImport($path, $nama_file));
-        $import = new RekapitulasiImport();
-        Excel::import($import, $file);
+        ProcessImport::dispatch($file->path())->onQueue('impor_rekap');
+        // $import = new RekapitulasiImport();
+        // Excel::import($import, $file);
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
     
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
 
-        Storage::delete($path);
+        // Storage::delete($path);
         return redirect()->back();
     }
 
@@ -264,25 +268,28 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = new AbsensiImport();
-        Excel::import($import, $file);
+        JobsAbsensiImport::dispatch($file->path())->onQueue('impor_absensi');
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small> error')->width('575px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
+        // $import = new AbsensiImport();
+        // Excel::import($import, $file);
 
-        Storage::delete($path);
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small> error')->width('575px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
+
+        // Storage::delete($path);
+        return redirect()->back();
     }
 
     public function importOchi(Request $request)
@@ -297,24 +304,27 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = new OchiImport();
-        Excel::import($import, $file);
+        JobsOchiImport::dispatch($file->path())->onQueue('impor_ochi');
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
-        Storage::delete($path);
+        // $import = new OchiImport();
+        // Excel::import($import, $file);
+
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
+        // Storage::delete($path);
+        return redirect()->back();
     }
 
     public function importQcc(Request $request)
@@ -329,25 +339,28 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = new QccImport();
-        Excel::import($import, $file);
+        JobsQccImport::dispatch($file->path())->onQueue('impor_qcc');
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
+        // $import = new QccImport();
+        // Excel::import($import, $file);
 
-        Storage::delete($path);
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
+
+        // Storage::delete($path);
+        return redirect()->back();
     }
 
     public function importKaryawan(Request $request)
@@ -361,25 +374,28 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        $import = new UserImport();
-        Excel::import($import, $file);
+        KaryawanImport::dispatch($file->path())->onQueue('impor_rekap');
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
+        // $import = new UserImport();
+        // Excel::import($import, $file);
 
-        Storage::delete($path);
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
+
+        // Storage::delete($path);
+        return redirect()->back();
     }
 
     public function exportExcel()

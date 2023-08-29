@@ -31,6 +31,7 @@
     <div class="row">
         <div class="card mt-2 px-4 py-3">
             <span>Informasi Saat Ini: </span>
+            <span style="font-size: 10px; font-style: italic;">Klik teks untuk edit.</span>
             @livewire('user-information')
         </div>
     </div>

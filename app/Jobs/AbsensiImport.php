@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Imports\RekapitulasiImport;
+use App\Imports\AbsensiImport as ImportsAbsensiImport;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProcessImport implements ShouldQueue
+class AbsensiImport implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -22,10 +22,7 @@ class ProcessImport implements ShouldQueue
      *
      * @return void
      */
-
     protected $path;
-    // protected $nama_file;
-
     public function __construct($path)
     {
         $this->path = $path;
@@ -37,8 +34,8 @@ class ProcessImport implements ShouldQueue
      * @return void
      */
     public function handle(Excel $excel)
-    {   
-        $import = new RekapitulasiImport();
+    {
+        $import = new ImportsAbsensiImport();
         Excel::import($import, $this->path);
 
         $errorMessages = [];
