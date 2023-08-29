@@ -24,7 +24,6 @@ class ProcessImport implements ShouldQueue
      */
 
     protected $path;
-    // protected $nama_file;
 
     public function __construct($path)
     {
