@@ -16,6 +16,9 @@ use Illuminate\Validation\ValidationException;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Throwable;
+use App\Events\ImportFinished;
+use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure
 {
@@ -87,4 +90,26 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
     {
         $this->errors[] = $e->getMessage();
     }
+
+
+    // public function finished(ImportFinished $event)
+    // {
+    //     $import = $event->getConcernable();
+    //     $errorMessages = [];
+    //     foreach ($import->failures() as $failure) {
+    //         $error = $failure->errors();
+    //         $errorMessages[] = "Kesalahan pada baris " . $failure->row() . ': ' . implode(", ", $error);
+    //     }
+
+    //     if (!empty($errorMessages)) {
+    //         $error = implode("<br>", $errorMessages);
+    //         Alert::html('<small>Impor Gagal</small>', '<small>' . $error . '</small>', 'error')->width('600px');
+    //     } else {
+    //         $nama_file = '';
+    //         Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+    //     }
+
+    //     $path = '';
+    //     Storage::delete($path);
+    // }
 }

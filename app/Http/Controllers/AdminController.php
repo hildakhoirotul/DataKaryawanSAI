@@ -17,12 +17,14 @@ use App\Imports\OchiImport;
 use App\Imports\QccImport;
 use App\Imports\RekapitulasiImport;
 use App\Imports\UserImport;
+use App\Jobs\ProcessImport;
 use App\Models\Rekapitulasi;
 use App\Models\Setting;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Queue;
 
 class AdminController extends Controller
 {
@@ -227,6 +229,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
+        // Queue::push(new ProcessImport($path, $nama_file));
         $import = new RekapitulasiImport();
         Excel::import($import, $file);
 
@@ -247,6 +250,7 @@ class AdminController extends Controller
         }
 
         Storage::delete($path);
+        return redirect()->back();
     }
 
     public function importAbsensi(Request $request)

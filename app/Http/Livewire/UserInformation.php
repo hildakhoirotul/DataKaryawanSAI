@@ -68,7 +68,6 @@ class UserInformation extends Component
         ]);
 
         $this->updateMode = false;
-        // Update array $informations juga
         $this->informations[$id]['information'] = $info->information;
     }
 
