@@ -104,7 +104,7 @@ class RegisterController extends Controller
 
         $details = [
             'nik' => $request->nik,
-            'website' => 'http://127.0.0.1:8000/',
+            'website' => 'http://192.168.94.229/',
             'datetime' => date('Y-m-d H:i:s'),
             'url' => request()->getHttpHost() . '/register/verify/' . $str
         ];
