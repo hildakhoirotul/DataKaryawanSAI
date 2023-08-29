@@ -23,9 +23,9 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        // $a = Cache::remember('absensi_a_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
-        //     return Absensi::where('nik', $user->nik)->where('jenis', 'A')->get();
-        // });
+        $a = Cache::remember('absensi_a_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+            return Absensi::where('nik', $user->nik)->where('jenis', 'A')->get();
+        });
         $s = Cache::remember('absensi_s_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'S')->get();
         });
@@ -57,9 +57,9 @@ class UserController extends Controller
         $oleader = Cache::remember('oleader_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
             return Ochi::where('nik_ochi_leader', $user->nik)->get();
         });
-        $a = Absensi::where('nik', $user->nik)
-            ->where('jenis', 'A')
-            ->get();
+        // $a = Absensi::where('nik', $user->nik)
+        //     ->where('jenis', 'A')
+        //     ->get();
         // $s = Absensi::where('nik', $user->nik)
         //     ->where('jenis', 'S')
         //     ->get();
