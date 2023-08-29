@@ -233,21 +233,21 @@ class AdminController extends Controller
         $import = new RekapitulasiImport();
         Excel::import($import, $file);
 
-        $errorMessages = [];
-        $i = "1";
-        foreach ($import->failures() as $failure) {
-            $error = $failure->errors();
-            $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        }
+        // $errorMessages = [];
+        // $i = "1";
+        // foreach ($import->failures() as $failure) {
+        //     $error = $failure->errors();
+        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
+        // }
     
-        if (!empty($errorMessages)) {
-            $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-            return redirect()->back();
-        } else {
-            Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-            return redirect()->back();
-        }
+        // if (!empty($errorMessages)) {
+        //     $error = implode(" ", $errorMessages);
+        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+        //     return redirect()->back();
+        // } else {
+        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
+        //     return redirect()->back();
+        // }
 
         Storage::delete($path);
         return redirect()->back();

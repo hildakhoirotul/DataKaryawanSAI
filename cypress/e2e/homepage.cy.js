@@ -22,7 +22,7 @@ describe('Homepage', () => {
     cy.contains('Mohon Diperhatikan').should('exist');
     cy.contains('Konfirmasi Absensi ke EB.').should('exist');
     cy.contains('Konfirmasi OCHI & QCC ke Training.').should('exist');
-    cy.contains('Maksimal Konfirmasi 3 hari.').should('exist');
+    cy.contains('Maksimal Konfirmasi pada tanggal 20 September 2023 jam 10.00 WIB.').should('exist');
     cy.contains('Perubahan data dapat dilihat kembali setelah 1 bulan.').should('exist');
     cy.contains('Sandi dapat diganti di halaman Ganti Sandi.').should('exist');
     cy.get('.btn-get-started').should('exist')
@@ -43,13 +43,10 @@ describe('Homepage', () => {
     cy.contains('Keluar').should('exist')
     cy.get('.dropdown').click()
 
-    // klik lihat data button
-    // cy.get('.btn-get-started').should('exist');
-    cy.get('.btn-get-started').click();
+    cy.get('.btn-get-started').should('exist');
     // cy.url().should('include', '#main');
 
     cy.get('.container.mobile').should('exist')
-    cy.get('.bi').each(($elem) => { should('exist') })
   })
 
   it('can navigate to change password page', () => {

@@ -58,6 +58,7 @@ class UserController extends Controller
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         $info = Information::get();
+        set_time_limit(60);
         return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader', 'jochi', 'jqcc', 'status', 'info'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
