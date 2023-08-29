@@ -106,7 +106,8 @@ class RegisterController extends Controller
             'nik' => $request->nik,
             'website' => url('/'),
             'datetime' => date('Y-m-d H:i:s'),
-            'url' => request()->getHttpHost() . '/register/verify/' . $str
+            'url' => url('/register/verify/' . $str)
+            // 'url' => request()->getHttpHost() . '/register/verify/' . $str
         ];
 
         // Mail::to($request->email)->send(new MailSend($details));
