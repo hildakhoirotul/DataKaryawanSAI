@@ -268,7 +268,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        JobsAbsensiImport::dispatch($file->getRealPath())->onQueue('impor_absensi');
+        JobsAbsensiImport::dispatch($path)->onQueue('impor_absensi');
 
         // $import = new AbsensiImport();
         // Excel::import($import, $file);
@@ -304,7 +304,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        JobsOchiImport::dispatch($file->getRealPath())->onQueue('impor_ochi');
+        JobsOchiImport::dispatch($path)->onQueue('impor_ochi');
 
         // $import = new OchiImport();
         // Excel::import($import, $file);
@@ -339,7 +339,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        JobsQccImport::dispatch($file->getRealPath())->onQueue('impor_qcc');
+        JobsQccImport::dispatch($path)->onQueue('impor_qcc');
 
         // $import = new QccImport();
         // Excel::import($import, $file);
@@ -374,7 +374,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
-        KaryawanImport::dispatch($file->getRealPath())->onQueue('impor_rekap');
+        KaryawanImport::dispatch($path)->onQueue('impor_rekap');
 
         // $import = new UserImport();
         // Excel::import($import, $file);
