@@ -8,7 +8,7 @@ use App\Models\Information;
 
 class UserInformation extends Component
 {
-    public $informations, $information, $info_id;
+    public $informations, $information;
     public $updateMode = false;
     public $inputs = [];
     public $i = 1;
@@ -57,18 +57,18 @@ class UserInformation extends Component
     public function edit($id)
     {
         $this->updateMode = $id;
-        $this->informations[$id] = ['information' => Information::find($id)->information];
+        $this->informations = Information::find($id)->information;
     }
 
     public function saveEdit($id)
     {
         $info = Information::find($id);
         $info->update([
-            'information' => $this->informations[$id]['information']
+            'information' => $this->informations
         ]);
 
         $this->updateMode = false;
-        $this->informations[$id]['information'] = $info->information;
+        $this->informations = $info->information;
     }
 
 

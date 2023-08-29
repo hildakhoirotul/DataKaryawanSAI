@@ -12,7 +12,7 @@
                     <tr>
                         @if ($updateMode === $info->id)
                         <td>
-                            <input type="text" class="form-control" wire:model="informations.{{ $index }}.information" value="{{ $informations[$info->id]['information'] }}">
+                            <input type="text" class="form-control" wire:model="informations">
                         </td>
                         <td>
                             <button class="btn btn-primary btn-sm" wire:click="saveEdit({{ $info->id }})">Save</button>
