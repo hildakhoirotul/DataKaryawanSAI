@@ -323,7 +323,7 @@ form.sign-in-form {
     transform: translateX(800px);
 }
 
-.remember{
+.remember {
     max-width: 380px;
     width: 100%;
     display: grid;
@@ -332,7 +332,7 @@ form.sign-in-form {
     position: relative;
 }
 
-.remember input{
+.remember input {
     width: 15px;
 }
 
@@ -434,7 +434,7 @@ form.sign-in-form {
     .panel p {
         font-size: 0.8rem;
         margin: 2px 0;
-        padding: 0.5rem 0;        
+        padding: 0.5rem 0;
     }
 
     .btn.transparent {
@@ -543,7 +543,72 @@ form.sign-in-form {
     }
 }
 
-.lupa-password{
+@media (max-width: 353px) {
+    form {
+        padding: 0 1.5rem;
+    }
+
+    .image {
+        display: none;
+    }
+
+    .panel .content {
+        padding: 0.5rem 1rem;
+    }
+
+    .container {
+        padding: 1.5rem;
+    }
+
+    .container:before {
+        bottom: 72%;
+        left: 50%;
+    }
+
+    .container.sign-up-mode:before {
+        bottom: 28%;
+        left: 50%;
+    }
+
+    .btn {
+        width: 100px;
+        height: 40px;
+        border-radius: 30px;
+        font-size: 12px;
+    }
+
+    .btn-cancel {
+        width: 100px;
+        height: 40px;
+        border-radius: 30px;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        color: #444;
+        margin-bottom: 20px;
+    }
+
+    .input-field input {
+        font-size: 1rem;
+    }
+
+    .input-field {
+        height: 50px;
+    }
+
+    .input-field i {
+        line-height: 50px;
+    }
+
+    .signin-signup {
+        top: 75%;
+    }
+
+}
+
+.lupa-password {
     text-decoration: none;
     color: rgba(1, 4, 136, 0.9);
 }
