@@ -18,7 +18,7 @@
                             <button class="btn btn-primary btn-sm" wire:click="saveEdit({{ $info->id }})">Save</button>
                         </td>
                         @else
-                        <td>
+                        <td style="font-size: 15px;">
                             <p class="mb-0" style="cursor: pointer;" wire:click="edit({{ $info->id }})">{{ $info->information }}</p>
                         </td>
                         <td><button class="btn btn-danger btn-sm" wire:click="delete({{ $info->id }})">Hapus</button></td>

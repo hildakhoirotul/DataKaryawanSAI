@@ -126,6 +126,15 @@ body.dark .password-container i {
   background: #333 !important;
 }
 
+body.dark .form-control {
+  color: #ffffff !important;
+  background: #333 !important;
+}
+
+body.dark .form-control::placeholder {
+  color: #ffffff !important;
+}
+
 .input-group .fa {
   position: relative;
   top: -0.3rem;

@@ -51,7 +51,7 @@ class UserInformation extends Component
 
         $this->resetInputFields();
 
-        session()->flash('message', 'Information Added Successfully.');
+        session()->flash('message', 'Berhasil! Informasi telah ditambahkan.');
     }
 
     public function edit($id)
