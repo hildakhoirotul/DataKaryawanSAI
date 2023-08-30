@@ -4,7 +4,7 @@
     </IfModule>
 
     RewriteEngine On
-    RewriteBase /DataKaryawan
+    RewriteBase /DataKaryawanSAI
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .
