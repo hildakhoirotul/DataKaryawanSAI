@@ -126,12 +126,12 @@ body.dark .password-container i {
   background: #333 !important;
 }
 
-body.dark .form-control {
+body.dark input.form-control {
   color: #ffffff !important;
   background: #333 !important;
 }
 
-body.dark .form-control::placeholder {
+body.dark input.form-control::placeholder {
   color: #ffffff !important;
 }
 
