@@ -36,6 +36,6 @@
         </div>
     </div>
 </main>
-@livewireScripts
+<!-- @livewireScripts -->
 <script src="{{ asset('/vendor/livewire/livewire.js?id=90730a3b0e7144480175') }}" data-turbo-eval="false" data-turbolinks-eval="false" ></script>
 @endsection
