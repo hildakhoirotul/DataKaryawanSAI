@@ -18,6 +18,16 @@
     <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap">
     @livewireStyles
+    <style>
+        body.dark input.form-control {
+            color: #ffffff !important;
+            background: #333 !important;
+        }
+
+        body.dark input.form-control::placeholder {
+            color: #ffffff !important;
+        }
+    </style>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
