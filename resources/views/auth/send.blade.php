@@ -19,7 +19,7 @@
         @include('sweetalert::alert')
         <div class="forms-container">
             <div class="signin-signup">
-                <form method="POST" action="{{ route('lupaPassword') }}" class="sign-up-form">
+                <form method="POST" action="{{ route('lupa-password') }}" class="sign-up-form">
                     @csrf
                     <h2 class="title">Lupa Password</h2>
                     @if ($errors->any())

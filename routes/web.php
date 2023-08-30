@@ -58,7 +58,7 @@ Auth::routes();
 
 // Route::get('/send-email', [LoginController::class, 'email'])->name('send-email');
 Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('lupa-password');
-Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupaPassword');
+Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupa-password');
 
 Route::controller(UserController::class)->group(function () {
     Route::get('/home', 'index')->middleware('is_user')->name('home');
