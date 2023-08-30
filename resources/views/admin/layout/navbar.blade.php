@@ -19,7 +19,7 @@
                     </form>
                 </li>
                 <li>
-                    <a class="dropdown-item" href="/change-password">
+                    <a class="dropdown-item" href="{{ route('change-password') }}">
                         <i class="fa-solid fa-key"></i>
                         <span>Ganti Sandi</span>
 
