@@ -39,7 +39,7 @@ class HomeController extends Controller
     public function changePassword(Request $request)
     {
         $request->validate([
-            'nik' => 'required',
+            // 'nik' => 'required',
             'current_password' => 'required',
             'new_password' => 'required|string|min:6',
             'password_confirmation' => 'required|string|min:6'
