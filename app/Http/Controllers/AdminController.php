@@ -455,4 +455,11 @@ class AdminController extends Controller
         }
         return redirect()->back();
     }
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->back();
+    }
 }

@@ -66,6 +66,7 @@
                                     <th>NIK</th>
                                     <th>Password</th>
                                     <th>Terakhir Ganti</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody id="karyawanTableBody">
@@ -82,6 +83,13 @@
                                     </td>
                                     <!-- <td>{{ $r->password }}</td> -->
                                     <td>{{ $r->updated_at ? $r->updated_at : '-' }}</td>
+                                    <td>
+                                        <form action="{{ route('karyawan.destroy', ['id' => $r->id]) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger px-2 show_confirm" style="font-size: 12px;" onclick="showDeleteConfirmation(event, this)">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>
@@ -130,4 +138,27 @@
         myFunction();
     });
 </script>
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script type="text/javascript">
+    function showDeleteConfirmation(event, button) {
+        event.preventDefault();
+        var form = $(button).closest("form");
+        swal.fire({
+            title: `Apakah anda yakin menghapus data ini?`,
+            text: "Data yang dihapus tidak dapat dikembalikan.",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        })
+        .then((willDelete) => {
+            if (willDelete.isConfirmed) {
+                form.submit();
+            }
+        });
+    }
+</script>
+
 @endsection

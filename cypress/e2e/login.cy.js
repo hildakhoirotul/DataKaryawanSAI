@@ -56,7 +56,7 @@ describe('Login Page', () => {
 
   it('can submit login form for karyawan with unchanged password', () => {
     cy.get('input[name=nik]').eq(0).type('111111')
-    cy.get('input[name=password]').eq(0).type('222222')
+    cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
 
     cy.url().should('include', 'http://localhost:8000/home')

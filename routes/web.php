@@ -86,6 +86,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/disable-login', 'settingLogin')->name('disable.login');
     Route::get('/search-rekap', 'searchRekap')->name('search.rekap');
     Route::get('/search-karyawan', 'searchKaryawan')->name('search.karyawan');
+    Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('karyawan.destroy');
     // Route::get('/search-absensi', 'searchAbsensi')->name('search.absensi');
 
 });
