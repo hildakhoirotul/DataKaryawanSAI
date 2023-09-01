@@ -44,7 +44,7 @@
                     <span class="navlink_icon">
                         <i class='bx bxs-user-detail'></i>
                     </span>
-                    <span class="navlink">Data Karwayan</span>
+                    <span class="navlink">Data Karyawan</span>
                 </a>
             </li>
         </ul>

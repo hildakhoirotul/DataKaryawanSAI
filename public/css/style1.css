@@ -946,7 +946,7 @@ section {
 
 .expanded {
   max-height: 500px;
-  min-width: fit-content !important;
+  /* min-width: fit-content !important; */
 }
 
 .row {
@@ -1095,11 +1095,12 @@ section {
   .mobile .col-md-6 {
     flex: auto;
     width: 100%;
+    min-width: 100% !important;
   }
 
   .expanded {
     max-height: 500px;
-    min-width: fit-content !important;
+    /* min-width: fit-content !important; */
   }
 
   .carousel {
@@ -1119,7 +1120,7 @@ section {
     padding: 10px;
     background-color: #f5f5f5;
     margin-top: 10px;
-    max-width: 100%;
+    max-width: 100% !important;
     overflow-x: scroll;
   }
 }
@@ -1129,12 +1130,12 @@ section {
   .mobile .col-lg-3,
   .mobile .col-md-6 {
     flex: auto;
-    min-width: fit-content;
+    min-width: 100% !important;
   }
 
   .expanded {
     max-height: 500px;
-    min-width: fit-content !important;
+    width: 100% !important;
   }
 
   .carousel {
@@ -1150,11 +1151,7 @@ section {
   }
 
   .count-content {
-    display: none;
-    padding: 10px;
-    background-color: #f5f5f5;
-    margin-top: 10px;
-    overflow-x: scroll;
+    max-width: 100% !important;
   }
 }
 

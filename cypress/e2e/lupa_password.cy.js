@@ -19,7 +19,7 @@ describe('Lupa Password Form', () => {
   });
 
   it('submit with true credentials', () => {
-    cy.get('input[name=nik]').type('229792')
+    cy.get('input[name=nik]').type('111111')
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('button[type=submit]').click()
 

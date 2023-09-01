@@ -55,8 +55,8 @@ describe('Login Page', () => {
   })
 
   it('can submit login form for karyawan with unchanged password', () => {
-    cy.get('input[name=nik]').eq(0).type('111111')
-    cy.get('input[name=password]').eq(0).type('111111')
+    cy.get('input[name=nik]').eq(0).type('222222')
+    cy.get('input[name=password]').eq(0).type('222222')
     cy.get('button[type=submit]').eq(0).click()
 
     cy.url().should('include', 'http://localhost:8000/home')
@@ -101,6 +101,17 @@ describe('Login Page', () => {
     cy.url().should('include', 'http://localhost:8000/dashboard')
     cy.contains('Berhasil Masuk').should('exist')
     cy.contains('Selamat Datang').should('exist')
+    cy.contains('OK').click()
+
+    cy.window().then(win => {
+      win.location.href = 'about:blank'; // Menutup jendela
+      cy.visit('http://localhost:8000'); // Membuka kembali situs
+    });
+
+    // Memeriksa apakah pengguna tetap masuk atau kembali ke halaman login
+    // cy.url().should('include', 'http://localhost:8000/dashboard');
+    cy.contains('Selamat Datang').should('exist'); // Harusnya tetap masuk
+    cy.contains('Login').should('not.exist');
     cy.contains('OK').click()
   })
 

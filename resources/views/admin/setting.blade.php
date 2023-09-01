@@ -14,7 +14,7 @@
                 <div class="form-check form-switch p-0 ps-1 pe-3 d-flex align-items-center justify-content-between">
                     <label class="form-check-label" style="display: flex;align-items: center;" for="flexSwitchCheckDefault">
                         <i class='bx bx-cog me-2' style="font-size: 2rem;"></i>
-                        <span>Disable Detail OCHI & QCC</span>
+                        <span>Disable Tema OCHI & QCC</span>
                     </label>
                     <div style="display: flex; align-items: center;">
                         @if($status)
@@ -37,4 +37,14 @@
     </div>
 </main>
 @livewireScripts
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const switchForm = document.getElementById('switchForm');
+        const switchInput = document.getElementById('flexSwitchCheckDefault');
+
+        switchInput.addEventListener('change', function() {
+            switchForm.submit();
+        });
+    });
+</script>
 @endsection

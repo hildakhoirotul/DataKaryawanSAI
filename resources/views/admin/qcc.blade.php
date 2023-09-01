@@ -113,7 +113,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center">
+                        <div class="d-flex justify-content-center" id="paging">
                             {{ $qcc->links()}}
                         </div>
                     </div>

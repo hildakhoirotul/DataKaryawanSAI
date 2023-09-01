@@ -129,7 +129,7 @@ class AdminController extends Controller
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $absensiData = $query->paginate(100);
+        $absensiData = $query->orderBy('tanggal', 'DESC')->paginate(100);
 
         return view('admin.partial.absensi', ['absensiData' => $absensiData]);
     }
@@ -243,7 +243,7 @@ class AdminController extends Controller
         //     $error = $failure->errors();
         //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         // }
-    
+
         // if (!empty($errorMessages)) {
         //     $error = implode(" ", $errorMessages);
         //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');

@@ -432,7 +432,7 @@
                             @endif
                             <p>Lihat Detail</p>
                         </div>
-                        <div class="count-content" style="max-width: 320px;">
+                        <div class="count-content">
                             @if($status)
                             <table class="table table-borderless text-start table-striped mt-0">
                                 @if($qcc->isEmpty())

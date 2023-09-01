@@ -43,10 +43,10 @@ describe('Register Page', () => {
   })
 
   it('register with all credentials true', () => {
-    cy.get('input[name=nik]').eq(1).type('978007')
-    cy.get('input[name=email]').type('hildakh07@yahoo.com')
-    cy.get('input[name=password]').eq(1).type('978007')
-    cy.get('input[name=password_confirmation]').type('978007')
+    cy.get('input[name=nik]').eq(1).type('229792')
+    cy.get('input[name=email]').type('hildakh07@gmail.com')
+    cy.get('input[name=password]').eq(1).type('229792')
+    cy.get('input[name=password_confirmation]').type('229792')
     cy.get('button[type=submit]').eq(1).click()
 
     cy.url().should('include', 'http://localhost:8000/register')

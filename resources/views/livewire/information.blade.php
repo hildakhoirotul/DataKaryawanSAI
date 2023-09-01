@@ -15,7 +15,7 @@
                             <input type="text" id="info" class="form-control" wire:model="informations">
                         </td>
                         <td>
-                            <button class="btn btn-primary btn-sm" wire:click="saveEdit({{ $info->id }})">Save</button>
+                            <button class="btn btn-primary btn-sm" wire:click="saveEdit({{ $info->id }})">Simpan</button>
                         </td>
                         @else
                         <td style="font-size: 15px;">
