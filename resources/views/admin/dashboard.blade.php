@@ -13,7 +13,7 @@
             <!-- <a href="#"> -->
             <div class="row mt-2 justify-content-between align-items-end">
 
-                <div class="col-md-5 ms-1">
+                <div class="col-md-6 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
@@ -21,6 +21,10 @@
                     <a href="{{ route('export.excel.submit') }}" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Unduh Data</span>
+                    </a>
+                    <a href="{{ asset('https://docs.google.com/uc?id=1Omg2bfgZwyPa6F9knE3bqZdZkhOGvtxr&export=download') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                        <i class='bx bx-download me-1'></i>
+                        <span>Template</span>
                     </a>
                 </div>
                 <!-- <div class="col-md-2 p-0 m-0">

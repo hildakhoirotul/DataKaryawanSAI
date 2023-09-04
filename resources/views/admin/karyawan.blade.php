@@ -19,6 +19,10 @@
                         <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
+                    <a href="{{ asset('https://docs.google.com/uc?id=1FG-QLP8_gFDGt7BpIRj0aTIH19NI3bED&export=download') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                        <i class='bx bx-download me-1'></i>
+                        <span>Template</span>
+                    </a>
                 </div>
 
                 <div class="col-md-3 pe-3">
