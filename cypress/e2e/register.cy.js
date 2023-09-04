@@ -1,6 +1,6 @@
 describe('Register Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/')
+    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
     cy.get('button.btn.transparent').should('exist');
     cy.get('button.btn.transparent').eq(0).click();
   });
@@ -11,7 +11,7 @@ describe('Register Page', () => {
     cy.get('input[name=email]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
-    cy.get('.image').eq(0).should('have.attr', 'src', 'http://localhost:8000/assets/img/register.svg');
+    cy.get('.image').eq(0).should('have.attr', 'src', 'http://192.168.8.167/DataKaryawanSAI/assets/img/register.svg');
     cy.contains('Selamat Datang').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit, password, dan konfirmasi password untuk Mendaftar.').should('exist')
     cy.contains('Sudah punya akun?').should('exist')
@@ -49,7 +49,7 @@ describe('Register Page', () => {
     cy.get('input[name=password_confirmation]').type('229792')
     cy.get('button[type=submit]').eq(1).click()
 
-    cy.url().should('include', 'http://localhost:8000/register')
+    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/register')
     cy.contains('Link Verifikasi telah dikirim').should('exist')
     cy.contains('Silahkan periksa email anda untuk verifikasi email.').should('exist')
     cy.contains('OK').click()

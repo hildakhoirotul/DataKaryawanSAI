@@ -1,10 +1,10 @@
 describe('Admin Dashboard - OCHI', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/')
+    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://localhost:8000/dashboard')
+    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('OCHI').click()
@@ -85,7 +85,8 @@ describe('Admin Dashboard - OCHI', () => {
     cy.get('input[type=text]').clear()
     cy.contains('111111').should('exist')
     // search kontes
-    cy.get('input[type=text]').type('kontes 3', { force: true })
+    cy.get('input[type=text]').type('tes 3', { force: true })
+    cy.wait(2000)
     cy.contains('497227').should('exist')
     cy.contains('at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a').should('exist')
     cy.contains('Kontes 3').should('exist')

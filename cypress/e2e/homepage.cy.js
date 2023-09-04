@@ -1,11 +1,11 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/')
+    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
     cy.get('input[name=nik]').eq(0).type('111111')
     cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://localhost:8000/home')
+    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/home')
     cy.contains('OK').click()
   });
 
@@ -29,7 +29,7 @@ describe('Homepage', () => {
     cy.contains('Lihat Data').should('exist')
     cy.get('.bi-arrow-right').should('exist')
 
-    cy.get('.img-fluid').should('have.attr', 'src', 'http://localhost:8000/assets/img/8.png');
+    cy.get('.img-fluid').should('have.attr', 'src', 'http://192.168.8.167/DataKaryawanSAI/assets/img/8.png');
     cy.get('.hero-waves').should('exist');
     cy.get('.wave1').should('exist');
     cy.get('.wave2').should('exist');
@@ -374,7 +374,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('222222')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://localhost:8000/home')
+    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/home')
     cy.contains('OK').click()
 
     cy.get('.dropdown').trigger('mouseover');

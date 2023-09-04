@@ -1,10 +1,10 @@
 describe('Admin Dashboard - QCC', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:8000/')
+    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://localhost:8000/dashboard')
+    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Data Karyawan').click()

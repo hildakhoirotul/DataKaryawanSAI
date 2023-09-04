@@ -641,7 +641,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>S</h3>
-                                        <i class="bi bi-journal-richtext"></i>
+                                        <i class="bi bi-thermometer-half"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->S }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -676,7 +676,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>SD</h3>
-                                        <i class="bi bi-headset"></i>
+                                        <i class="bi bi-envelope-check"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -711,7 +711,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>I</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-person-check"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->I }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -752,7 +752,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>ITD</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-clipboard2-check"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ITD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -792,7 +792,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>TD</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-alarm"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->TD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -832,7 +832,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>ICP</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-journal-check"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->ICP }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -872,7 +872,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>CP</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-clock"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -918,7 +918,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>OCHI</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-file-earmark-text"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->OCHI }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -986,7 +986,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>QCC</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-file-earmark-zip"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->QCC }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
@@ -1086,7 +1086,7 @@
                                 <div class="count-box">
                                     <div class="count-header">
                                         <h3>OCHI Leader</h3>
-                                        <i class="bi bi-people"></i>
+                                        <i class="bi bi-person-badge"></i>
                                         @if ($rekap->isNotEmpty())
                                         <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->OCHI_leader }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
