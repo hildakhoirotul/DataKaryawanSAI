@@ -34,6 +34,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
     {
         return[
             'nik' => 'required|min:6',
+            'nama' => 'required',
             'password' => 'required',
         ];    
     }
@@ -42,6 +43,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
     {
         return new User([
             'nik'     => $row['nik'],
+            'nama'    => $row['nama'],
             'email_verified_at'=>now(),
             'chain'   => $row['password'],
             'password'   => Hash::make($row['password']),
@@ -73,6 +75,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
+            'nama.required' => 'Nama tidak boleh kosong.',
             'password.required' => 'Password tidak boleh kosong.',
         ];
     }

@@ -3,6 +3,7 @@
 <tr>
     <td>{{ $i++ }}</td>
     <td>{{ $r->nik }}</td>
+    <td>{{ $r->nama }}</td>
     <td>
         <div class="password-container">
             <input type="password" class="password-text" value="{{ $r->chain }}" readonly>

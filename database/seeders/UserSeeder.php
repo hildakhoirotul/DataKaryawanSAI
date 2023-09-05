@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
         $str = Str::random(100);
         DB::table('users')->insert([
             'nik' => '000000',
+            'nama' => 'Nissa Cresswell',
             'is_admin'=> true,
             'email'=>'admin0@gmail.com',
             'email_verified_at'=>now(),
@@ -28,6 +29,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'nik' => '111111',
+            'nama' => 'Pamela Regglar',
             'is_admin' => false,
             'email'=>'user1@gmail.com',
             'email_verified_at'=>now(),
@@ -37,6 +39,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'nik' => '222222',
+            'nama' => 'James Binder',
             'is_admin' => false,
             'email'=>'user2@gmail.com',
             'email_verified_at'=>now(),
@@ -46,6 +49,7 @@ class UserSeeder extends Seeder
         ]);
         DB::table('users')->insert([
             'nik' => '333333',
+            'nama' => 'Bobbie Oldacres',
             'is_admin' => true,
             'email'=>'admin3@gmail.com',
             'email_verified_at'=>now(),
