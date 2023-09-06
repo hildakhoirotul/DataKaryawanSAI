@@ -32,7 +32,7 @@ class MyMail extends Mailable
     public function build()
     {
         return $this->from('admin@gmail.com')
-            ->subject('Data Karyawan')
+            ->subject('Human Resources')
             ->view('auth.email');
     }
 }

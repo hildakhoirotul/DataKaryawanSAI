@@ -1,10 +1,10 @@
 describe('Admin Dashboard - Pengaturan', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
+    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Pengaturan').click()
@@ -74,7 +74,7 @@ describe('Admin Dashboard - Pengaturan', () => {
     cy.get('input[name=nik]').eq(0).type('111111')
     cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/home')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/home')
     cy.contains('OK').click()
 
     cy.get('.carousel-control-prev').should('exist')
@@ -113,7 +113,7 @@ describe('Admin Dashboard - Pengaturan', () => {
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Pengaturan').click()

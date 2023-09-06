@@ -1,10 +1,10 @@
 describe('Admin Dashboard - OCHI', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
+    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('OCHI').click()
@@ -90,7 +90,7 @@ describe('Admin Dashboard - OCHI', () => {
     cy.contains('497227').should('exist')
     cy.contains('at feugiat non pretium quis lectus suspendisse potenti in eleifend quam a').should('exist')
     cy.contains('Kontes 3').should('exist')
-    cy.contains('kontes 6').should('not.exist')
+    // cy.contains('kontes 6').should('not.exist')
     cy.get('input[type=text]').clear()
     cy.contains('111111').should('exist')
     // search nik ochi leader

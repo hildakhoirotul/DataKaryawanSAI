@@ -1,13 +1,13 @@
 describe('Login Page', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
+    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
   });
 
   it('displays username, password, remember inputs', () => {
     cy.get('input[name=nik]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=remember]').should('exist')
-    cy.get('.image').eq(1).should('have.attr', 'src', 'http://192.168.8.167/DataKaryawanSAI/assets/img/login.svg');
+    cy.get('.image').eq(1).should('have.attr', 'src', 'https://datakaryawan.sdn108gresik.sch.id/assets/img/login.svg');
     cy.contains('Selamat Datang').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.').should('exist')
     cy.contains('Belum punya akun?').should('exist')
@@ -48,7 +48,7 @@ describe('Login Page', () => {
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     // cy.contains('Berhasil Masuk').should('exist')
     // cy.contains('Selamat Datang').should('exist')
     cy.contains('OK').click()
@@ -59,7 +59,7 @@ describe('Login Page', () => {
     cy.get('input[name=password]').eq(0).type('222222')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/home')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/home')
     cy.contains('Ganti Password').should('exist')
     cy.contains('Anda dapat mengganti password di halaman Ganti Sandi').should('exist')
     cy.contains('OK').click()
@@ -98,18 +98,18 @@ describe('Login Page', () => {
     cy.get('input[name="remember"]').check();
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     cy.contains('Berhasil Masuk').should('exist')
     cy.contains('Selamat Datang').should('exist')
     cy.contains('OK').click()
 
     cy.window().then(win => {
       win.location.href = 'about:blank'; // Menutup jendela
-      cy.visit('http://192.168.8.167/DataKaryawanSAI/'); // Membuka kembali situs
+      cy.visit('https://datakaryawan.sdn108gresik.sch.id/'); // Membuka kembali situs
     });
 
     // Memeriksa apakah pengguna tetap masuk atau kembali ke halaman login
-    // cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard');
+    // cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard');
     cy.contains('Selamat Datang').should('exist'); // Harusnya tetap masuk
     cy.contains('Login').should('not.exist');
     cy.contains('OK').click()

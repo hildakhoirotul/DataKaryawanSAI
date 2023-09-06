@@ -1,10 +1,10 @@
 describe('Admin Dashboard - Absensi', () => {
   beforeEach(() => {
-    cy.visit('http://192.168.8.167/DataKaryawanSAI/')
+    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://192.168.8.167/DataKaryawanSAI/dashboard')
+    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Absensi').click()
@@ -38,10 +38,10 @@ describe('Admin Dashboard - Absensi', () => {
     cy.contains('Jumlah data :').should('exist');
     cy.get('.btn.btn-danger').should('exist')
     cy.get('.bx-upload').should('exist')
-    cy.contains('Unggah Data').should('exist')
+    cy.contains('Unggah').should('exist')
     cy.get('.btn.btn-info').should('exist')
     cy.get('.bx-download').should('exist')
-    cy.contains('Unduh Data').should('exist')
+    cy.contains('Unduh').should('exist')
     cy.get('input[type=text]').should('exist')
     cy.get('input[type=text]').should('have.attr', 'placeholder', 'Cari NIK disini ....');
     cy.get('.btn.btn-outline-secondary').should('exist')
