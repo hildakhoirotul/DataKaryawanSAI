@@ -104,7 +104,7 @@ body.dark .jumlah-absensi {
   outline-color: #333;
   border-radius: 3px;
 }
-
+body.dark .faq .faq-list li,
 body.dark .modal-content {
   color: #ffffff !important;
   background: #333 !important;
@@ -131,8 +131,14 @@ body.dark input.form-control {
   background: #333 !important;
 }
 
+body.dark .section-title p,
+body.dark .faq .faq-list a.collapsed,
 body.dark input.form-control::placeholder {
   color: #ffffff !important;
+}
+
+body.dark .faq .faq-list a.collapsed:hover{
+  color: #1acc8d !important;
 }
 
 .input-group .fa {
