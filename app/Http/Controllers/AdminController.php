@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total = Rekapitulasi::count();
-        $rekap = Rekapitulasi::paginate(100);
+        $rekap = Rekapitulasi::paginate(50);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
@@ -461,5 +461,16 @@ class AdminController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect()->back();
+    }
+
+    public function unduh($nama_file)
+    {
+        $path = storage_path('app/Download/' . $nama_file);
+
+        if (file_exists($path)) {
+            return response()->download($path);
+        } else {
+            abort(404);
+        }
     }
 }

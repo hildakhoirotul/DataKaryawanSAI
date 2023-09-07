@@ -27,36 +27,10 @@ use App\Models\User;
 Route::get('/', function () {
     return redirect()->route('login');
 });
-// Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-// Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// Route::get('/', [RegisterController::class, 'showRegistrationForm']);
 Route::get('/register/verify/{verify_key}', [RegisterController::class, 'verify'])->name('verify');
-// Route::get('/', function () {
-//     if (auth()->check()) {
-//         $user = auth()->user();
 
-//         if ($user->is_admin == 1) {
-//             return redirect()->route('/dashboard');
-//         } else {
-//             return redirect()->route('/home');
-//         }
-//     }
-
-//     return redirect()->route('login');
-// });
 Auth::routes();
-// Route::group(['middleware' => ['web']], function () {
-//     Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-//     Route::middleware(['is_user'])->group(function () {
-//         Route::get('/home', [UserController::class, 'index'])->name('/home');
-//     });
-//     Route::middleware(['is_admin'])->group(function () {
-//         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('/dashboard');
-//     });
-// });
 
-// Route::get('/send-email', [LoginController::class, 'email'])->name('send-email');
 Route::get('/lupa-password', [LoginController::class, 'ForgetPassword'])->name('lupa-password');
 Route::post('/lupa-password', [LoginController::class, 'GetEmail'])->name('lupaPassword');
 
@@ -86,16 +60,11 @@ Route::controller(AdminController::class)->group(function () {
     Route::post('/disable-login', 'settingLogin')->name('disable.login');
     Route::get('/search-rekap', 'searchRekap')->name('search.rekap');
     Route::get('/search-karyawan', 'searchKaryawan')->name('search.karyawan');
-    Route::delete('/destroy/{id}', [AdminController::class, 'destroy'])->name('karyawan.destroy');
-    // Route::get('/search-absensi', 'searchAbsensi')->name('search.absensi');
-
+    Route::delete('/destroy/{id}', 'destroy')->name('karyawan.destroy');
+    Route::get('/unduh/{nama_file}', 'unduh');
 });
 
 Route::controller(HomeController::class)->group(function () {
     Route::get('/change-password', 'showChangePassword')->name('change-password');
     Route::post('/change-password', 'changePassword')->name('changePassword');
 });
-
-// Route::controller(SignInController::class)->group(function () {
-//     Route::post('/sign-in', 'login')->name('sign-in');
-// });

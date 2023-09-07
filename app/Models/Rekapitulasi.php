@@ -21,7 +21,7 @@ class Rekapitulasi extends Model
         'ITD',
         'ICP',
         'TD',
-        'CP',
+        // 'CP',
         'OCHI',
         'QCC',
         'OCHI_leader',

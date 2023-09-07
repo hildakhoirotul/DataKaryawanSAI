@@ -22,7 +22,7 @@
                         <i class='bx bx-download me-1'></i>
                         <span>Unduh Data</span>
                     </a>
-                    <a href="{{ asset('https://docs.google.com/uc?id=1Omg2bfgZwyPa6F9knE3bqZdZkhOGvtxr&export=download') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                    <a href="{{ url('/unduh/template_rekapitulasi.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Template</span>
                     </a>
@@ -81,7 +81,6 @@
                                     <th>ITD</th>
                                     <th>ICP</th>
                                     <th>TD</th>
-                                    <th>CP</th>
                                     <th>OCHI</th>
                                     <th>QCC</th>
                                     <th>OCHI Leader</th>
@@ -145,13 +144,6 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($r->CP == 0 || null)
-                                        -
-                                        @else
-                                        {{ $r->CP }}
-                                        @endif
-                                    </td>
-                                    <td>
                                         @if($r->OCHI == 0 || null)
                                         -
                                         @else
@@ -190,9 +182,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center" id="paging">
-                            {{ $rekap->links()}}
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3" id="paging">
+                        {{ $rekap->links()}}
                     </div>
                 </div>
             </div>

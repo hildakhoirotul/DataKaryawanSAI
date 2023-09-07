@@ -43,7 +43,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
             'ITD'     => $row['itd'],
             'ICP'     => $row['icp'],
             'TD'      => $row['td'],
-            'CP'      => $row['cp'],
+            // 'CP'      => $row['cp'],
             'OCHI'    => $row['ochi'],
             'QCC'     => $row['qcc'],
             'OCHI_leader' => $row['ochi_leader'],

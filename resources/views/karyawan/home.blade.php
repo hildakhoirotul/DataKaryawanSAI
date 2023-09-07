@@ -50,14 +50,14 @@
     <section id="counts" class="counts">
         <div class="container mobile">
             <div class="row">
-                <!-- A -->
-                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                <!-- SD -->
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
                         <div class="count-header">
-                            <i class="bi bi-emoji-frown"></i>
-                            <h3>Jumlah Alpha</h3>
+                            <h3>Jumlah Sakit dengan Surat Dokter</h3>
+                            <i class="bi bi-envelope-check"></i>
                             @if ($rekap->isNotEmpty())
-                            <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
                             @else
                             <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
                             @endif
@@ -66,17 +66,17 @@
                         <div class="count-content">
                             <table class="table table-borderless table-striped">
                                 <tbody>
-                                    @if($a->isEmpty())
+                                    @if($sd->isEmpty())
                                     <tr>
                                         <td colspan="4" class="text-center">Tidak ada data</td>
                                     </tr>
                                     @else
                                     @php $i=1 @endphp
-                                    @foreach($a as $alpha)
+                                    @foreach($sd as $sakit)
                                     <tr>
                                         <td></td>
                                         <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                        <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
+                                        <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
                                     @endforeach
@@ -122,42 +122,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- SD -->
-                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                    <div class="count-box">
-                        <div class="count-header">
-                            <h3>Jumlah Sakit dengan Surat Dokter</h3>
-                            <i class="bi bi-envelope-check"></i>
-                            @if ($rekap->isNotEmpty())
-                            <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
-                            @else
-                            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-                            @endif
-                            <p>Lihat Tanggal</p>
-                        </div>
-                        <div class="count-content">
-                            <table class="table table-borderless table-striped">
-                                <tbody>
-                                    @if($sd->isEmpty())
-                                    <tr>
-                                        <td colspan="4" class="text-center">Tidak ada data</td>
-                                    </tr>
-                                    @else
-                                    @php $i=1 @endphp
-                                    @foreach($sd as $sakit)
-                                    <tr>
-                                        <td></td>
-                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                        <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
-                                        <td></td>
-                                    </tr>
-                                    @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
                 <!-- I -->
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
@@ -185,6 +149,42 @@
                                         <td></td>
                                         <td class="text-start"><i class='bx bx-calendar'></i></td>
                                         <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
+                                        <td></td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- A -->
+                <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                    <div class="count-box">
+                        <div class="count-header">
+                            <i class="bi bi-emoji-frown"></i>
+                            <h3>Jumlah Alpha</h3>
+                            @if ($rekap->isNotEmpty())
+                            <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
+                            @else
+                            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                            @endif
+                            <p>Lihat Tanggal</p>
+                        </div>
+                        <div class="count-content">
+                            <table class="table table-borderless table-striped">
+                                <tbody>
+                                    @if($a->isEmpty())
+                                    <tr>
+                                        <td colspan="4" class="text-center">Tidak ada data</td>
+                                    </tr>
+                                    @else
+                                    @php $i=1 @endphp
+                                    @foreach($a as $alpha)
+                                    <tr>
+                                        <td></td>
+                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                        <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
                                     @endforeach
@@ -315,45 +315,6 @@
                     </div>
                 </div>
                 <!-- CP -->
-                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                    <div class="count-box">
-                        <div class="count-header">
-                            <h3>Jumlah Cepat Pulang</h3>
-                            <i class="bi bi-clock"></i>
-                            @if ($rekap->isNotEmpty())
-                            <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
-                            @else
-                            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-                            @endif
-                            <p>Lihat Tanggal</p>
-                        </div>
-                        <div class="count-content">
-                            <table class="table table-borderless table-striped text-center">
-                                @if($cp->isEmpty())
-                                <tr>
-                                    <td colspan="4" class="text-center">Tidak ada data</td>
-                                </tr>
-                                @else
-                                <thead>
-                                    <tr>
-                                        <th>Tanggal</th>
-                                        <th>Jam Pulang</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @php $i=1 @endphp
-                                    @foreach($cp as $izin)
-                                    <tr>
-                                        <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $izin->jam_pulang }}</td>
-                                    </tr>
-                                    @endforeach
-                                    @endif
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
                 <!-- OCHI -->
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
@@ -604,14 +565,14 @@
                 <div class="carousel-item active">
                     <div class="container">
                         <div class="row">
-                            <!-- A -->
-                            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                            <!-- SD -->
+                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <i class="bi bi-emoji-frown"></i>
-                                        <h3>A</h3>
+                                        <h3>SD</h3>
+                                        <i class="bi bi-envelope-check"></i>
                                         @if ($rekap->isNotEmpty())
-                                        <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
+                                        <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
                                         @else
                                         <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
                                         @endif
@@ -620,17 +581,17 @@
                                     <div class="count-content">
                                         <table class="table table-borderless table-striped">
                                             <tbody>
-                                                @if($a->isEmpty())
+                                                @if($sd->isEmpty())
                                                 <tr>
                                                     <td colspan="4" class="text-center">Tidak ada data</td>
                                                 </tr>
                                                 @else
                                                 @php $i=1 @endphp
-                                                @foreach($a as $alpha)
+                                                @foreach($sd as $sakit)
                                                 <tr>
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
                                                     <td></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -674,41 +635,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- SD -->
-                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div class="count-box">
-                                    <div class="count-header">
-                                        <h3>SD</h3>
-                                        <i class="bi bi-envelope-check"></i>
-                                        @if ($rekap->isNotEmpty())
-                                        <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->SD }}" data-purecounter-duration="1" class="purecounter"></span>
-                                        @else
-                                        <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-                                        @endif
-                                        <p>Lihat Tanggal</p>
-                                    </div>
-                                    <div class="count-content">
-                                        <table class="table table-borderless table-striped">
-                                            <tbody>
-                                                @if($sd->isEmpty())
-                                                <tr>
-                                                    <td colspan="4" class="text-center">Tidak ada data</td>
-                                                </tr>
-                                                @else
-                                                @php $i=1 @endphp
-                                                @foreach($sd as $sakit)
-                                                <tr>
-                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
-                                                    <td></td>
-                                                    <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                             <!-- I -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
@@ -736,6 +662,41 @@
                                                     <td class="text-start"><i class='bx bx-calendar'></i></td>
                                                     <td></td>
                                                     <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- A -->
+                            <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
+                                <div class="count-box">
+                                    <div class="count-header">
+                                        <i class="bi bi-emoji-frown"></i>
+                                        <h3>A</h3>
+                                        @if ($rekap->isNotEmpty())
+                                        <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
+                                        @else
+                                        <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                                        @endif
+                                        <p>Lihat Tanggal</p>
+                                    </div>
+                                    <div class="count-content">
+                                        <table class="table table-borderless table-striped">
+                                            <tbody>
+                                                @if($a->isEmpty())
+                                                <tr>
+                                                    <td colspan="4" class="text-center">Tidak ada data</td>
+                                                </tr>
+                                                @else
+                                                @php $i=1 @endphp
+                                                @foreach($a as $alpha)
+                                                <tr>
+                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                                    <td></td>
+                                                    <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -871,45 +832,6 @@
                                 </div>
                             </div>
                             <!-- CP -->
-                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-                                <div class="count-box">
-                                    <div class="count-header">
-                                        <h3>CP</h3>
-                                        <i class="bi bi-clock"></i>
-                                        @if ($rekap->isNotEmpty())
-                                        <span data-purecounter-start="0" data-purecounter-end="{{ $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
-                                        @else
-                                        <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
-                                        @endif
-                                        <p>Lihat Tanggal</p>
-                                    </div>
-                                    <div class="count-content">
-                                        <table class="table table-borderless table-striped text-center">
-                                            @if($cp->isEmpty())
-                                            <tr>
-                                                <td colspan="4" class="text-center">Tidak ada data</td>
-                                            </tr>
-                                            @else
-                                            <thead>
-                                                <tr>
-                                                    <th>Tanggal</th>
-                                                    <th>Jam Pulang</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php $i=1 @endphp
-                                                @foreach($cp as $izin)
-                                                <tr>
-                                                    <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                                    <td>{{ $izin->jam_pulang }}</td>
-                                                </tr>
-                                                @endforeach
-                                                @endif
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

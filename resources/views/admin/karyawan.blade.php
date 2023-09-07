@@ -19,7 +19,7 @@
                         <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
-                    <a href="{{ asset('https://docs.google.com/uc?id=19kwUc0CxLHf_neNG3Lz8DsOa0yH14_e0&export=download') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                    <a href="{{ url('/unduh/template_karyawan_server.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Template</span>
                     </a>
@@ -100,11 +100,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center" id="paging">
-                            {{ $user->links()}}
-                        </div>
                     </div>
-
+                    <div class="d-flex justify-content-center mt-3" id="paging">
+                        {{ $user->links()}}
+                    </div>
                     <!-- </div> -->
                 </div>
             </div>
@@ -150,20 +149,20 @@
         event.preventDefault();
         var form = $(button).closest("form");
         swal.fire({
-            title: `Apakah anda yakin menghapus data ini?`,
-            text: "Data yang dihapus tidak dapat dikembalikan.",
-            icon: "question",
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'Cancel'
-        })
-        .then((willDelete) => {
-            if (willDelete.isConfirmed) {
-                form.submit();
-            }
-        });
+                title: `Apakah anda yakin menghapus data ini?`,
+                text: "Data yang dihapus tidak dapat dikembalikan.",
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            })
+            .then((willDelete) => {
+                if (willDelete.isConfirmed) {
+                    form.submit();
+                }
+            });
     }
 </script>
 

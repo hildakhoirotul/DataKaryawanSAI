@@ -25,7 +25,7 @@
                         <i class='bx bx-download me-1' style="vertical-align: middle;"></i>
                         <span>Unduh Data</span>
                     </button>
-                    <a href="{{ asset('https://docs.google.com/uc?id=1OxxybXZnsUtjcTWwXwyHWeZvgcvNrb6x&export=download') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                    <a href="{{ url('/unduh/template_qcc.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Template</span>
                     </a>
@@ -117,9 +117,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center" id="paging">
-                            {{ $qcc->links()}}
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3" id="paging">
+                        {{ $qcc->links()}}
                     </div>
 
                     <!-- </div> -->

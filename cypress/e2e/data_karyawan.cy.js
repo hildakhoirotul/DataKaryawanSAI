@@ -1,10 +1,10 @@
 describe('Admin Dashboard - QCC', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Data Karyawan').click()

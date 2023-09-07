@@ -23,8 +23,8 @@ class UserSeeder extends Seeder
             'is_admin'=> true,
             'email'=>'admin0@gmail.com',
             'email_verified_at'=>now(),
-            'chain'=> '000000',
-            'password'=> Hash::make('000000'),
+            'chain'=> '000000010199',
+            'password'=> Hash::make('000000010199'),
             'verify_key'=>$str,
         ]);
         DB::table('users')->insert([
@@ -33,8 +33,8 @@ class UserSeeder extends Seeder
             'is_admin' => false,
             'email'=>'user1@gmail.com',
             'email_verified_at'=>now(),
-            'chain' => '111111',
-            'password' => Hash::make('111111'),
+            'chain' => '111111010101',
+            'password' => Hash::make('111111010101'),
             'verify_key'=>$str,
         ]);
         DB::table('users')->insert([
@@ -43,8 +43,8 @@ class UserSeeder extends Seeder
             'is_admin' => false,
             'email'=>'user2@gmail.com',
             'email_verified_at'=>now(),
-            'chain' => '222222',
-            'password' => Hash::make('222222'),
+            'chain' => '222222020202',
+            'password' => Hash::make('222222020202'),
             'verify_key'=>$str,
         ]);
         DB::table('users')->insert([
@@ -53,8 +53,8 @@ class UserSeeder extends Seeder
             'is_admin' => true,
             'email'=>'admin3@gmail.com',
             'email_verified_at'=>now(),
-            'chain' => '333333',
-            'password' => Hash::make('333333'),
+            'chain' => '333333010199',
+            'password' => Hash::make('333333010199'),
             'verify_key'=>$str,
         ]);
     }

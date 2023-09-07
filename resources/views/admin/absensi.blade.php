@@ -27,7 +27,7 @@
                         <i class='bx bx-download me-1' style="vertical-align: middle;"></i>
                         <span>Unduh</span>
                     </button>
-                    <a href="{{ asset('https://docs.google.com/uc?id=1B0C3yK0QVnfYkxxwVgAZHDD0QNh7p6XZ&export=download') }}" class="btn unduh btn-outline-success mt-2 p-1 px-2">
+                    <a href="{{ url('/unduh/template_absensi.xlsx') }}" class="btn unduh btn-outline-success mt-2 p-1 px-2">
                         <span>Template</span>
                     </a>
                 </div>
@@ -132,9 +132,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="d-flex justify-content-center" id="paging">
-                            {{ $absensi->links()}}
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3" id="paging">
+                        {{ $absensi->links()}}
                     </div>
                 </div>
             </div>

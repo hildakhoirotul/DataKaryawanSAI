@@ -23,7 +23,7 @@ class CreateRekapitulasiTable extends Migration
             $table->string('ITD')->nullable();
             $table->string('ICP')->nullable();
             $table->string('TD')->nullable();
-            $table->string('CP')->nullable();
+            // $table->string('CP')->nullable();
             $table->string('OCHI')->nullable();
             $table->string('QCC')->nullable();
             $table->string('OCHI_leader')->nullable();

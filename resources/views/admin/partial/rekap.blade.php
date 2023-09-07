@@ -53,13 +53,6 @@
         @endif
     </td>
     <td>
-        @if($r->CP == 0 || null)
-        -
-        @else
-        {{ $r->CP }}
-        @endif
-    </td>
-    <td>
         @if($r->OCHI == 0 || null)
         -
         @else

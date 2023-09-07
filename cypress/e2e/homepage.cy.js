@@ -1,11 +1,11 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('input[name=nik]').eq(0).type('111111')
     cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
   });
 
@@ -29,7 +29,7 @@ describe('Homepage', () => {
     cy.contains('Lihat Data').should('exist')
     cy.get('.bi-arrow-right').should('exist')
 
-    cy.get('.img-fluid').should('have.attr', 'src', 'https://datakaryawan.sdn108gresik.sch.id/assets/img/8.png');
+    cy.get('.img-fluid').should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/8.png');
     cy.get('.hero-waves').should('exist');
     cy.get('.wave1').should('exist');
     cy.get('.wave2').should('exist');
@@ -374,7 +374,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('222222')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     cy.get('.dropdown').trigger('mouseover');

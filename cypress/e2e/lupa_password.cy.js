@@ -1,6 +1,6 @@
 describe('Lupa Password Form', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.contains('Lupa Password?').should('exist')
     cy.contains('Lupa Password?').click()
   });
@@ -13,7 +13,7 @@ describe('Lupa Password Form', () => {
     cy.get('button.btn-cancel').should('exist')
     cy.contains('Cancel').should('exist')
 
-    cy.get('.image').should('have.attr', 'src', 'https://datakaryawan.sdn108gresik.sch.id/assets/img/login.svg');
+    cy.get('.image').should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/login.svg');
     cy.contains('Lupa Password Anda?').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit dan Email anda.').should('exist')
   });
@@ -23,7 +23,7 @@ describe('Lupa Password Form', () => {
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('button[type=submit]').click()
 
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/login')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/login')
     cy.contains('Berhasil Dikirim').should('exist')
     cy.contains('Silahkan Cek Email Anda dan Login kembali').should('exist')
     cy.contains('OK').click()
@@ -34,7 +34,7 @@ describe('Lupa Password Form', () => {
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('button[type=submit]').click()
 
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/lupa-password')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/lupa-password')
     cy.contains('Gagal dikirim').should('exist')
     cy.contains('Pastikan nik dan email anda telah benar').should('exist')
     cy.contains('OK').click()
@@ -43,6 +43,6 @@ describe('Lupa Password Form', () => {
   it('click on cancel button', () => {
     cy.get('button[type=button]').should('exist')
     cy.get('button[type=button]').click()
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/login')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/login')
   })
 });

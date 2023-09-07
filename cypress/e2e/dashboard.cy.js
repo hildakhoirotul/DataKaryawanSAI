@@ -1,10 +1,10 @@
 describe('Admin Dashboard', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.sdn108gresik.sch.id/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
     cy.contains('OK').click()
   });
 
@@ -54,7 +54,6 @@ describe('Admin Dashboard', () => {
     cy.contains('ITD').should('exist')
     cy.contains('ICP').should('exist')
     cy.contains('TD').should('exist')
-    cy.contains('CP').should('exist')
     cy.contains('OCHI').should('exist')
     cy.contains('QCC').should('exist')
     cy.contains('OCHI Leader').should('exist')
@@ -182,7 +181,7 @@ describe('Admin Dashboard', () => {
     cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.sdn108gresik.sch.id/dashboard')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
     cy.contains('OK').click()
 
     cy.get('.dropdown').trigger('mouseover');
