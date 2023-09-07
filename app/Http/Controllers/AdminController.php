@@ -465,7 +465,7 @@ class AdminController extends Controller
 
     public function unduh($nama_file)
     {
-        $path = storage_path('app/Download/' . $nama_file);
+        $path = storage_path('app/public/Download/' . $nama_file);
 
         if (file_exists($path)) {
             return response()->download($path);
