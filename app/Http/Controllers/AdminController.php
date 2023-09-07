@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\Absensi;
 use App\Models\Ochi;
 use App\Models\Qcc;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Exports\AbsensiExport;
 use App\Exports\OchiExport;
 use App\Exports\QccExport;
@@ -89,6 +89,11 @@ class AdminController extends Controller
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return view('admin.setting', compact('status'));
+    }
+
+    public function intruksi()
+    {
+        return view('admin.intruksi');
     }
 
     public function searchRekap(Request $request)

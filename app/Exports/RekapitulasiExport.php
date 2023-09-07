@@ -45,8 +45,8 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
             'OCHI',
             'QCC',
             'OCHI_leader',
-            'Juara_OCHI',
-            'Juara_QCC',
+            // 'Juara_OCHI',
+            // 'Juara_QCC',
         ];
     }
 
@@ -65,8 +65,8 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
             $row['OCHI'],
             $row['QCC'],
             $row['OCHI_leader'],
-            $row['Juara_OCHI'],
-            $row['Juara_QCC'],
+            // $row['Juara_OCHI'],
+            // $row['Juara_QCC'],
         ];
     }
 }

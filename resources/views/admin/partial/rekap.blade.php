@@ -73,19 +73,5 @@
         {{ $r->OCHI_leader }}
         @endif
     </td>
-    <td>
-        @if($r->Juara_OCHI == 0 || null)
-        -
-        @else
-        {{ $r->Juara_OCHI }}
-        @endif
-    </td>
-    <td>
-        @if($r->Juara_QCC == 0 || null)
-        -
-        @else
-        {{ $r->Juara_QCC }}
-        @endif
-    </td>
 </tr>
 @endforeach

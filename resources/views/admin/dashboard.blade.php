@@ -3,14 +3,11 @@
 @section('content')
 <main class="content p-2 pt-3">
     <div class="row">
-        <!-- <div class="col-md-12"> -->
         <div class="card p-4">
-            <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h5 class="mb-0 ms-1">Rekapitulasi Data Karyawan</h5>
             <div class="jumlah-data text-nowrap border px-2">
                 Jumlah data : {{ $total }}
             </div>
-            <!-- <a href="#"> -->
             <div class="row mt-2 justify-content-between align-items-end">
 
                 <div class="col-md-6 ms-1">
@@ -84,8 +81,6 @@
                                     <th>OCHI</th>
                                     <th>QCC</th>
                                     <th>OCHI Leader</th>
-                                    <th>Juara OCHI</th>
-                                    <th>Juara QCC</th>
                                 </tr>
                             </thead>
                             <tbody id="absensiTableBody">
@@ -162,20 +157,6 @@
                                         -
                                         @else
                                         {{ $r->OCHI_leader }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($r->Juara_OCHI == 0 || null)
-                                        -
-                                        @else
-                                        {{ $r->Juara_OCHI }}
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @if($r->Juara_QCC == 0 || null)
-                                        -
-                                        @else
-                                        {{ $r->Juara_QCC }}
                                         @endif
                                     </td>
                                 </tr>

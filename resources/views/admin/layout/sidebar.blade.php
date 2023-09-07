@@ -54,9 +54,17 @@
             <li class="item">
                 <a href="{{ route('setting') }}" class="nav_link">
                     <span class="navlink_icon">
-                        <i class='bx bx-user-pin'></i>
+                        <i class='bx bx-cog'></i>
                     </span>
                     <span class="navlink">Pengaturan</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="{{ route('intruksi') }}" class="nav_link">
+                    <span class="navlink_icon">
+                        <i class='bx bx-message-rounded-dots'></i>
+                    </span>
+                    <span class="navlink">Intruksi</span>
                 </a>
             </li>
         </ul>

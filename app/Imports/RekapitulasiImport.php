@@ -47,8 +47,8 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
             'OCHI'    => $row['ochi'],
             'QCC'     => $row['qcc'],
             'OCHI_leader' => $row['ochi_leader'],
-            'Juara_OCHI' => $row['juara_ochi'],
-            'Juara_QCC' => $row['juara_qcc'],
+            // 'Juara_OCHI' => $row['juara_ochi'],
+            // 'Juara_QCC' => $row['juara_qcc'],
         ]);
     }
 
