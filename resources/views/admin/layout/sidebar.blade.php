@@ -64,7 +64,7 @@
                     <span class="navlink_icon">
                         <i class='bx bx-message-rounded-dots'></i>
                     </span>
-                    <span class="navlink">Intruksi</span>
+                    <span class="navlink">Petunjuk</span>
                 </a>
             </li>
         </ul>
