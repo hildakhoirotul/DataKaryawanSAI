@@ -19,7 +19,7 @@
                         <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
-                    <a href="{{ url('/unduh/template_karyawan_server.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
+                    <a href="{{ route('unduh', ['nama_file' => 'template_karyawan_server.xlsx']) }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
                         <i class='bx bx-download me-1'></i>
                         <span>Template</span>
                     </a>

@@ -61,7 +61,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/search-rekap', 'searchRekap')->name('search.rekap');
     Route::get('/search-karyawan', 'searchKaryawan')->name('search.karyawan');
     Route::delete('/destroy/{id}', 'destroy')->name('karyawan.destroy');
-    Route::get('/unduh/{nama_file}', 'unduh');
+    Route::get('/unduh/{nama_file}', 'unduh')->name('unduh');
 });
 
 Route::controller(HomeController::class)->group(function () {
