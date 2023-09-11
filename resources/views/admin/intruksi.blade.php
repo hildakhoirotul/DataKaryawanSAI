@@ -12,7 +12,7 @@
                 <div class="faq-list">
                     <ul>
                         <li data-aos="fade-up">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Sidebar<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">Sidebar<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -60,7 +60,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh dan Template<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh dan Template<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -102,7 +102,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="200">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Pencarian dan Filter<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">Pencarian dan Filter<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -144,7 +144,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="300">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Toggler dan Delete<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">Toggler dan Delete<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -170,7 +170,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="400">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Pengaturan Disable Tema dan Informasi di Halaman Karyawan<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-5" class="collapsed">Pengaturan Disable Tema dan Informasi di Halaman Karyawan<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-5" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -261,7 +261,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="500">
-                            <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">Darkmode dan Dropdown<i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-6" class="collapsed">Darkmode dan Dropdown<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-6" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>

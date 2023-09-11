@@ -36,7 +36,7 @@
                     @error('information.0') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-primary mb-3" wire:click.prevent="add({{$i}})"><i class='bx bx-plus'></i></button>
+                    <button class="btn btn-primary mb-3" wire:click.prevent="add({{$i}})"><i class='bi bi-plus'></i></button>
                 </div>
                 {{-- Add Form --}}
                 @foreach ($inputs as $key => $value)
@@ -46,7 +46,7 @@
                     @error('information.') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
                 <div class="col-2">
-                    <button class="btn btn-light mb-3" wire:click.prevent="remove({{$key}})"><i class='bx bx-x'></i></button>
+                    <button class="btn btn-light mb-3" wire:click.prevent="remove({{$key}})"><i class='bi bi-x'></i></button>
                 </div>
                 @endforeach
 

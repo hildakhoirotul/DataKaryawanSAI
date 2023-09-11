@@ -14,7 +14,7 @@
             <div class="row justify-content-between align-items-end">
                 <div class="col-md-6 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
-                        <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
+                        <i class='bi bi-cloud-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
                     <form id="exportForm" action="{{ route('export.ochi.submit') }}" method="GET" style="display: none;">
@@ -22,11 +22,11 @@
                         <input type="hidden" id="juaraExport" name="juara">
                     </form>
                     <button onclick="exportData()" type="button" class="btn btn-info mt-2 p-1 px-2">
-                        <i class='bx bx-download me-1' style="vertical-align: middle;"></i>
+                        <i class='bi bi-cloud-download me-1' style="vertical-align: middle;"></i>
                         <span>Unduh Data</span>
                     </button>
                     <a href="{{ url('/unduh/template_ochi.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
-                        <i class='bx bx-download me-1'></i>
+                        <i class='bi bi-cloud-download me-1'></i>
                         <span>Template</span>
                     </a>
                 </div>
@@ -34,15 +34,15 @@
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.1rem; margin-top: 2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.1rem; margin-top: 2rem; border-radius: 0px 5px 5px 0px;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.1rem; margin-top: 2rem; border-radius: 0px 5px 5px 0px;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></button>
 
                         <div class="dropdown mt-2 ms-2">
                             <label for="juara">Juara: </label>
                             <select id="juara" name="juara" class="form-control col-md-3 filter-juara">
                                 <option value="">-- Juara --</option>
-                                <option value="Juara 1">Juara 1</option>
-                                <option value="Juara 2">Juara 2</option>
-                                <option value="Juara 3">Juara 3</option>
+                                <option value="1">Juara 1</option>
+                                <option value="2">Juara 2</option>
+                                <option value="3">Juara 3</option>
                             </select>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                     <td>{{ $r->tema }}</td>
                                     <td style="width: 80px;">{{ $r->kontes }}</td>
                                     <td>{{ $r->nik_ochi_leader }}</td>
-                                    <td style="width: 80px;">
+                                    <td style="width: 80px;" class="text-center">
                                         @if($r->juara == 0 || null)
                                         -
                                         @else

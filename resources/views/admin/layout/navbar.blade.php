@@ -5,8 +5,8 @@
     </div>
 
     <div class="navbar_content">
-
-        <i class='bx bx-sun' id="darkLight"></i>
+        <i class="bi bi-brightness-high" id="darkLight"></i>
+        <!-- <i class='bx bx-sun'></i> -->
         <li class="nav-item dropdown">
             <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                 <span>{{ Auth::user()->nik }}</span>
@@ -20,7 +20,7 @@
                 </li>
                 <li>
                     <a class="dropdown-item" href="{{ route('change-password') }}">
-                        <i class="fa-solid fa-key"></i>
+                        <i class="bi bi-house-lock-fill"></i>
                         <span>Ganti Sandi</span>
 
                     </a>
@@ -30,7 +30,7 @@
                 <li>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        <i class="fa-solid fa-right-from-bracket"></i>
+                        <i class="bi bi-door-open-fill"></i>
                         <span>{{ __('Keluar') }}</span>
 
                     </a>

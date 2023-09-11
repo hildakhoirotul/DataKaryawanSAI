@@ -20,7 +20,7 @@
     <link href="{{ asset('assets/vendor/aos.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('assets/vendor/glightbox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/remixicon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/swiper-bundle.min.css') }}" rel="stylesheet">

@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -39,7 +40,7 @@ class KaryawanImport implements ShouldQueue
         $import = new UserImport();
         Excel::import($import, $this->path);
         // HashPasswordJob::dispatch($import->get());
-
+    
         set_time_limit(0);
         $errorMessages = [];
         $i = "1";

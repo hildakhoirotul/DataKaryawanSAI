@@ -104,6 +104,7 @@ body.dark .jumlah-absensi {
   outline-color: #333;
   border-radius: 3px;
 }
+
 body.dark .faq .faq-list li,
 body.dark .modal-content {
   color: #ffffff !important;
@@ -137,7 +138,7 @@ body.dark input.form-control::placeholder {
   color: #ffffff !important;
 }
 
-body.dark .faq .faq-list a.collapsed:hover{
+body.dark .faq .faq-list a.collapsed:hover {
   color: #1acc8d !important;
 }
 
@@ -598,6 +599,11 @@ button span,
   border-radius: 0;
 }
 
+.btn-lg{
+  --bs-btn-padding-y: 0rem;
+  --bs-btn-font-size: 1.4rem;
+}
+
 /* content */
 .jumlah-data {
   display: inline;
@@ -721,7 +727,7 @@ button span,
 
 .faq .faq-list .icon-show,
 .faq .faq-list .icon-close {
-  font-size: 24px;
+  font-size: 16px;
   position: absolute;
   right: 0;
   top: 0;

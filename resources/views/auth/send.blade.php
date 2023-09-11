@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
-    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet"> -->
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <!-- <link href="{{ asset('css/login.css') }}" rel="stylesheet"> -->
     <title>Get Password</title>
@@ -34,12 +35,12 @@
                     @endif
                     <div class="input-field">
                         <!-- <i class="fas fa-envelope"></i> -->
-                        <i class="fa-regular fa-address-card"></i>
+                        <i class="bi bi-person-vcard"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="Masukkan NIK 6 digit" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
                         <!-- <i class="fas fa-lock"></i> -->
-                        <i class="fas fa-envelope"></i>
+                        <i class="bi bi-envelope-fill"></i>
                         <input id="email" type="email" placeholder="Masukkan Email anda" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="current_email">
                     </div>
                     <!-- <a href="send-email">send</a> -->

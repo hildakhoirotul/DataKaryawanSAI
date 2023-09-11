@@ -75,7 +75,7 @@
                                     @foreach($sd as $sakit)
                                     <tr>
                                         <td></td>
-                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                        <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                         <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
@@ -111,7 +111,7 @@
                                     @foreach($s as $sakit)
                                     <tr>
                                         <td></td>
-                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                        <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                         <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
@@ -147,7 +147,7 @@
                                     @foreach($iz as $izin)
                                     <tr>
                                         <td></td>
-                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                        <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                         <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
@@ -183,7 +183,7 @@
                                     @foreach($a as $alpha)
                                     <tr>
                                         <td></td>
-                                        <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                        <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                         <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                         <td></td>
                                     </tr>
@@ -517,7 +517,7 @@
                                     @foreach($oleader as $o)
                                     <tr>
                                         <td></td>
-                                        <td><i class='bx bx-user-pin text-end'></i></td>
+                                        <td><i class='bi bi-person-vcard text-end'></i></td>
                                         <td class="text-end">{{ $o->nik }}</td>
                                         <td></td>
                                     </tr>
@@ -589,7 +589,7 @@
                                                 @php $i=1 @endphp
                                                 @foreach($sd as $sakit)
                                                 <tr>
-                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                                    <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                                     <td></td>
                                                     <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                 </tr>
@@ -624,7 +624,7 @@
                                                 @php $i=1 @endphp
                                                 @foreach($s as $sakit)
                                                 <tr>
-                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                                    <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                                     <td></td>
                                                     <td class="text-end">{{ \Carbon\Carbon::parse($sakit->tanggal)->format('d F Y') }}</td>
                                                 </tr>
@@ -659,7 +659,7 @@
                                                 @php $i=1 @endphp
                                                 @foreach($iz as $izin)
                                                 <tr>
-                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                                    <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                                     <td></td>
                                                     <td class="text-end">{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
                                                 </tr>
@@ -694,7 +694,7 @@
                                                 @php $i=1 @endphp
                                                 @foreach($a as $alpha)
                                                 <tr>
-                                                    <td class="text-start"><i class='bx bx-calendar'></i></td>
+                                                    <td class="text-start"><i class="bi bi-calendar-week"></i></td>
                                                     <td></td>
                                                     <td class="text-end">{{ \Carbon\Carbon::parse($alpha->tanggal)->format('d F Y') }}</td>
                                                 </tr>
@@ -1040,7 +1040,7 @@
                                                 @foreach($oleader as $o)
                                                 <tr>
                                                     <td></td>
-                                                    <td><i class='bx bx-user-pin text-end'></i></td>
+                                                    <td><i class='bi bi-person-vcard text-end'></i></td>
                                                     <td class="text-end">{{ $o->nik }}</td>
                                                     <td></td>
                                                 </tr>

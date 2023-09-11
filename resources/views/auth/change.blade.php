@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script> -->
-    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <!-- <link href="css/login.css" rel="stylesheet"> -->
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <!-- <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet"> -->
@@ -40,15 +40,15 @@
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div> -->
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="current_password" type="password" placeholder="Password Lama" class="form-control @error('password') is-invalid @enderror" name="current_password" required autocomplete="current_password">
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="new_password" type="password" placeholder="Password Baru" class="form-control @error('password') is-invalid @enderror" name="new_password" required autocomplete="new_password">
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation">
                     </div>
                     <!-- <button type="submit" class="btn solid fw-bold">
@@ -132,7 +132,7 @@
             </div>
         </div>
     </div>
- 
+
 </body>
 
 </html>

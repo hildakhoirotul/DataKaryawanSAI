@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <title>Masuk</title>
     <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
@@ -22,11 +23,11 @@
                     <h2 class="title">Masuk</h2>
 
                     <div class="input-field">
-                        <i class="fa-regular fa-address-card"></i>
+                        <i class="bi bi-person-vcard"></i>
                         <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                     </div>
                     <div class="remember">
@@ -52,23 +53,23 @@
                     @csrf
                     <h2 class="title">Daftar</h2>
                     <div class="input-field">
-                        <i class="fa-regular fa-address-card"></i>
+                        <i class="bi bi-person-vcard"></i>
                         <input type="text" id="nik1" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
-                        <i class="fa-regular fa-address-book"></i>
+                        <i class="bi bi-person-fill"></i>
                         <input type="text" id="nama" data-id="nama" placeholder="Nama" class="form-control @error('nik') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-envelope"></i>
+                        <i class="bi bi-envelope-fill"></i>
                         <input type="email" id="email" data-id="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="password1" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required>
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class="bi bi-lock-fill"></i>
                         <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required>
                     </div>
 

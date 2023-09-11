@@ -239,6 +239,7 @@ class AdminController extends Controller
         $path = $file->storeAs('public/excel/', $nama_file);
 
         ProcessImport::dispatch($path)->onQueue('impor_rekap');
+        return redirect()->back();
         // $import = new RekapitulasiImport();
         // Excel::import($import, $file);
 
@@ -259,7 +260,6 @@ class AdminController extends Controller
         // }
 
         // Storage::delete($path);
-        return redirect()->back();
     }
 
     public function importAbsensi(Request $request)
@@ -381,6 +381,7 @@ class AdminController extends Controller
 
         set_time_limit(0);
         KaryawanImport::dispatch($path)->onQueue('impor_rekap');
+        return redirect()->back();
 
         // $import = new UserImport();
         // Excel::import($import, $file);
@@ -401,7 +402,6 @@ class AdminController extends Controller
         // }
 
         // Storage::delete($path);
-        return redirect()->back();
     }
 
     public function exportExcel()

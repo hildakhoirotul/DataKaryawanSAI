@@ -47,18 +47,18 @@ darkLight.addEventListener("click", () => {
     body.classList.toggle("dark");
     localStorage.setItem("darkMode", "dark");
     if (body.classList.contains("dark")) {
-        darkLight.classList.replace("bx-sun", "bx-moon");
+        darkLight.classList.replace("bi-brightness-high", "bi-moon");
     } else {
-        darkLight.classList.replace("bx-moon", "bx-sun");
+        darkLight.classList.replace("bi-moon", "bi-brightness-high");
         localStorage.setItem("darkMode", "light")
     }
 });
 
 if (darkMode == "dark") {
     body.classList.toggle("dark");
-    darkLight.classList.replace("bx-sun", "bx-moon");
+    darkLight.classList.replace("bi-brightness-high", "bi-moon");
 } else {
-    darkLight.classList.replace("bx-moon", "bx-sun");
+    darkLight.classList.replace("bi-moon", "bi-brightness-high");
 }
 
 submenuItems.forEach((item, index) => {

@@ -16,11 +16,11 @@
 
                 <div class="col-md-4 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
-                        <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
+                        <i class='bi bi-cloud-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
                     <a href="{{ route('unduh', ['nama_file' => 'template_karyawan_server.xlsx']) }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
-                        <i class='bx bx-download me-1'></i>
+                        <i class='bi bi-cloud-download me-1'></i>
                         <span>Template</span>
                     </a>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></i></button>
                     </div>
                 </div>
             </div>
@@ -84,7 +84,7 @@
                                     <td>
                                         <div class="password-container">
                                             <input type="password" class="password-text" value="{{ $r->chain }}" readonly>
-                                            <i class="toggle-password-icon fa fa-eye-slash" onclick="togglePasswordVisibility(this)"></i>
+                                            <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
                                         </div>
                                     </td>
                                     <!-- <td>{{ $r->password }}</td> -->
@@ -118,12 +118,12 @@
 
         if (type === 'password') {
             passwordInput.setAttribute('type', 'text'); // Ganti atribut type menjadi 'text' untuk menampilkan teks
-            icon.classList.remove('fa-eye-slash');
-            icon.classList.add('fa-eye');
+            icon.classList.remove('bi-eye-slash-fill');
+            icon.classList.add('bi-eye-fill');
         } else {
             passwordInput.setAttribute('type', 'password'); // Ganti atribut type menjadi 'password' untuk menyembunyikan teks
-            icon.classList.remove('fa-eye');
-            icon.classList.add('fa-eye-slash');
+            icon.classList.remove('bi-eye-fill');
+            icon.classList.add('bi-eye-slash-fill');
         }
     }
 </script>

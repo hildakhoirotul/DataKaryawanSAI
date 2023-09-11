@@ -960,7 +960,7 @@ section {
   min-width: fit-content;
 }
 
-.counts .count-box .bi {
+.counts .count-box .count-header .bi {
   position: absolute;
   top: -25px;
   left: 50%;

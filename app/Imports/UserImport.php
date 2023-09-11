@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Illuminate\Support\Str;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
@@ -22,21 +23,21 @@ use Maatwebsite\Excel\Concerns\WithBatchInserts;
 class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailure, WithUpserts, WithBatchInserts
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     use Importable, SkipsFailures;
 
     protected $errors = [];
 
     public function rules(): array
     {
-        return[
+        return [
             'nik' => 'required|min:6',
             'nama' => 'required',
             'password' => 'required',
-        ];    
+        ];
     }
 
     public function model(array $row)
@@ -44,7 +45,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
         return new User([
             'nik'     => $row['nik'],
             'nama'    => $row['nama'],
-            'email_verified_at'=>now(),
+            'email_verified_at' => now(),
             'chain'   => $row['password'],
             'password'   => Hash::make($row['password']),
             'verify_key' => Str::random(100),
@@ -87,6 +88,11 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
 
     public function batchSize(): int
     {
-        return 1000;
+        return 100;
+    }
+
+    public function chunkSize(): int
+    {
+        return 1000; // Ubah sesuai dengan kebutuhan Anda
     }
 }

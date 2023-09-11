@@ -10,9 +10,8 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
 
     <!-- Boxicons CSS -->
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/fontawesome/css/all.min.css') }}" rel="stylesheet">
     <title>Data Karyawan</title>
     <link href="{{ asset('css/karyawan.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('css/karyawan.css') }}"> -->

@@ -12,15 +12,15 @@
 
                 <div class="col-md-6 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
-                        <i class='bx bx-upload me-1' style="vertical-align: middle;"></i>
+                        <i class='bi bi-cloud-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
                     </button>
                     <a href="{{ route('export.excel.submit') }}" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
-                        <i class='bx bx-download me-1'></i>
+                        <i class='bi bi-cloud-download me-1'></i>
                         <span>Unduh Data</span>
                     </a>
                     <a href="{{ url('/unduh/template_rekapitulasi.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
-                        <i class='bx bx-download me-1'></i>
+                        <i class='bi bi-cloud-download me-1'></i>
                         <span>Template</span>
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                     <div class="input-group">
                         <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="fa fa-search fa-sm"></i></button>
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></button>
                     </div>
                 </div>
             </div>
