@@ -56,6 +56,10 @@
                         <input type="text" id="nik1" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
                     </div>
                     <div class="input-field">
+                        <i class="fa-regular fa-address-book"></i>
+                        <input type="text" id="nama" data-id="nama" placeholder="Nama" class="form-control @error('nik') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus />
+                    </div>
+                    <div class="input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="email" id="email" data-id="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus />
                     </div>

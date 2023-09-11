@@ -1,10 +1,10 @@
 describe('Admin Dashboard - QCC', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.trixsite.com/')
+    cy.visit('http://127.0.0.1:8000/')
     cy.get('input[name=nik]').eq(0).type('000000')
-    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('000000010199')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
+    cy.url().should('include', 'http://127.0.0.1:8000/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Data Karyawan').click()
@@ -118,7 +118,7 @@ describe('Admin Dashboard - QCC', () => {
     cy.contains('111111').should('exist')
     // click password-toggle
     cy.get('#karyawanTableBody .password-text')  // Ganti dengan ID yang sesuai untuk <tbody> tabel
-      .contains('000000')
+      .contains('000000010199')
       .should('not.exist');
     cy.get('.toggle-password-icon').eq(0).click()
     cy.get('.password-text').should('have.attr', 'type', 'text')

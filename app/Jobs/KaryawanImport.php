@@ -38,7 +38,9 @@ class KaryawanImport implements ShouldQueue
     {
         $import = new UserImport();
         Excel::import($import, $this->path);
+        // HashPasswordJob::dispatch($import->get());
 
+        set_time_limit(0);
         $errorMessages = [];
         $i = "1";
         foreach ($import->failures() as $failure) {

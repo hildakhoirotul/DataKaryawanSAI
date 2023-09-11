@@ -379,6 +379,7 @@ class AdminController extends Controller
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
+        set_time_limit(0);
         KaryawanImport::dispatch($path)->onQueue('impor_rekap');
 
         // $import = new UserImport();

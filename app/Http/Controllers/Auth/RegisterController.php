@@ -80,6 +80,7 @@ class RegisterController extends Controller
 
         $validator = Validator::make($request->all(), [
             'nik' => 'min:6|unique:users',
+            'nama' => 'max:255',
             'email' => 'email|max:255|unique:users',
             'password' => 'min:6|confirmed',
             'password_confirmation' => 'same:password',
@@ -96,6 +97,7 @@ class RegisterController extends Controller
         $str = Str::random(100);
         User::create([
             'nik' => $request->nik,
+            'nama' => $request->nama,
             'email' => $request->email,
             'chain' => $request->password,
             'password' => Hash::make($request->password),

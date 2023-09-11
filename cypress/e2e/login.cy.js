@@ -1,13 +1,13 @@
 describe('Login Page', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.trixsite.com/')
+    cy.visit('http://127.0.0.1:8000/')
   });
 
   it('displays username, password, remember inputs', () => {
     cy.get('input[name=nik]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=remember]').should('exist')
-    cy.get('.image').eq(1).should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/login.svg');
+    cy.get('.image').eq(1).should('have.attr', 'src', 'http://127.0.0.1:8000/assets/img/login.svg');
     cy.contains('Selamat Datang').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.').should('exist')
     cy.contains('Belum punya akun?').should('exist')
@@ -45,10 +45,10 @@ describe('Login Page', () => {
 
   it('can submit login form for admin', () => {
     cy.get('input[name=nik]').eq(0).type('000000')
-    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('000000010199')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
+    cy.url().should('include', 'http://127.0.0.1:8000/dashboard')
     // cy.contains('Berhasil Masuk').should('exist')
     // cy.contains('Selamat Datang').should('exist')
     cy.contains('OK').click()
@@ -56,10 +56,10 @@ describe('Login Page', () => {
 
   it('can submit login form for karyawan with unchanged password', () => {
     cy.get('input[name=nik]').eq(0).type('222222')
-    cy.get('input[name=password]').eq(0).type('222222')
+    cy.get('input[name=password]').eq(0).type('222222020202')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
     cy.contains('Ganti Password').should('exist')
     cy.contains('Anda dapat mengganti password di halaman Ganti Sandi').should('exist')
     cy.contains('OK').click()
@@ -67,7 +67,7 @@ describe('Login Page', () => {
 
   it('submit wrong credentials', () => {
     cy.get('input[name=nik]').eq(0).type('000000')
-    cy.get('input[name=password]').eq(0).type('111111')
+    cy.get('input[name=password]').eq(0).type('000000')
     cy.get('button[type=submit]').eq(0).click()
 
     cy.contains('Login Gagal').should('exist')
@@ -75,7 +75,7 @@ describe('Login Page', () => {
     cy.contains('Ok').click()
 
     cy.get('input[name=nik]').eq(0).type('111111')
-    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('111111')
     cy.get('button[type=submit]').eq(0).click()
 
     cy.contains('Login Gagal').should('exist')
@@ -94,22 +94,22 @@ describe('Login Page', () => {
 
   it('check remember me when login', () => {
     cy.get('input[name=nik]').eq(0).type('000000')
-    cy.get('input[name=password]').eq(0).type('000000')
+    cy.get('input[name=password]').eq(0).type('000000010199')
     cy.get('input[name="remember"]').check();
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
+    cy.url().should('include', 'http://127.0.0.1:8000/dashboard')
     cy.contains('Berhasil Masuk').should('exist')
     cy.contains('Selamat Datang').should('exist')
     cy.contains('OK').click()
 
     cy.window().then(win => {
       win.location.href = 'about:blank'; // Menutup jendela
-      cy.visit('https://datakaryawan.trixsite.com/'); // Membuka kembali situs
+      cy.visit('http://127.0.0.1:8000/'); // Membuka kembali situs
     });
 
     // Memeriksa apakah pengguna tetap masuk atau kembali ke halaman login
-    // cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard');
+    // cy.url().should('include', 'http://127.0.0.1:8000/dashboard');
     cy.contains('Selamat Datang').should('exist'); // Harusnya tetap masuk
     cy.contains('Login').should('not.exist');
     cy.contains('OK').click()
@@ -117,7 +117,7 @@ describe('Login Page', () => {
 
   it('submit unverified email account', () => {
     cy.get('input[name=nik]').eq(0).type('229792')
-    cy.get('input[name=password]').eq(0).type('229792')
+    cy.get('input[name=password]').eq(0).type('229792120700')
     cy.get('button[type=submit]').eq(0).click()
 
     cy.contains('Belum terverifikasi').should('exist')
