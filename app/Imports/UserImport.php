@@ -88,11 +88,11 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
 
     public function batchSize(): int
     {
-        return 100;
+        return 250;
     }
 
     public function chunkSize(): int
     {
-        return 1000; // Ubah sesuai dengan kebutuhan Anda
+        return 250; // Ubah sesuai dengan kebutuhan Anda
     }
 }
