@@ -117,7 +117,7 @@ class AdminController extends Controller
         // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
         //     ->paginate(100);
 
-        $results = $query->paginate(100);
+        $results = $query->paginate(50);
         return view('admin.partial.rekap', ['results' => $results]);
     }
 
@@ -173,7 +173,7 @@ class AdminController extends Controller
                 ->orWhere('nik_ochi_leader', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $ochiData = $query->paginate(100);
+        $ochiData = $query->paginate(50);
 
         // $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
         //     ->get();
@@ -226,7 +226,7 @@ class AdminController extends Controller
         // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
         //     ->paginate(100);
 
-        $user = $query->paginate(50);
+        $user = $query->paginate(100);
         return view('admin.partial.karyawan', ['user' => $user]);
     }
 
