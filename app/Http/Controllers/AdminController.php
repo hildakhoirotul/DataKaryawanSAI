@@ -75,13 +75,22 @@ class AdminController extends Controller
         return response()->view('admin.qcc', compact('qcc', 'total', 'status'));
     }
 
-    public function karyawan()
+    public function karyawan(Request $request)
     {
+        $state = false;
+        $perPage = $request->input('paginate', 100);
+        // if ($perPage == "all") {
+        //     $state = true;
+        //     $user = User::get();
+        // } else {
+        //     $user = User::paginate($perPage);
+        // }
+        $user = User::paginate($perPage);
+
         $total = User::count();
-        $user = User::paginate(50);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.karyawan', compact('user', 'total', 'status'));
+        return response()->view('admin.karyawan', compact('user', 'total', 'status', 'state'));
     }
 
     public function setting()
@@ -478,5 +487,12 @@ class AdminController extends Controller
         } else {
             abort(404);
         }
+    }
+
+    public function remove(Request $request)
+    {
+        $ids = $request->input('ids');
+        User::whereIn('id', $ids)->delete();
+        return redirect()->back();
     }
 }

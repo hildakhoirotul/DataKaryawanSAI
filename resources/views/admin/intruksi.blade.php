@@ -60,7 +60,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh dan Template<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh, Template, dan Hapus<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -86,6 +86,14 @@
                                             </td>
                                             <td>
                                                 <p>Download template excel.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/remove.png') }}" alt="" style="width: 6rem;">
+                                            </td>
+                                            <td>
+                                                <p>Menghapus data yang dicentang pada tabel.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -128,6 +136,14 @@
                                             </td>
                                             <td>
                                                 <p>Klik untuk memfilter data berdasarkan juara.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/baris.png') }}" alt="" style="width: 4rem;">
+                                            </td>
+                                            <td>
+                                                <p>Pilih jumlah baris data yang ingin ditampilkan.</p>
                                             </td>
                                         </tr>
                                         <tr>

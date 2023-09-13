@@ -63,6 +63,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::get('/search-karyawan', 'searchKaryawan')->name('search.karyawan');
     Route::delete('/destroy/{id}', 'destroy')->name('karyawan.destroy');
     Route::get('/unduh/{nama_file}', 'unduh')->name('unduh');
+    Route::post('delete-all', 'remove');
 });
 
 Route::controller(HomeController::class)->group(function () {

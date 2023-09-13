@@ -1,6 +1,7 @@
 @php $i=1 @endphp
 @foreach($user as $r)
 <tr>
+    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}"></td>
     <td>{{ $i++ }}</td>
     <td>{{ $r->nik }}</td>
     <td>{{ $r->nama }}</td>

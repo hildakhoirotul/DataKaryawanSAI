@@ -14,7 +14,7 @@
             <div class="row mt-2 justify-content-between align-items-end">
 
 
-                <div class="col-md-4 ms-1">
+                <div class="col-md-6 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bi bi-cloud-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
@@ -23,13 +23,29 @@
                         <i class='bi bi-cloud-download me-1'></i>
                         <span>Template</span>
                     </a>
+                    <button class="btn btn-outline-warning mt-2 p-1 px-2" id="removeDataButton">
+                        <i class="bi bi-trash"></i>
+                        <span>Hapus</span>
+                    </button>
                 </div>
-
-                <div class="col-md-3 pe-3">
+                <div class="col-md-5 pe-3">
                     <div class="input-group">
+                        <form method="GET" action="{{ route('karyawan') }}">
+                            <div class="dropdown text-end ms-2 me-2">
+                                <label for="paginate" style="font-size: 12px;">Jumlah baris:</label>
+                                <select id="paginate" name="paginate" class="form-control col-md-3" onchange="this.form.submit()">
+                                    <option value="">--select--</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                    <option value="250">250</option>
+                                    <option value="500">500</option>
+                                    <option value="1000">1000</option>
+                                </select>
+                            </div>
+                        </form>
                         <!-- <div class="search-container"> -->
-                        <input type="text" name="search" style="height: 2.2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
-                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></i></button>
+                        <input type="text" name="search" style="height: 2.2rem; font-size: 10pt; margin-top: 1.40rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem; margin-top: 1.40rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></i></button>
                     </div>
                 </div>
             </div>
@@ -66,6 +82,7 @@
                         <table id="myTable" class="table table-striped text-center table-bordered border-light">
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" id="selectAllCheckbox"></th>
                                     <th>NO</th>
                                     <th>NIK</th>
                                     <th>Nama</th>
@@ -78,6 +95,7 @@
                                 @php $i=1 @endphp
                                 @foreach($user as $r)
                                 <tr>
+                                    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}"></td>
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $r->nik }}</td>
                                     <td>{{ $r->nama }}</td>
@@ -87,7 +105,6 @@
                                             <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
                                         </div>
                                     </td>
-                                    <!-- <td>{{ $r->password }}</td> -->
                                     <td>{{ $r->updated_at ? $r->updated_at : '-' }}</td>
                                     <td>
                                         <form action="{{ route('karyawan.destroy', ['id' => $r->id]) }}" method="POST">
@@ -101,9 +118,11 @@
                             </tbody>
                         </table>
                     </div>
+                    @if (!$state)
                     <div class="d-flex justify-content-center mt-3" id="paging">
                         {{ $user->links()}}
                     </div>
+                    @endif
                     <!-- </div> -->
                 </div>
             </div>
@@ -113,15 +132,15 @@
 </main>
 <script>
     function togglePasswordVisibility(icon) {
-        var passwordInput = icon.previousElementSibling; // Mendapatkan elemen sebelumnya (input password)
-        var type = passwordInput.getAttribute('type'); // Mendapatkan atribut type dari input
+        var passwordInput = icon.previousElementSibling;
+        var type = passwordInput.getAttribute('type');
 
         if (type === 'password') {
-            passwordInput.setAttribute('type', 'text'); // Ganti atribut type menjadi 'text' untuk menampilkan teks
+            passwordInput.setAttribute('type', 'text');
             icon.classList.remove('bi-eye-slash-fill');
             icon.classList.add('bi-eye-fill');
         } else {
-            passwordInput.setAttribute('type', 'password'); // Ganti atribut type menjadi 'password' untuk menyembunyikan teks
+            passwordInput.setAttribute('type', 'password');
             icon.classList.remove('bi-eye-fill');
             icon.classList.add('bi-eye-slash-fill');
         }
@@ -143,7 +162,6 @@
         myFunction();
     });
 </script>
-<script src="{{ asset('js/jquery.js') }}"></script>
 <script type="text/javascript">
     function showDeleteConfirmation(event, button) {
         event.preventDefault();
@@ -165,5 +183,42 @@
             });
     }
 </script>
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $("#selectAllCheckbox").change(function() {
+            var isChecked = $(this).prop("checked");
 
+            $(".checkbox").prop("checked", isChecked);
+        });
+        $("#removeDataButton").click(function() {
+            var selectedIds = [];
+
+            $(".checkbox:checked").each(function() {
+                selectedIds.push($(this).data("id"));
+            });
+
+            if (selectedIds.length > 0) {
+                if (confirm("Anda yakin ingin menghapus data yang dipilih?")) {
+                    $.ajax({
+                        url: "{{ url('delete-all')}}",
+                        method: "POST",
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            ids: selectedIds
+                        },
+                        success: function(response) {
+                            location.reload();
+                        },
+                        error: function(error) {
+                            console.error("Terjadi kesalahan: " + error);
+                        }
+                    });
+                }
+            } else {
+                alert("Pilih setidaknya satu data untuk dihapus.");
+            }
+        });
+    });
+</script>
 @endsection
