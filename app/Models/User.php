@@ -29,6 +29,7 @@ class User extends Authenticatable
         'is_admin',
         'email',
         'email_verified_at',
+        'initial_pass',
         'chain',
         'password',
         'password_changed',

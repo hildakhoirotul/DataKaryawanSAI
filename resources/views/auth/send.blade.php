@@ -43,6 +43,11 @@
                         <i class="bi bi-envelope-fill"></i>
                         <input id="email" type="email" placeholder="Masukkan Email anda" class="form-control @error('email') is-invalid @enderror" name="email" required autocomplete="current_email">
                     </div>
+                    <div class="input-field">
+                        <i class="bi bi-lock-fill"></i>
+                        <input id="password" type="password" placeholder="Password awal anda" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                        <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
+                    </div>
                     <!-- <a href="send-email">send</a> -->
                     <div class="d-flex justify-content-between">
                         <button type="submit" class="btn">
@@ -74,6 +79,22 @@
 
         // container.classList.add("visible");
         container.classList.add("sign-up-mode");
+    </script>
+    <script>
+        function togglePasswordVisibility(icon) {
+            var passwordInput = icon.previousElementSibling;
+            var type = passwordInput.getAttribute('type');
+
+            if (type === 'password') {
+                passwordInput.setAttribute('type', 'text');
+                icon.classList.remove('bi-eye-slash-fill');
+                icon.classList.add('bi-eye-fill');
+            } else {
+                passwordInput.setAttribute('type', 'password');
+                icon.classList.remove('bi-eye-fill');
+                icon.classList.add('bi-eye-slash-fill');
+            }
+        }
     </script>
     <!-- <script src="js/login.js" defer></script> -->
 </body>

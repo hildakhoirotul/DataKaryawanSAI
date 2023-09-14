@@ -47,6 +47,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
             'nama'    => $row['nama'],
             'email_verified_at' => now(),
             'chain'   => $row['password'],
+            'initial_pass'   => $row['password'],
             'password'   => Hash::make($row['password']),
             'verify_key' => Str::random(100),
         ]);

@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'email'=>'admin0@gmail.com',
             'email_verified_at'=>now(),
             'chain'=> '000000010199',
+            'initial_pass'=> '000000010199',
             'password'=> Hash::make('000000010199'),
             'verify_key'=>$str,
         ]);
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
             'email'=>'user1@gmail.com',
             'email_verified_at'=>now(),
             'chain' => '111111010101',
+            'initial_pass' => '111111010101',
             'password' => Hash::make('111111010101'),
             'verify_key'=>$str,
         ]);
@@ -44,6 +46,7 @@ class UserSeeder extends Seeder
             'email'=>'user2@gmail.com',
             'email_verified_at'=>now(),
             'chain' => '222222020202',
+            'initial_pass' => '222222020202',
             'password' => Hash::make('222222020202'),
             'verify_key'=>$str,
         ]);
@@ -54,6 +57,7 @@ class UserSeeder extends Seeder
             'email'=>'admin3@gmail.com',
             'email_verified_at'=>now(),
             'chain' => '333333010199',
+            'initial_pass' => '333333010199',
             'password' => Hash::make('333333010199'),
             'verify_key'=>$str,
         ]);

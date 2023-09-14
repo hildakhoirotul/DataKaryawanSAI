@@ -169,14 +169,15 @@ class LoginController extends Controller
     {
         $email = $request->input('email');
         $nik = $request->input('nik');
+        $pass = $request->input('password');
         $user = User::where('nik', $nik)
-        // ->where('email', $email)
+        ->where('initial_pass', $pass)
         ->first();
 
-        // if(!$user){
-        //     Alert::error('Gagal', 'NIk Anda Tidak Sesuai');
-        //     return redirect()->route('lupa-password');
-        // }
+        if(!$user){
+            Alert::error('Gagal', 'Password awal anda tidak sesuai, password awal merupakan gabungan nik dan tanggal lahir anda');
+            return redirect()->route('lupa-password');
+        }
         try {
         Mail::to($email)->send(new MyMail($email, $user));
 

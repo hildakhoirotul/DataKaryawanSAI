@@ -34,12 +34,12 @@
                             <div class="dropdown text-end ms-2 me-2">
                                 <label for="paginate" style="font-size: 12px;">Jumlah baris:</label>
                                 <select id="paginate" name="paginate" class="form-control col-md-3" onchange="this.form.submit()">
-                                    <option value="">--select--</option>
-                                    <option value="50">50</option>
-                                    <option value="100">100</option>
-                                    <option value="250">250</option>
-                                    <option value="500">500</option>
-                                    <option value="1000">1000</option>
+                                    <option value="50">--select--</option>
+                                    <option value="50" {{ $perPage == 50 ? 'selected' : '' }}>50</option>
+                                    <option value="100" {{ $perPage == 100 ? 'selected' : '' }}>100</option>
+                                    <option value="250" {{ $perPage == 250 ? 'selected' : '' }}>250</option>
+                                    <option value="500" {{ $perPage == 500 ? 'selected' : '' }}>500</option>
+                                    <option value="1000" {{ $perPage == 1000 ? 'selected' : '' }}>1000</option>
                                 </select>
                             </div>
                         </form>
@@ -95,7 +95,7 @@
                                 @php $i=1 @endphp
                                 @foreach($user as $r)
                                 <tr>
-                                    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}"></td>
+                                    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}" data-checked="{{ $r->isChecked ? 'true' : 'false' }}"></td>
                                     <td>{{ $i++ }}</td>
                                     <td>{{ $r->nik }}</td>
                                     <td>{{ $r->nama }}</td>
@@ -120,7 +120,7 @@
                     </div>
                     @if (!$state)
                     <div class="d-flex justify-content-center mt-3" id="paging">
-                        {{ $user->links()}}
+                        {{ $user->appends(['paginate' => $perPage])->links()}}
                     </div>
                     @endif
                     <!-- </div> -->
@@ -154,6 +154,7 @@
             .then(response => response.text())
             .then(data => {
                 document.getElementById('karyawanTableBody').innerHTML = data;
+                handleCheckboxChanges();
             });
         document.getElementById('paging').style.display = "none";
     }
@@ -185,40 +186,109 @@
 </script>
 <script src="{{ asset('js/jquery.js') }}"></script>
 <script>
-    $(document).ready(function() {
+    function handleCheckboxChanges() {
+        function getCheckboxStatusFromLocalStorage() {
+            var isChecked = localStorage.getItem("selectAllChecked");
+            if (isChecked === "true") {
+                $("#selectAllCheckbox").prop("checked", true);
+                $(".checkbox").prop("checked", true);
+            } else {
+                $("#selectAllCheckbox").prop("checked", false);
+                $(".checkbox").prop("checked", false);
+            }
+        }
+
+        function updateSelectedIdsInLocalStorage(selectedIds) {
+            localStorage.setItem("selectedIds", JSON.stringify(selectedIds));
+        }
+
         $("#selectAllCheckbox").change(function() {
             var isChecked = $(this).prop("checked");
 
+            // Mengatur status selectAllChecked di local storage
+            localStorage.setItem("selectAllChecked", isChecked ? "true" : "false");
+
+            // Mengatur status checkbox individual
             $(".checkbox").prop("checked", isChecked);
-        });
-        $("#removeDataButton").click(function() {
-            var selectedIds = [];
 
-            $(".checkbox:checked").each(function() {
-                selectedIds.push($(this).data("id"));
-            });
-
-            if (selectedIds.length > 0) {
-                if (confirm("Anda yakin ingin menghapus data yang dipilih?")) {
-                    $.ajax({
-                        url: "{{ url('delete-all')}}",
-                        method: "POST",
-                        data: {
-                            _token: "{{ csrf_token() }}",
-                            ids: selectedIds
-                        },
-                        success: function(response) {
-                            location.reload();
-                        },
-                        error: function(error) {
-                            console.error("Terjadi kesalahan: " + error);
-                        }
-                    });
-                }
+            // Memperbarui selectedIds di local storage sesuai dengan status terbaru
+            if (isChecked) {
+                var dataIds = $(".checkbox").map(function() {
+                    return $(this).data("id");
+                }).get();
+                updateSelectedIdsInLocalStorage(dataIds);
             } else {
-                alert("Pilih setidaknya satu data untuk dihapus.");
+                updateSelectedIdsInLocalStorage([]);
             }
         });
+
+        var selectedIds = getSelectedIdsFromLocalStorage();
+        $(".checkbox").each(function() {
+            var dataId = $(this).data("id");
+            if (selectedIds.includes(dataId)) {
+                $(this).prop("checked", true);
+            }
+        });
+
+        $(".checkbox").change(function() {
+            var isChecked = $(this).prop("checked");
+            var dataId = $(this).data("id");
+            var selectedIds = getSelectedIdsFromLocalStorage();
+
+            if (isChecked) {
+                selectedIds.push(dataId);
+            } else {
+                selectedIds = selectedIds.filter(function(id) {
+                    return id !== dataId;
+                });
+            }
+
+            localStorage.setItem("selectedIds", JSON.stringify(selectedIds));
+        });
+
+    }
+
+    function getSelectedIdsFromLocalStorage() {
+        var selectedIds = JSON.parse(localStorage.getItem("selectedIds")) || [];
+        return selectedIds;
+    }
+
+    $(document).ready(function() {
+        handleCheckboxChanges(); // Panggil fungsi ketika dokumen siap
+
+        // Event listener untuk checkbox yang akan memanggil fungsi saat dicentang
+        $(".checkbox").change(function() {
+            handleCheckboxChanges();
+        });
+    });
+
+    function deleteSelectedData() {
+        var selectedIds = getSelectedIdsFromLocalStorage();
+
+        if (selectedIds.length > 0) {
+            if (confirm("Anda yakin ingin menghapus data yang dipilih?")) {
+                $.ajax({
+                    url: "{{ url('delete-all')}}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        ids: selectedIds
+                    },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(error) {
+                        console.error("Terjadi kesalahan: " + error);
+                    }
+                });
+            }
+
+        } else {
+            alert("Pilih setidaknya satu data untuk dihapus.");
+        }
+    };
+    $("#removeDataButton").click(function() {
+        deleteSelectedData(); // Panggil fungsi untuk menghapus data
     });
 </script>
 @endsection

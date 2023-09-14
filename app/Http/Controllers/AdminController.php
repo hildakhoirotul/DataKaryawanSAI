@@ -43,9 +43,7 @@ class AdminController extends Controller
         $rekap = Rekapitulasi::paginate(50);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.dashboard', compact('rekap', 'total', 'status'))
-            ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
-            ->header('Pragma', 'no-cache');
+        return response()->view('admin.dashboard', compact('rekap', 'total', 'status'));
     }
 
     public function absensi(Request $request)
@@ -78,19 +76,13 @@ class AdminController extends Controller
     public function karyawan(Request $request)
     {
         $state = false;
-        $perPage = $request->input('paginate', 100);
-        // if ($perPage == "all") {
-        //     $state = true;
-        //     $user = User::get();
-        // } else {
-        //     $user = User::paginate($perPage);
-        // }
-        $user = User::paginate($perPage);
+        $perPage = $request->input('paginate', 50);
+        $user = User::paginate($perPage)->onEachSide(1);
 
         $total = User::count();
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.karyawan', compact('user', 'total', 'status', 'state'));
+        return response()->view('admin.karyawan', compact('user', 'total', 'status', 'state', 'perPage'));
     }
 
     public function setting()
@@ -143,7 +135,7 @@ class AdminController extends Controller
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $absensiData = $query->orderBy('tanggal', 'DESC')->paginate(100);
+        $absensiData = $query->orderBy('tanggal', 'DESC')->get();
 
         return view('admin.partial.absensi', ['absensiData' => $absensiData]);
     }
@@ -173,7 +165,7 @@ class AdminController extends Controller
                 ->orWhere('nik_ochi_leader', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $ochiData = $query->paginate(50);
+        $ochiData = $query->get();
 
         // $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
         //     ->get();
@@ -209,7 +201,7 @@ class AdminController extends Controller
                 ->orWhere('juara_pasi', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $qccData = $query->paginate(50);
+        $qccData = $query->get();
 
         return view('admin.partial.qcc', ['qccData' => $qccData]);
     }

@@ -1,14 +1,14 @@
 @php $i=1 @endphp
 @foreach($user as $r)
 <tr>
-    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}"></td>
+    <td><input type="checkbox" class="checkbox" data-id="{{$r->id}}" data-checked="{{ $r->isChecked ? 'true' : 'false' }}"></td>
     <td>{{ $i++ }}</td>
     <td>{{ $r->nik }}</td>
     <td>{{ $r->nama }}</td>
     <td>
         <div class="password-container">
             <input type="password" class="password-text" value="{{ $r->chain }}" readonly>
-            <i class="toggle-password-icon fa fa-eye-slash" onclick="togglePasswordVisibility(this)"></i>
+            <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
         </div>
     </td>
     <!-- <td>{{ $r->password }}</td> -->

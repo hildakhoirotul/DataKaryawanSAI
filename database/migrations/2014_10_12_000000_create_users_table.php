@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->string('chain');
+            $table->string('initial_pass');
             $table->string('password');
             $table->boolean('password_changed')->default(false);
             $table->string('verify_key')->nullable();

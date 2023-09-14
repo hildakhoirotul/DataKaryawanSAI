@@ -100,10 +100,15 @@ form.sign-in-form {
     margin: 10px 0;
     height: 55px;
     border-radius: 55px;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    padding: 0 0.4rem;
+    display: block;
+    /* grid-template-columns: 15% 85%; */
+    /* justify-content: space-between; */
+    padding: 0 1rem;
     position: relative;
+}
+
+.input-field .toggle-password-icon {
+    margin-left: 30px;
 }
 
 .input-field i {
@@ -112,6 +117,8 @@ form.sign-in-form {
     color: #acacac;
     transition: 0.5s;
     font-size: 1.1rem;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .input-field input {

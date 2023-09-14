@@ -42,14 +42,17 @@
                     <div class="input-field">
                         <i class="bi bi-lock-fill"></i>
                         <input id="current_password" type="password" placeholder="Password Lama" class="form-control @error('password') is-invalid @enderror" name="current_password" required autocomplete="current_password">
+                        <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
                     </div>
                     <div class="input-field">
                         <i class="bi bi-lock-fill"></i>
                         <input id="new_password" type="password" placeholder="Password Baru" class="form-control @error('password') is-invalid @enderror" name="new_password" required autocomplete="new_password">
+                        <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
                     </div>
                     <div class="input-field">
                         <i class="bi bi-lock-fill"></i>
                         <input id="password_confirmation" type="password" placeholder="Konfirmasi Password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="password_confirmation">
+                        <i class="toggle-password-icon bi bi-eye-slash-fill" onclick="togglePasswordVisibility(this)"></i>
                     </div>
                     <!-- <button type="submit" class="btn solid fw-bold">
                         {{ __('GANTI') }}
@@ -132,7 +135,22 @@
             </div>
         </div>
     </div>
+    <script>
+        function togglePasswordVisibility(icon) {
+            var passwordInput = icon.previousElementSibling;
+            var type = passwordInput.getAttribute('type');
 
+            if (type === 'password') {
+                passwordInput.setAttribute('type', 'text');
+                icon.classList.remove('bi-eye-slash-fill');
+                icon.classList.add('bi-eye-fill');
+            } else {
+                passwordInput.setAttribute('type', 'password');
+                icon.classList.remove('bi-eye-fill');
+                icon.classList.add('bi-eye-slash-fill');
+            }
+        }
+    </script>
 </body>
 
 </html>
