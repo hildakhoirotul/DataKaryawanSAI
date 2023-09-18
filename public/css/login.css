@@ -1,4 +1,3 @@
-/* Fuad Suleymanli */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
@@ -19,7 +18,6 @@ input {
     background-color: #fff;
     min-height: 100vh;
     overflow: hidden;
-    /* display: block; */
 }
 
 .forms-container {
@@ -70,29 +68,6 @@ form.sign-in-form {
 
 }
 
-/* .sign-up-form .input-field {
-    max-width: 380px;
-    width: 100%;
-    background-color: #f0f0f0;
-    margin: 7px 0;
-    height: 45px;
-    border-radius: 55px;
-    display: grid;
-    grid-template-columns: 15% 85%;
-    padding: 0 0.4rem;
-    position: relative;
-}
-
-
-.sign-up-form .input-field i {
-    text-align: center;
-    line-height: 45px;
-    color: #acacac;
-    transition: 0.5s;
-    font-size: 1.1rem;
-} */
-
-
 .input-field {
     max-width: 380px;
     width: 100%;
@@ -102,8 +77,6 @@ form.sign-in-form {
     border-radius: 55px;
     display: flex;
     align-items: center;
-    /* grid-template-columns: 15% 85%; */
-    /* justify-content: space-between; */
     padding: 0 1rem;
     position: relative;
 }
@@ -144,7 +117,6 @@ form.sign-in-form {
     font-family: "Poppins", sans-serif;
 
 }
-
 
 .rules-text {
     padding: 0.7rem 0;
@@ -305,7 +277,6 @@ form.sign-in-form {
     color: rgba(1, 4, 136, 0.9);
 }
 
-
 .right-panel .image,
 .right-panel .content {
     transform: translateX(800px);
@@ -357,6 +328,8 @@ form.sign-in-form {
 
 .container.sign-up-mode .left-panel {
     pointer-events: none;
+    opacity: 1;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
 }
 
 .container.sign-up-mode .right-panel {
@@ -633,34 +606,10 @@ form.sign-in-form {
 
     .btn {
         width: 150px;
-        background-color: rgba(1, 4, 136, 0.9);
-        border: none;
-        outline: none;
-        height: 49px;
-        border-radius: 49px;
-        color: #fff;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin: 10px 0;
-        cursor: pointer;
-        transition: 0.5s;
-        font-family: "Poppins", sans-serif;
     }
 
     .btn-cancel {
-        border: 2px solid black;
-        background-color: white;
-        border-color: #cccccc;
-        color: rgb(110, 110, 110);
         width: 150px;
-        height: 49px;
-        border-radius: 49px;
-        text-transform: uppercase;
-        font-weight: 600;
-        margin: 10px 0;
-        cursor: pointer;
-        transition: 0.5s;
-        font-family: "Poppins", sans-serif;
     }
 }
 
@@ -706,6 +655,14 @@ form.sign-in-form {
     .container.sign-up-mode:before {
         bottom: 28%;
         left: 50%;
+    }
+
+    .btn {
+        width: 145px;
+    }
+
+    .btn-cancel {
+        width: 145px;
     }
 }
 
