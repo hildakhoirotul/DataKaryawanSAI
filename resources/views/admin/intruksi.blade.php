@@ -60,7 +60,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh, Template, dan Hapus<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh, Update, Template, dan Hapus<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -78,6 +78,14 @@
                                             </td>
                                             <td>
                                                 <p>Download data dengan format file excel.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/update.png') }}" alt="" class="button">
+                                            </td>
+                                            <td>
+                                                <p>Klik untuk memperbarui rekapitulasi. Hasil rekapitulasi didapatkan dari data Absensi, OCHI, QCC, dan Data Karyawan.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -303,6 +311,68 @@
                             </div>
                         </li>
 
+                        <li data-aos="fade-up" data-aos-delay="600">
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-7" class="collapsed">Urutan Memasukkan Data<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
+                            <div id="faq-list-7" class="collapse" data-bs-parent=".faq-list">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/upload1.png') }}" alt="" style="width: 30rem;">
+                                            </td>
+                                            <td>
+                                                <p>Silahkan Upload terlebih dahulu data karyawan yang berisikan NIK 6 digit, Nama dan Password.</p>
+                                                <p>1. Klik tombol Unggah Data untuk mulai memasukkan data. Silahkan unduh template terlebih dahulu pada tombol "Template".</p>
+                                                <p>2. Silahkan tunggu hingga proses selesai.</p>
+                                                <p>3. Pastikan tidak ada duplikasi pada data.</p>
+                                                <p>4. Apabila terjadi kegagalan upload, coba kurangi jumlah data yang diupload.</p>
+                                                <p>5. Pesan berhasil akan muncul setelah data terupload dengan benar.</p>
+                                                <img src="{{ asset('assets/img/petunjuk/success.png') }}" alt="" style="width: 18rem;">
+                                                <p>6. Pesan error akan muncul dengan keterangan data yang tidak valid. Data yang tidak valid, tidak akan terupload. Silahkan perbaiki data kemudian upload ulang.</p>
+                                                <img src="{{ asset('assets/img/petunjuk/error1.png') }}" alt="" style="width: 18rem;">
+                                                <p>7. NIK tidak valid artinya NIK tersebut belum ada di data karyawan. Silahkan tambahkan data NIK, Nama dan Password pada data karyawan agar NIK tersebut menjadi valid.</p>
+                                                <p>8. Pada data karyawan ini, setiap melakukan upload data, data yang sudah ada tidak akan terhapus. Apabila terdapat data yang sama, maka akan terupdate sementara data yang tidak ada akan ditambahkan.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/upload2.png') }}" alt="" style="width: 30rem;">
+                                                <img src="{{ asset('assets/img/petunjuk/upload3.png') }}" alt="" style="width: 30rem;">
+                                                <img src="{{ asset('assets/img/petunjuk/upload4.png') }}" alt="" style="width: 30rem;">
+                                            </td>
+                                            <td>
+                                                <p>Setelah upload data karyawan, data selanjutnya ialah data Absensi, OCHI dan QCC</p>
+                                                <p>1. Klik tombol Unggah Data untuk mulai memasukkan data. Silahkan unduh template terlebih dahulu pada tombol "Template".</p>
+                                                <p>2. Silahkan tunggu hingga proses selesai.</p>
+                                                <p>3. Pastikan tidak ada duplikasi pada data.</p>
+                                                <p>4. Apabila terjadi kegagalan upload, coba kurangi jumlah data yang diupload.</p>
+                                                <p>5. Pesan berhasil akan muncul setelah data terupload dengan benar.</p>
+                                                <img src="{{ asset('assets/img/petunjuk/success.png') }}" alt="" style="width: 15rem;">
+                                                <p>6. Pesan error akan muncul dengan keterangan data yang tidak valid. Data yang tidak valid, tidak akan terupload. Silahkan perbaiki data kemudian upload ulang.</p>
+                                                <img src="{{ asset('assets/img/petunjuk/error2.png') }}" alt="" style="width: 18rem;">
+                                                <img src="{{ asset('assets/img/petunjuk/error3.png') }}" alt="" style="width: 18rem;">
+                                                <img src="{{ asset('assets/img/petunjuk/error4.png') }}" alt="" style="width: 18rem;">
+                                                <p>7. NIK tidak valid artinya NIK tersebut belum ada di data karyawan. Silahkan tambahkan data NIK, Nama dan Password pada data karyawan agar NIK tersebut menjadi valid.</p>
+                                                <p>8. Pada data Absensi, OCHI dan QCC, setiap melakukan upload data, data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/upload5.png') }}" alt="" style="width: 30rem;">
+                                            </td>
+                                            <td>
+                                                <p>Setelah semua data sudah terunggah, Silahkan Update data pada Rekapitulasi untuk mendapatkan jumlah total dari setiap data.</p>
+                                                <p>1. Klik tombol Update Data untuk memulai update. Anda juga dapat melakukan unggah data dengan mengunduh template terlebih dahulu pada tombol "Template".</p>
+                                                <p>2. Silahkan tunggu hingga proses selesai.</p>
+                                                <p>3. Begitu selesai, data akan otomatis terupdate.</p>
+                                                <p>4. Apabila terdapat perubahan data pada data karyawan, absensi, OCHI maupun QCC, silahkan lakukan update data kembali pada rekapitulasi.</p>
+                                                <p>5. Pada data Rekapitulasi ini, Apabila anda melakukan unggah data maka data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
                     </ul>
                 </div>
 

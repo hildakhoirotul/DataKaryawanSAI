@@ -41,17 +41,20 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
             'ITD',
             'ICP',
             'TD',
-            // 'CP',
             'OCHI',
             'QCC',
             'OCHI_leader',
-            // 'Juara_OCHI',
-            // 'Juara_QCC',
         ];
     }
 
     public function map($row): array
     {
+        foreach ($row as $key => $value) {
+            if ($value === '0') {
+                $row[$key] = '-';
+            }
+        }
+    
         return [
             $row['nik'],
             $row['SD'],
@@ -61,12 +64,9 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
             $row['ITD'],
             $row['ICP'],
             $row['TD'],
-            // $row['CP'],
             $row['OCHI'],
             $row['QCC'],
             $row['OCHI_leader'],
-            // $row['Juara_OCHI'],
-            // $row['Juara_QCC'],
         ];
     }
 }

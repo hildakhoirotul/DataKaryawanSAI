@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Absensi;
+use App\Models\User;
 use App\Rules\ValidDate;
 use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -15,6 +16,8 @@ use Throwable;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithMappedCells;
 
@@ -32,7 +35,12 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
     public function rules(): array
     {
         return [
-            'nik' => 'required|min:6',
+            // 'nik' => 'required|min:6',
+            'nik' => [
+                'required',
+                'min:6',
+                Rule::exists('users', 'nik'),
+            ],
             'jenis' => 'required|max:3',
             'tanggal' => ['required', new ValidDate()],
         ];
@@ -43,14 +51,26 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
         $date = intval($row['tanggal']);
         $timeIn = floatval($row['jam_masuk']);
         $timeOut = floatval($row['jam_pulang']);
+        $error = [];
 
-        return new Absensi([
-            'nik'     => $row['nik'],
-            'jenis'   => $row['jenis'],
-            'tanggal' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date)->format('Y-m-d'),
-            'jam_masuk'  => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeIn),
-            'jam_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeOut),
-        ]);
+        // $user = User::where('nik', $row['nik'])->first();
+
+        // if($user) {
+            return new Absensi([
+                'nik'     => $row['nik'],
+                'jenis'   => $row['jenis'],
+                'tanggal' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date)->format('Y-m-d'),
+                'jam_masuk'  => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeIn),
+                'jam_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeOut),
+            ]);
+        // } else {
+        //     $error[] = $row['nik'];
+        //     $message = implode(", ", $error);
+        //     Session::flash('error', implode(", ", $error));
+        //     return null;
+        // }
+
+        
     }
 
     public function batchSize(): int
@@ -82,6 +102,7 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
+            'nik.exists' => 'NIK tidak valid',
             'jenis.required' => 'Jenis tidak boleh kosong.',
             'jenis.max' => 'Jenis melebihi 3 karakter',
             'tanggal.required' => 'Tanggal tidak boleh kosong.',

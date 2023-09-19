@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Qcc;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -25,7 +26,11 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
     public function rules(): array
     {
         return [
-            'nik' => 'required|min:6',
+            'nik' => [
+                'required',
+                'min:6',
+                Rule::exists('users', 'nik'),
+            ],
             'tema' => 'required',
             'nama_qcc' => 'required',
         ];
@@ -71,6 +76,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
+            'nik.exists' => 'NIK tidak valid',
             'tema.required' => 'Tema tidak boleh kosong.',
             'nama_qcc.required' => 'NIK OCHI leader tidak boleh kosong.',
         ];

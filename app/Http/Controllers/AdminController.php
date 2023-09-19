@@ -40,7 +40,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         $total = Rekapitulasi::count();
-        $rekap = Rekapitulasi::paginate(50);
+        $rekap = Rekapitulasi::orderBy('nik', 'ASC')->paginate(50);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         return response()->view('admin.dashboard', compact('rekap', 'total', 'status'));
@@ -95,6 +95,95 @@ class AdminController extends Controller
     public function intruksi()
     {
         return view('admin.intruksi');
+    }
+
+    public function updateRekap()
+    {
+        $absensi = Absensi::all();
+        $ochi = Ochi::all();
+        $qcc = Qcc::all();
+        $user = User::pluck('nik')->toArray();
+
+        $total = [];
+        foreach ($user as $nik) {
+            $total[$nik] = [
+                'SD' => 0,
+                'S' => 0,
+                'I' => 0,
+                'A' => 0,
+                'ITD' => 0,
+                'ICP' => 0,
+                'TD' => 0,
+                'OCHI' => 0,
+                'QCC' => 0,
+                'OCHI_leader' => 0,
+            ];
+        }
+        foreach ($absensi as $data) {
+            $nik = $data->nik;
+            $jenis = $data->jenis;
+
+            if (!isset($total[$nik])) {
+                $total[$nik] = [
+                    'SD' => 0,
+                    'S' => 0,
+                    'I' => 0,
+                    'A' => 0,
+                    'ITD' => 0,
+                    'ICP' => 0,
+                    'TD' => 0,
+                ];
+            }
+
+            if ($jenis === 'SD') {
+                $total[$nik]['SD']++;
+            } elseif ($jenis === 'S') {
+                $total[$nik]['S']++;
+            } elseif ($jenis === 'I') {
+                $total[$nik]['I']++;
+            } elseif ($jenis === 'A') {
+                $total[$nik]['A']++;
+            } elseif ($jenis === 'ITD') {
+                $total[$nik]['ITD']++;
+            } elseif ($jenis === 'ICP') {
+                $total[$nik]['ICP']++;
+            } else {
+                $total[$nik]['TD']++;
+            }
+        }
+
+        foreach ($ochi as $oc) {
+            $nik = $oc->nik;
+            $ochi_leader = $oc->nik_ochi_leader;
+    
+            if (!isset($total[$nik])) {
+                $total[$nik]['OCHI'] = 0;
+            } else {
+                $total[$nik]['OCHI']++;
+            }
+
+            if (!isset($total[$ochi_leader])) {
+                $total[$ochi_leader]['OCHI_leader'] = 0;
+            } else {
+                $total[$ochi_leader]['OCHI_leader']++;
+            }
+        }
+
+        foreach ($qcc as $qc) {
+            $nik = $qc->nik;
+    
+            if (!isset($total[$nik])) {
+                $total[$nik]['QCC'] = 0;
+            } else {
+                $total[$nik]['QCC']++;
+            }
+        }
+
+        foreach ($total as $nik => $totalData) {
+            Rekapitulasi::updateOrCreate(['nik' => $nik], $totalData);
+        }
+
+        return redirect()->back();
     }
 
     public function searchRekap(Request $request)

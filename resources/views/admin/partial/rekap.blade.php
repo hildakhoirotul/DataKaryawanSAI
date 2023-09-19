@@ -1,7 +1,7 @@
 @php $i=1 @endphp
 @foreach($results as $r)
 <tr>
-    <td>{{ $r->id }}</td>
+    <td>{{ $i++ }}</td>
     <td>{{ $r->nik }}</td>
     <td>
         @if($r->SD == 0 || null)

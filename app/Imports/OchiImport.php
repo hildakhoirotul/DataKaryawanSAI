@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\Ochi;
+use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\Importable;
@@ -26,7 +27,11 @@ class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
     public function rules(): array
     {
         return [
-            'nik' => 'required|min:6',
+            'nik' => [
+                'required',
+                'min:6',
+                Rule::exists('users', 'nik'),
+            ],
             'tema' => 'required',
             'ochi_leader' => 'required|min:6',
         ];
@@ -74,6 +79,7 @@ class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
+            'nik.exists' => 'NIK tidak valid',
             'tema.required' => 'Tema tidak boleh kosong.',
             'ochi_leader.required' => 'NIK OCHI leader tidak boleh kosong.',
             'ochi_leader.min' => 'NIK OCHI leader harus terdiri dari 6 digit.',

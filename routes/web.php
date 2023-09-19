@@ -64,6 +64,7 @@ Route::controller(AdminController::class)->group(function () {
     Route::delete('/destroy/{id}', 'destroy')->name('karyawan.destroy');
     Route::get('/unduh/{nama_file}', 'unduh')->name('unduh');
     Route::post('delete-all', 'remove');
+    Route::get('/update-rekapitulasi', 'updateRekap')->name('update.rekap');
 });
 
 Route::controller(HomeController::class)->group(function () {

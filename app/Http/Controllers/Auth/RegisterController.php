@@ -100,6 +100,7 @@ class RegisterController extends Controller
             'nama' => $request->nama,
             'email' => $request->email,
             'chain' => $request->password,
+            'initial_pass' => $request->password,
             'password' => Hash::make($request->password),
             'verify_key' => $str,
         ]);

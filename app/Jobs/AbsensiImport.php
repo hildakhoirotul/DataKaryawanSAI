@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -37,6 +38,7 @@ class AbsensiImport implements ShouldQueue
     {
         $import = new ImportsAbsensiImport();
         Excel::import($import, $this->path);
+        $session = Session::get('error');
 
         $errorMessages = [];
         $i = "1";
@@ -44,7 +46,10 @@ class AbsensiImport implements ShouldQueue
             $error = $failure->errors();
             $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
         }
-    
+        // if(!empty($session)){
+        //     $errorMessages[] = ($i++ . ". " . $session);
+        // }
+        // dd($session);
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
             Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');

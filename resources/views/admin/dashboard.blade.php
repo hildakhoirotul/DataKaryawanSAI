@@ -10,7 +10,7 @@
             </div>
             <div class="row mt-2 justify-content-between align-items-end">
 
-                <div class="col-md-6 ms-1">
+                <div class="col-md-7 ms-1">
                     <button type="button" class="btn btn-danger mt-2 p-1 px-2" data-toggle="modal" data-target="#importExcel">
                         <i class='bi bi-cloud-upload me-1' style="vertical-align: middle;"></i>
                         <span>Unggah Data</span>
@@ -18,6 +18,10 @@
                     <a href="{{ route('export.excel.submit') }}" class="btn unduh btn-info mt-2 ms-1 p-1 px-2">
                         <i class='bi bi-cloud-download me-1'></i>
                         <span>Unduh Data</span>
+                    </a>
+                    <a href="{{ route('update.rekap') }}" class="btn unduh btn-warning mt-2 ms-1 p-1 px-2">
+                        <i class="bi bi-pencil-square"></i>
+                        <span>Update Data</span>
                     </a>
                     <a href="{{ url('/unduh/template_rekapitulasi.xlsx') }}" class="btn unduh btn-outline-success mt-2 ms-1 p-1 px-2">
                         <i class='bi bi-cloud-download me-1'></i>
@@ -87,7 +91,7 @@
                                 @php $i=1 @endphp
                                 @foreach($rekap as $r)
                                 <tr>
-                                    <td>{{ $r->id }}</td>
+                                    <td>{{ $i++ }}</td>
                                     <td>{{ $r->nik }}</td>
                                     <td>
                                         @if($r->SD == 0 || null)

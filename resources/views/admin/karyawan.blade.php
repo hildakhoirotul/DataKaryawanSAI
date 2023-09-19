@@ -119,7 +119,7 @@
                         </table>
                     </div>
                     @if (!$state)
-                    <div class="d-flex justify-content-center mt-3" id="paging">
+                    <div class="pagination d-flex justify-content-center mt-3" id="paging">
                         {{ $user->appends(['paginate' => $perPage])->links()}}
                     </div>
                     @endif
