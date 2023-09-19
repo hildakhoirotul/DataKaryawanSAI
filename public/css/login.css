@@ -336,6 +336,16 @@ form.sign-in-form {
     pointer-events: all;
 }
 
+@media (max-width: 1048px){
+    .btn {
+        width: 145px;
+    }
+
+    .btn-cancel {
+        width: 145px;
+    }
+}
+
 @media (max-width: 980px) {
     .container {
         /* min-height: 800px; */

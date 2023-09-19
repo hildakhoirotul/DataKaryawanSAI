@@ -1,17 +1,17 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('https://datakaryawan.trixsite.com/')
-    cy.get('input[name=nik]').eq(0).type('111111')
-    cy.get('input[name=password]').eq(0).type('111111010101')
+    cy.visit('http://127.0.0.1:8000/')
+    cy.get('input[name=nik]').eq(0).type('000286')
+    cy.get('input[name=password]').eq(0).type('000286')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
     cy.contains('OK').click()
   });
 
   it('displays informations on the page', () => {
     cy.contains('Home').should('exist')
-    cy.contains('111111').should('exist')
+    cy.contains('000286').should('exist')
     cy.get('.bi-person-circle').should('exist')
 
     cy.get('.dropdown').trigger('mouseover');
@@ -29,7 +29,7 @@ describe('Homepage', () => {
     cy.contains('Lihat Data').should('exist')
     cy.get('.bi-arrow-right').should('exist')
 
-    cy.get('.img-fluid').should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/8.png');
+    cy.get('.img-fluid').should('have.attr', 'src', 'http://127.0.0.1:8000/assets/img/8.png');
     cy.get('.hero-waves').should('exist');
     cy.get('.wave1').should('exist');
     cy.get('.wave2').should('exist');
@@ -56,29 +56,31 @@ describe('Homepage', () => {
     cy.contains('Jumlah Izin').should('exist')
     cy.contains('Jumlah Izin Terlambat Datang').should('exist')
     cy.contains('Jumlah Terlambat Datang').should('exist')
-    // cy.contains('Jumlah Izin Cepat Pulang').should('exist')
+    cy.contains('Jumlah Izin Cepat Pulang').should('exist')
     cy.contains('Jumlah OCHI').should('exist')
     cy.contains('Jumlah QCC').should('exist')
     cy.contains('OCHI Leader').should('exist')
     cy.contains('Lihat Tanggal').should('exist')
     cy.contains('Lihat Detail').should('exist')
 
-    // A
+    // SD
     cy.get('.count-box').eq(0).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('25 May 2023').should('exist');
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('28 April 2022').should('exist');
+    cy.contains('14 May 2022').should('exist');
+    cy.contains('13 January 2022').should('exist');
     // S
     cy.get('.count-box').eq(1).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('01 April 2023').should('exist');
-    // SD
-    cy.get('.count-box').eq(2).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('13 April 2023').should('exist');
+    // cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
     // I
+    cy.get('.count-box').eq(2).click();
+    // cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
+    // A
     cy.get('.count-box').eq(3).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('03 April 2023').should('exist');
+    // cy.get('.bi-calendar-week').should('exist');
+    cy.contains('26 June 2022').should('exist');
     // ITD
     cy.get('.count-box').eq(4).click();
     cy.contains('Tidak ada data').should('exist');
@@ -86,8 +88,12 @@ describe('Homepage', () => {
     cy.get('.count-box').eq(5).click();
     cy.contains('Tanggal').should('exist');
     cy.contains('Jam Masuk').should('exist');
-    cy.contains('08 February 2023').should('exist');
-    cy.contains('07:45:00').should('exist');
+    cy.contains('01 December 2021').should('exist');
+    cy.contains('07:30:00').should('exist');
+    cy.contains('09 December 2021').should('exist');
+    cy.contains('20:03:00').should('exist');
+    cy.contains('21 June 2022').should('exist');
+    cy.contains('07:35:00').should('exist');
     // ICP
     cy.get('.count-box').eq(6).click();
     cy.contains('Tidak ada data').should('exist');
@@ -99,12 +105,13 @@ describe('Homepage', () => {
     // cy.contains('10:40:55').should('exist');
     // OCHI
     cy.get('.count-box').eq(7).click();
-    cy.contains('Tema').should('exist');
-    cy.contains('Kontes').should('exist');
-    cy.contains('Juara').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 3').should('exist');
+    cy.contains('Tidak ada data').should('exist');
+    // cy.contains('Tema').should('exist');
+    // cy.contains('Kontes').should('exist');
+    // cy.contains('Juara').should('exist');
+    // cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
+    // cy.contains('Kontes 4').should('exist');
+    // cy.contains('Juara 3').should('exist');
     // QCC
     cy.get('.count-box').eq(8).click();
     cy.contains('Nama Circle').should('exist');
@@ -112,17 +119,17 @@ describe('Homepage', () => {
     cy.contains('Kontes').should('exist');
     cy.contains('Juara SAI').should('exist');
     cy.contains('Juara PASI').should('exist');
-    cy.contains('Legal').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 1').should('exist');
+    cy.contains('KEMBANG 27').should('exist');
+    cy.contains('REDUCE MUDA GERAK T.9 LINE 9A').should('exist');
+    cy.contains('29').should('exist');
+    cy.contains('-').should('exist');
     cy.contains('-').should('exist');
     // OCHI Leader
     cy.get('.count-box').eq(9).click();
     cy.contains('NIK OCHI').should('exist');
     cy.contains('Tema').should('exist');
-    cy.contains('766512').should('exist');
-    cy.contains('cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam').should('exist');
+    cy.contains('001322').should('exist');
+    cy.contains('Muda Gerak Ambil Airgun saat EC Open').should('exist');
 
     cy.get('.back-to-top').should('exist');
     cy.get('.back-to-top').click();
@@ -134,7 +141,7 @@ describe('Homepage', () => {
 
     cy.contains('Ingin Ganti Password?').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit, password lama dan password baru.').should('exist')
-    
+
     cy.contains('Ganti Password').should('exist')
     cy.get('input[name=current_password]').should('exist')
     cy.get('input[name=new_password]').should('exist')
@@ -162,29 +169,30 @@ describe('Homepage', () => {
     cy.contains('Jumlah Izin Terlambat Datang').should('exist')
     cy.contains('Jumlah Terlambat Datang').should('exist')
     cy.contains('Jumlah Izin Cepat Pulang').should('exist')
-    // cy.contains('Jumlah Cepat Pulang').should('exist')
     cy.contains('Jumlah OCHI').should('exist')
     cy.contains('Jumlah QCC').should('exist')
     cy.contains('OCHI Leader').should('exist')
     cy.contains('Lihat Tanggal').should('exist')
     cy.contains('Lihat Detail').should('exist')
 
-    // A
+    // SD
     cy.get('.count-box').eq(0).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('25 May 2023').should('exist');
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('28 April 2022').should('exist');
+    cy.contains('14 May 2022').should('exist');
+    cy.contains('13 January 2022').should('exist');
     // S
     cy.get('.count-box').eq(1).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('01 April 2023').should('exist');
-    // SD
-    cy.get('.count-box').eq(2).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('13 April 2023').should('exist');
+    // cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
     // I
+    cy.get('.count-box').eq(2).click();
+    // cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
+    // A
     cy.get('.count-box').eq(3).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('03 April 2023').should('exist');
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('26 June 2022').should('exist');
     // ITD
     cy.get('.count-box').eq(4).click();
     cy.contains('Tidak ada data').should('exist');
@@ -192,8 +200,12 @@ describe('Homepage', () => {
     cy.get('.count-box').eq(5).click();
     cy.contains('Tanggal').should('exist');
     cy.contains('Jam Masuk').should('exist');
-    cy.contains('08 February 2023').should('exist');
-    cy.contains('07:45:00').should('exist');
+    cy.contains('01 December 2021').should('exist');
+    cy.contains('07:30:00').should('exist');
+    cy.contains('09 December 2021').should('exist');
+    cy.contains('20:03:00').should('exist');
+    cy.contains('21 June 2022').should('exist');
+    cy.contains('07:35:00').should('exist');
     // ICP
     cy.get('.count-box').eq(6).click();
     cy.contains('Tidak ada data').should('exist');
@@ -205,12 +217,13 @@ describe('Homepage', () => {
     // cy.contains('10:40:55').should('exist');
     // OCHI
     cy.get('.count-box').eq(7).click();
-    cy.contains('Tema').should('exist');
-    cy.contains('Kontes').should('exist');
-    cy.contains('Juara').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 3').should('exist');
+    cy.contains('Tidak ada data').should('exist');
+    // cy.contains('Tema').should('exist');
+    // cy.contains('Kontes').should('exist');
+    // cy.contains('Juara').should('exist');
+    // cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
+    // cy.contains('Kontes 4').should('exist');
+    // cy.contains('Juara 3').should('exist');
     // QCC
     cy.get('.count-box').eq(8).click();
     cy.contains('Nama Circle').should('exist');
@@ -218,17 +231,17 @@ describe('Homepage', () => {
     cy.contains('Kontes').should('exist');
     cy.contains('Juara SAI').should('exist');
     cy.contains('Juara PASI').should('exist');
-    cy.contains('Legal').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 1').should('exist');
+    cy.contains('KEMBANG 27').should('exist');
+    cy.contains('REDUCE MUDA GERAK T.9 LINE 9A').should('exist');
+    cy.contains('29').should('exist');
+    cy.contains('-').should('exist');
     cy.contains('-').should('exist');
     // OCHI Leader
     cy.get('.count-box').eq(9).click();
     cy.contains('NIK OCHI').should('exist');
     cy.contains('Tema').should('exist');
-    cy.contains('766512').should('exist');
-    cy.contains('cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam').should('exist');
+    cy.contains('001322').should('exist');
+    cy.contains('Muda Gerak Ambil Airgun saat EC Open').should('exist');
 
     cy.get('.back-to-top').should('exist');
     cy.get('.back-to-top').click();
@@ -240,7 +253,7 @@ describe('Homepage', () => {
 
     cy.contains('Ingin Ganti Password?').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit, password lama dan password baru.').should('exist')
-    
+
     cy.contains('Ganti Password').should('exist')
     cy.get('input[name=current_password]').should('exist')
     cy.get('input[name=new_password]').should('exist')
@@ -262,7 +275,6 @@ describe('Homepage', () => {
     cy.contains('Jumlah Izin Terlambat Datang').should('exist')
     cy.contains('Jumlah Terlambat Datang').should('exist')
     cy.contains('Jumlah Izin Cepat Pulang').should('exist')
-    // cy.contains('Jumlah Cepat Pulang').should('exist')
     cy.contains('Jumlah OCHI').should('exist')
     cy.contains('Jumlah QCC').should('exist')
     cy.contains('OCHI Leader').should('exist')
@@ -270,37 +282,43 @@ describe('Homepage', () => {
     cy.contains('Lihat Detail').should('exist')
 
     cy.get('.carousel-item').should('exist')
-    // A
-    cy.get('.count-box').eq(11).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('25 May 2023').should('exist');
-    // S
-    cy.get('.count-box').eq(12).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('01 April 2023').should('exist');
     // SD
-    cy.get('.count-box').eq(13).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('13 April 2023').should('exist');
+    cy.get('.count-box').eq(10).click();
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('28 April 2022').should('exist');
+    cy.contains('14 May 2022').should('exist');
+    cy.contains('13 January 2022').should('exist');
+    // S
+    cy.get('.count-box').eq(11).click();
+    //  cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
     // I
-    cy.get('.count-box').eq(14).click();
-    cy.get('.bx-calendar').should('exist');
-    cy.contains('03 April 2023').should('exist');
+    cy.get('.count-box').eq(12).click();
+    // cy.get('.bi-calendar-week').should('not.exist');
+    cy.contains('Tidak ada data').should('exist');
+    // A
+    cy.get('.count-box').eq(13).click();
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('26 June 2022').should('exist');
 
     cy.get('.carousel-control-next').should('exist')
     cy.get('.carousel-control-next').click()
 
     // ITD
-    cy.get('.count-box').eq(15).click();
+    cy.get('.count-box').eq(14).click();
     cy.contains('Tidak ada data').should('exist');
     // TD
-    cy.get('.count-box').eq(16).click();
+    cy.get('.count-box').eq(15).click();
     cy.contains('Tanggal').should('exist');
     cy.contains('Jam Masuk').should('exist');
-    cy.contains('08 February 2023').should('exist');
-    cy.contains('07:45:00').should('exist');
+    cy.contains('01 December 2021').should('exist');
+    cy.contains('07:30:00').should('exist');
+    cy.contains('09 December 2021').should('exist');
+    cy.contains('20:03:00').should('exist');
+    cy.contains('21 June 2022').should('exist');
+    cy.contains('07:35:00').should('exist');
     // ICP
-    cy.get('.count-box').eq(17).click();
+    cy.get('.count-box').eq(16).click();
     cy.contains('Tidak ada data').should('exist');
     // CP
     // cy.get('.count-box').eq(18).click();
@@ -313,31 +331,32 @@ describe('Homepage', () => {
     cy.get('.carousel-control-next').click()
 
     // OCHI
-    cy.get('.count-box').eq(18).click();
-    cy.contains('Tema').should('exist');
-    cy.contains('Kontes').should('exist');
-    cy.contains('Juara').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 3').should('exist');
+    cy.get('.count-box').eq(17).click();
+    cy.contains('Tidak ada data').should('exist');
+    // cy.contains('Tema').should('exist');
+    // cy.contains('Kontes').should('exist');
+    // cy.contains('Juara').should('exist');
+    // cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
+    // cy.contains('Kontes 4').should('exist');
+    // cy.contains('Juara 3').should('exist');
     // QCC
-    cy.get('.count-box').eq(19).click();
+    cy.get('.count-box').eq(18).click();
     cy.contains('Nama Circle').should('exist');
     cy.contains('Tema').should('exist');
     cy.contains('Kontes').should('exist');
     cy.contains('Juara SAI').should('exist');
     cy.contains('Juara PASI').should('exist');
-    cy.contains('Legal').should('exist');
-    cy.contains('blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus').should('exist');
-    cy.contains('Kontes 4').should('exist');
-    cy.contains('Juara 1').should('exist');
+    cy.contains('KEMBANG 27').should('exist');
+    cy.contains('REDUCE MUDA GERAK T.9 LINE 9A').should('exist');
+    cy.contains('29').should('exist');
+    cy.contains('-').should('exist');
     cy.contains('-').should('exist');
     // OCHI Leader
-    cy.get('.count-box').eq(20).click();
+    cy.get('.count-box').eq(19).click();
     cy.contains('NIK OCHI').should('exist');
     cy.contains('Tema').should('exist');
-    cy.contains('766512').should('exist');
-    cy.contains('cursus vestibulum proin eu mi nulla ac enim in tempor turpis nec euismod scelerisque quam').should('exist');
+    cy.contains('001322').should('exist');
+    cy.contains('Muda Gerak Ambil Airgun saat EC Open').should('exist');
 
     cy.get('.back-to-top').should('exist');
     cy.get('.back-to-top').click();
@@ -351,16 +370,16 @@ describe('Homepage', () => {
 
     cy.contains('Ingin Ganti Password?').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit, password lama dan password baru.').should('exist')
-    
+
     cy.contains('Ganti Password').should('exist')
     cy.get('input[name=current_password]').should('exist')
     cy.get('input[name=new_password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
     cy.get('button[type=submit]').should('exist')
 
-    cy.get('input[name=current_password]').type('111111010101')
-    cy.get('input[name=new_password]').type('222222010101')
-    cy.get('input[name=password_confirmation]').type('222222010101')
+    cy.get('input[name=current_password]').type('000286')
+    cy.get('input[name=new_password]').type('000286010101')
+    cy.get('input[name=password_confirmation]').type('000286010101')
     cy.get('button[type=submit]').click()
 
     cy.contains('Password berhasil diubah').should('exist')
@@ -369,20 +388,20 @@ describe('Homepage', () => {
 
     cy.url().should('include', '/login');
 
-    cy.get('input[name=nik]').eq(0).type('111111')
-    cy.get('input[name=password]').eq(0).type('222222010101')
+    cy.get('input[name=nik]').eq(0).type('000286')
+    cy.get('input[name=password]').eq(0).type('000286010101')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
     cy.contains('OK').click()
 
     cy.get('.dropdown').trigger('mouseover');
     cy.contains('Ganti Sandi').click({ force: true });
     cy.url().should('include', '/change-password');
 
-    cy.get('input[name=current_password]').type('222222010101')
-    cy.get('input[name=new_password]').type('111111010101')
-    cy.get('input[name=password_confirmation]').type('111111010101')
+    cy.get('input[name=current_password]').type('000286010101')
+    cy.get('input[name=new_password]').type('000286')
+    cy.get('input[name=password_confirmation]').type('000286')
     cy.get('button[type=submit]').click()
 
     cy.contains('Password berhasil diubah').should('exist')

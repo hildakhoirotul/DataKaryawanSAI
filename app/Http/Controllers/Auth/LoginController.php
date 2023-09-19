@@ -159,7 +159,7 @@ class LoginController extends Controller
         ->first();
 
         if(!$user){
-            Alert::error('Gagal', 'Password awal anda tidak sesuai, password awal merupakan gabungan nik dan tanggal lahir anda');
+            Alert::error('Gagal', 'NIK atau Password awal anda tidak sesuai. Password awal merupakan gabungan nik dan tanggal lahir anda');
             return redirect()->route('lupa-password');
         }
         try {

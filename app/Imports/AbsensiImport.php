@@ -35,7 +35,6 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
     public function rules(): array
     {
         return [
-            // 'nik' => 'required|min:6',
             'nik' => [
                 'required',
                 'min:6',
@@ -53,31 +52,20 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
         $timeOut = floatval($row['jam_pulang']);
         $error = [];
 
-        // $user = User::where('nik', $row['nik'])->first();
-
-        // if($user) {
-            return new Absensi([
-                'nik'     => $row['nik'],
-                'jenis'   => $row['jenis'],
-                'tanggal' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date)->format('Y-m-d'),
-                'jam_masuk'  => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeIn),
-                'jam_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeOut),
-            ]);
-        // } else {
-        //     $error[] = $row['nik'];
-        //     $message = implode(", ", $error);
-        //     Session::flash('error', implode(", ", $error));
-        //     return null;
-        // }
-
-        
+        return new Absensi([
+            'nik'     => $row['nik'],
+            'jenis'   => $row['jenis'],
+            'tanggal' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($date)->format('Y-m-d'),
+            'jam_masuk'  => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeIn),
+            'jam_pulang' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($timeOut),
+        ]);
     }
 
     public function batchSize(): int
     {
         return 1000;
     }
-    
+
     public function onError(Throwable $e)
     {
         $this->errors[] = $e->getMessage();

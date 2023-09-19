@@ -25,7 +25,6 @@
                     </button>
                     <a href="{{ route('login') }}"><button type="button" class="btn-cancel btn-outline-secondary">Cancel</button></a>
                 </div>
-
             </form>
         </div>
     </div>
