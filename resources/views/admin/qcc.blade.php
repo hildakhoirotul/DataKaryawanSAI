@@ -79,7 +79,7 @@
                 <div class="card-body pt-2">
                     <div class="table-responsive">
                         <table id="myTable" class="table table-striped table-bordered border-light">
-                            <thead class="text-center">
+                            <thead class="align-middle text-center">
                                 <tr>
                                     <th>NO</th>
                                     <th>NIK</th>

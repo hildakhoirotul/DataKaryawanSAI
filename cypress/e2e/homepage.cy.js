@@ -75,7 +75,6 @@ describe('Homepage', () => {
     cy.contains('Tidak ada data').should('exist');
     // I
     cy.get('.count-box').eq(2).click();
-    // cy.get('.bi-calendar-week').should('not.exist');
     cy.contains('Tidak ada data').should('exist');
     // A
     cy.get('.count-box').eq(3).click();
@@ -147,6 +146,81 @@ describe('Homepage', () => {
     cy.get('input[name=new_password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
     cy.get('button[type=submit]').should('exist')
+
+    cy.get('button[type=button]').should('exist')
+    cy.get('.btn-cancel').click()
+
+    cy.get('.dropdown').click();
+    cy.contains('Keluar').click({ force: true });
+    cy.url().should('include', '/login');
+
+    cy.get('input[name=nik]').eq(0).type('015761')
+    cy.get('input[name=password]').eq(0).type('015761')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.contains('OK').click()
+
+    // SD
+    cy.get('.count-box').eq(0).click();
+    cy.contains('Tidak ada data').should('exist');
+    // S
+    cy.get('.count-box').eq(1).click();
+    cy.contains('Tidak ada data').should('exist');
+    // I
+    cy.get('.count-box').eq(2).click();
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('03 October 2022').should('exist');
+    // A
+    cy.get('.count-box').eq(3).click();
+    cy.contains('Tidak ada data').should('exist');
+    // ITD
+    cy.get('.count-box').eq(4).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Masuk').should('exist');
+    cy.contains('23 November 2021').should('exist');
+    cy.contains('10:23:00').should('exist');
+    cy.contains('04 February 2022').should('exist');
+    cy.contains('07:28:00').should('exist');
+    // TD
+    cy.get('.count-box').eq(5).click();
+    cy.contains('Tidak ada data').should('exist');
+    // ICP
+    cy.get('.count-box').eq(6).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Pulang').should('exist');
+    cy.contains('02 December 2021').should('exist');
+    cy.contains('14:35:00').should('exist');
+    // CP
+    // cy.get('.count-box').eq(7).click();
+    // cy.contains('Tanggal').should('exist');
+    // cy.contains('Jam Pulang').should('exist');
+    // cy.contains('09 April 2023').should('exist');
+    // cy.contains('10:40:55').should('exist');
+    // OCHI
+    cy.get('.count-box').eq(7).click();
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara').should('exist');
+    cy.contains('Reduce waktu proses pembuatan tanda terima invoice expedisi').should('exist');
+    cy.contains('kontes 27').should('exist');
+    cy.contains('Efisiensi Waktu Proses Pembuatan Check Sheet Voucher Paying Dengan Cara Barcode Voucer Paying').should('exist');
+    cy.contains('kontes 26').should('exist');
+    // QCC
+    cy.get('.count-box').eq(8).click();
+    cy.contains('Nama Circle').should('exist');
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara SAI').should('exist');
+    cy.contains('Juara PASI').should('exist');
+    cy.contains('LUCKY REBORN').should('exist');
+    cy.contains('REDUCE PROBLEM DELAY PEMENUHAN QUOTATION DI LOCAL PURCHASE').should('exist');
+    cy.contains('28').should('exist');
+    cy.contains('-').should('exist');
+    cy.contains('-').should('exist');
+    // OCHI Leader
+    cy.get('.count-box').eq(9).click();
+    cy.contains('Tidak ada data').should('exist');
   })
 
   it('display web on ipad mini', () => {
@@ -259,6 +333,81 @@ describe('Homepage', () => {
     cy.get('input[name=new_password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
     cy.get('button[type=submit]').should('exist')
+
+    cy.get('button[type=button]').should('exist')
+    cy.get('.btn-cancel').click()
+
+    cy.get('.dropdown').click();
+    cy.contains('Keluar').click({ force: true });
+    cy.url().should('include', '/login');
+
+    cy.get('input[name=nik]').eq(0).type('015761')
+    cy.get('input[name=password]').eq(0).type('015761')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.contains('OK').click()
+
+    // SD
+    cy.get('.count-box').eq(0).click();
+    cy.contains('Tidak ada data').should('exist');
+    // S
+    cy.get('.count-box').eq(1).click();
+    cy.contains('Tidak ada data').should('exist');
+    // I
+    cy.get('.count-box').eq(2).click();
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('03 October 2022').should('exist');
+    // A
+    cy.get('.count-box').eq(3).click();
+    cy.contains('Tidak ada data').should('exist');
+    // ITD
+    cy.get('.count-box').eq(4).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Masuk').should('exist');
+    cy.contains('23 November 2021').should('exist');
+    cy.contains('10:23:00').should('exist');
+    cy.contains('04 February 2022').should('exist');
+    cy.contains('07:28:00').should('exist');
+    // TD
+    cy.get('.count-box').eq(5).click();
+    cy.contains('Tidak ada data').should('exist');
+    // ICP
+    cy.get('.count-box').eq(6).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Pulang').should('exist');
+    cy.contains('02 December 2021').should('exist');
+    cy.contains('14:35:00').should('exist');
+    // CP
+    // cy.get('.count-box').eq(7).click();
+    // cy.contains('Tanggal').should('exist');
+    // cy.contains('Jam Pulang').should('exist');
+    // cy.contains('09 April 2023').should('exist');
+    // cy.contains('10:40:55').should('exist');
+    // OCHI
+    cy.get('.count-box').eq(7).click();
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara').should('exist');
+    cy.contains('Reduce waktu proses pembuatan tanda terima invoice expedisi').should('exist');
+    cy.contains('kontes 27').should('exist');
+    cy.contains('Efisiensi Waktu Proses Pembuatan Check Sheet Voucher Paying Dengan Cara Barcode Voucer Paying').should('exist');
+    cy.contains('kontes 26').should('exist');
+    // QCC
+    cy.get('.count-box').eq(8).click();
+    cy.contains('Nama Circle').should('exist');
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara SAI').should('exist');
+    cy.contains('Juara PASI').should('exist');
+    cy.contains('LUCKY REBORN').should('exist');
+    cy.contains('REDUCE PROBLEM DELAY PEMENUHAN QUOTATION DI LOCAL PURCHASE').should('exist');
+    cy.contains('28').should('exist');
+    cy.contains('-').should('exist');
+    cy.contains('-').should('exist');
+    // OCHI Leader
+    cy.get('.count-box').eq(9).click();
+    cy.contains('Tidak ada data').should('exist');
   })
 
   it('display web on pc/laptop', () => {
@@ -361,6 +510,86 @@ describe('Homepage', () => {
     cy.get('.back-to-top').should('exist');
     cy.get('.back-to-top').click();
     cy.contains('Selamat Datang').should('exist')
+
+    cy.get('.dropdown').trigger('mouseover');
+    cy.contains('Keluar').click({ force: true });
+    cy.url().should('include', '/login');
+
+    cy.get('input[name=nik]').eq(0).type('015761')
+    cy.get('input[name=password]').eq(0).type('015761')
+    cy.get('button[type=submit]').eq(0).click()
+
+    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.contains('OK').click()
+
+    // SD
+    cy.get('.count-box').eq(10).click();
+    cy.contains('Tidak ada data').should('exist');
+    // S
+    cy.get('.count-box').eq(11).click();
+    cy.contains('Tidak ada data').should('exist');
+    // I
+    cy.get('.count-box').eq(12).click();
+    cy.get('.bi-calendar-week').should('exist');
+    cy.contains('03 October 2022').should('exist');
+    // A
+    cy.get('.count-box').eq(13).click();
+    cy.contains('Tidak ada data').should('exist');
+
+    cy.get('.carousel-control-next').should('exist')
+    cy.get('.carousel-control-next').click()
+
+    // ITD
+    cy.get('.count-box').eq(14).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Masuk').should('exist');
+    cy.contains('23 November 2021').should('exist');
+    cy.contains('10:23:00').should('exist');
+    cy.contains('04 February 2022').should('exist');
+    cy.contains('07:28:00').should('exist');
+    // TD
+    cy.get('.count-box').eq(15).click();
+    cy.contains('Tidak ada data').should('exist');
+    // ICP
+    cy.get('.count-box').eq(16).click();
+    cy.contains('Tanggal').should('exist');
+    cy.contains('Jam Pulang').should('exist');
+    cy.contains('02 December 2021').should('exist');
+    cy.contains('14:35:00').should('exist');
+    // CP
+    // cy.get('.count-box').eq(18).click();
+    // cy.contains('Tanggal').should('exist');
+    // cy.contains('Jam Pulang').should('exist');
+    // cy.contains('09 April 2023').should('exist');
+    // cy.contains('10:40:55').should('exist');
+
+    cy.get('.carousel-control-next').should('exist')
+    cy.get('.carousel-control-next').click()
+
+    // OCHI
+    cy.get('.count-box').eq(17).click();
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara').should('exist');
+    cy.contains('Reduce waktu proses pembuatan tanda terima invoice expedisi').should('exist');
+    cy.contains('kontes 27').should('exist');
+    cy.contains('Efisiensi Waktu Proses Pembuatan Check Sheet Voucher Paying Dengan Cara Barcode Voucer Paying').should('exist');
+    cy.contains('kontes 26').should('exist');
+    // QCC
+    cy.get('.count-box').eq(18).click();
+    cy.contains('Nama Circle').should('exist');
+    cy.contains('Tema').should('exist');
+    cy.contains('Kontes').should('exist');
+    cy.contains('Juara SAI').should('exist');
+    cy.contains('Juara PASI').should('exist');
+    cy.contains('LUCKY REBORN').should('exist');
+    cy.contains('REDUCE PROBLEM DELAY PEMENUHAN QUOTATION DI LOCAL PURCHASE').should('exist');
+    cy.contains('28').should('exist');
+    cy.contains('-').should('exist');
+    cy.contains('-').should('exist');
+    // OCHI Leader
+    cy.get('.count-box').eq(19).click();
+    cy.contains('Tidak ada data').should('exist');
   })
 
   it('try to change password', () => {
