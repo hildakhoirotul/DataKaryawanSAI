@@ -24,7 +24,7 @@ input {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 30px;
+    /* top: 30px; */
     left: 0;
 }
 
@@ -34,7 +34,7 @@ input {
     transform: translate(-50%, -50%);
     left: 75%;
     width: 50%;
-    transition: 1s 0.7s ease-in-out;
+    /* transition: 1s 0.7s ease-in-out; */
     display: grid;
     grid-template-columns: 1fr;
     z-index: 5;
@@ -46,7 +46,7 @@ form {
     justify-content: center;
     flex-direction: column;
     padding: 0rem 5rem;
-    transition: all 0.2s 0.7s;
+    /* transition: all 0.2s 0.7s; */
     overflow: hidden;
     grid-column: 1 / 2;
     grid-row: 1 / 2;
@@ -55,10 +55,16 @@ form {
 form.sign-up-form {
     opacity: 0;
     z-index: 1;
+    margin-top: 30px;
+    /* opacity: 0; */
+    /* transition: opacity 0.5s ease-in-out; */
+    /* display: none; */
 }
 
 form.sign-in-form {
     z-index: 2;
+    opacity: 1;
+    transition: opacity 2.5s ease-in-out;
 }
 
 .title {
@@ -250,7 +256,7 @@ form.sign-in-form {
     font-weight: 600;
     font-size: 0.8rem;
     font-family: "Poppins", sans-serif;
-
+    /* display: none; */
 }
 
 .btn.transparent:hover {
@@ -261,7 +267,7 @@ form.sign-in-form {
     height: 41px;
     font-weight: 600;
     font-size: 0.8rem;
-    transition: 00.5s ease-in-out;
+    /* transition: 00.5s ease-in-out; */
 }
 
 .href {
@@ -281,6 +287,14 @@ form.sign-in-form {
 .right-panel .content {
     transform: translateX(800px);
 }
+
+/* .right-panel .image{
+    display: none;
+} */
+
+/* .right-panel .content{
+    display: none;
+} */
 
 .remember {
     max-width: 380px;
@@ -314,11 +328,13 @@ form.sign-in-form {
 .container.sign-up-mode form.sign-up-form {
     opacity: 1;
     z-index: 2;
+    transition: opacity 2.5s ease-in-out;
 }
 
 .container.sign-up-mode form.sign-in-form {
     opacity: 0;
     z-index: 1;
+    transition: none;
 }
 
 .container.sign-up-mode .right-panel .image,
@@ -336,7 +352,7 @@ form.sign-in-form {
     pointer-events: all;
 }
 
-@media (max-width: 1048px){
+@media (max-width: 1048px) {
     .btn {
         width: 145px;
     }
@@ -360,7 +376,7 @@ form.sign-in-form {
         width: 100%;
         top: 80%;
         transform: translate(-50%, -100%);
-        transition: 1s 0.8s ease-in-out;
+        /* transition: 1s 0.8s ease-in-out; */
     }
 
     .signin-signup,
@@ -499,7 +515,7 @@ form.sign-in-form {
 
 @media (max-width: 870px) {
     .container.sign-up-mode form.sign-up-form {
-        margin-top: 0px;
+        margin-top: 40px;
     }
 
     .container.sign-up-mode .left-panel .image,
@@ -510,6 +526,10 @@ form.sign-in-form {
     .right-panel .image,
     .right-panel .content {
         transform: translateY(300px);
+    }
+
+    form.sign-in-form {
+        margin-top: 7rem;
     }
 }
 
@@ -526,12 +546,24 @@ form.sign-in-form {
         margin-top: 0px;
     }
 
+    .title{
+        margin-bottom: 0;
+        font-size: 2rem;
+    }
+
     .input-field {
         padding: 0 0.6rem 0 0.6rem;
+        height: 45px;
+        margin: 8px 0;
     }
 
     .input-field i {
         margin-left: 0px;
+        font-size: 1rem;
+    }
+    
+    .input-field input {
+        font-size: 1rem;
     }
 
     .input-field .toggle-password-icon {
@@ -539,8 +571,26 @@ form.sign-in-form {
         margin-right: 0 !important;
     }
 
+    .container.sign-up-mode .signin-signup {
+        padding-top: 0;
+    }
+
     .panel .content {
         padding: 0.5rem 1rem;
+    }
+
+    .panel h3 {
+        font-size: 1.2rem;
+    }
+
+    .panel p {
+        font-size: 0.75rem;
+        padding: 0.5rem 0;
+    }
+
+    .btn.transparent {
+        width: 130px;
+        font-size: 0.7rem;
     }
 
     .container {
@@ -548,7 +598,7 @@ form.sign-in-form {
     }
 
     .container:before {
-        bottom: 72%;
+        bottom: 70%;
         left: 50%;
     }
 
@@ -558,7 +608,19 @@ form.sign-in-form {
     }
 
     .btn {
-        width: 145px;
+        width: 140px;
+        background-color: rgba(1, 4, 136, 0.9);
+        border: none;
+        outline: none;
+        height: 45px;
+        border-radius: 49px;
+        color: #fff;
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: 10px 0;
+        cursor: pointer;
+        transition: 0.5s;
+        font-family: "Poppins", sans-serif;
     }
 
     .btn-cancel {

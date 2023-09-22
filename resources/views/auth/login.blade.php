@@ -3,7 +3,7 @@
 <div class="container">
     <div class="forms-container">
         <div class="signin-signup">
-            <form method="POST" action="{{ route('login') }}" class="sign-in-form">
+            <form method="POST" action="{{ route('login') }}" class="sign-in-form active">
                 @csrf
                 <h2 class="title">Masuk</h2>
 
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="panels-container preload">
+    <div class="panels-container">
         <div class="panel left-panel">
             <div class="content">
                 <h3>Selamat Datang</h3>
