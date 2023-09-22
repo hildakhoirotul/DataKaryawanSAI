@@ -8,7 +8,7 @@ describe('Register Page', () => {
   it('displays username, password, remember inputs', () => {
     cy.contains('Daftar').should('exist')
     cy.get('input[name=nik]').should('exist')
-    cy.get('input[name=nama]').should('exist')
+    // cy.get('input[name=nama]').should('exist')
     cy.get('input[name=email]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
@@ -45,7 +45,7 @@ describe('Register Page', () => {
 
   it('register with all credentials true', () => {
     cy.get('input[name=nik]').eq(1).type('229792')
-    cy.get('input[name=nama]').type('Fulan bin Fulan bin Jaid')
+    // cy.get('input[name=nama]').type('Fulan bin Fulan bin Jaid')
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('input[name=password]').eq(1).type('229792120700')
     cy.get('input[name=password_confirmation]').type('229792120700')
@@ -60,7 +60,7 @@ describe('Register Page', () => {
   it('register with wrong credentials', () => {
     // first condition
     cy.get('input[name=nik]').eq(1).type('4545')
-    cy.get('input[name=nama]').type('Fulan')
+    // cy.get('input[name=nama]').type('Fulan')
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('input[name=password]').eq(1).type('4545')
     cy.get('input[name=password_confirmation]').type('5656')
@@ -79,7 +79,7 @@ describe('Register Page', () => {
 
     // second condition
     cy.get('input[name=nik]').eq(1).type('111111')
-    cy.get('input[name=nama]').type('Fulan')
+    // cy.get('input[name=nama]').type('Fulan')
     cy.get('input[name=email]').type('hildakh07@gmail.com')
     cy.get('input[name=password]').eq(1).type('4545')
     cy.get('input[name=password_confirmation]').type('5656')

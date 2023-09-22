@@ -7,8 +7,10 @@ use App\Models\Rekapitulasi;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
+class RekapitulasiExport implements FromArray, WithHeadings, WithMapping, WithStyles
 {
     /**
      * @return \Illuminate\Support\Collection
@@ -43,7 +45,14 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping
             'TD',
             'OCHI',
             'QCC',
-            'OCHI_leader',
+            'OCHI leader',
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1    => ['font' => ['bold' => true]]
         ];
     }
 

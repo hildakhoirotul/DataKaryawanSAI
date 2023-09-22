@@ -103,6 +103,7 @@ class AdminController extends Controller
         $ochi = Ochi::all();
         $qcc = Qcc::all();
         $user = User::pluck('nik')->toArray();
+        Rekapitulasi::truncate();
 
         $total = [];
         foreach ($user as $nik) {

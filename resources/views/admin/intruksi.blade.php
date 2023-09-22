@@ -31,7 +31,7 @@
                                             <td>
                                                 <p><span style="font-weight: 600;">Absensi : </span>berisi data jenis absensi (SD, S, I, A, ITD, TD, ICP) beserta tanggal, jam masuk dan jam pulangnya.</p>
                                                 <p><span style="font-weight: 600;">OCHI : </span>berisi data Tema OCHI, Kontes, OCHI Leader dan Juara yang pernah diraih.</p>
-                                                <p><span style="font-weight: 600;">QCC : </span>berisi data Tema qcc, Kontes, Nama Circle, Juara SAI dan Juara PASI.</p>
+                                                <p><span style="font-weight: 600;">QCC : </span>berisi data Tema QCC, Kontes, Nama Circle, Juara SAI dan Juara PASI.</p>
                                                 <p><span style="font-weight: 600;">Data Karyawan : </span>berisi data dari seluruh akun karyawan (NIK, Nama, Password). Data ini yang akan digunakan karyawan untuk melakukan login.</p>
                                             </td>
                                         </tr>
@@ -93,7 +93,7 @@
                                                 <img src="{{ asset('assets/img/petunjuk/template.png') }}" alt="" class="button">
                                             </td>
                                             <td>
-                                                <p>Download template excel.</p>
+                                                <p>Download template data yang akan diupload dengan format excel.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -243,7 +243,7 @@
                                                 <img src="{{ asset('assets/img/petunjuk/plus.png') }}" alt="" style="width:3rem;">
                                             </td>
                                             <td>
-                                                <p>Klik tombol + jika informasi yang ditambahkan lebih dari 1.</p>
+                                                <p>Klik tombol (+) jika informasi yang ditambahkan lebih dari 1.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -251,7 +251,7 @@
                                                 <img src="{{ asset('assets/img/petunjuk/x.png') }}" alt="" style="width:3rem;">
                                             </td>
                                             <td>
-                                                <p>Tombol x untuk menghapus box.</p>
+                                                <p>Tombol (x) untuk menghapus box.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -330,8 +330,7 @@
                                                 <img src="{{ asset('assets/img/petunjuk/success.png') }}" alt="" style="width: 18rem;">
                                                 <p>6. Pesan error akan muncul dengan keterangan data yang tidak valid. Data yang tidak valid, tidak akan terupload. Silahkan perbaiki data kemudian upload ulang.</p>
                                                 <img src="{{ asset('assets/img/petunjuk/error1.png') }}" alt="" style="width: 18rem;">
-                                                <p>7. NIK tidak valid artinya NIK tersebut belum ada di data karyawan. Silahkan tambahkan data NIK, Nama dan Password pada data karyawan agar NIK tersebut menjadi valid.</p>
-                                                <p>8. Pada data karyawan ini, setiap melakukan upload data, data yang sudah ada tidak akan terhapus. Apabila terdapat data yang sama, maka akan terupdate sementara data yang tidak ada akan ditambahkan.</p>
+                                                <p>7. Pada data karyawan ini, setiap melakukan upload data, data yang sudah ada tidak akan terhapus. Apabila terdapat NIK yang sama, maka data akan terupdate sementara NIK yang sebelumnya tidak ada akan ditambahkan.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -352,8 +351,7 @@
                                                 <img src="{{ asset('assets/img/petunjuk/error2.png') }}" alt="" style="width: 18rem;">
                                                 <img src="{{ asset('assets/img/petunjuk/error3.png') }}" alt="" style="width: 18rem;">
                                                 <img src="{{ asset('assets/img/petunjuk/error4.png') }}" alt="" style="width: 18rem;">
-                                                <p>7. NIK tidak valid artinya NIK tersebut belum ada di data karyawan. Silahkan tambahkan data NIK, Nama dan Password pada data karyawan agar NIK tersebut menjadi valid.</p>
-                                                <p>8. Pada data Absensi, OCHI dan QCC, setiap melakukan upload data, data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
+                                                <p>7. Pada data Absensi, OCHI dan QCC, setiap melakukan upload data, data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
                                             </td>
                                         </tr>
                                         <tr>
@@ -366,7 +364,7 @@
                                                 <p>2. Silahkan tunggu hingga proses selesai.</p>
                                                 <p>3. Begitu selesai, data akan otomatis terupdate.</p>
                                                 <p>4. Apabila terdapat perubahan data pada data karyawan, absensi, OCHI maupun QCC, silahkan lakukan update data kembali pada rekapitulasi.</p>
-                                                <p>5. Pada data Rekapitulasi ini, Apabila anda melakukan unggah data maka data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
+                                                <p>5. Pada data Rekapitulasi ini, apabila anda melakukan unggah data maka data yang sudah ada akan terhapus dan digantikan dengan data yang baru.</p>
                                             </td>
                                         </tr>
                                     </tbody>

@@ -45,8 +45,8 @@ class AbsensiExport implements FromCollection, WithHeadings, WithMapping, Should
             'nik',
             'Jenis',
             'Tanggal',
-            'Jam_masuk',
-            'Jam_pulang',
+            'Jam Masuk',
+            'Jam Pulang',
         ];
     }
 
