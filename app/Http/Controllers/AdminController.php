@@ -172,16 +172,8 @@ class AdminController extends Controller
                     'QCC' => 0,
                     'OCHI_leader' => 0,
                 ];
-                // $total[$nik]['OCHI'] = 0;
-                // } else {
             }
             $total[$nik]['OCHI']++;
-
-            // if (!isset($total[$ochi_leader])) {
-            //     $total[$ochi_leader]['OCHI_leader'] = 0;
-            // } else {
-            //     $total[$ochi_leader]['OCHI_leader']++;
-            // }
 
             if (!isset($total[$ochi_leader])) {
                 $total[$ochi_leader] = [
@@ -205,10 +197,20 @@ class AdminController extends Controller
             $nik = $qc->nik;
 
             if (!isset($total[$nik])) {
-                $total[$nik]['QCC'] = 0;
-            } else {
-                $total[$nik]['QCC']++;
+                $total[$nik] = [
+                    'SD' => 0,
+                    'S' => 0,
+                    'I' => 0,
+                    'A' => 0,
+                    'ITD' => 0,
+                    'ICP' => 0,
+                    'TD' => 0,
+                    'OCHI' => 0,
+                    'QCC' => 0,
+                    'OCHI_leader' => 0,
+                ];
             }
+            $total[$nik]['QCC']++;
         }
 
         foreach ($total as $nik => $totalData) {
