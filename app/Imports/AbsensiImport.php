@@ -38,7 +38,7 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
             'nik' => [
                 'required',
                 'min:6',
-                Rule::exists('users', 'nik'),
+                // Rule::exists('users', 'nik'),
             ],
             'jenis' => 'required|max:3',
             'tanggal' => ['required', new ValidDate()],
@@ -90,7 +90,7 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
-            'nik.exists' => 'NIK tidak valid',
+            // 'nik.exists' => 'NIK tidak valid',
             'jenis.required' => 'Jenis tidak boleh kosong.',
             'jenis.max' => 'Jenis melebihi 3 karakter',
             'tanggal.required' => 'Tanggal tidak boleh kosong.',

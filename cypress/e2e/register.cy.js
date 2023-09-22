@@ -1,6 +1,6 @@
 describe('Register Page', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8000/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('button.btn.transparent').should('exist');
     cy.get('button.btn.transparent').eq(0).click();
   });
@@ -12,7 +12,7 @@ describe('Register Page', () => {
     cy.get('input[name=email]').should('exist')
     cy.get('input[name=password]').should('exist')
     cy.get('input[name=password_confirmation]').should('exist')
-    cy.get('.image').eq(0).should('have.attr', 'src', 'http://127.0.0.1:8000/assets/img/register.svg');
+    cy.get('.image').eq(0).should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/register.svg');
     cy.contains('Selamat Datang').should('exist')
     cy.contains('Silahkan masukkan NIK 6 digit, password, dan konfirmasi password untuk Mendaftar.').should('exist')
     cy.contains('Sudah punya akun?').should('exist')
@@ -51,7 +51,7 @@ describe('Register Page', () => {
     cy.get('input[name=password_confirmation]').type('229792120700')
     cy.get('button[type=submit]').eq(1).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/register')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/register')
     cy.contains('Link Verifikasi telah dikirim').should('exist')
     cy.contains('Silahkan periksa email anda untuk verifikasi email.').should('exist')
     cy.contains('OK').click()

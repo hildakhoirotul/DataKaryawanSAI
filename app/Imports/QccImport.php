@@ -29,7 +29,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
             'nik' => [
                 'required',
                 'min:6',
-                Rule::exists('users', 'nik'),
+                // Rule::exists('users', 'nik'),
             ],
             'tema' => 'required',
             'nama_qcc' => 'required',
@@ -76,7 +76,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari 6 digit.',
-            'nik.exists' => 'NIK tidak valid',
+            // 'nik.exists' => 'NIK tidak valid',
             'tema.required' => 'Tema tidak boleh kosong.',
             'nama_qcc.required' => 'Nama QCC tidak boleh kosong.',
         ];

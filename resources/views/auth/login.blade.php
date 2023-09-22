@@ -1,7 +1,7 @@
 @extends('auth.main')
 @section('content')
 <div class="container">
-    <div class="forms-container preload">
+    <div class="forms-container">
         <div class="signin-signup">
             <form method="POST" action="{{ route('login') }}" class="sign-in-form">
                 @csrf

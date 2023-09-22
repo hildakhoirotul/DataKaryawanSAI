@@ -1,11 +1,11 @@
 describe('Homepage', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8000/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('input[name=nik]').eq(0).type('000286')
     cy.get('input[name=password]').eq(0).type('000286')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
   });
 
@@ -29,7 +29,7 @@ describe('Homepage', () => {
     cy.contains('Lihat Data').should('exist')
     cy.get('.bi-arrow-right').should('exist')
 
-    cy.get('.img-fluid').should('have.attr', 'src', 'http://127.0.0.1:8000/assets/img/8.png');
+    cy.get('.img-fluid').should('have.attr', 'src', 'https://datakaryawan.trixsite.com/assets/img/8.png');
     cy.get('.hero-waves').should('exist');
     cy.get('.wave1').should('exist');
     cy.get('.wave2').should('exist');
@@ -158,7 +158,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('015761')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     // SD
@@ -345,7 +345,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('015761')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     // SD
@@ -519,7 +519,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('015761')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     // SD
@@ -621,7 +621,7 @@ describe('Homepage', () => {
     cy.get('input[name=password]').eq(0).type('000286010101')
     cy.get('button[type=submit]').eq(0).click()
 
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     cy.get('.dropdown').trigger('mouseover');

@@ -132,6 +132,9 @@ class AdminController extends Controller
                     'ITD' => 0,
                     'ICP' => 0,
                     'TD' => 0,
+                    'OCHI' => 0,
+                    'QCC' => 0,
+                    'OCHI_leader' => 0,
                 ];
             }
 
@@ -155,23 +158,52 @@ class AdminController extends Controller
         foreach ($ochi as $oc) {
             $nik = $oc->nik;
             $ochi_leader = $oc->nik_ochi_leader;
-    
+
             if (!isset($total[$nik])) {
-                $total[$nik]['OCHI'] = 0;
-            } else {
-                $total[$nik]['OCHI']++;
+                $total[$nik] = [
+                    'SD' => 0,
+                    'S' => 0,
+                    'I' => 0,
+                    'A' => 0,
+                    'ITD' => 0,
+                    'ICP' => 0,
+                    'TD' => 0,
+                    'OCHI' => 0,
+                    'QCC' => 0,
+                    'OCHI_leader' => 0,
+                ];
+                // $total[$nik]['OCHI'] = 0;
+                // } else {
             }
+            $total[$nik]['OCHI']++;
+
+            // if (!isset($total[$ochi_leader])) {
+            //     $total[$ochi_leader]['OCHI_leader'] = 0;
+            // } else {
+            //     $total[$ochi_leader]['OCHI_leader']++;
+            // }
 
             if (!isset($total[$ochi_leader])) {
-                $total[$ochi_leader]['OCHI_leader'] = 0;
-            } else {
-                $total[$ochi_leader]['OCHI_leader']++;
+                $total[$ochi_leader] = [
+                    'SD' => 0,
+                    'S' => 0,
+                    'I' => 0,
+                    'A' => 0,
+                    'ITD' => 0,
+                    'ICP' => 0,
+                    'TD' => 0,
+                    'OCHI' => 0,
+                    'QCC' => 0,
+                    'OCHI_leader' => 0,
+                ];
             }
+
+            $total[$ochi_leader]['OCHI_leader']++;
         }
 
         foreach ($qcc as $qc) {
             $nik = $qc->nik;
-    
+
             if (!isset($total[$nik])) {
                 $total[$nik]['QCC'] = 0;
             } else {
