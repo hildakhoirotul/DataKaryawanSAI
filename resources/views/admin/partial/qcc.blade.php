@@ -4,7 +4,7 @@
     <td>{{ $i++ }}</td>
     <td>{{ $qcc->nik }}</td>
     <td>{{ $qcc->tema }}</td>
-    <td style="width: 80px;">{{ $qcc->kontes }}</td>
+    <td style="width: 80px;" class="text-center">{{ $qcc->kontes }}</td>
     <td>{{ $qcc->nama_qcc }}</td>
     <td style="width: 80px;" class="text-center">
         @if($qcc->juara_sai == 0 || null)

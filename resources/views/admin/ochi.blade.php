@@ -97,7 +97,7 @@
                                     <td>{{ $r->id }}</td>
                                     <td>{{ $r->nik }}</td>
                                     <td>{{ $r->tema }}</td>
-                                    <td style="width: 80px;">{{ $r->kontes }}</td>
+                                    <td style="width: 80px;" class="text-center">{{ $r->kontes }}</td>
                                     <td>{{ $r->nik_ochi_leader }}</td>
                                     <td style="width: 80px;" class="text-center">
                                         @if($r->juara == 0 || null)
