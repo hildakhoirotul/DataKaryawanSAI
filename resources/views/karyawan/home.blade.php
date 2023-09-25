@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="col-lg-5 px-5 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="300">
-                <img src="{{ asset('assets/img/8.png') }}" class="img-fluid animated" alt="">
+                <img src="{{ asset('assets/img/4.png') }}" class="img-fluid animated" alt="">
             </div>
         </div>
     </div>
