@@ -87,10 +87,6 @@ form.sign-in-form {
     position: relative;
 }
 
-.input-field .toggle-password-icon {
-    margin-left: 30px;
-}
-
 .input-field i {
     text-align: center;
     line-height: 55px;
