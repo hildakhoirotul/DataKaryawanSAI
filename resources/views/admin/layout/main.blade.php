@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <!-- <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}"> -->
-    <title>Dashboard</title>
+    <title>@yield('title')</title>
     <!-- favicon -->
     <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
     <link href="{{ asset('assets/img/logo.png') }}" rel="apple-touch-icon">

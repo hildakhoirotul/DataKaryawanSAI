@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'OCHI')
 
 @section('content')
 <main class="content p-2 pt-3">

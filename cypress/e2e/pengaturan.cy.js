@@ -1,10 +1,10 @@
 describe('Admin Dashboard - Pengaturan', () => {
   beforeEach(() => {
-    cy.visit('http://127.0.0.1:8000/')
+    cy.visit('https://datakaryawan.trixsite.com/')
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000010199')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://127.0.0.1:8000/dashboard')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Pengaturan').click()
@@ -83,7 +83,7 @@ describe('Admin Dashboard - Pengaturan', () => {
     cy.get('input[name=nik]').eq(0).type('015761')
     cy.get('input[name=password]').eq(0).type('015761')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://127.0.0.1:8000/home')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/home')
     cy.contains('OK').click()
 
     cy.get('.carousel-control-prev').should('exist')
@@ -120,7 +120,7 @@ describe('Admin Dashboard - Pengaturan', () => {
     cy.get('input[name=nik]').eq(0).type('000000')
     cy.get('input[name=password]').eq(0).type('000000010199')
     cy.get('button[type=submit]').eq(0).click()
-    cy.url().should('include', 'http://127.0.0.1:8000/dashboard')
+    cy.url().should('include', 'https://datakaryawan.trixsite.com/dashboard')
     cy.contains('OK').click()
     cy.get('.sidebar').trigger('mouseover')
     cy.contains('Pengaturan').click()

@@ -1,4 +1,6 @@
 @extends('auth.main')
+@section('title', 'Masuk')
+
 @section('content')
 <div class="container">
     <div class="forms-container">

@@ -1,4 +1,5 @@
 @extends('admin.layout.main')
+@section('title', 'Pengaturan')
 
 @section('content')
 <main class="content p-3">

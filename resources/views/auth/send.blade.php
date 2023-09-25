@@ -1,4 +1,6 @@
 @extends('auth.main')
+@section('title', 'Lupa Password')
+
 @section('content')
     <div class="container sign-up-mode">
         <div class="forms-container">

@@ -12,7 +12,7 @@
     <!-- Boxicons CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <title>Data Karyawan</title>
+    <title>Homepage</title>
     <link href="{{ asset('css/karyawan.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{ asset('css/karyawan.css') }}"> -->
     <!-- <link href="{{ asset('css/karyawan.css') }}?v={{ filemtime(public_path('css/karyawan.css')) }}" rel="stylesheet"> -->
