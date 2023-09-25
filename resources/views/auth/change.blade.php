@@ -6,20 +6,6 @@
             <form method="POST" action="{{ route('changePassword') }}" class="sign-in-form">
                 @csrf
                 <h2 class="title">Ganti Password</h2>
-                <!-- @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <strong>Whoops!</strong> There were some problems with your input.<br><br>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif -->
-                <!-- <div class="input-field">
-                        <i class="fa-regular fa-address-card"></i>
-                        <input type="text" id="nik" data-id="nik" placeholder="NIK" class="form-control @error('nik') is-invalid @enderror" name="nik" value="{{ old('nik') }}" required autocomplete="nik" autofocus />
-                    </div> -->
                 <div class="input-field">
                     <i class="bi bi-lock-fill"></i>
                     <input id="current_password" type="password" placeholder="Password Lama" class="form-control @error('password') is-invalid @enderror" name="current_password" required autocomplete="current_password">
