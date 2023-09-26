@@ -102,6 +102,7 @@ body.dark .pagination>.active>a:hover {
   color: #333 !important;
 }
 
+body.dark .form-control,
 body.dark .input-group .form-control {
   color: #ffffff !important;
   background: #333 !important;

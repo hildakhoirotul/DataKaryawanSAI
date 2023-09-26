@@ -10,7 +10,7 @@
             <h5 class="ms-1 mb-0">Data QCC Karyawan</h5>
             <form method="GET" action="{{ route('data-qcc') }}" class="baris">
                 <span style="font-size: 12px;">Jumlah Baris : </span>
-                <div class="dropdown text-end ms-2 me-3">
+                <div class="dropdown text-end ms-2 me-4">
                     <!-- <label for="paginate" style="font-size: 12px;">Jumlah baris:</label> -->
                     <select id="paginate" name="paginate" class="form-control px-2" style="width: 4rem; height: 1.8rem; font-size: 12px;" onchange="this.form.submit()">
                         <option value="50">-select-</option>
