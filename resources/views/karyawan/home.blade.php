@@ -150,7 +150,7 @@
                 <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                     <div class="count-box">
                         <div class="count-header">
-                            <i class="bi bi-emoji-frown"></i>
+                            <i class="bi bi-calendar2-x"></i>
                             <h3>Jumlah Alpha</h3>
                             <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->A == '-' || $rekap->first()->A == '' || $rekap->first()->A == 0) ? 0 : $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Lihat Tanggal</p>
@@ -622,7 +622,7 @@
                             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div class="count-box">
                                     <div class="count-header">
-                                        <i class="bi bi-emoji-frown"></i>
+                                        <i class="bi bi-calendar2-x"></i>
                                         <h3>A</h3>
                                         <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->A == '-' || $rekap->first()->A == '' || $rekap->first()->A == 0) ? 0 : $rekap->first()->A }}" data-purecounter-duration="1" class="purecounter"></span>
                                         <p>Lihat Tanggal</p>

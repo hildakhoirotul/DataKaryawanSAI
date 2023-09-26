@@ -23,38 +23,38 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $a = Cache::remember('absensi_a_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $a = Cache::remember('absensi_a_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'A')->get();
         });
-        $s = Cache::remember('absensi_s_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $s = Cache::remember('absensi_s_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'S')->get();
         });
-        $sd = Cache::remember('absensi_sd_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $sd = Cache::remember('absensi_sd_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'SD')->get();
         });
-        $iz = Cache::remember('absensi_iz_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $iz = Cache::remember('absensi_iz_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'I')->get();
         });
-        $itd = Cache::remember('absensi_itd_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $itd = Cache::remember('absensi_itd_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'ITD')->get();
         });
-        $icp = Cache::remember('absensi_icp_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $icp = Cache::remember('absensi_icp_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'ICP')->get();
         });
-        $td = Cache::remember('absensi_td_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $td = Cache::remember('absensi_td_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'TD')->get();
         });
-        // $cp = Cache::remember('absensi_cp_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        // $cp = Cache::remember('absensi_cp_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
         //     return Absensi::where('nik', $user->nik)->where('jenis', 'CP')->get();
         // });
-        $ochi = Cache::remember('ochi_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $ochi = Cache::remember('ochi_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Ochi::where('nik', $user->nik)->get();
         });
     
-        $qcc = Cache::remember('qcc_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $qcc = Cache::remember('qcc_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Qcc::where('nik', $user->nik)->get();
         });
-        $oleader = Cache::remember('oleader_' . $user->nik, Carbon::now()->addMinutes(10), function () use ($user) {
+        $oleader = Cache::remember('oleader_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Ochi::where('nik_ochi_leader', $user->nik)->get();
         });
         // $a = Absensi::where('nik', $user->nik)
@@ -94,7 +94,8 @@ class UserController extends Controller
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
         $info = Information::get();
-        set_time_limit(120);
+        set_time_limit(0);
+        // dd($a);
         return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'ochi', 'qcc', 'oleader','status', 'info'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
