@@ -7,13 +7,9 @@
     <meta http-equiv="Cache-Control" content="no-store, no-cache, must-revalidate, max-age=0">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
-    <!-- Boxicons CSS -->
-    <!-- <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.min.css') }}">
-    <!-- <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="{{ asset('assets/fontawesome/css/all.min.css') }}"> -->
     <title>@yield('title')</title>
     <!-- favicon -->
     <link href="{{ asset('assets/img/logo.png') }}" rel="icon">
@@ -35,17 +31,12 @@
 
 <body>
 
-    <!-- navbar -->
     @include('admin.layout.navbar')
     @include('sweetalert::alert')
 
-    <!-- sidebar -->
-    <!-- <div class="container-fluid"> -->
     @include('admin.layout.sidebar')
 
     @yield('content')
-
-    <!-- </div> -->
 
     <!-- JavaScript -->
     <script src="{{ asset('js/script.js') }}"></script>
