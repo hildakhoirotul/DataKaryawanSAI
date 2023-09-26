@@ -29,7 +29,8 @@ class MailSend extends Mailable
      */
     public function build()
     {
-        return $this->subject('Verifikasi Akun')
+        return $this->from('admin@gmail.com')
+            ->subject('Human Resources')
             ->view('auth.verify');
     }
 }
