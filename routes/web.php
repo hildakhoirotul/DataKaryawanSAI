@@ -64,6 +64,12 @@ Route::controller(AdminController::class)->group(function () {
     Route::delete('/destroy/{id}', 'destroy')->name('karyawan.destroy');
     Route::get('/unduh/{nama_file}', 'unduh')->name('unduh');
     Route::post('delete-all', 'remove');
+    Route::post('delete-absensi', 'removeAbsensi');
+    Route::post('delete-ochi', 'removeOchi');
+    Route::post('delete-qcc', 'removeQcc');
+    Route::get('reset-absensi', 'resetAbsensi');
+    Route::get('reset-ochi', 'resetOchi');
+    Route::get('reset-qcc', 'resetQcc');
     Route::get('/update-rekapitulasi', 'updateRekap')->name('update.rekap');
 });
 

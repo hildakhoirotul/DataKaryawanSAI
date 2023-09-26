@@ -1,6 +1,7 @@
 @php $i=1 @endphp
 @foreach ($ochiData as $ochi)
 <tr>
+    <td style="width: 40px;" class="text-center"><input type="checkbox" class="checkbox" data-id="{{$ochi->id}}" data-checked="{{ $ochi->isChecked ? 'true' : 'false' }}"></td>
     <td>{{ $i++ }}</td>
     <td>{{ $ochi->nik }}</td>
     <td>{{ $ochi->tema }}</td>

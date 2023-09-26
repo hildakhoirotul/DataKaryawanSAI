@@ -48,29 +48,32 @@ class AdminController extends Controller
 
     public function absensi(Request $request)
     {
+        $page = $request->input('paginate', 50);
         $total = Absensi::count();
-        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate(100);
+        $absensi = Absensi::orderBy('tanggal', 'DESC')->paginate($page)->onEachSide(1);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.absensi', compact('absensi', 'total', 'status'));
+        return response()->view('admin.absensi', compact('absensi', 'total', 'status', 'page'));
     }
 
-    public function ochi()
+    public function ochi(Request $request)
     {
+        $page = $request->input('paginate', 50);
         $total = Ochi::count();
-        $ochi = Ochi::paginate(50);
+        $ochi = Ochi::paginate($page)->onEachSide(1);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.ochi', compact('ochi', 'total', 'status'));
+        return response()->view('admin.ochi', compact('ochi', 'total', 'status', 'page'));
     }
 
-    public function qcc()
+    public function qcc(Request $request)
     {
+        $page = $request->input('paginate', 50);
         $total = Qcc::count();
-        $qcc = Qcc::paginate(50);
+        $qcc = Qcc::paginate($page)->onEachSide(1);
         $setting = Setting::firstOrNew([]);
         $status = $setting->login;
-        return response()->view('admin.qcc', compact('qcc', 'total', 'status'));
+        return response()->view('admin.qcc', compact('qcc', 'total', 'status', 'page'));
     }
 
     public function karyawan(Request $request)
@@ -394,7 +397,7 @@ class AdminController extends Controller
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
         $nama_file = rand() . $file->getClientOriginalName();
-        Absensi::truncate();
+        // Absensi::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
@@ -430,7 +433,7 @@ class AdminController extends Controller
         ]);
 
         $nama_file = rand() . $file->getClientOriginalName();
-        Ochi::truncate();
+        // Ochi::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
@@ -465,7 +468,7 @@ class AdminController extends Controller
         ]);
 
         $nama_file = rand() . $file->getClientOriginalName();
-        Qcc::truncate();
+        // Qcc::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
@@ -609,6 +612,45 @@ class AdminController extends Controller
     {
         $ids = $request->input('ids');
         User::whereIn('id', $ids)->delete();
+        return redirect()->back();
+    }
+
+    public function removeAbsensi(Request $request)
+    {
+        $ids = $request->input('ids');
+        Absensi::whereIn('id', $ids)->delete();
+        return redirect()->back();
+    }
+
+    public function removeOchi(Request $request)
+    {
+        $ids = $request->input('ids');
+        Ochi::whereIn('id', $ids)->delete();
+        return redirect()->back();
+    }
+
+    public function removeQcc(Request $request)
+    {
+        $ids = $request->input('ids');
+        Qcc::whereIn('id', $ids)->delete();
+        return redirect()->back();
+    }
+
+    public function resetAbsensi()
+    {
+        Absensi::truncate();
+        return redirect()->back();
+    }
+
+    public function resetOchi()
+    {
+        Ochi::truncate();
+        return redirect()->back();
+    }
+
+    public function resetQcc()
+    {
+        Qcc::truncate();
         return redirect()->back();
     }
 }

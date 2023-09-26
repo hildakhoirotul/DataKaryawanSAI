@@ -639,6 +639,14 @@ button span,
   border-radius: 3px;
 }
 
+.baris {
+  position: absolute;
+  top: 1.6rem;
+  right: 8.5rem;
+  display: flex;
+  align-items: center;
+}
+
 .swal2-popup {
   max-height: 400px;
   overflow-y: auto;

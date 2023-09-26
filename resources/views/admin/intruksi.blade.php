@@ -61,7 +61,7 @@
                         </li>
 
                         <li data-aos="fade-up" data-aos-delay="100">
-                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh, Update, Template, dan Hapus<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
+                            <i class="bi bi-question-circle icon-help" style="font-size: 1rem;"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">Tombol Unggah, Unduh, Update, Template, Hapus, dan Reset<i class="bi bi-caret-down-fill icon-show"></i><i class="bi bi-caret-up-fill icon-close"></i></a>
                             <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
                                 <table class="table table-bordered">
                                     <tbody>
@@ -103,6 +103,14 @@
                                             </td>
                                             <td>
                                                 <p>Menghapus data yang dicentang pada tabel.</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('assets/img/petunjuk/reset.png') }}" alt="" style="width: 4rem;">
+                                            </td>
+                                            <td>
+                                                <p>Menghapus seluruh data yang ada pada tabel.</p>
                                             </td>
                                         </tr>
                                         <tr>

@@ -1,6 +1,7 @@
 @php $i=1 @endphp
 @foreach ($absensiData as $absen)
 <tr>
+    <td><input type="checkbox" class="checkbox" data-id="{{$absen->id}}" data-checked="{{ $absen->isChecked ? 'true' : 'false' }}"></td>
     <td>{{ $i++ }}</td>
     <td>{{ $absen->nik }}</td>
     <td>{{ $absen->jenis }}</td>

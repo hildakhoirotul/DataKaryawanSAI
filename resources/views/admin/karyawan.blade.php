@@ -4,14 +4,11 @@
 @section('content')
 <main class="content p-2 pt-3">
     <div class="row">
-        <!-- <div class="col-md-12"> -->
         <div class="card p-4">
-            <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h5 class="ms-1 mb-0">Data Karyawan</h5>
             <div class="jumlah-data px-2 text-nowrap border">
                 Jumlah data : {{ $total }}
             </div>
-            <!-- <a href="#"> -->
             <div class="row mt-2 justify-content-between align-items-end">
 
 
@@ -44,7 +41,6 @@
                                 </select>
                             </div>
                         </form>
-                        <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.2rem; font-size: 10pt; margin-top: 1.40rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem; margin-top: 1.40rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></i></button>
                     </div>
@@ -206,13 +202,10 @@
         $("#selectAllCheckbox").change(function() {
             var isChecked = $(this).prop("checked");
 
-            // Mengatur status selectAllChecked di local storage
             localStorage.setItem("selectAllChecked", isChecked ? "true" : "false");
 
-            // Mengatur status checkbox individual
             $(".checkbox").prop("checked", isChecked);
 
-            // Memperbarui selectedIds di local storage sesuai dengan status terbaru
             if (isChecked) {
                 var dataIds = $(".checkbox").map(function() {
                     return $(this).data("id");
@@ -255,9 +248,8 @@
     }
 
     $(document).ready(function() {
-        handleCheckboxChanges(); // Panggil fungsi ketika dokumen siap
+        handleCheckboxChanges();
 
-        // Event listener untuk checkbox yang akan memanggil fungsi saat dicentang
         $(".checkbox").change(function() {
             handleCheckboxChanges();
         });
@@ -289,7 +281,7 @@
         }
     };
     $("#removeDataButton").click(function() {
-        deleteSelectedData(); // Panggil fungsi untuk menghapus data
+        deleteSelectedData();
     });
 </script>
 @endsection

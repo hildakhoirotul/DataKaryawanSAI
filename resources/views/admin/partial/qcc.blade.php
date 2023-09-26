@@ -1,6 +1,7 @@
 @php $i=1 @endphp
 @foreach ($qccData as $qcc)
 <tr>
+    <td style="width: 40px;" class="text-center"><input type="checkbox" class="checkbox" data-id="{{$qcc->id}}" data-checked="{{ $qcc->isChecked ? 'true' : 'false' }}"></td>
     <td>{{ $i++ }}</td>
     <td>{{ $qcc->nik }}</td>
     <td>{{ $qcc->tema }}</td>
