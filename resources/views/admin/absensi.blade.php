@@ -5,9 +5,9 @@
     <div class="row">
         <div class="card p-4">
             <h5 class="ms-1 mb-0">Data Absensi Karyawan</h5>
-            <form method="GET" action="{{ route('absensi') }}" class="baris">
+            <form method="GET" action="{{ route('absensi') }}" class="baris me-4">
                 <span style="font-size: 12px;">Jumlah Baris : </span>
-                <div class="dropdown text-end ms-2 me-4">
+                <div class="dropdown text-end ms-2">
                     <!-- <label for="paginate" style="font-size: 12px;">Jumlah baris:</label> -->
                     <select id="paginate" name="paginate" class="form-control px-2" style="width: 4rem; height: 1.8rem; font-size: 12px;" onchange="this.form.submit()">
                         <option value="50">-select-</option>
@@ -19,7 +19,7 @@
                     </select>
                 </div>
             </form>
-            <div class="jumlah-data px-2 text-nowrap border">
+            <div class="jumlah-data px-2 ms-2 text-nowrap border">
                 Jumlah data : {{ $total }}
             </div>
 
@@ -48,9 +48,6 @@
                     <button type="button" onclick="showDeleteConfirmation(event, this)" class="btn unduh btn-outline-danger mt-2 p-1 px-2">
                         <span>Reset</span>
                     </button>
-                    <!-- <a href="{{ url('reset-absensi') }}" class="btn unduh btn-outline-danger mt-2 p-1 px-2">
-                        <span>Reset</span>
-                    </a> -->
                 </div>
                 <div class="col-md-7">
                     <div class="input-group">

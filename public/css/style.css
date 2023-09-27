@@ -644,6 +644,7 @@ button span,
   position: absolute;
   top: 1.6rem;
   right: 8.5rem;
+  display: -webkit-flex;
   display: flex;
   align-items: center;
 }

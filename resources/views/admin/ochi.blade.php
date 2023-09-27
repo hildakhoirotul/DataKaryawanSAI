@@ -8,9 +8,9 @@
         <div class="card p-4">
             <!-- <div class="card-header">{{ __('Dashboard') }}</div> -->
             <h5 class="ms-1 mb-0">Data OCHI</h5>
-            <form method="GET" action="{{ route('data-ochi') }}" class="baris">
+            <form method="GET" action="{{ route('data-ochi') }}" class="baris me-4">
                 <span style="font-size: 12px;">Jumlah Baris : </span>
-                <div class="dropdown text-end ms-2 me-4">
+                <div class="dropdown text-end ms-2">
                     <!-- <label for="paginate" style="font-size: 12px;">Jumlah baris:</label> -->
                     <select id="paginate" name="paginate" class="form-control px-2" style="width: 4rem; height: 1.8rem; font-size: 12px;" onchange="this.form.submit()">
                         <option value="50">-select-</option>
@@ -22,7 +22,7 @@
                     </select>
                 </div>
             </form>
-            <div class="jumlah-data px-2 text-nowrap border">
+            <div class="jumlah-data px-2 ms-3 text-nowrap border">
                 Jumlah data : {{ $total }}
             </div>
             <!-- <a href="#"> -->

@@ -106,6 +106,7 @@ form.sign-in-form {
     font-weight: 600;
     font-size: 1.1rem;
     color: #333;
+    width: inherit;
 }
 
 .input-field input::placeholder {
@@ -564,7 +565,7 @@ form.sign-in-form {
 
     .input-field .toggle-password-icon {
         margin-left: 0px;
-        margin-right: 0 !important;
+        margin-right: 10px !important;
     }
 
     .container.sign-up-mode .signin-signup {
