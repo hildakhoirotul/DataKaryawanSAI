@@ -474,6 +474,7 @@ form.sign-in-form {
         top: 0%;
         padding: 4px;
         padding-top: 20px;
+        transition: transform 0.3s ease;
         transform: translate(-50%, 0);
     }
 
