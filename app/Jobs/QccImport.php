@@ -48,7 +48,7 @@ class QccImport implements ShouldQueue
     
         if (!empty($errorMessages)) {
             $error = implode(" ", $errorMessages);
-            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
+            Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, 'error')->width('600px');
             return redirect()->back();
         } else {
             Alert::success('Impor Berhasil', ' Berhasil diimpor');

@@ -136,14 +136,22 @@
                                     <td>{{ $r->tanggal }}</td>
                                     <td>
                                         @if($r->jam_masuk == '00:00:00')
+                                        @if(in_array($r->jenis, ['ICP', 'ITD', 'TD', 'CP']))
+                                        Tidak Checklog
+                                        @else
                                         -
+                                        @endif
                                         @else
                                         {{ $r->jam_masuk }}
                                         @endif
                                     </td>
                                     <td>
                                         @if($r->jam_pulang == '00:00:00')
+                                        @if(in_array($r->jenis, ['ICP', 'ITD', 'TD', 'CP']))
+                                        Tidak Checklog
+                                        @else
                                         -
+                                        @endif
                                         @else
                                         {{ $r->jam_pulang }}
                                         @endif

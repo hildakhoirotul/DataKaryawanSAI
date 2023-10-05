@@ -8,14 +8,22 @@
     <td>{{ $absen->tanggal }}</td>
     <td>
         @if($absen->jam_masuk == '00:00:00')
+        @if(in_array($absen->jenis, ['ICP', 'ITD', 'TD', 'CP']))
+        Tidak Checklog
+        @else
         -
+        @endif
         @else
         {{ $absen->jam_masuk }}
         @endif
     </td>
     <td>
         @if($absen->jam_pulang == '00:00:00')
+        @if(in_array($absen->jenis, ['ICP', 'ITD', 'TD', 'CP']))
+        Tidak Checklog
+        @else
         -
+        @endif
         @else
         {{ $absen->jam_pulang }}
         @endif

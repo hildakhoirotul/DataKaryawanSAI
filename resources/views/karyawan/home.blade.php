@@ -225,7 +225,13 @@
                                     @foreach($itd as $izin)
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $izin->jam_masuk }}</td>
+                                        <td>
+                                            @if($izin->jam_masuk === '00:00:00')
+                                            Tidak Checklog
+                                            @else
+                                            {{ $izin->jam_masuk }}
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @endif
@@ -265,7 +271,13 @@
                                     @foreach($td as $izin)
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $izin->jam_masuk }}</td>
+                                        <td>
+                                            @if($izin->jam_masuk === '00:00:00')
+                                            Tidak Checklog
+                                            @else
+                                            {{ $izin->jam_masuk }}
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @endif
@@ -305,7 +317,13 @@
                                     @foreach($icp as $izin)
                                     <tr>
                                         <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                        <td>{{ $izin->jam_pulang }}</td>
+                                        <td>
+                                            @if($izin->jam_pulang === '00:00:00')
+                                            Tidak Checklog
+                                            @else
+                                            {{ $izin->jam_pulang }}
+                                            @endif
+                                        </td>
                                     </tr>
                                     @endforeach
                                     @endif
@@ -742,7 +760,13 @@
                                                 @foreach($itd as $izin)
                                                 <tr>
                                                     <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                                    <td>{{ $izin->jam_masuk }}</td>
+                                                    <td>
+                                                        @if($izin->jam_masuk === '00:00:00')
+                                                        Tidak Checklog
+                                                        @else
+                                                        {{ $izin->jam_masuk }}
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -782,7 +806,13 @@
                                                 @foreach($td as $izin)
                                                 <tr>
                                                     <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                                    <td>{{ $izin->jam_masuk }}</td>
+                                                    <td>
+                                                        @if($izin->jam_masuk === '00:00:00')
+                                                        Tidak Checklog
+                                                        @else
+                                                        {{ $izin->jam_masuk }}
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
@@ -822,7 +852,13 @@
                                                 @foreach($icp as $izin)
                                                 <tr>
                                                     <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
-                                                    <td>{{ $izin->jam_pulang }}</td>
+                                                    <td>
+                                                        @if($izin->jam_pulang === '00:00:00')
+                                                        Tidak Checklog
+                                                        @else
+                                                        {{ $izin->jam_pulang }}
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                                 @endif
