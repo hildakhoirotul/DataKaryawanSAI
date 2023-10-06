@@ -83,6 +83,7 @@
                                     <th>ITD</th>
                                     <th>ICP</th>
                                     <th>TD</th>
+                                    <th>CP</th>
                                     <th>OCHI</th>
                                     <th>QCC</th>
                                     <th>OCHI Leader</th>
@@ -141,6 +142,13 @@
                                         -
                                         @else
                                         {{ $r->TD }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($r->CP == 0 || null)
+                                        -
+                                        @else
+                                        {{ $r->CP }}
                                         @endif
                                     </td>
                                     <td>

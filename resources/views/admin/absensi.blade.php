@@ -338,6 +338,10 @@
                         ids: selectedIds
                     },
                     success: function(response) {
+                        localStorage.removeItem("selectedIds");
+                        localStorage.removeItem("selectAllChecked");
+                        $(".checkbox").prop("checked", false);
+                        $("#selectAllCheckbox").prop("checked", false);
                         location.reload();
                     },
                     error: function(error) {

@@ -118,6 +118,7 @@ class AdminController extends Controller
                 'ITD' => 0,
                 'ICP' => 0,
                 'TD' => 0,
+                'CP' => 0,
                 'OCHI' => 0,
                 'QCC' => 0,
                 'OCHI_leader' => 0,
@@ -136,6 +137,7 @@ class AdminController extends Controller
                     'ITD' => 0,
                     'ICP' => 0,
                     'TD' => 0,
+                    'CP' => 0,
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
@@ -154,8 +156,10 @@ class AdminController extends Controller
                 $total[$nik]['ITD']++;
             } elseif ($jenis === 'ICP') {
                 $total[$nik]['ICP']++;
-            } else {
+            } elseif ($jenis === 'TD') {
                 $total[$nik]['TD']++;
+            } else {
+                $total[$nik]['CP']++;
             }
         }
 
@@ -172,6 +176,7 @@ class AdminController extends Controller
                     'ITD' => 0,
                     'ICP' => 0,
                     'TD' => 0,
+                    'CP' => 0,
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
@@ -188,6 +193,7 @@ class AdminController extends Controller
                     'ITD' => 0,
                     'ICP' => 0,
                     'TD' => 0,
+                    'CP' => 0,
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
@@ -209,6 +215,7 @@ class AdminController extends Controller
                     'ITD' => 0,
                     'ICP' => 0,
                     'TD' => 0,
+                    'CP' => 0,
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
@@ -217,6 +224,7 @@ class AdminController extends Controller
             $total[$nik]['QCC']++;
         }
 
+        // dd($total['222222']);
         foreach ($total as $nik => $totalData) {
             Rekapitulasi::updateOrCreate(['nik' => $nik], $totalData);
         }

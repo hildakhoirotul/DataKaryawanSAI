@@ -333,6 +333,52 @@
                     </div>
                 </div>
                 <!-- CP -->
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                        <div class="count-header">
+                            <h3>Jumlah Cepat Pulang</h3>
+                            <i class="bi bi-exclamation-square"></i>
+                            @if($rekap->isNotEmpty())
+                            <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->CP == '-' || $rekap->first()->CP == '' || $rekap->first()->CP == 0) ? 0 : $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
+                            @else
+                            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                            @endif
+                            <p>Lihat Tanggal</p>
+                        </div>
+                        <div class="count-content">
+
+                            <table class="table table-borderless table-striped text-center">
+                                @if($cp->isEmpty())
+                                <tr>
+                                    <td colspan="4" class="text-center">Tidak ada data</td>
+                                </tr>
+                                @else
+                                <thead>
+                                    <tr>
+                                        <th>Tanggal</th>
+                                        <th>Jam Pulang</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $i=1 @endphp
+                                    @foreach($cp as $izin)
+                                    <tr>
+                                        <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
+                                        <td>
+                                            @if($izin->jam_pulang === '00:00:00')
+                                            Tidak Checklog
+                                            @else
+                                            {{ $izin->jam_pulang }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <!-- OCHI -->
                 <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                     <div class="count-box">
@@ -868,6 +914,52 @@
                                 </div>
                             </div>
                             <!-- CP -->
+                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                                <div class="count-box">
+                                    <div class="count-header">
+                                        <h3>CP</h3>
+                                        <i class="bi bi-exclamation-square"></i>
+                                        @if($rekap->isNotEmpty())
+                                        <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->CP == '-' || $rekap->first()->CP == '' || $rekap->first()->CP == 0) ? 0 : $rekap->first()->CP }}" data-purecounter-duration="1" class="purecounter"></span>
+                                        @else
+                                        <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                                        @endif
+                                        <p>Lihat Tanggal</p>
+                                    </div>
+                                    <div class="count-content">
+
+                                        <table class="table table-borderless table-striped text-center">
+                                            @if($cp->isEmpty())
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                            @else
+                                            <thead>
+                                                <tr>
+                                                    <th>Tanggal</th>
+                                                    <th>Jam Pulang</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php $i=1 @endphp
+                                                @foreach($cp as $izin)
+                                                <tr>
+                                                    <td>{{ \Carbon\Carbon::parse($izin->tanggal)->format('d F Y') }}</td>
+                                                    <td>
+                                                        @if($izin->jam_pulang === '00:00:00')
+                                                        Tidak Checklog
+                                                        @else
+                                                        {{ $izin->jam_pulang }}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

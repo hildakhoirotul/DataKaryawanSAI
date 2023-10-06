@@ -44,9 +44,9 @@ class UserController extends Controller
         $td = Cache::remember('absensi_td_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Absensi::where('nik', $user->nik)->where('jenis', 'TD')->get();
         });
-        // $cp = Cache::remember('absensi_cp_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
-        //     return Absensi::where('nik', $user->nik)->where('jenis', 'CP')->get();
-        // });
+        $cp = Cache::remember('absensi_cp_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
+            return Absensi::where('nik', $user->nik)->where('jenis', 'CP')->get();
+        });
         $ochi = Cache::remember('ochi_' . $user->nik, Carbon::now()->addMinutes(5), function () use ($user) {
             return Ochi::where('nik', $user->nik)->get();
         });
@@ -96,7 +96,7 @@ class UserController extends Controller
         $info = Information::get();
         set_time_limit(0);
         // dd($itd);
-        return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'ochi', 'qcc', 'oleader','status', 'info'))
+        return response()->view('karyawan.home', compact('rekap', 'a', 's', 'sd', 'iz', 'itd', 'icp', 'td', 'cp', 'ochi', 'qcc', 'oleader','status', 'info'))
             ->header('Cache-Control', 'no-store, no-cache, must-revalidate, max-age=0')
             ->header('Pragma', 'no-cache');
     }
