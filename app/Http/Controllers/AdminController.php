@@ -158,7 +158,7 @@ class AdminController extends Controller
                 $total[$nik]['ICP']++;
             } elseif ($jenis === 'TD') {
                 $total[$nik]['TD']++;
-            }elseif ($jenis === 'CP') {
+            } elseif ($jenis === 'CP') {
                 $total[$nik]['CP']++;
             } else {
                 
