@@ -66,7 +66,7 @@
             <div class="content">
                 <h3>Selamat Datang</h3>
                 <p>
-                    Silahkan masukkan NIK 6 digit dan password anda untuk Masuk.
+                    Silahkan masukkan NIK 6 digit dan password sesuai e-slip gaji anda untuk Masuk.
                 </p>
                 <p>Belum punya akun?</p>
                 <button class="btn transparent" id="sign-up-btn">
