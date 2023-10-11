@@ -44,6 +44,7 @@ class QccExport implements FromCollection, WithHeadings, WithMapping, WithStyles
             'Tema',
             'Kontes',
             'Nama QCC',
+            'Fasilitator QCC',
             'Juara SAI',
             'Juara PASI',
         ];
@@ -60,12 +61,14 @@ class QccExport implements FromCollection, WithHeadings, WithMapping, WithStyles
     {
         $juara_sai = ($row->juara_sai !== null && $row->juara_sai !== '0') ? (string) $row->juara_sai : '-';
         $juara_pasi = ($row->juara_pasi !== null && $row->juara_pasi !== '0') ? (string) $row->juara_pasi : '-';
+        $fasilitator_qcc = ($row->fasilitator_qcc !== null && $row->fasilitator_qcc !== '0') ? (string) $row->fasilitator_qcc : '-';
 
         return [
             $row['nik'],
             $row['tema'],
             $row['kontes'],
             $row['nama_qcc'],
+            $fasilitator_qcc,
             $juara_sai,
             $juara_pasi,
         ];

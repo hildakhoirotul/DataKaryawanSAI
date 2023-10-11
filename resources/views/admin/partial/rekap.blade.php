@@ -80,5 +80,12 @@
         {{ $r->OCHI_leader }}
         @endif
     </td>
+    <td>
+        @if($r->fasilitator_qcc == 0 || null)
+        -
+        @else
+        {{ $r->fasilitator_qcc }}
+        @endif
+    </td>
 </tr>
 @endforeach

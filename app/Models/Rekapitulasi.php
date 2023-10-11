@@ -25,7 +25,6 @@ class Rekapitulasi extends Model
         'OCHI',
         'QCC',
         'OCHI_leader',
-        'Juara_OCHI',
-        'Juara_QCC',
+        'fasilitator_qcc',
     ];
 }

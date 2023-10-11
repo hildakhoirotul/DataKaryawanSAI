@@ -42,6 +42,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
             'tema'   => $row['tema'],
             'kontes'   => $row['kontes'],
             'nama_qcc' => $row['nama_qcc'],
+            'fasilitator_qcc' => $row['fasilitator_qcc'],
             'juara_sai'  => $row['juara_sai'],
             'juara_pasi'  => $row['juara_pasi'],
         ]);
@@ -79,6 +80,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
             // 'nik.exists' => 'NIK tidak valid',
             'tema.required' => 'Tema tidak boleh kosong.',
             'nama_qcc.required' => 'Nama QCC tidak boleh kosong.',
+            // 'fasilitator_qcc.min' => 'NIK Fasilitator QCC harus terdiri dari 6 digit.',
         ];
     }
 }

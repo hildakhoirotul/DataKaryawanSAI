@@ -7,6 +7,13 @@
     <td>{{ $qcc->tema }}</td>
     <td style="width: 80px;" class="text-center">{{ $qcc->kontes }}</td>
     <td>{{ $qcc->nama_qcc }}</td>
+    <td>
+        @if($qcc->fasilitator_qcc == 0 || null)
+        -
+        @else
+        {{ $qcc->fasilitator_qcc }}
+        @endif
+    </td>
     <td style="width: 80px;" class="text-center">
         @if($qcc->juara_sai == 0 || null)
         -

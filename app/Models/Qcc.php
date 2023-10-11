@@ -17,6 +17,7 @@ class Qcc extends Model
         'tema',
         'kontes',
         'nama_qcc',
+        'fasilitator_qcc',
         'juara_sai',
         'juara_pasi',
     ];

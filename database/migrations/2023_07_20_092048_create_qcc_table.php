@@ -19,6 +19,7 @@ class CreateQccTable extends Migration
             $table->string('tema');
             $table->string('kontes')->nullable();
             $table->string('nama_qcc');
+            $table->string('fasilitator_qcc')->nullable();
             $table->string('juara_sai')->nullable();
             $table->string('juara_pasi')->nullable();
             $table->timestamps();

@@ -29,6 +29,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
     {
         return [
             'nik' => 'required|min:6',
+            'fasilitator_qcc' => 'required|min:6',
         ];
     }
 
@@ -47,6 +48,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
             'OCHI'    => $row['ochi'],
             'QCC'     => $row['qcc'],
             'OCHI_leader' => $row['ochi_leader'],
+            'fasilitator_qcc' => $row['fasilitator_qcc'],
             // 'Juara_OCHI' => $row['juara_ochi'],
             // 'Juara_QCC' => $row['juara_qcc'],
         ]);
@@ -76,6 +78,8 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari minimal 6 digit.',
+            'fasilitator_qcc.required' => 'Fasilitator QCC tidak boleh kosong.',
+            'fasilitator_qcc.min' => 'NIK Fasilitator QCC harus terdiri dari minimal 6 digit.',
         ];
     }
 

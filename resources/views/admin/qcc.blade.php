@@ -109,6 +109,7 @@
                                     <th>TEMA</th>
                                     <th>Kontes</th>
                                     <th>Nama QCC</th>
+                                    <th>Fasilitator QCC</th>
                                     <th>Juara SAI</th>
                                     <th>Juara PASI</th>
                                 </tr>
@@ -123,6 +124,13 @@
                                     <td>{{ $r->tema }}</td>
                                     <td style="width: 80px;" class="text-center">{{ $r->kontes }}</td>
                                     <td>{{ $r->nama_qcc }}</td>
+                                    <td>
+                                        @if($r->fasilitator_qcc == 0 || null)
+                                        -
+                                        @else
+                                        {{ $r->fasilitator_qcc }}
+                                        @endif
+                                    </td>
                                     <td style="width: 80px;" class="text-center">
                                         @if($r->juara_sai == 0 || null)
                                         -

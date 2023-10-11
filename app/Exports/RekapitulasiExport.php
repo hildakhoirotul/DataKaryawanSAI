@@ -46,6 +46,7 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping, WithSt
             'OCHI',
             'QCC',
             'OCHI leader',
+            'Fasilitator QCC',
         ];
     }
 
@@ -76,6 +77,7 @@ class RekapitulasiExport implements FromArray, WithHeadings, WithMapping, WithSt
             $row['OCHI'],
             $row['QCC'],
             $row['OCHI_leader'],
+            $row['fasilitator_qcc'],
         ];
     }
 }

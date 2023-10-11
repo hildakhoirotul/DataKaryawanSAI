@@ -27,6 +27,7 @@ class CreateRekapitulasiTable extends Migration
             $table->string('OCHI')->nullable();
             $table->string('QCC')->nullable();
             $table->string('OCHI_leader')->nullable();
+            $table->string('fasilitator_qcc')->nullable();
             $table->timestamps();
         });
     }

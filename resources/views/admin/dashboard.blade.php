@@ -87,6 +87,7 @@
                                     <th>OCHI</th>
                                     <th>QCC</th>
                                     <th>OCHI Leader</th>
+                                    <th>Fasilitator QCC</th>
                                 </tr>
                             </thead>
                             <tbody id="absensiTableBody">
@@ -170,6 +171,13 @@
                                         -
                                         @else
                                         {{ $r->OCHI_leader }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($r->fasilitator_qcc == 0 || null)
+                                        -
+                                        @else
+                                        {{ $r->fasilitator_qcc }}
                                         @endif
                                     </td>
                                 </tr>

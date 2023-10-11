@@ -617,6 +617,104 @@
                         </div>
                     </div>
                 </div>
+                <!-- Fasilitator QCC -->
+                <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                    <div class="count-box">
+                        <div class="count-header">
+                            <h3>Fasilitator QCC</h3>
+                            <i class="bi bi-person-fill-gear"></i>
+                            @if($rekap->isNotEmpty())
+                            <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->fasilitator_qcc == '-' || $rekap->first()->fasilitator_qcc == '' || $rekap->first()->fasilitator_qcc == 0) ? 0 : $rekap->first()->fasilitator_qcc }}" data-purecounter-duration="1" class="purecounter"></span>
+                            @else
+                            <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                            @endif
+                            <p>Lihat Detail</p>
+                        </div>
+                        <div class="count-content">
+                            @if($status)
+                            <table class="table table-borderless table-striped mt-0">
+                                @if($fas_qcc->isEmpty())
+                                <tr>
+                                    <td colspan="4" class="text-center">Tidak ada data</td>
+                                </tr>
+                                @else
+                                <thead class="align-middle">
+                                    <tr>
+                                        <th>Nama Circle</th>
+                                        <th>Kontes</th>
+                                        <th>Juara SAI</th>
+                                        <th>Juara PASI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $i=1 @endphp
+                                    @foreach($fas_qcc as $o)
+                                    <tr>
+                                        <td>{{ $o->nama_qcc }}</td>
+                                        <td>{{ $o->kontes }}</td>
+                                        <td>
+                                            @if($o->juara_sai == 0 || null)
+                                            -
+                                            @else
+                                            {{ $o->juara_sai }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($o->juara_pasi == 0 || null)
+                                            -
+                                            @else
+                                            {{ $o->juara_pasi }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                            @else
+                            <table class="table table-borderless text-center table-striped mt-0">
+                                @if($fas_qcc->isEmpty())
+                                <tr>
+                                    <td colspan="4" class="text-center">Tidak ada data</td>
+                                </tr>
+                                @else
+                                <thead class="align-middle">
+                                    <tr>
+                                        <th>Nama Circle</th>
+                                        <th>Kontes</th>
+                                        <th>Juara SAI</th>
+                                        <th>Juara PASI</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php $i=1 @endphp
+                                    @foreach($fas_qcc as $o)
+                                    <tr>
+                                        <td>{{ $o->nama_qcc }}</td>
+                                        <td>{{ $o->kontes }}</td>
+                                        <td>
+                                            @if($o->juara_sai == 0 || null)
+                                            -
+                                            @else
+                                            {{ $o->juara_sai }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($o->juara_pasi == 0 || null)
+                                            -
+                                            @else
+                                            {{ $o->juara_pasi }}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                    @endif
+                                </tbody>
+                            </table>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="carouselExampleIndicators" class="carousel slide">
@@ -734,6 +832,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
                             <!-- A -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
                                 <div class="count-box">
@@ -769,12 +874,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
                             <!-- ITD -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
@@ -867,6 +966,13 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
                             <!-- ICP -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
@@ -960,12 +1066,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="container">
-                        <div class="row">
                             <!-- OCHI -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
@@ -1034,6 +1134,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="container">
+                        <div class="row">
                             <!-- QCC -->
                             <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
                                 <div class="count-box">
@@ -1195,6 +1301,104 @@
                                                 <tr>
                                                     <td>{{ $o->nik }}</td>
                                                     <td class="text-start">{{ $o->tema }}</td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Fasilitator QCC -->
+                            <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+                                <div class="count-box">
+                                    <div class="count-header">
+                                        <h3>Fasilitator QCC</h3>
+                                        <i class="bi bi-person-fill-gear"></i>
+                                        @if($rekap->isNotEmpty())
+                                        <span data-purecounter-start="0" data-purecounter-end="{{ ($rekap->first()->fasilitator_qcc == '-' || $rekap->first()->fasilitator_qcc == '' || $rekap->first()->fasilitator_qcc == 0) ? 0 : $rekap->first()->fasilitator_qcc }}" data-purecounter-duration="1" class="purecounter"></span>
+                                        @else
+                                        <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                                        @endif
+                                        <p>Lihat Detail</p>
+                                    </div>
+                                    <div class="count-content">
+                                        @if($status)
+                                        <table class="table table-borderless table-striped mt-0">
+                                            @if($fas_qcc->isEmpty())
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                            @else
+                                            <thead class="align-middle">
+                                                <tr>
+                                                    <th>Nama Circle</th>
+                                                    <th>Kontes</th>
+                                                    <th>Juara SAI</th>
+                                                    <th>Juara PASI</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php $i=1 @endphp
+                                                @foreach($fas_qcc as $o)
+                                                <tr>
+                                                    <td>{{ $o->nama_qcc }}</td>
+                                                    <td>{{ $o->kontes }}</td>
+                                                    <td>
+                                                        @if($o->juara_sai == 0 || null)
+                                                        -
+                                                        @else
+                                                        {{ $o->juara_sai }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if($o->juara_pasi == 0 || null)
+                                                        -
+                                                        @else
+                                                        {{ $o->juara_pasi }}
+                                                        @endif
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                                @endif
+                                            </tbody>
+                                        </table>
+                                        @else
+                                        <table class="table table-borderless text-center table-striped mt-0">
+                                            @if($fas_qcc->isEmpty())
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                            @else
+                                            <thead class="align-middle">
+                                                <tr>
+                                                    <th>Nama Circle</th>
+                                                    <th>Kontes</th>
+                                                    <th>Juara SAI</th>
+                                                    <th>Juara PASI</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php $i=1 @endphp
+                                                @foreach($fas_qcc as $o)
+                                                <tr>
+                                                    <td>{{ $o->nama_qcc }}</td>
+                                                    <td>{{ $o->kontes }}</td>
+                                                    <td>
+                                                        @if($o->juara_sai == 0 || null)
+                                                        -
+                                                        @else
+                                                        {{ $o->juara_sai }}
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        @if($o->juara_pasi == 0 || null)
+                                                        -
+                                                        @else
+                                                        {{ $o->juara_pasi }}
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                                 @endif

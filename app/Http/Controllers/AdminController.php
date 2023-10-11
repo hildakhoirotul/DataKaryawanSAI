@@ -122,6 +122,7 @@ class AdminController extends Controller
                 'OCHI' => 0,
                 'QCC' => 0,
                 'OCHI_leader' => 0,
+                'fasilitator_qcc' => 0,
             ];
         }
         foreach ($absensi as $data) {
@@ -141,6 +142,7 @@ class AdminController extends Controller
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
+                    'fasilitator_qcc' => 0,
                 ];
             }
 
@@ -161,7 +163,6 @@ class AdminController extends Controller
             } elseif ($jenis === 'CP') {
                 $total[$nik]['CP']++;
             } else {
-                
             }
         }
 
@@ -182,6 +183,7 @@ class AdminController extends Controller
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
+                    'fasilitator_qcc' => 0,
                 ];
             }
             $total[$nik]['OCHI']++;
@@ -199,6 +201,7 @@ class AdminController extends Controller
                     'OCHI' => 0,
                     'QCC' => 0,
                     'OCHI_leader' => 0,
+                    'fasilitator_qcc' => 0,
                 ];
             }
 
@@ -207,24 +210,50 @@ class AdminController extends Controller
 
         foreach ($qcc as $qc) {
             $nik = $qc->nik;
+            $fas_qcc = $qc->fasilitator_qcc;
 
-            if (!isset($total[$nik])) {
-                $total[$nik] = [
-                    'SD' => 0,
-                    'S' => 0,
-                    'I' => 0,
-                    'A' => 0,
-                    'ITD' => 0,
-                    'ICP' => 0,
-                    'TD' => 0,
-                    'CP' => 0,
-                    'OCHI' => 0,
-                    'QCC' => 0,
-                    'OCHI_leader' => 0,
-                ];
+            if ($nik !== '-') {
+                if (!isset($total[$nik])) {
+                    $total[$nik] = [
+                        'SD' => 0,
+                        'S' => 0,
+                        'I' => 0,
+                        'A' => 0,
+                        'ITD' => 0,
+                        'ICP' => 0,
+                        'TD' => 0,
+                        'CP' => 0,
+                        'OCHI' => 0,
+                        'QCC' => 0,
+                        'OCHI_leader' => 0,
+                        'fasilitator_qcc' => 0,
+                    ];
+                }
+                $total[$nik]['QCC']++;
             }
-            $total[$nik]['QCC']++;
+
+            if ($fas_qcc !== '-' && $fas_qcc !== null) {
+                if (!isset($total[$fas_qcc])) {
+                    $total[$fas_qcc] = [
+                        'SD' => 0,
+                        'S' => 0,
+                        'I' => 0,
+                        'A' => 0,
+                        'ITD' => 0,
+                        'ICP' => 0,
+                        'TD' => 0,
+                        'CP' => 0,
+                        'OCHI' => 0,
+                        'QCC' => 0,
+                        'OCHI_leader' => 0,
+                        'fasilitator_qcc' => 0,
+                    ];
+                }
+
+                $total[$fas_qcc]['fasilitator_qcc']++;
+            }
         }
+
 
         // dd($total['222222']);
         foreach ($total as $nik => $totalData) {
@@ -334,6 +363,7 @@ class AdminController extends Controller
                 ->orWhere('tema', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('kontes', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('nama_qcc', 'LIKE', '%' . $searchTerm . '%')
+                ->orWhere('fasilitator_qcc', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('juara_sai', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('juara_pasi', 'LIKE', '%' . $searchTerm . '%');
         }
