@@ -380,7 +380,8 @@ class AdminController extends Controller
         $query = User::query();
 
         if ($searchTerm) {
-            $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
+            $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('nama', 'LIKE', '%' . $searchTerm . '%');
         }
         // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
         //     ->paginate(100);
