@@ -41,7 +41,7 @@
                                 </select>
                             </div>
                         </form>
-                        <input type="text" name="search" style="height: 2.2rem; font-size: 10pt; margin-top: 1.40rem;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <input type="text" name="search" style="height: 2.2rem; font-size: 10pt; margin-top: 1.40rem;" id="searchp" class="form-control input-text" placeholder="Cari disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem; margin-top: 1.40rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></i></button>
                     </div>
                 </div>
