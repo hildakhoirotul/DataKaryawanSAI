@@ -9,8 +9,8 @@
         <div class="row justify-content-between">
             <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
                 <div data-aos="zoom-out">
-                    <h1>Selamat Datang
-                        <p style="margin-top: 15px; font-size: 40px;">{{ Auth::user()->nama }}</p>
+                    <h1>Selamat Datang <br>
+                        <!-- <p style="margin-top: 15px; font-size: 40px;">{{ Auth::user()->nama }}</p> -->
                         <span>Mohon Diperhatikan</span>
                     </h1>
                     <h6>
