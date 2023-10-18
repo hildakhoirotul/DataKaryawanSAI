@@ -16,10 +16,9 @@ class isUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (auth()->user()->is_admin == 0) {
+        if (auth()->check() && auth()->user()->is_admin == 0) {
             return $next($request);
         }
-        abort(403, 'Unauthorized access');
         return redirect('/');
     }
 }
