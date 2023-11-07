@@ -63,7 +63,7 @@ class AbsensiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnF
 
     public function batchSize(): int
     {
-        return 1000;
+        return 500;
     }
 
     public function onError(Throwable $e)

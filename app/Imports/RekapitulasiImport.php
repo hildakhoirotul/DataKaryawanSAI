@@ -56,7 +56,7 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
 
     public function batchSize(): int
     {
-        return 1000;
+        return 500;
     }
 
     public function getErrors(): array

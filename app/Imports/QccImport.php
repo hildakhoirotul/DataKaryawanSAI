@@ -50,7 +50,7 @@ class QccImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFailu
 
     public function batchSize(): int
     {
-        return 1000;
+        return 500;
     }
 
     public function onError(Throwable $e)

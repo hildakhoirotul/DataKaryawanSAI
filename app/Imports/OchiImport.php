@@ -52,7 +52,7 @@ class OchiImport implements ToModel, WithHeadingRow, WithValidation, SkipsOnFail
 
     public function batchSize(): int
     {
-        return 1000;
+        return 500;
     }
 
     public function onError(Throwable $e)
