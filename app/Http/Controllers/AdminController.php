@@ -12,11 +12,6 @@ use App\Exports\AbsensiExport;
 use App\Exports\OchiExport;
 use App\Exports\QccExport;
 use App\Exports\RekapitulasiExport;
-use App\Imports\AbsensiImport;
-use App\Imports\OchiImport;
-use App\Imports\QccImport;
-use App\Imports\RekapitulasiImport;
-use App\Imports\UserImport;
 use App\Jobs\AbsensiImport as JobsAbsensiImport;
 use App\Jobs\KaryawanImport;
 use App\Jobs\OchiImport as JobsOchiImport;
@@ -25,10 +20,6 @@ use App\Jobs\QccImport as JobsQccImport;
 use App\Models\Rekapitulasi;
 use App\Models\Setting;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Queue;
 
 class AdminController extends Controller
 {
@@ -253,9 +244,6 @@ class AdminController extends Controller
                 $total[$fas_qcc]['fasilitator_qcc']++;
             }
         }
-
-
-        // dd($total['222222']);
         foreach ($total as $nik => $totalData) {
             Rekapitulasi::updateOrCreate(['nik' => $nik], $totalData);
         }
@@ -272,9 +260,6 @@ class AdminController extends Controller
         if ($searchTerm) {
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%');
         }
-        // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
-        //     ->paginate(100);
-
         $results = $query->paginate(50);
         return view('admin.partial.rekap', ['results' => $results]);
     }
@@ -316,14 +301,6 @@ class AdminController extends Controller
         if ($juaraFilter) {
             $query->where('juara', 'like', '%' . $juaraFilter . '%');
         }
-
-        // if ($searchTerm) {
-        //     $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('nik_ochi_leader', 'ILIKE', '%' . $searchTerm . '%');
-        // }
-
         if ($searchTerm) {
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('tema', 'LIKE', '%' . $searchTerm . '%')
@@ -332,9 +309,6 @@ class AdminController extends Controller
         }
 
         $ochiData = $query->get();
-
-        // $ochiData = Ochi::where('juara', 'like', '%' . $juaraFilter . '%')
-        //     ->get();
         return view('admin.partial.ochi', ['ochiData' => $ochiData]);
     }
 
@@ -348,16 +322,6 @@ class AdminController extends Controller
         if ($juaraFilter) {
             $query->where('juara_sai', 'like', '%' . $juaraFilter . '%');
         }
-
-        // if ($searchTerm) {
-        //     $query->where('nik', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('tema', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('kontes', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('nama_qcc', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('juara_sai', 'ILIKE', '%' . $searchTerm . '%')
-        //         ->orWhere('juara_pasi', 'ILIKE', '%' . $searchTerm . '%');
-        // }
-
         if ($searchTerm) {
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
                 ->orWhere('tema', 'LIKE', '%' . $searchTerm . '%')
@@ -383,9 +347,6 @@ class AdminController extends Controller
             $query->where('nik', 'LIKE', '%' . $searchTerm . '%')
             ->orWhere('nama', 'LIKE', '%' . $searchTerm . '%');
         }
-        // $results = Rekapitulasi::where('nik', 'LIKE', '%' . $searchTerm . '%')
-        //     ->paginate(100);
-
         $user = $query->paginate(100);
         return view('admin.partial.karyawan', ['user' => $user]);
     }
@@ -409,26 +370,6 @@ class AdminController extends Controller
 
         ProcessImport::dispatch($path)->onQueue('impor_rekap');
         return redirect()->back();
-        // $import = new RekapitulasiImport();
-        // Excel::import($import, $file);
-
-        // $errorMessages = [];
-        // $i = "1";
-        // foreach ($import->failures() as $failure) {
-        //     $error = $failure->errors();
-        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        // }
-
-        // if (!empty($errorMessages)) {
-        //     $error = implode(" ", $errorMessages);
-        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-        //     return redirect()->back();
-        // } else {
-        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-        //     return redirect()->back();
-        // }
-
-        // Storage::delete($path);
     }
 
     public function importAbsensi(Request $request)
@@ -438,31 +379,10 @@ class AdminController extends Controller
             'file' => 'required|mimes:csv,xls,xlsx'
         ]);
         $nama_file = rand() . $file->getClientOriginalName();
-        // Absensi::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
         JobsAbsensiImport::dispatch($path)->onQueue('impor_absensi');
-
-        // $import = new AbsensiImport();
-        // Excel::import($import, $file);
-
-        // $errorMessages = [];
-        // $i = "1";
-        // foreach ($import->failures() as $failure) {
-        //     $error = $failure->errors();
-        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        // }
-        // if (!empty($errorMessages)) {
-        //     $error = implode(" ", $errorMessages);
-        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small> error')->width('575px');
-        //     return redirect()->back();
-        // } else {
-        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-        //     return redirect()->back();
-        // }
-
-        // Storage::delete($path);
         return redirect()->back();
     }
 
@@ -474,30 +394,10 @@ class AdminController extends Controller
         ]);
 
         $nama_file = rand() . $file->getClientOriginalName();
-        // Ochi::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
         JobsOchiImport::dispatch($path)->onQueue('impor_ochi');
-
-        // $import = new OchiImport();
-        // Excel::import($import, $file);
-
-        // $errorMessages = [];
-        // $i = "1";
-        // foreach ($import->failures() as $failure) {
-        //     $error = $failure->errors();
-        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        // }
-        // if (!empty($errorMessages)) {
-        //     $error = implode(" ", $errorMessages);
-        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-        //     return redirect()->back();
-        // } else {
-        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-        //     return redirect()->back();
-        // }
-        // Storage::delete($path);
         return redirect()->back();
     }
 
@@ -509,31 +409,10 @@ class AdminController extends Controller
         ]);
 
         $nama_file = rand() . $file->getClientOriginalName();
-        // Qcc::truncate();
 
         $path = $file->storeAs('public/excel/', $nama_file);
 
         JobsQccImport::dispatch($path)->onQueue('impor_qcc');
-
-        // $import = new QccImport();
-        // Excel::import($import, $file);
-
-        // $errorMessages = [];
-        // $i = "1";
-        // foreach ($import->failures() as $failure) {
-        //     $error = $failure->errors();
-        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        // }
-        // if (!empty($errorMessages)) {
-        //     $error = implode(" ", $errorMessages);
-        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-        //     return redirect()->back();
-        // } else {
-        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-        //     return redirect()->back();
-        // }
-
-        // Storage::delete($path);
         return redirect()->back();
     }
 
@@ -551,26 +430,6 @@ class AdminController extends Controller
         set_time_limit(0);
         KaryawanImport::dispatch($path)->onQueue('impor_rekap');
         return redirect()->back();
-
-        // $import = new UserImport();
-        // Excel::import($import, $file);
-
-        // $errorMessages = [];
-        // $i = "1";
-        // foreach ($import->failures() as $failure) {
-        //     $error = $failure->errors();
-        //     $errorMessages[] = ($i++ . ". Kesalahan pada baris " . $failure->row() . ', ' . implode(", ", $error) . "<br>");
-        // }
-        // if (!empty($errorMessages)) {
-        //     $error = implode(" ", $errorMessages);
-        //     Alert::html('<small>Impor Gagal</small>', '<small>Error pada: <br>' . $error, '</small>error')->width('600px');
-        //     return redirect()->back();
-        // } else {
-        //     Alert::success('Impor Berhasil', $nama_file . ' Berhasil diimpor');
-        //     return redirect()->back();
-        // }
-
-        // Storage::delete($path);
     }
 
     public function exportExcel()

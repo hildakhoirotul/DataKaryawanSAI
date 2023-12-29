@@ -72,7 +72,7 @@
             <div class="content">
                 <h3>Ingin Ganti Password?</h3>
                 <p>
-                    Silahkan masukkan NIK 6 digit, password lama dan password baru.
+                    Silahkan masukkan password lama dan password baru.
                 </p>
                 <!-- <button class="btn transparent" id="sign-in-btn">
                         Masuk

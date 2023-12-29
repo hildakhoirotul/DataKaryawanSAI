@@ -29,12 +29,8 @@
                         <span>Template</span>
                     </a>
                 </div>
-                <!-- <div class="col-md-2 p-0 m-0">
-                    <span>Jumlah data : {{ $total }}</span>
-                </div> -->
                 <div class="col-md-3 pe-3">
                     <div class="input-group">
-                        <!-- <div class="search-container"> -->
                         <input type="text" name="search" style="height: 2.2rem; font-size: 10pt;" id="searchp" class="form-control input-text" placeholder="Cari NIK disini ...." aria-label="Recipient's username" aria-describedby="basic-addon2">
                         <button class="btn btn-outline-secondary btn-lg" style="height: 2.2rem;" id="search-btn" type="button" disabled><i class="bi bi-search"></i></button>
                     </div>
@@ -64,10 +60,6 @@
                 </div>
             </div>
             <!-- End Modal -->
-
-            <!-- Modal Pesan Error -->
-            <!-- End Modal -->
-
             <div class="row mt-0">
                 <div class="card-body pt-2">
                     <div class="table-responsive">
