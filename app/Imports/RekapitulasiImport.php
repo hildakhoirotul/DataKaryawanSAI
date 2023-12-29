@@ -29,7 +29,6 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
     {
         return [
             'nik' => 'required|min:6',
-            'fasilitator_qcc' => 'required|min:6',
         ];
     }
 
@@ -78,8 +77,6 @@ class RekapitulasiImport implements ToModel, WithHeadingRow, WithValidation, Ski
         return [
             'nik.required' => 'NIK tidak boleh kosong.',
             'nik.min' => 'NIK harus terdiri dari minimal 6 digit.',
-            'fasilitator_qcc.required' => 'Fasilitator QCC tidak boleh kosong.',
-            'fasilitator_qcc.min' => 'NIK Fasilitator QCC harus terdiri dari minimal 6 digit.',
         ];
     }
 
